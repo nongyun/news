@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}全球头条·每日热点新闻{% endblock %}</title>
+    <meta name="description" content="聚合军事、娱乐、科技、汽车、NBA、足球等国内外头条新闻，每日自动更新。">
+    <link rel="stylesheet" href="/style.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📰</text></svg>">
+</head>
+<body>
+    <header>
+        <div class="logo"><a href="/">📰 全球头条</a></div>
+        <nav>
+            <a href="/category/headlines.html">国内头条</a>
+            <a href="/category/military.html">军事</a>
+            <a href="/category/entertainment.html">娱乐</a>
+            <a href="/category/tech.html">电子/科技</a>
+            <a href="/category/auto.html">汽车</a>
+            <a href="/category/nba.html">NBA</a>
+            <a href="/category/soccer.html">足球</a>
+        </nav>
+    </header>
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+    <footer>
+        <p>© 2026 全球头条 · 每日自动聚合 | 数据源自公开 RSS 及新闻源</p>
+    </footer>
+</body>
+</html>
