@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block title %}全球头条·今日热点新闻聚合{% endblock %}
+{% block content %}
+<h1>📰 今日热点新闻</h1>
+<p class="update-time">更新时间：{{ update_time }}</p>
+
+{% for cat_en, cat_zh in categories %}
+<section class="category-section">
+    <h2><a href="/category/{{ cat_en }}.html">{{ cat_zh }}</a></h2>
+    <div class="news-list">
+        {% for item in news_data[cat_en][:6] %}
+        <div class="news-item">
+            <a href="{{ item.link }}" target="_blank" rel="noopener noreferrer">{{ item.title }}</a>
+            <div class="summary">{{ item.summary[:100] }}{% if item.summary|length > 100 %}…{% endif %}</div>
+            <div class="meta">{{ item.source }} · {{ item.published[:10] }}</div>
+        </div>
+        {% else %}
+        <p>暂无新闻</p>
+        {% endfor %}
+    </div>
+    <a href="/category/{{ cat_en }}.html" class="more">查看全部 &gt;&gt;</a>
+</section>
+{% endfor %}
+{% endblock %}
