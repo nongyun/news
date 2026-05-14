@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-    <title>万能在线工具箱 – 现代设计 | 图片转换/UUID/二维码/亲戚计算器/贷款/汇率/单位换算</title>
+    <title>Ultimate Online Toolbox</title>
     <meta name="description" content="全能在线工具箱：图片格式转换、UUID生成器、Wi-Fi二维码（支持WPA/WPA2/WPA3/WEP）、亲戚关系计算器、贷款利率计算、实时汇率换算、单位换算、Office文档转换等，完全免费本地运行。">
     <!-- 字体与图标库 -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;500;600;700;800&display=swap" rel="stylesheet">
@@ -12,7 +12,715 @@
     <script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/browser-image-compression@2.0.2/dist/browser-image-compression.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/mammoth@1.4.2/mammoth.browser.min.js"></script>
+    <script src="https://cdn.sheetjs.com/xlsx-0.20.2/package/dist/xlsx<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>万能在线工具箱 – 现代设计 | 图片转换/UUID/二维码/亲戚计算器/贷款/汇率/单位换算</title>
+    <meta name="description" content="全能在线工具箱：图片格式转换、UUID生成器、Wi-Fi二维码（支持WPA/WPA2/WPA3/WEP）、亲戚关系计算器、贷款利率计算、实时汇率换算、单位换算、Office文档转换等，完全免费本地运行。">
+    
+    <!-- 字体与图标库 -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    
+    <!-- 功能库 -->
+    <script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/browser-image-compression@2.0.2/dist/browser-image-compression.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/mammoth@1.4.2/mammoth.browser.min.js"></script>
     <script src="https://cdn.sheetjs.com/xlsx-0.20.2/package/dist/xlsx.full.min.js"></script>
+    
+    <!-- ========== Adsterra 广告代码（Popunder，放在 head 中） ========== -->
+    <!-- 第一个广告：Popunder -->
+    <script src="https://pl29443245.profitablecpmratenetwork.com/38/83/54/3883542318eaaf9a97a85b529d3f52a0.js"></script>
+    <!-- 第三个广告：Popunder -->
+    <script src="https://pl29443247.profitablecpmratenetwork.com/b2/45/2f/b2452f7342eda36baff5244b33f86d46.js"></script>
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: radial-gradient(circle at 10% 30%, #eef2f9, #e0e8f2);
+            color: #0b2b3b;
+            line-height: 1.5;
+            padding: 24px 20px;
+            min-height: 100vh;
+        }
+
+        /* 主容器 - 毛玻璃效果 */
+        .glass-app {
+            max-width: 1440px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.96);
+            backdrop-filter: blur(2px);
+            border-radius: 2rem;
+            box-shadow: 0 25px 45px -12px rgba(0, 0, 0, 0.3), 0 1px 2px rgba(0,0,0,0.05);
+            overflow: hidden;
+            transition: all 0.2s ease;
+        }
+
+        /* 头部区域 - 深色优雅 */
+        .hero-header {
+            background: linear-gradient(135deg, #0f2b36 0%, #1a4a5f 100%);
+            padding: 1.2rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .header-title h1 {
+            font-size: 1.9rem;
+            font-weight: 800;
+            letter-spacing: -0.3px;
+            color: white;
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+
+        .header-title h1 i {
+            background: rgba(255,255,255,0.2);
+            padding: 10px;
+            border-radius: 40px;
+            font-size: 1.5rem;
+            box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+            transition: transform 0.2s;
+        }
+
+        .header-title p {
+            color: #cbdbe6;
+            font-size: 0.85rem;
+            margin-top: 6px;
+            font-weight: 500;
+        }
+
+        .lang-selector {
+            background: rgba(255,255,255,0.18);
+            backdrop-filter: blur(8px);
+            padding: 6px 16px;
+            border-radius: 60px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .lang-selector select {
+            background: white;
+            border: none;
+            padding: 6px 14px;
+            border-radius: 40px;
+            font-weight: 600;
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        /* 主体布局 */
+        .dashboard {
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        /* 侧边栏工具导航 */
+        .tools-sidebar {
+            width: 280px;
+            background: #ffffff;
+            border-right: 1px solid #eef2fa;
+            padding: 1.5rem 0;
+            flex-shrink: 0;
+        }
+
+        .tool-tab {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            width: 100%;
+            padding: 0.75rem 1.8rem;
+            font-size: 0.9rem;
+            font-weight: 600;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            color: #2c3f5c;
+            transition: all 0.2s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+            text-align: left;
+            border-left: 3px solid transparent;
+        }
+
+        .tool-tab i {
+            width: 28px;
+            font-size: 1.2rem;
+            color: #5e7a9c;
+        }
+
+        .tool-tab:hover {
+            background: #f5f9ff;
+            color: #1e5f9e;
+        }
+
+        .tool-tab:hover i {
+            color: #1e5f9e;
+        }
+
+        .tool-tab.active {
+            color: #1e6fcf;
+            background: linear-gradient(90deg, #eef4ff, #ffffff);
+            border-left-color: #1e6fcf;
+        }
+
+        .tool-tab.active i {
+            color: #1e6fcf;
+        }
+
+        /* 主内容区 */
+        .tool-main {
+            flex: 1;
+            background: #ffffff;
+            padding: 1.8rem 2rem;
+            min-width: 280px;
+        }
+
+        /* 右侧广告区 */
+        .ad-right {
+            width: 280px;
+            background: #fafdff;
+            border-left: 1px solid #eef3fc;
+            padding: 1.8rem 1.2rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1.8rem;
+            flex-shrink: 0;
+        }
+
+        .ad-card {
+            background: #ffffff;
+            border-radius: 1.5rem;
+            border: 1px solid #e6edf6;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.02);
+            transition: transform 0.2s;
+        }
+
+        .ad-card:hover {
+            transform: translateY(-2px);
+        }
+
+        .ad-header {
+            background: #f8fbfe;
+            padding: 0.7rem 1rem;
+            font-size: 0.7rem;
+            font-weight: 700;
+            color: #4c6f8c;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            letter-spacing: 0.3px;
+            border-bottom: 1px solid #eef2f8;
+        }
+
+        .ad-mock {
+            padding: 1rem;
+            text-align: center;
+        }
+
+        /* 直接链接广告按钮样式 */
+        .direct-link-btn {
+            display: inline-block;
+            background: linear-gradient(135deg, #facc15, #eab308);
+            color: #0a1128;
+            padding: 0.6rem 1rem;
+            border-radius: 40px;
+            font-weight: bold;
+            text-decoration: none;
+            width: 100%;
+            transition: 0.2s;
+            font-size: 0.85rem;
+        }
+        .direct-link-btn:hover {
+            background: #ffd43b;
+            box-shadow: 0 0 8px #facc15;
+            transform: scale(1.02);
+        }
+
+        /* 展示广告容器内的样式 */
+        .display-ad-container {
+            min-height: 250px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* 按钮系统 */
+        .btn {
+            padding: 8px 20px;
+            border-radius: 60px;
+            font-weight: 600;
+            border: none;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.2s ease;
+            font-size: 0.85rem;
+            background: #f0f4fa;
+            color: #1a405c;
+        }
+
+        .btn-primary {
+            background: linear-gradient(105deg, #1a5d8c, #0f4170);
+            color: white;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+
+        .btn-primary:hover {
+            background: linear-gradient(105deg, #0f4a70, #0a3556);
+            transform: translateY(-1px);
+            box-shadow: 0 6px 14px rgba(26, 93, 140, 0.25);
+        }
+
+        .btn-secondary {
+            background: #ffffff;
+            color: #1e5f8e;
+            border: 1px solid #cde1f0;
+        }
+
+        .btn-secondary:hover {
+            background: #eef5fc;
+            border-color: #9bb7d4;
+        }
+
+        .btn-success {
+            background: #0f8b6e;
+            color: white;
+            box-shadow: 0 2px 6px rgba(15, 139, 110, 0.2);
+        }
+
+        .btn-success:hover {
+            background: #0c6e56;
+            transform: translateY(-1px);
+        }
+
+        /* 上传区域 */
+        .upload-modern {
+            border: 2px dashed #bfd6ea;
+            border-radius: 1.5rem;
+            background: #fefefe;
+            cursor: pointer;
+            margin: 1rem 0;
+            padding: 1.8rem 1rem;
+            text-align: center;
+            transition: all 0.2s;
+        }
+
+        .upload-modern:hover {
+            background: #f8fcff;
+            border-color: #6a9fcb;
+        }
+
+        /* 控制栏 */
+        .control-bar {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.2rem;
+            margin: 1.5rem 0;
+            align-items: flex-end;
+        }
+
+        .ctrl-group {
+            flex: 1;
+            min-width: 130px;
+        }
+
+        .ctrl-group label {
+            font-weight: 700;
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            display: block;
+            margin-bottom: 6px;
+            color: #4d6582;
+        }
+
+        select, input, textarea {
+            width: 100%;
+            padding: 8px 14px;
+            border-radius: 48px;
+            border: 1px solid #d7e3ef;
+            background: white;
+            font-family: inherit;
+            font-size: 0.85rem;
+            transition: 0.2s;
+        }
+
+        select:focus, input:focus, textarea:focus {
+            outline: none;
+            border-color: #3c86c0;
+            box-shadow: 0 0 0 3px rgba(60, 134, 192, 0.2);
+        }
+
+        /* 卡片结果 */
+        .card-result {
+            background: #f5fafe;
+            border-radius: 1.25rem;
+            padding: 1.2rem;
+            margin-top: 1rem;
+            border: 1px solid #e6f0fa;
+        }
+
+        .preview-area {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.2rem;
+            margin: 1rem 0;
+            background: #fafdff;
+            border-radius: 1.25rem;
+            padding: 1rem;
+        }
+
+        .preview-card {
+            flex: 1;
+            text-align: center;
+            background: white;
+            border-radius: 1.2rem;
+            padding: 0.8rem;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.02);
+            border: 1px solid #ecf3fa;
+        }
+
+        .img-preview {
+            max-width: 100%;
+            max-height: 200px;
+            border-radius: 1rem;
+            background: #f1f5f9;
+            object-fit: contain;
+        }
+
+        .slider-value {
+            font-size: 0.7rem;
+            margin-left: 8px;
+            font-weight: 600;
+        }
+
+        /* 响应式 */
+        @media (max-width: 980px) {
+            .dashboard {
+                flex-direction: column;
+            }
+            .tools-sidebar {
+                width: 100%;
+                border-right: none;
+                border-bottom: 1px solid #eef2fa;
+                display: flex;
+                flex-wrap: wrap;
+                padding: 0.8rem;
+                gap: 0.5rem;
+            }
+            .tool-tab {
+                width: auto;
+                padding: 0.5rem 1rem;
+                border-left: none;
+                border-radius: 40px;
+                background: #f8fbfe;
+                margin: 0;
+            }
+            .tool-tab.active {
+                background: #e4f0fe;
+                border-left-color: transparent;
+                border-bottom: none;
+            }
+            .ad-right {
+                width: 100%;
+                border-left: none;
+                border-top: 1px solid #ecf3fc;
+                flex-direction: row;
+                flex-wrap: wrap;
+                gap: 1rem;
+            }
+            .ad-card {
+                flex: 1;
+            }
+            .tool-main {
+                padding: 1.5rem;
+            }
+        }
+
+        /* Toast 美化 */
+        .toast-msg {
+            position: fixed;
+            bottom: 24px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #1f2f3e;
+            backdrop-filter: blur(8px);
+            color: white;
+            padding: 8px 24px;
+            border-radius: 80px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            z-index: 1000;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+            pointer-events: none;
+        }
+
+        footer {
+            background: #f9fcfd;
+            text-align: center;
+            padding: 1rem;
+            font-size: 0.7rem;
+            border-top: 1px solid #eef2f5;
+            color: #5f7b9a;
+        }
+
+        h2 {
+            font-size: 1.6rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: #183e56;
+        }
+
+        hr {
+            margin: 1.5rem 0;
+            border: none;
+            height: 1px;
+            background: linear-gradient(to right, #e2e9f2, transparent);
+        }
+
+        input[type="range"] {
+            -webkit-appearance: none;
+            background: #dee9f2;
+            border-radius: 10px;
+            height: 6px;
+        }
+        input[type="range"]:focus {
+            outline: none;
+        }
+        input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 16px;
+            height: 16px;
+            background: #1e6fcf;
+            border-radius: 50%;
+            cursor: pointer;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+        }
+    </style>
+</head>
+<body>
+<div class="glass-app">
+    <div class="hero-header">
+        <div class="header-title">
+            <h1><i class="fas fa-cubes"></i> <span data-i18n="app_name">万能在线工具箱</span></h1>
+            <p data-i18n="tagline">图片处理 · 亲属计算(中/英) · 贷款 · 汇率 · 单位换算 · Office完整转换</p>
+        </div>
+        <div class="lang-selector">
+            <i class="fas fa-globe"></i>
+            <select id="languageSwitch"><option value="zh">中文</option><option value="en">English</option></select>
+        </div>
+    </div>
+    <div class="dashboard">
+        <div class="tools-sidebar" id="toolsSidebar"></div>
+        <div class="tool-main" id="toolMainContainer"><div id="activeToolRender"></div></div>
+        <div class="ad-right">
+            <!-- 广告卡片1：展示广告（第二个广告） -->
+            <div class="ad-card">
+                <div class="ad-header"><i class="fas fa-ad"></i> 赞助商广告</div>
+                <div class="ad-mock display-ad-container">
+                    <div id="container-b715e5646db39a3d0dea2e47ef1228b3"></div>
+                </div>
+                <script async="async" data-cfasync="false" src="https://pl29443246.profitablecpmratenetwork.com/b715e5646db39a3d0dea2e47ef1228b3/invoke.js"></script>
+            </div>
+
+            <!-- 广告卡片2：直接链接广告（第四个广告） -->
+            <div class="ad-card">
+                <div class="ad-header"><i class="fas fa-link"></i> 推荐资源</div>
+                <div class="ad-mock">
+                    <a href="https://www.profitablecpmratenetwork.com/fmns9xys?key=5b65e6526af0ac2291b214f2e0f3db7d" target="_blank" class="direct-link-btn">
+                        <i class="fas fa-star"></i> 赞助商推荐 · 点击支持
+                    </a>
+                    <p style="font-size:0.65rem; margin-top:12px; color:#94a3b8;">您的每次访问都是更新的动力</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer><span data-i18n="footer">© 万能在线工具箱 | 本地安全 | 中英文双语 | 免费全能工具</span></footer>
+</div>
+<div id="toastRoot"></div>
+
+<script>
+    // ========== 多语言词库 ==========
+    const translations = {
+        zh: {
+            app_name:"万能在线工具箱", tagline:"图片处理 · 亲属计算(中/英) · 贷款 · 汇率 · 单位换算 · Office完整转换", footer:"© 万能在线工具箱 | 本地安全 | 中英文双语 | 免费全能工具",
+            compress:"图片压缩", watermark:"水印工具", formatExt:"格式拓展", convert:"格式转换", uuid:"批量UUID", qrcode:"二维码", office:"Office转换",
+            relation:"亲属关系", loan:"贷款利率", currency:"汇率换算", unit:"单位换算",
+            upload:"上传图片", upload_file:"上传文件", quality:"质量", download:"下载", generate:"生成", copy_all:"复制全部", clear:"清空", version:"版本", quantity:"数量", case:"大小写", uppercase:"大写", lowercase:"小写",
+            loan_amount:"贷款金额", loan_rate:"年利率(%)", loan_years:"年限(年)", loan_type:"还款方式", equal_installment:"等额本息", equal_principal:"等额本金", interest_first:"先息后本", monthly_payment:"月供", total_interest:"总利息",
+            from_curr:"源货币", to_curr:"目标货币", amount:"金额", converted:"换算结果", refresh:"刷新汇率",
+            watermark_text:"水印文字", position:"位置", opacity:"透明度", apply:"应用水印",
+            output_format:"输出格式", convert_btn:"转换",
+            length:"长度", weight:"重量", temperature:"温度", area:"面积", volume:"体积",
+            meter:"米", km:"千米", mile:"英里", foot:"英尺", cm:"厘米", mm:"毫米",
+            kg:"千克", gram:"克", pound:"磅", ounce:"盎司",
+            celsius:"摄氏度", fahrenheit:"华氏度", sqm:"平方米", sqft:"平方英尺", sqcm:"平方厘米",
+            liter:"升", gallon:"加仑", ml:"毫升",
+            forward_mode:"正向(关系链→称呼)", reverse_mode:"反向(称呼→关系链)", calculate:"计算", relation_placeholder:"例如: 老公的爸爸 或 舅公", relation_result:"称呼", chain_result:"关系链",
+            wifi_ssid:"Wi-Fi名称(SSID)", wifi_encryption:"加密方式", wifi_password:"密码", generate_wifi_qr:"生成Wi-Fi二维码", generate_qr:"生成", download_qr:"下载PNG",
+            office_supported:"支持 .docx → 文本, .xlsx → CSV", sponsor_title:"赞助支持", sponsor_text:"您的支持是我们更新的动力",
+            download_wifi_qr:"下载Wi-Fi二维码", wifi_type_wpa:"WPA", wifi_type_wpa2:"WPA2", wifi_type_wpa3:"WPA3", wifi_type_wep:"WEP", wifi_type_nopass:"无密码(Open)"
+        },
+        en: {
+            app_name:"Ultimate Online Toolbox", tagline:"Image · Relatives · Loan · Exchange · Unit · Full Office Convert", footer:"© Ultimate Online Toolbox | Local & Safe | Bilingual | Free Tools",
+            compress:"Compress", watermark:"Watermark", formatExt:"Format Ext", convert:"Convert", uuid:"Batch UUID", qrcode:"QR Code", office:"Office Convert",
+            relation:"Relatives", loan:"Loan Calc", currency:"Exchange", unit:"Unit Convert",
+            upload:"Upload Image", upload_file:"Upload File", quality:"Quality", download:"Download", generate:"Generate", copy_all:"Copy All", clear:"Clear", version:"Version", quantity:"Quantity", case:"Case", uppercase:"Uppercase", lowercase:"Lowercase",
+            loan_amount:"Loan Amount", loan_rate:"Rate (%)", loan_years:"Years", loan_type:"Repayment", equal_installment:"Equal Installment", equal_principal:"Equal Principal", interest_first:"Interest First", monthly_payment:"Monthly Payment", total_interest:"Total Interest",
+            from_curr:"From", to_curr:"To", amount:"Amount", converted:"Result", refresh:"Refresh",
+            watermark_text:"Watermark Text", position:"Position", opacity:"Opacity", apply:"Apply",
+            output_format:"Output Format", convert_btn:"Convert",
+            length:"Length", weight:"Weight", temperature:"Temperature", area:"Area", volume:"Volume",
+            meter:"Meter", km:"Kilometer", mile:"Mile", foot:"Foot", cm:"Centimeter", mm:"Millimeter",
+            kg:"Kilogram", gram:"Gram", pound:"Pound", ounce:"Ounce",
+            celsius:"Celsius", fahrenheit:"Fahrenheit", sqm:"m²", sqft:"ft²", sqcm:"cm²",
+            liter:"Liter", gallon:"Gallon", ml:"Milliliter",
+            forward_mode:"Forward (Chain→Title)", reverse_mode:"Reverse (Title→Chain)", calculate:"Calculate", relation_placeholder:"e.g. husband's father", relation_result:"Title", chain_result:"Chain",
+            wifi_ssid:"Wi-Fi SSID", wifi_encryption:"Encryption", wifi_password:"Password", generate_wifi_qr:"Generate Wi-Fi QR", generate_qr:"Generate", download_qr:"Download PNG",
+            office_supported:"Support .docx → Text, .xlsx → CSV", sponsor_title:"Sponsor", sponsor_text:"Your support drives us",
+            download_wifi_qr:"Download Wi-Fi QR", wifi_type_wpa:"WPA", wifi_type_wpa2:"WPA2", wifi_type_wpa3:"WPA3", wifi_type_wep:"WEP", wifi_type_nopass:"Open"
+        }
+    };
+    let currentLang = 'zh';
+    function t(key) { return translations[currentLang][key] || key; }
+    function showToast(msg, dur=2000) { let d=document.getElementById('toastRoot'); if(!d)return; let div=document.createElement('div'); div.className='toast-msg'; div.innerText=msg; d.appendChild(div); setTimeout(()=>div.remove(),dur); }
+    function updateUI() { document.querySelectorAll('[data-i18n]').forEach(el=>{ let k=el.getAttribute('data-i18n'); if(translations[currentLang][k]) el.innerText=translations[currentLang][k]; }); if(window._refreshAll) window._refreshAll(); }
+
+    // ========== 工具定义（与之前完全相同，此处省略具体实现以节省篇幅，实际你只需保留原有所有工具代码即可） ==========
+    // 注意：为了完整展示，这里我会把之前所有的工具定义复制过来，但因为篇幅限制，我会用注释表示你需要保留原有工具。
+    // 请确保你的脚本中包含 compressTool, watermarkTool, formatExtTool, convertTool, uuidTool, officeTool, qrTool, relationTool, loanTool, currencyTool, unitTool 的定义。
+    // 为保持代码可运行，下面将保留之前完整的工具定义（从原HTML中迁移过来）。
+    // （由于大模型输出长度限制，此处省略了工具实现的具体代码，但你在实际使用时，只需将你原来 script 标签内的所有工具定义原样复制过来即可）
+    // 以下是占位符，你需替换为真实工具代码。
+    // ========== 开始：原工具定义 ==========
+    const compressTool = { id:'compress', nameKey:'compress', icon:'fas fa-file-zipper', get name(){return t(this.nameKey);}, render:c=>{
+        c.innerHTML=`<h2><i class="fas fa-compress-alt"></i> ${t('compress')}</h2>
+        <div class="upload-modern" id="compressUp"><i class="fas fa-cloud-upload-alt"></i> ${t('upload')}<input type="file" id="compressFile" accept="image/*" style="display:none"></div>
+        <div id="compressPreview" style="display:none;"><div class="preview-area"><div class="preview-card"><img id="compOrigImg" class="img-preview"><p id="compOrigInfo"></p></div><div class="preview-card"><img id="compResImg" class="img-preview"><p id="compResInfo"></p></div></div></div>
+        <div class="control-bar"><div class="ctrl-group"><label>📉 ${t('quality')}</label><input type="range" id="compQuality" min="0.1" max="1" step="0.01" value="0.7"><span id="compVal" class="slider-value">70%</span></div><div class="ctrl-group"><label>📐 最大宽度</label><input type="number" id="compMaxWidth" value="1200" step="100"></div><button id="doCompress" class="btn btn-primary">${t('compress')}</button></div>
+        <div id="compDownload" style="display:none; margin-top:1rem;"><button id="downCompress" class="btn btn-success">⬇️ ${t('download')}</button></div>`;
+        let file=null, blob=null; const up=c.querySelector('#compressUp'), fin=c.querySelector('#compressFile'), preview=c.querySelector('#compressPreview'), origImg=c.querySelector('#compOrigImg'), resImg=c.querySelector('#compResImg'), origInfo=c.querySelector('#compOrigInfo'), resInfo=c.querySelector('#compResInfo'), quality=c.querySelector('#compQuality'), qv=c.querySelector('#compVal'), maxW=c.querySelector('#compMaxWidth'), compressBtn=c.querySelector('#doCompress'), downDiv=c.querySelector('#compDownload'), downBtn=c.querySelector('#downCompress');
+        quality.addEventListener('input',()=>qv.innerText=(quality.value*100).toFixed(0)+'%');
+        async function compress(){ if(!file)return; const opts={ maxSizeMB: 1, maxWidthOrHeight: parseInt(maxW.value)||1200, initialQuality: parseFloat(quality.value), useWebWorker:true }; const compressed=await imageCompression(file,opts); blob=compressed; const origUrl=URL.createObjectURL(file); const compUrl=URL.createObjectURL(compressed); origImg.src=origUrl; resImg.src=compUrl; origInfo.innerText=`${(file.size/1024).toFixed(1)} KB`; resInfo.innerText=`${(compressed.size/1024).toFixed(1)} KB (-${((1-compressed.size/file.size)*100).toFixed(0)}%)`; preview.style.display='block'; downDiv.style.display='block'; }
+        up.addEventListener('click',()=>fin.click()); fin.addEventListener('change',e=>{ if(e.target.files[0]){ file=e.target.files[0]; compress(); } fin.value=''; }); compressBtn.addEventListener('click',compress); downBtn.addEventListener('click',()=>{ if(blob){ let a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download='compressed.jpg'; a.click(); URL.revokeObjectURL(a.href); showToast('下载开始',800); } }); }
+    };
+    const watermarkTool = { id:'watermark', nameKey:'watermark', icon:'fas fa-paintbrush', get name(){return t(this.nameKey);}, render:c=>{
+        c.innerHTML=`<h2><i class="fas fa-watermark"></i> ${t('watermark')}</h2><div class="upload-modern" id="wmUpload"><i class="fas fa-cloud-upload-alt"></i> ${t('upload')}<input type="file" id="wmFile" accept="image/*" style="display:none"></div>
+        <div id="wmPreviewArea" style="display:none;"><div class="preview-area"><div class="preview-card"><img id="wmOrigImg" class="img-preview"></div><div class="preview-card"><img id="wmResImg" class="img-preview"></div></div></div>
+        <div class="control-bar"><div class="ctrl-group"><label>✍️ ${t('watermark_text')}</label><input type="text" id="wmText" value="Watermark"></div><div class="ctrl-group"><label>📍 ${t('position')}</label><select id="wmPos"><option value="se">右下</option><option value="center">居中</option><option value="nw">左上</option></select></div><div class="ctrl-group"><label>🎨 ${t('opacity')}</label><input type="range" id="wmOpacity" min="0.2" max="1" step="0.01" value="0.6"><span id="wmOpacityVal" class="slider-value">60%</span></div><button id="applyWatermark" class="btn btn-primary">✨ ${t('apply')}</button></div>
+        <div id="wmDownload" style="display:none; margin-top:1rem;"><button id="downWatermark" class="btn btn-success">⬇️ ${t('download')}</button></div>`;
+        let img=null, ctx, canvas; const up=c.querySelector('#wmUpload'), fin=c.querySelector('#wmFile'), previewArea=c.querySelector('#wmPreviewArea'), origImg=c.querySelector('#wmOrigImg'), resImg=c.querySelector('#wmResImg'), textIn=c.querySelector('#wmText'), posSelect=c.querySelector('#wmPos'), opacity=c.querySelector('#wmOpacity'), opVal=c.querySelector('#wmOpacityVal'), applyBtn=c.querySelector('#applyWatermark'), downDiv=c.querySelector('#wmDownload'), downBtn=c.querySelector('#downWatermark'); opacity.addEventListener('input',()=>opVal.innerText=(opacity.value*100).toFixed(0)+'%');
+        function loadImage(file){ if(!file)return; const url=URL.createObjectURL(file); const image=new Image(); image.onload=()=>{ img=image; origImg.src=url; previewArea.style.display='block'; canvas=document.createElement('canvas'); canvas.width=img.width; canvas.height=img.height; ctx=canvas.getContext('2d'); ctx.drawImage(img,0,0); resImg.src=url; }; image.src=url; }
+        function applyWatermark(){ if(!img){ showToast('请先上传图片',800); return; } ctx.drawImage(img,0,0); let fontSize=Math.max(24, canvas.width*0.05); ctx.font=`bold ${fontSize}px "Inter"`; ctx.fillStyle=`rgba(255,255,255,${opacity.value})`; const text=textIn.value||'Watermark'; let x=20, y=canvas.height-40; if(posSelect.value==='center'){ x=canvas.width/2-ctx.measureText(text).width/2; y=canvas.height/2; } else if(posSelect.value==='nw'){ x=20; y=50; } else { x=canvas.width-ctx.measureText(text).width-20; y=canvas.height-20; } ctx.fillText(text, x, y); const watermarkedUrl=canvas.toDataURL(); resImg.src=watermarkedUrl; downDiv.style.display='block'; }
+        up.addEventListener('click',()=>fin.click()); fin.addEventListener('change',e=>{ if(e.target.files[0]) loadImage(e.target.files[0]); fin.value=''; }); applyBtn.addEventListener('click',applyWatermark); downBtn.addEventListener('click',()=>{ if(canvas){ let a=document.createElement('a'); a.href=canvas.toDataURL(); a.download='watermarked.png'; a.click(); showToast('下载成功',800); } }); }
+    };
+    const formatExtTool = { id:'formatext', nameKey:'formatExt', icon:'fas fa-code-branch', get name(){return t(this.nameKey);}, render:c=>{
+        c.innerHTML=`<h2><i class="fas fa-expand"></i> ${t('formatExt')}</h2><div class="upload-modern" id="extUpload"><i class="fas fa-cloud-upload-alt"></i> ${t('upload')}<input type="file" id="extFile" accept="image/*" style="display:none"></div>
+        <div id="extPreview" style="display:none;"><div class="preview-area"><div class="preview-card"><img id="extOrigImg" class="img-preview"></div><div class="preview-card"><img id="extResImg" class="img-preview"></div></div></div>
+        <div class="control-bar"><div class="ctrl-group"><label>🎨 ${t('output_format')}</label><select id="extFormat"><option value="image/png">PNG</option><option value="image/jpeg">JPEG</option><option value="image/webp">WebP</option></select></div><div class="ctrl-group"><button id="extConvert" class="btn btn-primary">🔄 ${t('convert_btn')}</button></div></div>
+        <div id="extDownload" style="display:none; margin-top:1rem;"><button id="downExt" class="btn btn-success">⬇️ ${t('download')}</button></div>`;
+        let img=null, blob=null; const up=c.querySelector('#extUpload'), fin=c.querySelector('#extFile'), preview=c.querySelector('#extPreview'), origImg=c.querySelector('#extOrigImg'), resImg=c.querySelector('#extResImg'), fmt=c.querySelector('#extFormat'), conv=c.querySelector('#extConvert'), downDiv=c.querySelector('#extDownload'), downBtn=c.querySelector('#downExt');
+        function loadImage(file){ if(!file)return; const url=URL.createObjectURL(file); const image=new Image(); image.onload=()=>{ img=image; origImg.src=url; preview.style.display='block'; }; image.src=url; }
+        function convert(){ if(!img){ showToast('请先上传图片',800); return; } const canvas=document.createElement('canvas'); canvas.width=img.width; canvas.height=img.height; canvas.getContext('2d').drawImage(img,0,0); const mime=fmt.value; canvas.toBlob(b=>{ blob=b; const url=URL.createObjectURL(b); resImg.src=url; downDiv.style.display='block'; }, mime, mime==='image/jpeg'?0.85:undefined); }
+        up.addEventListener('click',()=>fin.click()); fin.addEventListener('change',e=>{ if(e.target.files[0]) loadImage(e.target.files[0]); fin.value=''; }); conv.addEventListener('click',convert); downBtn.addEventListener('click',()=>{ if(blob){ let a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download=`converted.${fmt.value.split('/')[1]==='jpeg'?'jpg':'png'}`; a.click(); URL.revokeObjectURL(a.href); showToast('下载开始',800); } }); }
+    };
+    const convertTool = { id:'convertimg', nameKey:'convert', icon:'fas fa-exchange-alt', get name(){return t(this.nameKey);}, render:c=>{
+        c.innerHTML=`<h2><i class="fas fa-sync"></i> ${t('convert')}</h2><div class="upload-modern" id="convUpload"><i class="fas fa-cloud-upload-alt"></i> ${t('upload')}<input type="file" id="convFile" accept="image/*" style="display:none"></div>
+        <div id="convPreview" style="display:none;"><div class="preview-area"><div class="preview-card"><img id="convOrigImg" class="img-preview"></div><div class="preview-card"><img id="convResImg" class="img-preview"></div></div></div>
+        <div class="control-bar"><div class="ctrl-group"><label>🎨 ${t('output_format')}</label><select id="convFormat"><option value="image/png">PNG</option><option value="image/jpeg">JPEG</option><option value="image/webp">WebP</option></select></div><div class="ctrl-group"><button id="convAction" class="btn btn-primary">🔄 ${t('convert_btn')}</button></div></div>
+        <div id="convDownload" style="display:none;"><button id="downConv" class="btn btn-success">⬇️ ${t('download')}</button></div>`;
+        let img=null, blob=null; const up=c.querySelector('#convUpload'), fin=c.querySelector('#convFile'), preview=c.querySelector('#convPreview'), origImg=c.querySelector('#convOrigImg'), resImg=c.querySelector('#convResImg'), fmt=c.querySelector('#convFormat'), conv=c.querySelector('#convAction'), downDiv=c.querySelector('#convDownload'), downBtn=c.querySelector('#downConv');
+        function loadImage(file){ if(!file)return; const url=URL.createObjectURL(file); const image=new Image(); image.onload=()=>{ img=image; origImg.src=url; preview.style.display='block'; }; image.src=url; }
+        function convert(){ if(!img)return; const canvas=document.createElement('canvas'); canvas.width=img.width; canvas.height=img.height; canvas.getContext('2d').drawImage(img,0,0); const mime=fmt.value; canvas.toBlob(b=>{ blob=b; const url=URL.createObjectURL(b); resImg.src=url; downDiv.style.display='block'; }, mime, mime==='image/jpeg'?0.85:undefined); }
+        up.addEventListener('click',()=>fin.click()); fin.addEventListener('change',e=>{ if(e.target.files[0]) loadImage(e.target.files[0]); fin.value=''; }); conv.addEventListener('click',convert); downBtn.addEventListener('click',()=>{ if(blob){ let a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download=`converted.${fmt.value.split('/')[1]==='jpeg'?'jpg':'png'}`; a.click(); URL.revokeObjectURL(a.href); } }); }
+    };
+    const uuidTool = { id:'uuid', nameKey:'uuid', icon:'fas fa-fingerprint', get name(){return t(this.nameKey);}, render:c=>{
+        c.innerHTML=`<h2><i class="fas fa-layer-group"></i> ${t('uuid')}</h2><div style="display:flex;flex-wrap:wrap;gap:10px;margin:1rem 0;"><div class="ctrl-group"><label>🔖 ${t('version')}</label><select id="uv"><option value="v4">v4</option><option value="v1">v1</option></select></div><div class="ctrl-group"><label>🔢 ${t('quantity')}</label><input id="ucnt" type="number" min="1" max="50" value="5"></div><div class="ctrl-group"><label>🔠 ${t('case')}</label><select id="ucase"><option value="lower">${t('lowercase')}</option><option value="upper">${t('uppercase')}</option></select></div><button id="ugen" class="btn btn-primary">${t('generate')}</button><button id="ucopy" class="btn btn-secondary">${t('copy_all')}</button><button id="uclear" class="btn btn-secondary">${t('clear')}</button></div><div id="ulist"></div>`;
+        function v4(){return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g,c=>{const r=Math.random()*16|0;const v=c==='x'?r:(r&0x3|0x8);return v.toString(16);});}
+        function v1(){const now=Date.now();const tLow=(now&0xffffffff).toString(16).padStart(8,'0');const tMid=((now>>32)&0xffff).toString(16).padStart(4,'0');const tHigh=(((now>>48)&0x0fff)|0x1000).toString(16).padStart(4,'0');const clk=((Math.random()*0x3fff)|0x8000).toString(16).padStart(4,'0');const node=Math.random().toString(16).substring(2,14).padEnd(12,'0').slice(0,12);return `${tLow}-${tMid}-${tHigh}-${clk}-${node}`.toLowerCase();}
+        const ver=c.querySelector('#uv'), cnt=c.querySelector('#ucnt'), caseSel=c.querySelector('#ucase'), gen=c.querySelector('#ugen'), copy=c.querySelector('#ucopy'), clear=c.querySelector('#uclear'), list=c.querySelector('#ulist'); let uuids=[];
+        function apply(s){return caseSel.value==='upper'?s.toUpperCase():s.toLowerCase();}
+        function render(){if(!uuids.length){list.innerHTML='<div style="padding:1rem;text-align:center;">✨ 生成UUID</div>';return;} let html=''; uuids.forEach(u=>{html+=`<div style="background:#f8fafc;border-radius:60px;padding:6px 12px;margin-bottom:8px;display:flex;justify-content:space-between;"><code>${u}</code><button class="copy-one btn btn-secondary" style="padding:2px 10px;" data-uuid="${u}"><i class="fas fa-copy"></i></button></div>`;}); list.innerHTML=html; document.querySelectorAll('.copy-one').forEach(btn=>{btn.addEventListener('click',()=>{navigator.clipboard.writeText(btn.dataset.uuid); showToast('已复制',800);});});}
+        function generate(){let v=ver.value;let n=parseInt(cnt.value)||1;if(n>50)n=50;let arr=[];for(let i=0;i<n;i++){let raw=v==='v1'?v1():v4();arr.push(apply(raw));} uuids=arr;render();showToast(`✅ ${n} UUID`,1000);}
+        gen.addEventListener('click',generate); copy.addEventListener('click',()=>{if(uuids.length){navigator.clipboard.writeText(uuids.join('\n'));showToast(`📋 ${t('copy_all')}`,1200);}}); clear.addEventListener('click',()=>{uuids=[];render();showToast(t('clear'),800);}); generate(); caseSel.addEventListener('change',()=>{if(uuids.length){uuids=uuids.map(u=>apply(u));render();}}); }
+    };
+    const officeTool = { id:'office', nameKey:'office', icon:'fas fa-file-alt', get name(){return t(this.nameKey);}, render:c=>{
+        c.innerHTML=`<h2><i class="fas fa-file-word"></i> ${t('office')}</h2><p style="margin-bottom:8px;">${t('office_supported')}</p><div class="upload-modern" id="offup"><i class="fas fa-cloud-upload-alt"></i> ${t('upload_file')}<input type="file" id="offfile" accept=".docx,.xlsx" style="display:none"></div><div id="offres" style="display:none;"><div class="card-result"><strong id="offTitle"></strong><pre id="offtxt" style="background:#f9fafb;padding:0.8rem;border-radius:1rem;max-height:300px;overflow:auto;margin-top:8px;font-family:monospace;font-size:0.8rem;"></pre><button id="offdown" class="btn btn-secondary" style="margin-top:12px;">⬇️ ${t('download')}</button></div></div>`;
+        let blob=null, fname=""; const up=c.querySelector('#offup'), fin=c.querySelector('#offfile'), resDiv=c.querySelector('#offres'), titleSpan=c.querySelector('#offTitle'), txtArea=c.querySelector('#offtxt'), downBtn=c.querySelector('#offdown');
+        async function handleFile(f){ if(!f) return; const ext = f.name.split('.').pop().toLowerCase(); if(ext === 'docx'){ titleSpan.innerText = "📄 Word 文档内容 (纯文本)"; const arrayBuffer = await f.arrayBuffer(); const result = await mammoth.extractRawText({ arrayBuffer }); txtArea.innerText = result.value || "(无文本内容)"; blob = new Blob([result.value], {type: "text/plain"}); fname = f.name.replace(/\.docx$/i, '.txt'); resDiv.style.display = 'block'; } else if(ext === 'xlsx'){ titleSpan.innerText = "📊 Excel 工作表内容 (CSV格式)"; const arrayBuffer = await f.arrayBuffer(); const workbook = XLSX.read(arrayBuffer); const sheet = workbook.Sheets[workbook.SheetNames[0]]; const csv = XLSX.utils.sheet_to_csv(sheet); txtArea.innerText = csv; blob = new Blob([csv], {type: "text/csv"}); fname = f.name.replace(/\.xlsx$/i, '.csv'); resDiv.style.display = 'block'; } else showToast("仅支持 .docx 或 .xlsx 文件", 1500); }
+        up.addEventListener('click', () => fin.click()); fin.addEventListener('change', e => { if(e.target.files[0]) handleFile(e.target.files[0]); fin.value = ''; }); downBtn.addEventListener('click', () => { if(blob){ let a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = fname; a.click(); URL.revokeObjectURL(a.href); showToast("下载开始", 1000); } else showToast("没有可下载的内容，请先上传文件", 1200); });
+    } };
+    const qrTool = { id:'qr', nameKey:'qrcode', icon:'fas fa-qrcode', get name(){return t(this.nameKey);}, render:c=>{
+        const encOptions = `<option value="WPA">${t('wifi_type_wpa')}</option><option value="WPA2">${t('wifi_type_wpa2')}</option><option value="WPA3">${t('wifi_type_wpa3')}</option><option value="WEP">${t('wifi_type_wep')}</option><option value="nopass">${t('wifi_type_nopass')}</option>`;
+        c.innerHTML=`<h2><i class="fas fa-qrcode"></i> ${t('qrcode')}</h2><input id="qrtext" style="width:100%" value="https://github.com"><div id="qrbox" style="display:flex;justify-content:center;margin:1rem 0;"></div><div style="display:flex; gap:10px; margin-bottom:1.5rem;"><button id="qrgen" class="btn btn-primary">${t('generate_qr')}</button><button id="qrdown" class="btn btn-secondary">${t('download_qr')}</button></div><hr><h3><i class="fas fa-wifi"></i> Wi-Fi QR</h3><div class="control-bar"><div class="ctrl-group"><label>${t('wifi_ssid')}</label><input id="wifissid" value="MyWiFi"></div><div class="ctrl-group"><label>${t('wifi_encryption')}</label><select id="wifienc">${encOptions}</select></div><div class="ctrl-group"><label>${t('wifi_password')}</label><input type="password" id="wifipwd" placeholder="请输入密码"></div></div><div style="display:flex; gap:12px; flex-wrap:wrap; margin-top:6px;"><button id="wifigen" class="btn btn-success">${t('generate_wifi_qr')}</button><button id="wifiQrDownload" class="btn btn-primary">📲 ${t('download_wifi_qr')}</button></div><div id="wifibox" style="margin-top:1rem;"></div>`;
+        let qr=null, wqr=null; const qrt=c.querySelector('#qrtext'), qbox=c.querySelector('#qrbox'), gen=c.querySelector('#qrgen'), down=c.querySelector('#qrdown'); const ssid=c.querySelector('#wifissid'), enc=c.querySelector('#wifienc'), pwd=c.querySelector('#wifipwd'), wgen=c.querySelector('#wifigen'), wbox=c.querySelector('#wifibox'), wifiDownloadBtn=c.querySelector('#wifiQrDownload');
+        function makeQR(text,box){ box.innerHTML='<div id="tmpqr"></div>'; return new QRCode(document.getElementById("tmpqr"),{text:text,width:180,height:180}); }
+        gen.addEventListener('click',()=>{ if(qr)qr.clear(); qr=makeQR(qrt.value,qbox); }); down.addEventListener('click',()=>{ const canvas=qbox.querySelector('canvas'); if(canvas){ let a=document.createElement('a'); a.href=canvas.toDataURL(); a.download='qrcode.png'; a.click(); } else showToast('请先生成二维码',800); });
+        function generateWifiQR(){ let s=ssid.value.trim(); if(!s){ showToast("请输入Wi-Fi名称",800); return; } let e=enc.value; let p=pwd.value; if(e!=='nopass' && !p){ showToast("请填写Wi-Fi密码",800); return; } let str=`WIFI:S:${s};T:${e};P:${(e==='nopass'?'':p)};;`; if(wqr)wqr.clear(); wbox.innerHTML='<div id="tmpwifi"></div>'; wqr=new QRCode(document.getElementById("tmpwifi"),{text:str,width:180,height:180}); showToast(t('generate_wifi_qr')+" OK",1000); }
+        wgen.addEventListener('click',generateWifiQR); wifiDownloadBtn.addEventListener('click',()=>{ const canvas=wbox.querySelector('canvas'); if(canvas){ let a=document.createElement('a'); a.href=canvas.toDataURL(); a.download='wifi_qrcode.png'; a.click(); } else showToast('请先生成Wi-Fi二维码',800); }); makeQR("https://github.com",qbox);
+    } };
+    const relationTool = { id:'relation', nameKey:'relation', icon:'fas fa-users', get name(){return t(this.nameKey);}, render:c=>{
+        const isEn = (currentLang === 'en'); const enBase = {"I":{gender:"neutral"},"father":{gender:"male"},"mother":{gender:"female"},"husband":{gender:"male",parents:{"father":"father-in-law","mother":"mother-in-law"}},"wife":{gender:"female",parents:{"father":"father-in-law","mother":"mother-in-law"}},"grandfather":{gender:"male"},"grandmother":{gender:"female"},"maternal grandfather":{gender:"male"},"maternal grandmother":{gender:"female"},"brother":{gender:"male",parents:{"father":"uncle","mother":"aunt"}},"sister":{gender:"female",parents:{"father":"uncle","mother":"aunt"}},"son":{gender:"male"},"daughter":{gender:"female"},"uncle":{gender:"male"},"aunt":{gender:"female"},"cousin":{gender:"neutral"},"father-in-law":{gender:"male"},"mother-in-law":{gender:"female"}};
+        const enReverse = {"father":"my father","mother":"my mother","grandfather":"father's father","grandmother":"father's mother","maternal grandfather":"mother's father","maternal grandmother":"mother's mother","brother":"father's son (older)","sister":"father's daughter (older)","son":"my son","daughter":"my daughter","uncle":"father's brother","aunt":"father's sister","cousin":"uncle's son","husband":"my husband","wife":"my wife","father-in-law":"husband's father","mother-in-law":"husband's mother"};
+        const zhBase = {"我":{},"爸爸":{gender:"male"},"妈妈":{gender:"female"},"老公":{gender:"male",parents:{"爸爸":"公公","妈妈":"婆婆"}},"老婆":{gender:"female",parents:{"爸爸":"岳父","妈妈":"岳母"}},"爷爷":{},"奶奶":{},"外公":{},"外婆":{},"哥哥":{gender:"male",parents:{"爸爸":"伯父","妈妈":"姑妈"}},"姐姐":{gender:"female",parents:{"爸爸":"伯父","妈妈":"姑妈"}},"弟弟":{gender:"male",parents:{"爸爸":"叔父","妈妈":"姨妈"}},"妹妹":{gender:"female",parents:{"爸爸":"叔父","妈妈":"姨妈"}},"儿子":{gender:"male"},"女儿":{gender:"female"},"伯父":{},"叔父":{},"舅父":{},"姑妈":{},"姨妈":{},"堂哥":{},"表哥":{},"公公":{},"婆婆":{},"岳父":{},"岳母":{},"大伯":{},"大姑子":{},"大舅子":{},"大姨子":{},"叔公":{},"舅公":{},"姑婆":{},"姨婆":{}};
+        const zhReverse = {"父亲":"爸爸","母亲":"妈妈","爸爸":"我的父亲","妈妈":"我的母亲","爷爷":"爸爸的爸爸","奶奶":"爸爸的妈妈","外公":"妈妈的爸爸","外婆":"妈妈的妈妈","哥哥":"爸爸的儿子(比我大)","姐姐":"爸爸的女儿(比我大)","弟弟":"爸爸的儿子(比我小)","妹妹":"爸爸的女儿(比我小)","伯父":"爸爸的哥哥","叔父":"爸爸的弟弟","姑妈":"爸爸的姐妹","舅父":"妈妈的哥哥","姨妈":"妈妈的姐妹","堂哥":"爸爸的兄弟的儿子","表哥":"妈妈的兄弟或爸爸的姐妹的儿子","侄子":"兄弟姐妹的儿子","外甥":"姐妹的儿子","公公":"老公的爸爸","婆婆":"老公的妈妈","岳父":"老婆的爸爸","岳母":"老婆的妈妈","大伯":"老公的哥哥","大舅子":"老婆的哥哥","叔公":"爷爷的弟弟","舅公":"奶奶的兄弟","姑婆":"爷爷的姐妹","姨婆":"奶奶的姐妹"};
+        function forward(chain, langEn){ let parts=chain.split(/['\s]*of['\s]*|['\s]*s['\s]*|[\s]*的[\s]*/).filter(p=>p.trim()); if(parts.length===0) return langEn?"Unknown":"未知"; let cur=parts[0]; let base=langEn?enBase:zhBase; if(!base[cur]) return langEn?`Unknown: ${cur}`:`未知:${cur}`; for(let i=1;i<parts.length;i++){ let step=parts[i]; if(!base[step]) return langEn?`Cannot recognize: ${step}`:`无法识别:${step}`; let next=base[cur]?.parents?.[step]; if(next){ cur=next; continue; } let g=base[cur]?.gender; if(step==="father"||step==="爸爸") cur = (g==="male"?(langEn?"grandfather":"爷爷"):(langEn?"maternal grandfather":"外公")); else if(step==="mother"||step==="妈妈") cur = (g==="male"?(langEn?"grandmother":"奶奶"):(langEn?"maternal grandmother":"外婆")); else if(step==="brother"||step==="哥哥") cur = (g==="male"?(langEn?"uncle":"伯父"):(langEn?"uncle":"舅父")); else if(step==="sister"||step==="姐姐") cur = (g==="male"?(langEn?"aunt":"姑妈"):(langEn?"aunt":"姨妈")); else if(step==="son"||step==="儿子") cur = (g==="male"?(langEn?"grandson":"孙子"):(langEn?"grandson":"外孙")); else if(step==="daughter"||step==="女儿") cur = (g==="male"?(langEn?"granddaughter":"孙女"):(langEn?"granddaughter":"外孙女")); else cur=step; } return cur; }
+        function reverse(term, langEn){ let map=langEn?enReverse:zhReverse; return map[term]||(langEn?`Not found: ${term}`:`未收录“${term}”`); }
+        c.innerHTML = `<h2><i class="fas fa-users"></i> ${t('relation')}</h2><div style="display:flex; gap:8px; margin-bottom:10px;"><button id="forwardBtn" class="btn btn-primary">${t('forward_mode')}</button><button id="reverseBtn" class="btn btn-secondary">${t('reverse_mode')}</button></div><div class="relation-input-group"><input type="text" id="relInput" style="flex:3;" placeholder="${t('relation_placeholder')}"><button id="calcRel" class="btn btn-primary">${t('calculate')}</button></div><div id="relResult" class="card-result">✨ ${t('relation_result')}</div><div style="font-size:0.7rem; margin-top:8px;">${isEn?"Supports: father's brother, husband's father, etc.":"支持: 爸爸的哥哥, 老公的爸爸, 也可输入英文关系链"}</div>`;
+        let mode="forward"; const input=c.querySelector('#relInput'), result=c.querySelector('#relResult'), fwd=c.querySelector('#forwardBtn'), rev=c.querySelector('#reverseBtn'), calc=c.querySelector('#calcRel');
+        function compute(){ let val=input.value.trim(); if(!val){ result.innerText=isEn?"Please enter something":"请输入内容"; return; } if(mode==="forward") result.innerHTML=`${isEn?"Title":"称呼"}: ${forward(val,isEn)}`; else result.innerHTML=`${isEn?"Chain":"关系链"}: ${reverse(val,isEn)}`; }
+        fwd.addEventListener('click',()=>{mode="forward";fwd.classList.add('btn-primary');rev.classList.add('btn-secondary');fwd.classList.remove('btn-secondary');rev.classList.remove('btn-primary');compute();});
+        rev.addEventListener('click',()=>{mode="reverse";rev.classList.add('btn-primary');fwd.classList.add('btn-secondary');rev.classList.remove('btn-primary');fwd.classList.remove('btn-secondary');compute();});
+        calc.addEventListener('click',compute); input.value=isEn?"father's brother":"老公的爸爸"; compute();
+    } };
+    const loanTool = { id:'loan', nameKey:'loan', icon:'fas fa-chart-line', get name(){return t(this.nameKey);}, render:c=>{
+        c.innerHTML=`<h2><i class="fas fa-percent"></i> ${t('loan')}</h2><div class="card-result"><div class="ctrl-group"><label>💰 ${t('loan_amount')}</label><input id="loanAmount" type="number" value="1000000"></div><div class="ctrl-group"><label>📈 ${t('loan_rate')}</label><input id="loanRate" type="number" value="4.9" step="0.1"></div><div class="ctrl-group"><label>⏱️ ${t('loan_years')}</label><input id="loanYears" type="number" value="30"></div><div class="ctrl-group"><label>📋 ${t('loan_type')}</label><select id="loanType"><option value="equal_installment">${t('equal_installment')}</option><option value="equal_principal">${t('equal_principal')}</option><option value="interest_first">${t('interest_first')}</option></select></div><button id="calcLoan" class="btn btn-primary">计算</button><div id="loanResult" style="margin-top:1rem;"><p id="monthlyShow">--</p><p id="interestShow">--</p></div></div>`;
+        const amount=c.querySelector('#loanAmount'), rate=c.querySelector('#loanRate'), years=c.querySelector('#loanYears'), type=c.querySelector('#loanType'), btn=c.querySelector('#calcLoan'), monthlyP=c.querySelector('#monthlyShow'), interestP=c.querySelector('#interestShow');
+        function compute(){ let P=parseFloat(amount.value)||0; let r=parseFloat(rate.value)/100; let n=parseFloat(years.value); if(P<=0||n<=0){monthlyP.innerText="请输入有效数值";return;} let monthlyRate=r/12; let months=n*12; let typeVal=type.value; if(typeVal==="equal_installment"){ let monthly = P * monthlyRate * Math.pow(1+monthlyRate, months) / (Math.pow(1+monthlyRate, months)-1); let total = monthly*months; let interest = total-P; monthlyP.innerText=`${t('monthly_payment')}: ${monthly.toFixed(2)} 元`; interestP.innerText=`${t('total_interest')}: ${interest.toFixed(2)} 元`; } else if(typeVal==="equal_principal"){ let principalPerMonth = P/months; let totalInterest=0; let firstMonth= principalPerMonth + P*monthlyRate; for(let i=0;i<months;i++){ let remaining = P - principalPerMonth*i; totalInterest += remaining*monthlyRate; } monthlyP.innerText=`首月月供: ${firstMonth.toFixed(2)} 元 (逐月递减)`; interestP.innerText=`${t('total_interest')}: ${totalInterest.toFixed(2)} 元`; } else { let monthlyInterest = P * monthlyRate; let totalInterest = monthlyInterest * months; monthlyP.innerText=`每月利息: ${monthlyInterest.toFixed(2)} 元 (到期还本${P.toFixed(2)})`; interestP.innerText=`${t('total_interest')}: ${totalInterest.toFixed(2)} 元`; } }
+        btn.addEventListener('click',compute); compute();
+    } };
+    const currencyTool = { id:'currency', nameKey:'currency', icon:'fas fa-dollar-sign', get name(){return t(this.nameKey);}, render:async (c)=>{
+        c.innerHTML=`<h2><i class="fas fa-exchange-alt"></i> ${t('currency')}</h2><div class="card-result"><div class="control-bar"><div class="ctrl-group"><label>${t('from_curr')}</label><select id="fromCurr"><option value="CNY">CNY</option><option value="USD">USD</option><option value="EUR">EUR</option><option value="GBP">GBP</option><option value="JPY">JPY</option><option value="CAD">CAD</option><option value="AUD">AUD</option><option value="CHF">CHF</option><option value="HKD">HKD</option><option value="SGD">SGD</option></select></div><div class="ctrl-group"><label>${t('to_curr')}</label><select id="toCurr"><option value="USD">USD</option><option value="CNY">CNY</option><option value="EUR">EUR</option><option value="GBP">GBP</option><option value="JPY">JPY</option><option value="CAD">CAD</option><option value="AUD">AUD</option><option value="CHF">CHF</option><option value="HKD">HKD</option><option value="SGD">SGD</option></select></div><div class="ctrl-group"><label>${t('amount')}</label><input id="currAmount" type="number" value="100"></div><button id="convCurr" class="btn btn-primary">转换</button><button id="refreshRate" class="btn btn-secondary">🔄 ${t('refresh')}</button></div><div id="currResult" style="margin-top:1rem;">--</div><div id="rateInfo" style="font-size:0.7rem; margin-top:8px;"></div></div>`;
+        let rates={}; let lastFetch=0; async function fetchRates(base){ try{ const res=await fetch(`https://api.exchangerate.host/latest?base=${base}`); const data=await res.json(); if(data.rates){ rates=data.rates; lastFetch=Date.now(); return true; } }catch(e){} rates={CNY:1, USD:0.14, EUR:0.13, GBP:0.11, JPY:15.2, CAD:0.19, AUD:0.21, CHF:0.12, HKD:1.09, SGD:0.19}; lastFetch=Date.now(); return false; }
+        async function convert(){ let from=c.querySelector('#fromCurr').value, to=c.querySelector('#toCurr').value, amount=parseFloat(c.querySelector('#currAmount').value)||0; if(Object.keys(rates).length===0 || (Date.now()-lastFetch)>300000) await fetchRates(from); let rate=1; if(from===to) rate=1; else if(rates[to]) rate=rates[to]; else{ let res2=await fetch(`https://api.exchangerate.host/convert?from=${from}&to=${to}`); let data2=await res2.json(); rate=data2.result/amount; } let result=amount*rate; c.querySelector('#currResult').innerHTML=`${amount} ${from} = ${result.toFixed(4)} ${to}`; c.querySelector('#rateInfo').innerHTML=`1 ${from} ≈ ${rate.toFixed(4)} ${to}`; }
+        c.querySelector('#convCurr').addEventListener('click',convert); c.querySelector('#refreshRate').addEventListener('click',async()=>{await fetchRates(c.querySelector('#fromCurr').value); convert();}); await fetchRates("CNY"); convert();
+    } };
+    const unitTool = { id:'unit', nameKey:'unit', icon:'fas fa-ruler', get name(){return t(this.nameKey);}, render:c=>{
+        c.innerHTML=`<h2><i class="fas fa-ruler-combined"></i> ${t('unit')}</h2><div class="card-result"><div class="control-bar"><div class="ctrl-group"><label>类型</label><select id="unitType"><option value="length">${t('length')}</option><option value="weight">${t('weight')}</option><option value="temperature">${t('temperature')}</option><option value="area">${t('area')}</option><option value="volume">${t('volume')}</option></select></div><div class="ctrl-group"><label>从</label><select id="fromUnit"></select></div><div class="ctrl-group"><label>到</label><select id="toUnit"></select></div><div class="ctrl-group"><label>数值</label><input id="unitValue" type="number" value="1"></div><button id="convertUnit" class="btn btn-primary">转换</button></div><div id="unitResult" style="margin-top:1rem;font-weight:600;">--</div></div>`;
+        const unitDefs = { length: { units: ["m","km","mile","ft","cm","mm"], names: {m:t('meter'), km:t('km'), mile:t('mile'), ft:t('foot'), cm:t('cm'), mm:t('mm')}, convert: (val,from,to)=> { const toMeter={m:1, km:1000, mile:1609.34, ft:0.3048, cm:0.01, mm:0.001}; return val * toMeter[from] / toMeter[to]; } }, weight: { units: ["kg","g","lb","oz"], names: {kg:t('kg'), g:t('gram'), lb:t('pound'), oz:t('ounce')}, convert: (val,from,to)=> { const toGram={kg:1000, g:1, lb:453.592, oz:28.3495}; return val * toGram[from] / toGram[to]; } }, temperature: { units: ["c","f"], names: {c:t('celsius'), f:t('fahrenheit')}, convert: (val,from,to)=> { if(from===to) return val; if(from==="c" && to==="f") return val*9/5+32; if(from==="f" && to==="c") return (val-32)*5/9; return val; } }, area: { units: ["m2","ft2","cm2"], names: {m2:t('sqm'), ft2:t('sqft'), cm2:t('sqcm')}, convert: (val,from,to)=> { const toM2={m2:1, ft2:0.092903, cm2:0.0001}; return val * toM2[from] / toM2[to]; } }, volume: { units: ["l","gal","ml"], names: {l:t('liter'), gal:t('gallon'), ml:t('ml')}, convert: (val,from,to)=> { const toLiter={l:1, gal:3.78541, ml:0.001}; return val * toLiter[from] / toLiter[to]; } } };
+        const typeSel=c.querySelector('#unitType'), fromSel=c.querySelector('#fromUnit'), toSel=c.querySelector('#toUnit'), valInp=c.querySelector('#unitValue'), convBtn=c.querySelector('#convertUnit'), resDiv=c.querySelector('#unitResult');
+        function populateUnits(){ let type=typeSel.value; let def=unitDefs[type]; fromSel.innerHTML=""; toSel.innerHTML=""; def.units.forEach(u=>{ let opt=document.createElement('option'); opt.value=u; opt.innerText=def.names[u]||u; fromSel.appendChild(opt.cloneNode(true)); toSel.appendChild(opt); }); if(type==="temperature"){ fromSel.value="c"; toSel.value="f";} else { fromSel.value=def.units[0]; toSel.value=def.units[1];} }
+        function convert(){ let type=typeSel.value; let def=unitDefs[type]; let val=parseFloat(valInp.value)||0; let from=fromSel.value, to=toSel.value; let result=def.convert(val,from,to); resDiv.innerHTML=`${val} ${def.names[from]} = ${result.toFixed(4)} ${def.names[to]}`; }
+        typeSel.addEventListener('change',()=>{populateUnits();convert();}); convBtn.addEventListener('click',convert); populateUnits(); convert();
+    } };
+    // ========== 结束：工具定义 ==========
+
+    const tools = [compressTool, watermarkTool, formatExtTool, convertTool, uuidTool, officeTool, qrTool, relationTool, loanTool, currencyTool, unitTool];
+    let activeId = 'compress';
+    function renderSidebar(){ const sidebar=document.getElementById('toolsSidebar'); sidebar.innerHTML=''; tools.forEach(t=>{ const btn=document.createElement('button'); btn.className=`tool-tab ${activeId===t.id?'active':''}`; btn.innerHTML=`<i class="${t.icon}"></i> <span>${t.name}</span>`; btn.addEventListener('click',()=>{ activeId=t.id; renderSidebar(); renderActive(); }); sidebar.appendChild(btn); }); }
+    function renderActive(){ const container=document.getElementById('activeToolRender'); if(!container)return; const tool=tools.find(t=>t.id===activeId); if(tool&&tool.render){ container.innerHTML=''; tool.render(container); } }
+    document.getElementById('languageSwitch').addEventListener('change',(e)=>{ currentLang=e.target.value; updateUI(); renderSidebar(); renderActive(); });
+    renderSidebar(); renderActive(); window._refreshAll=()=>{ renderSidebar(); renderActive(); };
+</script>
+</body>
+</html>.full.min.js"></script>
     <style>
         * {
             margin: 0;
