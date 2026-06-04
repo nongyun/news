@@ -1,0 +1,688 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title id="page-title">Image Compressor - Ultimate Online Toolbox</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <script src="https://cdn.jsdelivr.net/npm/browser-image-compression@2.0.2/dist/browser-image-compression.js"></script>
+    
+    <!-- 您的专属 Google AdSense 异步主脚本 -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1624261597740761" crossorigin="anonymous"></script>
+    <script>
+         (adsbygoogle = window.adsbygoogle || []).push({
+              google_ad_client: "ca-pub-1624261597740761",
+              enable_page_level_ads: true
+         });
+    </script>
+
+    <style>
+        /* === 延续 index.html 的浅色微光系统与暗黑扩展方案 === */
+        * { margin: 0; padding: 0; box-sizing: border-box; -webkit-font-smoothing: antialiased; }
+        
+        :root {
+            --bg-gradient: radial-gradient(circle at 10% 30%, #eef2f9, #e0e8f2);
+            --text-main: #0b2b3b;
+            --text-muted: #5c7285;
+            --text-sub: #8fa0b0;
+            --accent: #3b82f6;
+            --accent-gradient: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+            --card-bg: #ffffff;
+            --card-border: #bfd6ea;
+            --input-bg: #ffffff;
+            --shadow-sm: 0 4px 12px rgba(0,0,0,0.03);
+            --shadow-md: 0 25px 45px -12px rgba(0,0,0,0.1);
+            --shadow-lg: 0 22px 50px -15px rgba(37, 99, 235, 0.1);
+            --radius-lg: 24px;
+            --radius-md: 16px;
+            --preview-img-bg: #f1f5f9;
+        }
+
+        /* 暗黑极客颜色主题配置 (默认激活动作) */
+        [data-theme="dark"] {
+            --bg-gradient: radial-gradient(circle at 50% 0%, #111827 0%, #030712 100%);
+            --text-main: #f3f4f6;
+            --text-muted: #9ca3af;
+            --text-sub: #6b7280;
+            --accent: #3b82f6;
+            --accent-gradient: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+            --card-bg: rgba(17, 24, 39, 0.75);
+            --card-border: rgba(37, 99, 235, 0.15);
+            --input-bg: rgba(0, 0, 0, 0.3);
+            --shadow-sm: 0 4px 12px rgba(0, 0, 0, 0.3);
+            --shadow-md: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+            --shadow-lg: 0 22px 50px -15px rgba(37, 99, 235, 0.2);
+            --radius-lg: 24px;
+            --radius-md: 16px;
+            --preview-img-bg: #0f172a;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--bg-gradient);
+            color: var(--text-main);
+            min-height: 100vh;
+            padding: 40px 24px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            transition: background 0.3s ease, color 0.3s ease;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1000px;
+        }
+
+        /* === 顶部控制栏布局 === */
+        .top-bar {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 32px;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+        .left-controls { display: flex; gap: 12px; align-items: center; }
+
+        .back-btn, .theme-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            color: var(--text-main);
+            padding: 8px 18px;
+            border-radius: 100px;
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        .back-btn:hover, .theme-btn:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: var(--accent);
+            box-shadow: 0 0 10px rgba(59, 130, 246, 0.2);
+            transform: translateY(-1px);
+        }
+
+        .lang-selector-container { display: flex; gap: 8px; }
+        .lang-btn {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            color: var(--text-muted);
+            padding: 6px 14px;
+            border-radius: 100px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        .lang-btn:hover, .lang-btn.active {
+            background: var(--accent);
+            color: #ffffff;
+            border-color: var(--accent);
+            box-shadow: 0 0 12px rgba(59, 130, 246, 0.4);
+        }
+
+        /* === 头部排版 === */
+        header { text-align: center; margin-bottom: 40px; }
+        header h1 {
+            font-size: 2.6rem;
+            font-weight: 800;
+            letter-spacing: -1px;
+            color: var(--text-main);
+            margin-bottom: 12px;
+        }
+        header p { color: var(--text-muted); font-size: 1.05rem; max-width: 600px; margin: 0 auto; line-height: 1.5; }
+
+        /* === 广告美化外框 === */
+        .ad-wrapper {
+            margin: 0 auto 32px auto;
+            width: 100%;
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: var(--radius-md);
+            padding: 16px;
+            box-shadow: var(--shadow-sm);
+            text-align: center;
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+        .ad-hint {
+            font-size: 0.68rem;
+            color: var(--text-sub);
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin-bottom: 8px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 4px;
+        }
+
+        /* === 工作台核心面板 === */
+        .workspace {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: var(--radius-lg);
+            padding: 36px;
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            box-shadow: var(--shadow-md);
+            display: flex;
+            flex-direction: column;
+            gap: 28px;
+            transition: background 0.3s ease, border-color 0.3s ease;
+        }
+
+        /* 拖拽点击上传热区 */
+        .upload-area {
+            border: 2px dashed rgba(59, 130, 246, 0.3);
+            border-radius: var(--radius-md);
+            padding: 48px 24px;
+            text-align: center;
+            cursor: pointer;
+            background: rgba(255, 255, 255, 0.01);
+            transition: all 0.3s ease;
+        }
+        .upload-area:hover {
+            border-color: var(--accent);
+            background: rgba(59, 130, 246, 0.04);
+            box-shadow: inset 0 0 20px rgba(59, 130, 246, 0.1);
+        }
+        .upload-area i { font-size: 3rem; color: #60a5fa; margin-bottom: 16px; transition: transform 0.3s ease; }
+        .upload-area:hover i { transform: translateY(-4px); }
+        .upload-area p { font-size: 1.1rem; font-weight: 600; margin-bottom: 6px; color: var(--text-main); }
+        .upload-area span { color: var(--text-sub); font-size: 0.88rem; }
+
+        /* 配置控制区 */
+        .controls-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 24px;
+            background: rgba(255, 255, 255, 0.02);
+            padding: 24px;
+            border-radius: var(--radius-md);
+            border: 1px solid var(--card-border);
+        }
+        .control-group { display: flex; flex-direction: column; gap: 10px; }
+        .control-group label { font-size: 0.9rem; font-weight: 600; color: var(--text-muted); display: flex; justify-content: space-between; }
+        .control-group label span.val-badge { color: #60a5fa; background: rgba(59, 130, 246, 0.1); padding: 2px 8px; border-radius: 6px; font-size: 0.8rem; }
+        
+        /* 美化滑动条 */
+        .control-group input[type="range"] {
+            -webkit-appearance: none;
+            width: 100%;
+            height: 6px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 100px;
+            outline: none;
+        }
+        .control-group input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 18px;
+            height: 18px;
+            background: var(--accent);
+            border-radius: 50%;
+            cursor: pointer;
+            box-shadow: 0 0 10px rgba(59, 130, 246, 0.5);
+            transition: transform 0.1s;
+        }
+        .control-group input[type="range"]::-webkit-slider-thumb:hover { transform: scale(1.2); }
+
+        /* 美化数字输入框 */
+        .control-group input[type="number"] {
+            background: var(--input-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 8px;
+            padding: 10px 14px;
+            color: var(--text-main);
+            font-size: 0.95rem;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+        .control-group input[type="number"]:focus { border-color: var(--accent); }
+
+        /* 核心动作按钮样式 */
+        .action-btn {
+            background: var(--accent-gradient);
+            border: none;
+            color: #ffffff;
+            padding: 14px 32px;
+            border-radius: 12px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            box-shadow: 0 4px 14px rgba(37, 99, 235, 0.3);
+            transition: all 0.2s ease;
+        }
+        .action-btn:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(37, 99, 235, 0.4); }
+        .action-btn:active { transform: translateY(0); }
+
+        /* 渲染对比视图栅格 */
+        .preview-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 24px;
+            margin-top: 8px;
+        }
+        .preview-card {
+            background: rgba(0, 0, 0, 0.1);
+            border: 1px solid var(--card-border);
+            border-radius: var(--radius-md);
+            padding: 20px;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .preview-card h4 { font-size: 0.95rem; color: var(--text-muted); margin-bottom: 14px; font-weight: 600; width: 100%; text-align: left; border-left: 3px solid var(--accent); padding-left: 8px; }
+        
+        .img-box {
+            width: 100%;
+            height: 260px;
+            background: var(--preview-img-bg);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            margin-bottom: 14px;
+            border: 1px solid var(--card-border);
+        }
+        .img-box img { max-width: 100%; max-height: 100%; object-fit: contain; }
+        .file-meta { font-size: 0.92rem; font-weight: 600; color: #60a5fa; background: rgba(59, 130, 246, 0.1); padding: 4px 12px; border-radius: 6px; }
+
+        /* 全局轻量通知 */
+        .toast {
+            position: fixed;
+            bottom: 32px;
+            left: 50%;
+            transform: translateX(-50%) translateY(40px);
+            background: rgba(17, 24, 39, 0.95);
+            border: 1px solid var(--accent);
+            color: #ffffff;
+            padding: 12px 28px;
+            border-radius: 100px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            box-shadow: var(--shadow-lg);
+            opacity: 0;
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            z-index: 1000;
+            backdrop-filter: blur(8px);
+            pointer-events: none;
+        }
+        .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+
+        /* 页脚区域 */
+        footer {
+            text-align: center;
+            margin-top: 64px;
+            padding: 32px 0;
+            border-top: 1px solid var(--card-border);
+            width: 100%;
+            color: var(--text-sub);
+            font-size: 0.88rem;
+        }
+
+        @media (max-width: 768px) {
+            body { padding: 24px 16px; }
+            header h1 { font-size: 2rem; }
+            .workspace { padding: 20px; }
+            .controls-grid { padding: 16px; }
+            .img-box { height: 200px; }
+            .top-bar { flex-direction: column; align-items: flex-start; }
+            .lang-selector-container { width: 100%; justify-content: flex-start; margin-top: 4px; }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    
+    <div class="top-bar">
+        <div class="left-controls">
+            <a href="index.html" class="back-btn" id="btn-back"><i class="fas fa-arrow-left"></i> Back to Hub</a>
+            <!-- 网页颜色模式双向切换按钮 -->
+            <button class="theme-btn" id="themeToggleBtn" onclick="toggleTheme()"><i class="fas fa-lightbulb"></i> Theme</button>
+        </div>
+        <div class="lang-selector-container">
+            <button class="lang-btn" id="lang-en" onclick="switchLang('en')">English</button>
+            <button class="lang-btn" id="lang-zh" onclick="switchLang('zh')">简体中文</button>
+            <button class="lang-btn" id="lang-es" onclick="switchLang('es')">Español</button>
+            <button class="lang-btn" id="lang-ja" onclick="switchLang('ja')">日本語</button>
+        </div>
+    </div>
+
+    <header>
+        <h1 id="txt-title">Smart Image Compressor</h1>
+        <p id="txt-desc">Optimize JPG, PNG, and WebP dimensions and weight natively without losing pure pixels.</p>
+    </header>
+
+    <!-- 广告位置 1：自适应顶部横幅广告 -->
+    <section class="ad-wrapper">
+        <div class="ad-hint lbl-ad"><i class="fas fa-rectangle-ad"></i> Sponsored Advertisement</div>
+        <ins class="adsbygoogle"
+             style="display:block"
+             data-ad-client="ca-pub-1624261597740761"
+             data-ad-slot="1111111111"
+             data-ad-format="horizontal"
+             data-full-width-responsive="true"></ins>
+        <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+    </section>
+
+    <main class="workspace">
+        <input type="file" id="fileInput" accept="image/*" style="display: none;">
+        
+        <div class="upload-area" id="dropZone">
+            <i class="fas fa-cloud-arrow-up"></i>
+            <p id="txt-drop-title">Drag & drop your file here or click to browse</p>
+            <span id="txt-drop-sub">Supports JPG, PNG, WebP up to 50MB</span>
+        </div>
+
+        <div class="controls-grid">
+            <div class="control-group">
+                <label><span id="lbl-quality">Target Quality</span> <span id="qualityVal" class="val-badge">80%</span></label>
+                <input type="range" id="qualitySlider" min="0.1" max="1.0" step="0.05" value="0.8">
+            </div>
+            <div class="control-group">
+                <label id="lbl-maxwidth">Max Width / Height (px)</label>
+                <input type="number" id="maxWidthInput" value="1200" placeholder="e.g. 1200">
+            </div>
+        </div>
+
+        <div style="text-align: center;">
+            <button class="action-btn" id="compressBtn"><i class="fas fa-bolt"></i> Compress Image</button>
+        </div>
+
+        <div class="preview-grid" id="previewDiv" style="display: none;">
+            <div class="preview-card">
+                <h4 id="lbl-orig">Original File</h4>
+                <div class="img-box"><img id="origImg" src="" alt="Original"></div>
+                <div class="file-meta" id="origInfo">-</div>
+            </div>
+            <div class="preview-card">
+                <h4 id="lbl-comp">Compressed Result</h4>
+                <div class="img-box"><img id="compImg" src="" alt="Compressed"></div>
+                <div class="file-meta" id="compInfo">-</div>
+                
+                <div style="margin-top: 20px; display: none; width: 100%;" id="downloadDiv">
+                    <button class="action-btn" id="downloadBtn" style="width: 100%; padding: 12px 20px; font-size: 0.95rem; background: linear-gradient(135deg, #10b981 0%, #059669 100%); box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);">
+                        <i class="fas fa-download"></i> Download Image
+                    </button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- 广告位置 3：自适应页脚信息流广告 -->
+    <section class="ad-wrapper" style="margin-top: 36px;">
+        <div class="ad-hint lbl-ad"><i class="fas fa-rectangle-ad"></i> Sponsored Advertisement</div>
+        <ins class="adsbygoogle"
+             style="display:block"
+             data-ad-client="ca-pub-1624261597740761"
+             data-ad-slot="3333333333"
+             data-ad-format="auto"
+             data-full-width-responsive="true"></ins>
+        <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+    </section>
+
+    <footer>
+        <p>© Ultimate Online Toolbox | Client-Side Secure Sandbox Workshop</p>
+    </footer>
+</div>
+
+<div class="toast" id="toastBox">Notification</div>
+
+<script>
+    // 1. 全球化多语言词典字典
+    const COMP_LANGS = {
+        en: {
+            title: "Smart Image Compressor",
+            desc: "Optimize JPG, PNG, and WebP dimensions and weight natively without losing pure pixels.",
+            back: "<i class='fas fa-arrow-left'></i> Back to Hub",
+            dropTitle: "Drag & drop your file here or click to browse",
+            dropSub: "Supports JPG, PNG, WebP up to 50MB",
+            quality: "Target Quality",
+            maxwidth: "Max Width / Height (px)",
+            btnComp: "<i class='fas fa-bolt'></i> Compress Image",
+            lblOrig: "Original File",
+            lblComp: "Compressed Result",
+            btnDl: "<i class='fas fa-download'></i> Download Image",
+            ad: "<i class='fas fa-rectangle-ad'></i> Sponsored Advertisement",
+            err: "Compression failed",
+            suc: "Download started",
+            load: "Processing locally..."
+        },
+        zh: {
+            title: "智能图片压缩",
+            desc: "在浏览器本地无缝优化 JPG / PNG / WebP 文件的体积大小，无任何隐私上传。",
+            back: "<i class='fas fa-arrow-left'></i> 返回工具箱",
+            dropTitle: "将图片拖拽至此，或点击选择文件",
+            dropSub: "支持 50MB 以内的 JPG, PNG, WebP 格式",
+            quality: "目标质量画质",
+            maxwidth: "最大允许宽高限制 (px)",
+            btnComp: "<i class='fas fa-bolt'></i> 立即压缩文件",
+            lblOrig: "原始输入图像",
+            lblComp: "压缩后输出图像",
+            btnDl: "<i class='fas fa-download'></i> 立即保存下载",
+            ad: "<i class='fas fa-rectangle-ad'></i> 赞助商广告",
+            err: "压缩失败，请重试",
+            suc: "下载已开始",
+            load: "正在本地沙箱中安全压缩..."
+        },
+        es: {
+            title: "Compresor de Imagen",
+            desc: "Optimice las dimensiones y el peso de JPG, PNG y WebP de forma nativa sin perder píxeles puros.",
+            back: "<i class='fas fa-arrow-left'></i> Volver al menú",
+            dropTitle: "Arrastre y suelte su archivo aquí o haga clic para buscar",
+            dropSub: "Soporta JPG, PNG, WebP hasta 50MB",
+            quality: "Calidad Objetivo",
+            maxwidth: "Ancho / Alto Máximo (px)",
+            btnComp: "<i class='fas fa-bolt'></i> Comprimir Imagen",
+            lblOrig: "Archivo Original",
+            lblComp: "Resultado Comprimido",
+            btnDl: "<i class='fas fa-download'></i> Descargar Imagen",
+            ad: "<i class='fas fa-rectangle-ad'></i> Publicidad Patrocinada",
+            err: "La compresión falló",
+            suc: "Descarga iniciada",
+            load: "Procesando localmente..."
+        },
+        ja: {
+            title: "スマート画像圧縮",
+            desc: "サーバーへのアップロードなしで、JPG、PNG、WebPファイルの解像度と容量をローカルで最適化します。",
+            back: "<i class='fas fa-arrow-left'></i> ツールボックスに戻る",
+            dropTitle: "ここにファイルをドラッグ＆ドロップするか、クリックして選択してください",
+            dropSub: "最大 50MB までの JPG、PNG、WebP に対応",
+            quality: "目標画質品質",
+            maxwidth: "最大許容幅 / 高さ (px)",
+            btnComp: "<i class='fas fa-bolt'></i> 画像を圧縮する",
+            lblOrig: "元の画像ファイル",
+            lblComp: "圧縮後の画像成果",
+            btnDl: "<i class='fas fa-download'></i> 画像をダウンロード",
+            ad: "<i class='fas fa-rectangle-ad'></i> スポンサー広告",
+            err: "圧縮に失敗しました",
+            suc: "ダウンロードを開始しました",
+            load: "ローカル環境で安全に処理中..."
+        }
+    };
+
+    let currentLang = 'en';
+
+    function switchLang(lang) {
+        currentLang = lang;
+        const t = COMP_LANGS[lang] || COMP_LANGS['en'];
+        
+        // 数据节点回填
+        document.title = t.title + " - Ultimate Online Toolbox";
+        document.getElementById('txt-title').innerText = t.title;
+        document.getElementById('txt-desc').innerText = t.desc;
+        document.getElementById('btn-back').innerHTML = t.back;
+        document.getElementById('txt-drop-title').innerText = t.dropTitle;
+        document.getElementById('txt-drop-sub').innerText = t.dropSub;
+        document.getElementById('lbl-quality').innerText = t.quality;
+        document.getElementById('lbl-maxwidth').innerText = t.maxwidth;
+        document.getElementById('compressBtn').innerHTML = t.btnComp;
+        document.getElementById('lbl-orig').innerText = t.lblOrig;
+        document.getElementById('lbl-comp').innerText = t.lblComp;
+        document.getElementById('downloadBtn').innerHTML = t.btnDl;
+        
+        document.querySelectorAll('.lbl-ad').forEach(el => el.innerHTML = t.ad);
+
+        // 控制语言选择按钮状态高亮
+        document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
+        const activeBtn = document.getElementById(`lang-${lang}`);
+        if(activeBtn) activeBtn.classList.add('active');
+
+        // 持久化语言设置并写入 HTML 节点
+        localStorage.setItem('user_lang_preference', lang);
+        document.documentElement.lang = lang;
+        
+        // 动态同步刷新滑块值旁边的徽章文本
+        updateSliderBadge();
+    }
+
+    function updateSliderBadge() {
+        const val = Math.round(qualitySlider.value * 100) + '%';
+        qualityVal.innerText = val;
+    }
+
+    // 2. 网页颜色风格明暗调度中心
+    function toggleTheme() {
+        const currentTheme = document.documentElement.getAttribute('data-theme');
+        const targetTheme = currentTheme === 'dark' ? 'light' : 'dark';
+        document.documentElement.setAttribute('data-theme', targetTheme);
+        localStorage.setItem('user_theme_preference', targetTheme);
+    }
+
+    function initTheme() {
+        // 默认载入黑夜(dark)主题
+        const savedTheme = localStorage.getItem('user_theme_preference') || 'dark';
+        document.documentElement.setAttribute('data-theme', savedTheme);
+    }
+
+    // 3. 气泡微通知模块
+    function showToast(msg) {
+        const box = document.getElementById('toastBox');
+        box.innerText = msg;
+        box.classList.add('show');
+        setTimeout(() => box.classList.remove('show'), 2000);
+    }
+
+    // 4. 核心无损压缩原版逻辑映射映射控制层（100%保留机制）
+    const fileInput = document.getElementById('fileInput');
+    const dropZone = document.getElementById('dropZone');
+    const qualitySlider = document.getElementById('qualitySlider');
+    const qualityVal = document.getElementById('qualityVal');
+    const maxWidthInput = document.getElementById('maxWidthInput');
+    const previewDiv = document.getElementById('previewDiv');
+    const downloadDiv = document.getElementById('downloadDiv');
+    const origImg = document.getElementById('origImg');
+    const origInfo = document.getElementById('origInfo');
+    const compImg = document.getElementById('compImg');
+    const compInfo = document.getElementById('compInfo');
+    const compressBtn = document.getElementById('compressBtn');
+    const downloadBtn = document.getElementById('downloadBtn');
+
+    let file = null;
+    let compressedBlob = null;
+
+    qualitySlider.addEventListener('input', updateSliderBadge);
+
+    // 原有按钮点击和拖放逻辑
+    dropZone.addEventListener('click', () => fileInput.click());
+
+    dropZone.addEventListener('dragover', (e) => { 
+        e.preventDefault(); 
+        dropZone.style.borderColor = "#3b82f6"; 
+    });
+    
+    dropZone.addEventListener('dragleave', () => { 
+        dropZone.style.borderColor = "rgba(59, 130, 246, 0.3)"; 
+    });
+    
+    dropZone.addEventListener('drop', (e) => {
+        e.preventDefault();
+        dropZone.style.borderColor = "rgba(59, 130, 246, 0.3)";
+        if (e.dataTransfer.files.length > 0) {
+            handleFile(e.dataTransfer.files[0]);
+        }
+    });
+
+    fileInput.addEventListener('change', (e) => {
+        if (e.target.files.length > 0) {
+            handleFile(e.target.files[0]);
+        }
+    });
+
+    function handleFile(uploadedFile) {
+        if (!uploadedFile.type.startsWith('image/')) return;
+        file = uploadedFile;
+        const url = URL.createObjectURL(file);
+        origImg.src = url;
+        origInfo.innerText = `${(file.size / 1024).toFixed(1)} KB`;
+        previewDiv.style.display = 'grid'; 
+        downloadDiv.style.display = 'none';
+        compress();
+        fileInput.value = '';
+    }
+
+    // 纯客户端本地压缩异步引擎
+    async function compress() {
+        if (!file) return;
+        const t = COMP_LANGS[currentLang] || COMP_LANGS['en'];
+        showToast(t.load);
+
+        const options = {
+            maxSizeMB: 1,
+            maxWidthOrHeight: parseInt(maxWidthInput.value) || 1200,
+            initialQuality: parseFloat(qualitySlider.value),
+            useWebWorker: true
+        };
+        try {
+            const compressed = await imageCompression(file, options);
+            compressedBlob = compressed;
+            const url = URL.createObjectURL(compressed);
+            compImg.src = url;
+            compInfo.innerText = `${(compressed.size / 1024).toFixed(1)} KB (-${((1 - compressed.size / file.size) * 100).toFixed(0)}%)`;
+            downloadDiv.style.display = 'block';
+        } catch (err) {
+            showToast(t.err);
+        }
+    }
+
+    // 绑定核心原生触发点击事件
+    compressBtn.addEventListener('click', compress);
+    
+    downloadBtn.addEventListener('click', () => {
+        if (compressedBlob) {
+            const a = document.createElement('a');
+            a.href = URL.createObjectURL(compressedBlob);
+            a.download = 'compressed.jpg';
+            a.click();
+            showToast(COMP_LANGS[currentLang].suc);
+        }
+    });
+
+    // 初始化构造器：加载黑夜主题，并读取与主页共享的语言设置
+    window.addEventListener('DOMContentLoaded', () => {
+        initTheme(); 
+        const storedPreference = localStorage.getItem('user_lang_preference') || 'en';
+        switchLang(storedPreference);
+    });
+</script>
+</body>
+</html>

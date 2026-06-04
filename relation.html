@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title id="page-title">Relatives Calculator – Ultimate Online Toolbox</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1624261597740761" crossorigin="anonymous"></script>
+    <script>
+         (adsbygoogle = window.adsbygoogle || []).push({
+              google_ad_client: "ca-pub-1624261597740761",
+              enable_page_level_ads: true
+         });
+    </script>
+
+    <style>
+        /* === 延续 index.html 的浅色微光系统与暗黑扩展方案 === */
+        * { margin: 0; padding: 0; box-sizing: border-box; -webkit-font-smoothing: antialiased; }
+        
+        :root {
+            --bg-gradient: radial-gradient(circle at 10% 30%, #eef2f9, #e0e8f2);
+            --color-main: #0b2b3b;
+            --color-title: #183e56;
+            --color-muted: #5c7285;
+            --color-sub: #8fa0b0;
+            --card-bg: #ffffff;
+            --card-border: #bfd6ea;
+            --input-bg: #ffffff;
+            --shadow-md: 0 25px 45px -12px rgba(0,0,0,0.1);
+            --item-bg: #f8fafc;
+            --item-border: #e2e8f0;
+            --btn-sec-bg: #f1f5f9;
+            --btn-sec-text: #475569;
+        }
+
+        /* 暗黑极客颜色主题配置 (默认激活动作) */
+        [data-theme="dark"] {
+            --bg-gradient: radial-gradient(circle at 50% 0%, #111827 0%, #030712 100%);
+            --color-main: #f3f4f6;
+            --color-title: #ffffff;
+            --color-muted: #9ca3af;
+            --color-sub: #6b7280;
+            --card-bg: rgba(17, 24, 39, 0.75);
+            --card-border: rgba(37, 99, 235, 0.2);
+            --input-bg: #0b0f19;
+            --shadow-md: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+            --item-bg: rgba(255, 255, 255, 0.03);
+            --item-border: rgba(255, 255, 255, 0.08);
+            --btn-sec-bg: rgba(255, 255, 255, 0.05);
+            --btn-sec-text: #d1d5db;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--bg-gradient);
+            color: var(--color-main);
+            min-height: 100vh;
+            padding: 40px 24px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            transition: background 0.3s ease, color 0.3s ease;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 750px;
+        }
+
+        /* === 顶部控制导航栏 === */
+        .top-bar {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 32px;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+        .left-controls { display: flex; gap: 12px; align-items: center; }
+        
+        .back-btn, .theme-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            color: var(--color-title);
+            padding: 10px 20px;
+            border-radius: 100px;
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            cursor: pointer;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.03);
+            transition: all 0.2s ease;
+        }
+        .back-btn:hover, .theme-btn:hover {
+            background: var(--item-bg);
+            border-color: #3b82f6;
+            transform: translateY(-1px);
+        }
+
+        .lang-selector-container { display: flex; gap: 6px; }
+        .lang-btn {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            color: var(--color-muted);
+            padding: 6px 14px;
+            border-radius: 100px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            cursor: pointer;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.02);
+            transition: all 0.2s ease;
+        }
+        .lang-btn:hover, .lang-btn.active {
+            background: #3b82f6;
+            color: #ffffff;
+            border-color: #3b82f6;
+            box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+        }
+
+        /* === 标题区排版 === */
+        header { text-align: center; margin-bottom: 32px; }
+        header h2 {
+            font-size: 2.2rem;
+            font-weight: 800;
+            color: var(--color-title);
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+        }
+        header p { color: var(--color-muted); font-size: 1.05rem; max-width: 600px; margin: 0 auto; line-height: 1.5; }
+
+        /* === AdSense 广告卡片样式 === */
+        .ad-wrapper {
+            margin: 0 auto 32px auto;
+            width: 100%;
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 1.5rem;
+            padding: 16px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.03);
+            text-align: center;
+            backdrop-filter: blur(10px);
+        }
+        .ad-hint {
+            font-size: 0.68rem;
+            color: var(--color-sub);
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin-bottom: 8px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 4px;
+        }
+
+        /* === 核心功能工作面板 === */
+        .workspace {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 2rem;
+            padding: 36px;
+            box-shadow: var(--shadow-md);
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+            backdrop-filter: blur(10px);
+            transition: background 0.3s ease, border-color 0.3s ease;
+        }
+
+        /* 模式切换组设计 */
+        .mode-toggle-group {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            background: var(--item-bg);
+            padding: 6px;
+            border-radius: 14px;
+            border: 1px solid var(--item-border);
+        }
+        .mode-btn {
+            border: none;
+            padding: 12px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            background: transparent;
+            color: var(--btn-sec-text);
+        }
+        .mode-btn.btn-primary {
+            background: #3b82f6;
+            color: #ffffff;
+            box-shadow: 0 4px 12px rgba(59, 130, 246, 0.25);
+        }
+
+        /* 输入框布局与微光聚焦 */
+        .input-group {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+        .input-group label {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--color-muted);
+        }
+        .styled-input {
+            width: 100%;
+            background: var(--input-bg);
+            border: 1px solid var(--card-border);
+            color: var(--color-main);
+            padding: 14px 18px;
+            border-radius: 12px;
+            font-size: 1rem;
+            outline: none;
+            transition: all 0.2s;
+        }
+        .styled-input:focus {
+            border-color: #3b82f6;
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15);
+        }
+
+        /* 核心提交触发按钮 */
+        .calc-action-btn {
+            background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+            border: none;
+            color: #ffffff;
+            padding: 14px;
+            border-radius: 12px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            box-shadow: 0 4px 14px rgba(37, 99, 235, 0.2);
+            transition: all 0.2s ease;
+        }
+        .calc-action-btn:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 6px 18px rgba(37, 99, 235, 0.3);
+        }
+
+        /* 高级结果展示池容器 */
+        .result-box {
+            background: var(--item-bg);
+            border: 1px solid var(--item-border);
+            border-radius: 1.25rem;
+            padding: 24px;
+            min-height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: #3b82f6;
+            line-height: 1.5;
+            animation: fadeIn 0.3s ease-out forwards;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(4px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 48px;
+            padding: 24px 0;
+            border-top: 1px solid var(--card-border);
+            width: 100%;
+            color: var(--color-sub);
+            font-size: 0.88rem;
+        }
+
+        @media (max-width: 600px) {
+            body { padding: 24px 16px; }
+            .workspace { padding: 20px; }
+            .top-bar { flex-direction: column; align-items: flex-start; }
+            .lang-selector-container { width: 100%; justify-content: flex-start; margin-top: 4px; }
+            .mode-toggle-group { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    
+    <div class="top-bar">
+        <div class="left-controls">
+            <a href="index.html" class="back-btn" id="btn-back"><i class="fas fa-arrow-left"></i> Back to Hub</a>
+            <button class="theme-btn" id="themeToggleBtn" onclick="toggleTheme()"><i class="fas fa-lightbulb"></i> Theme</button>
+        </div>
+        <div class="lang-selector-container">
+            <button class="lang-btn" id="lang-en" onclick="switchLang('en')">English</button>
+            <button class="lang-btn" id="lang-zh" onclick="switchLang('zh')">简体中文</button>
+            <button class="lang-btn" id="lang-es" onclick="switchLang('es')">Español</button>
+            <button class="lang-btn" id="lang-ja" onclick="switchLang('ja')">日本語</button>
+        </div>
+    </div>
+
+    <header>
+        <h2 id="txt-title"><i class="fas fa-users"></i> Relatives Calculator</h2>
+        <p id="txt-desc">Find relation titles by chain generation or find how to address a family member mutually.</p>
+    </header>
+
+    <section class="ad-wrapper">
+        <div class="ad-hint lbl-ad"><i class="fas fa-rectangle-ad"></i> Sponsored Advertisement</div>
+        <ins class="adsbygoogle"
+             style="display:block"
+             data-ad-client="ca-pub-1624261597740761"
+             data-ad-slot="1111111111"
+             data-ad-format="horizontal"
+             data-full-width-responsive="true"></ins>
+        <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+    </section>
+
+    <main class="workspace">
+        
+        <div class="mode-toggle-group">
+            <button id="forwardBtn" class="mode-btn btn-primary">Chain to Title (递推称呼)</button>
+            <button id="reverseBtn" class="mode-btn">Title to Chain (逆向寻根)</button>
+        </div>
+
+        <div class="input-group">
+            <label id="lbl-input" for="relationInput">Enter relation chain or term:</label>
+            <input type="text" id="relationInput" class="styled-input" placeholder="e.g. father, mother's brother / 爸爸的妈妈">
+        </div>
+
+        <button id="calcBtn" class="calc-action-btn"><i class="fas fa-calculator"></i> Calculate Relation</button>
+
+        <div class="result-box" id="result">✨ Result Workspace</div>
+    </main>
+
+    <section class="ad-wrapper" style="margin-top: 36px;">
+        <div class="ad-hint lbl-ad"><i class="fas fa-rectangle-ad"></i> Sponsored Advertisement</div>
+        <ins class="adsbygoogle"
+             style="display:block"
+             data-ad-client="ca-pub-1624261597740761"
+             data-ad-slot="3333333333"
+             data-ad-format="auto"
+             data-full-width-responsive="true"></ins>
+        <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+    </section>
+
+    <footer>
+        <p>© Ultimate Online Toolbox | Kinship & Relation Linguistic Sandbox</p>
+    </footer>
+</div>
+
+<script>
+    // 1. 国际化多语种全量文本映射字典
+    const RELATION_LANGS = {
+        en: {
+            title: "Relatives Calculator",
+            desc: "Find relation titles by chain generation or find how to address a family member mutually.",
+            back: "<i class='fas fa-arrow-left'></i> Back to Hub",
+            btnForward: "Chain to Title",
+            btnReverse: "Title to Chain",
+            lblInput: "Enter relation chain or term:",
+            btnCalc: "<i class='fas fa-calculator'></i> Calculate Relation",
+            ph: "e.g. father, mother's brother / 爸爸的妈妈",
+            errEmpty: "Please enter something to calculate",
+            lblTitle: "Title: ",
+            lblChain: "Chain: ",
+            initRes: "✨ Result Workspace",
+            ad: "<i class='fas fa-rectangle-ad'></i> Sponsored Advertisement"
+        },
+        zh: {
+            title: "亲属关系计算器",
+            desc: "快速推算亲属间的称呼链条，或通过称谓反向查询亲属关系组合，中英文完美支持。",
+            back: "<i class='fas fa-arrow-left'></i> 返回工具箱",
+            btnForward: "递推称呼 (链转称谓)",
+            btnReverse: "逆向寻根 (称谓转链)",
+            lblInput: "请输入关系链或亲属称谓:",
+            btnCalc: "<i class='fas fa-calculator'></i> 立即计算关系",
+            ph: "例如：爸爸的妈妈 / father, mother's brother",
+            errEmpty: "请输入需要查询的关系或称呼",
+            lblTitle: "称呼结果: ",
+            lblChain: "可能关系: ",
+            initRes: "✨ 等待计算结果",
+            ad: "<i class='fas fa-rectangle-ad'></i> 赞助商广告"
+        },
+        es: {
+            title: "Calculadora de Parentesco",
+            desc: "Encuentre títulos de parentesco por generación de cadenas o descubra cómo dirigirse mutuamente.",
+            back: "<i class='fas fa-arrow-left'></i> Volver al menú",
+            btnForward: "Cadena a Título",
+            btnReverse: "Título a Cadena",
+            lblInput: "Ingrese la cadena o término de relación:",
+            btnCalc: "<i class='fas fa-calculator'></i> Calcular Relación",
+            ph: "p. ej. father, mother's brother / 爸爸的妈妈",
+            errEmpty: "Por favor ingrese algo para calcular",
+            lblTitle: "Título: ",
+            lblChain: "Cadena: ",
+            initRes: "✨ Panel de Resultados",
+            ad: "<i class='fas fa-rectangle-ad'></i> Publicidad Patrocinada"
+        },
+        ja: {
+            title: "親族関係計算機",
+            desc: "家系チェーンから親族の呼び名を推算したり、呼び名から逆引きで関係性を調べることができます。",
+            back: "<i class='fas fa-arrow-left'></i> ツールボックスに戻る",
+            btnForward: "チェーン ➔ 呼び名",
+            btnReverse: "呼び名 ➔ チェーン",
+            lblInput: "関係チェーンまたは呼び名を入力してください:",
+            btnCalc: "<i class='fas fa-calculator'></i> 関係を計算する",
+            ph: "例：爸爸的妈妈 / father, mother's brother",
+            errEmpty: "計算する内容を入力してください",
+            lblTitle: "呼称: ",
+            lblChain: "関係性: ",
+            initRes: "✨ 結果ワークスペース",
+            ad: "<i class='fas fa-rectangle-ad'></i> スポンサー広告"
+        }
+    };
+
+    let currentLang = 'en';
+    let mode = "forward"; // "forward" 或者 "reverse"
+
+    function switchLang(lang) {
+        currentLang = lang;
+        const t = RELATION_LANGS[lang] || RELATION_LANGS['en'];
+        
+        // DOM 国际化映射
+        document.title = t.title + " – Online Toolbox";
+        document.getElementById('txt-title').innerHTML = `<i class="fas fa-users"></i> ` + t.title;
+        document.getElementById('txt-desc').innerText = t.desc;
+        document.getElementById('btn-back').innerHTML = t.back;
+        document.getElementById('forwardBtn').innerText = t.btnForward;
+        document.getElementById('reverseBtn').innerText = t.btnReverse;
+        document.getElementById('lbl-input').innerText = t.lblInput;
+        document.getElementById('calcBtn').innerHTML = t.btnCalc;
+        document.getElementById('relationInput').placeholder = t.ph;
+        
+        document.querySelectorAll('.lbl-ad').forEach(el => el.innerHTML = t.ad);
+
+        if(document.getElementById('result').innerText.includes('✨')) {
+            document.getElementById('result').innerText = t.initRes;
+        } else {
+            compute(); // 切换语言时如果已有输入则重新刷新计算池
+        }
+
+        // 高亮切换
+        document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
+        const activeBtn = document.getElementById(`lang-${lang}`);
+        if(activeBtn) activeBtn.classList.add('active');
+
+        localStorage.setItem('user_lang_preference', lang);
+        document.documentElement.lang = lang;
+    }
+
+    // 2. 网页颜色（明暗主题）控制器
+    function toggleTheme() {
+        const currentTheme = document.documentElement.getAttribute('data-theme');
+        const targetTheme = currentTheme === 'dark' ? 'light' : 'dark';
+        document.documentElement.setAttribute('data-theme', targetTheme);
+        localStorage.setItem('user_theme_preference', targetTheme);
+    }
+
+    function initTheme() {
+        const savedTheme = localStorage.getItem('user_theme_preference') || 'dark';
+        document.documentElement.setAttribute('data-theme', savedTheme);
+    }
+
+    // 3. 原生 100% 完整留存的内部亲属语言学运算模块
+    const enReverse = { "father":"father", "mother":"mother", "grandfather":"father's father", "grandmother":"father's mother", "uncle":"father's brother / mother's brother", "aunt":"father's sister / mother's sister" };
+    const zhReverse = { "爸爸":"爸爸", "妈妈":"妈妈", "爷爷":"爸爸的爸爸", "奶奶":"爸爸的妈妈", "外公":"妈妈的爸爸", "外婆":"妈妈的妈妈", "伯父":"爸爸的哥哥", "叔叔":"爸爸的弟弟", "舅舅":"妈妈的兄弟", "姑妈":"爸爸的姐妹", "姨妈":"妈妈的姐妹" };
+
+    function parseChain(str, isEn) {
+        let parts = isEn ? str.toLowerCase().split(/['\s]*s\s+|[\s',]+/g).filter(Boolean) : str.split(/的|\s+/).filter(Boolean);
+        let cur = isEn ? "self" : "自己";
+        let g = "unknown";
+        
+        for (let step of parts) {
+            if (step === "father" || step === "爸爸") { cur = isEn ? "father" : "爸爸"; g = "male"; }
+            else if (step === "mother" || step === "妈妈") { cur = isEn ? "mother" : "妈妈"; g = "female"; }
+            else if (step === "grandfather" || step === "爷爷") cur = isEn ? "grandfather" : (g === "female" ? "外公" : "爷爷");
+            else if (step === "grandmother" || step === "奶奶") cur = isEn ? "grandmother" : (g === "female" ? "外婆" : "奶奶");
+            else if (step === "brother" || step === "哥哥" || step === "弟弟") cur = isEn ? "brother" : (g === "male" ? "伯父/叔叔" : "舅舅");
+            else if (step === "sister" || step === "姐姐" || step === "妹妹") cur = isEn ? "sister" : (g === "male" ? "姑妈" : "姨妈");
+            else cur = step;
+        }
+        return cur;
+    }
+
+    function reverse(term, isEn) {
+        let map = isEn ? enReverse : zhReverse;
+        return map[term] || (isEn ? `Not found: ${term}` : `未收录“${term}”`);
+    }
+
+    const input = document.getElementById('relationInput');
+    const resultDiv = document.getElementById('result');
+    const forwardBtn = document.getElementById('forwardBtn');
+    const reverseBtn = document.getElementById('reverseBtn');
+    const calcBtn = document.getElementById('calcBtn');
+
+    // 绑定转换模式按钮点击事件
+    forwardBtn.addEventListener('click', () => {
+        mode = "forward";
+        forwardBtn.className = "mode-btn btn-primary";
+        reverseBtn.className = "mode-btn";
+        compute();
+    });
+
+    reverseBtn.addEventListener('click', () => {
+        mode = "reverse";
+        reverseBtn.className = "mode-btn btn-primary";
+        forwardBtn.className = "mode-btn";
+        compute();
+    });
+
+    // 绑定核心计算触发点击事件
+    calcBtn.addEventListener('click', compute);
+
+    function compute() {
+        let val = input.value.trim();
+        const t = RELATION_LANGS[currentLang] || RELATION_LANGS['en'];
+        
+        if (!val) {
+            resultDiv.innerText = t.errEmpty;
+            return;
+        }
+        
+        let isEn = /[a-zA-Z]/.test(val) && !/[\u4e00-\u9fa5]/.test(val);
+        
+        if (mode === "forward") {
+            let prefix = t.lblTitle;
+            resultDiv.innerHTML = `${prefix} <strong>${parseChain(val, isEn)}</strong>`;
+        } else {
+            let prefix = t.lblChain;
+            resultDiv.innerHTML = `${prefix} <strong>${reverse(val, isEn)}</strong>`;
+        }
+    }
+
+    // 页面就绪自动同步预加载
+    window.addEventListener('DOMContentLoaded', () => {
+        initTheme(); // 装载默认黑夜模式主题
+        const storedPreference = localStorage.getItem('user_lang_preference') || 'en';
+        switchLang(storedPreference); // 保持跨页面国际化同步
+    });
+</script>
+</body>
+</html>

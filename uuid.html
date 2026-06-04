@@ -1,0 +1,656 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title id="page-title">UUID Generator – Ultimate Online Toolbox</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1624261597740761" crossorigin="anonymous"></script>
+    <script>
+         (adsbygoogle = window.adsbygoogle || []).push({
+              google_ad_client: "ca-pub-1624261597740761",
+              enable_page_level_ads: true
+         });
+    </script>
+
+    <style>
+        /* === 延续 index.html 的浅色微光系统与暗黑扩展方案 === */
+        * { margin: 0; padding: 0; box-sizing: border-box; -webkit-font-smoothing: antialiased; }
+        
+        :root {
+            --bg-gradient: radial-gradient(circle at 10% 30%, #eef2f9, #e0e8f2);
+            --color-main: #0b2b3b;
+            --color-title: #183e56;
+            --color-muted: #5c7285;
+            --color-sub: #8fa0b0;
+            --card-bg: #ffffff;
+            --card-border: #bfd6ea;
+            --input-bg: #ffffff;
+            --shadow-md: 0 25px 45px -12px rgba(0,0,0,0.1);
+            --item-bg: #f8fafc;
+            --item-border: #e2e8f0;
+        }
+
+        /* 暗黑极客颜色主题配置 */
+        [data-theme="dark"] {
+            --bg-gradient: radial-gradient(circle at 50% 0%, #111827 0%, #030712 100%);
+            --color-main: #f3f4f6;
+            --color-title: #ffffff;
+            --color-muted: #9ca3af;
+            --color-sub: #6b7280;
+            --card-bg: rgba(17, 24, 39, 0.75);
+            --card-border: rgba(37, 99, 235, 0.2);
+            --input-bg: #0b0f19;
+            --shadow-md: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+            --item-bg: rgba(255, 255, 255, 0.03);
+            --item-border: rgba(255, 255, 255, 0.08);
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--bg-gradient);
+            color: var(--color-main);
+            min-height: 100vh;
+            padding: 40px 24px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            transition: background 0.3s ease, color 0.3s ease;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 800px;
+        }
+
+        /* === 顶部控制导航栏 === */
+        .top-bar {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 32px;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+        .left-controls { display: flex; gap: 12px; align-items: center; }
+        
+        .back-btn, .theme-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            color: var(--color-title);
+            padding: 10px 20px;
+            border-radius: 100px;
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            cursor: pointer;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.03);
+            transition: all 0.2s ease;
+        }
+        .back-btn:hover, .theme-btn:hover {
+            background: var(--item-bg);
+            border-color: #3b82f6;
+            transform: translateY(-1px);
+        }
+
+        .lang-selector-container { display: flex; gap: 6px; }
+        .lang-btn {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            color: var(--color-muted);
+            padding: 6px 14px;
+            border-radius: 100px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            cursor: pointer;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.02);
+            transition: all 0.2s ease;
+        }
+        .lang-btn:hover, .lang-btn.active {
+            background: #3b82f6;
+            color: #ffffff;
+            border-color: #3b82f6;
+            box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+        }
+
+        /* === 标题区排版 === */
+        header { text-align: center; margin-bottom: 32px; }
+        header h2 {
+            font-size: 2.2rem;
+            font-weight: 800;
+            color: var(--color-title);
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+        }
+        header p { color: var(--color-muted); font-size: 1.05rem; max-width: 600px; margin: 0 auto; line-height: 1.5; }
+
+        /* === AdSense 广告卡片样式 === */
+        .ad-wrapper {
+            margin: 0 auto 32px auto;
+            width: 100%;
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 1.5rem;
+            padding: 16px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.03);
+            text-align: center;
+            backdrop-filter: blur(10px);
+        }
+        .ad-hint {
+            font-size: 0.68rem;
+            color: var(--color-sub);
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin-bottom: 8px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 4px;
+        }
+
+        /* === 核心功能工作面板 === */
+        .workspace {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 2rem;
+            padding: 36px;
+            box-shadow: var(--shadow-md);
+            display: flex;
+            flex-direction: column;
+            gap: 28px;
+            backdrop-filter: blur(10px);
+            transition: background 0.3s ease, border-color 0.3s ease;
+        }
+
+        /* 控制选项配置网格布局 */
+        .config-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 20px;
+            background: var(--item-bg);
+            padding: 24px;
+            border-radius: 1.5rem;
+            border: 1px solid var(--item-border);
+        }
+        .config-item { display: flex; flex-direction: column; gap: 8px; }
+        .config-item label { font-size: 0.9rem; font-weight: 600; color: var(--color-title); }
+        
+        .config-item select, .config-item input {
+            background: var(--input-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 10px;
+            padding: 12px 14px;
+            color: var(--color-main);
+            font-size: 0.95rem;
+            outline: none;
+            transition: border-color 0.2s, background 0.3s;
+            width: 100%;
+        }
+        .config-item select:focus, .config-item input:focus { border-color: #3b82f6; }
+
+        /* 按钮功能交互控制组 */
+        .buttons-group {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 14px;
+            flex-wrap: wrap;
+        }
+
+        .action-btn {
+            background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+            border: none;
+            color: #ffffff;
+            padding: 14px 32px;
+            border-radius: 12px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            box-shadow: 0 4px 14px rgba(37, 99, 235, 0.2);
+            transition: all 0.2s ease;
+        }
+        .action-btn:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(37, 99, 235, 0.3); }
+        .action-btn:active { transform: translateY(0); }
+
+        .btn-secondary {
+            background: var(--input-bg);
+            border: 1px solid var(--card-border);
+            color: var(--color-title);
+            box-shadow: none;
+        }
+        .btn-secondary:hover { background: var(--item-border); border-color: var(--color-sub); box-shadow: none; color: var(--color-title); }
+
+        /* UUID 数据渲染展示板 */
+        .results-wrapper {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+        .results-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 4px;
+        }
+        .results-header h3 { font-size: 1rem; font-weight: 700; color: var(--color-title); }
+
+        .uuid-list-container {
+            border: 1px solid var(--item-border);
+            background: var(--input-bg);
+            border-radius: 1.25rem;
+            min-height: 180px;
+            max-height: 380px;
+            overflow-y: auto;
+            padding: 12px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            transition: background 0.3s;
+        }
+
+        /* 列表子条目项 */
+        .uuid-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: var(--item-bg);
+            border: 1px solid var(--item-border);
+            border-radius: 10px;
+            padding: 10px 16px;
+            gap: 12px;
+            animation: fadeIn 0.2s ease-out forwards;
+        }
+        .uuid-item code {
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: #3b82f6;
+            word-break: break-all;
+        }
+        .copy-btn {
+            background: transparent;
+            border: none;
+            color: var(--color-sub);
+            cursor: pointer;
+            padding: 6px;
+            font-size: 0.95rem;
+            transition: color 0.2s;
+        }
+        .copy-btn:hover { color: #3b82f6; }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(4px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* 全局轻量弹窗通知 */
+        .toast {
+            position: fixed;
+            bottom: 32px;
+            left: 50%;
+            transform: translateX(-50%) translateY(40px);
+            background: #0b2b3b;
+            color: #ffffff;
+            padding: 12px 28px;
+            border-radius: 100px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+            opacity: 0;
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            z-index: 1000;
+            pointer-events: none;
+        }
+        .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+
+        footer {
+            text-align: center;
+            margin-top: 48px;
+            padding: 24px 0;
+            border-top: 1px solid var(--card-border);
+            width: 100%;
+            color: var(--color-sub);
+            font-size: 0.88rem;
+        }
+
+        @media (max-width: 600px) {
+            body { padding: 24px 16px; }
+            .workspace { padding: 20px; }
+            .config-grid { grid-template-columns: 1fr; padding: 16px; }
+            .top-bar { flex-direction: column; align-items: flex-start; }
+            .lang-selector-container { width: 100%; justify-content: flex-start; margin-top: 4px; }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    
+    <div class="top-bar">
+        <div class="left-controls">
+            <a href="index.html" class="back-btn" id="btn-back"><i class="fas fa-arrow-left"></i> Back to Hub</a>
+            <button class="theme-btn" id="themeToggleBtn" onclick="toggleTheme()"><i class="fas fa-lightbulb"></i> Theme</button>
+        </div>
+        <div class="lang-selector-container">
+            <button class="lang-btn" id="lang-en" onclick="switchLang('en')">English</button>
+            <button class="lang-btn" id="lang-zh" onclick="switchLang('zh')">简体中文</button>
+            <button class="lang-btn" id="lang-es" onclick="switchLang('es')">Español</button>
+            <button class="lang-btn" id="lang-ja" onclick="switchLang('ja')">日本語</button>
+        </div>
+    </div>
+
+    <header>
+        <h2 id="txt-title"><i class="fas fa-fingerprint"></i> UUID Generator</h2>
+        <p id="txt-desc">Bulk generate secure random UUID v1 and v4 strings locally within your browser sandbox safely.</p>
+    </header>
+
+    <section class="ad-wrapper">
+        <div class="ad-hint lbl-ad"><i class="fas fa-rectangle-ad"></i> Sponsored Advertisement</div>
+        <ins class="adsbygoogle"
+             style="display:block"
+             data-ad-client="ca-pub-1624261597740761"
+             data-ad-slot="1111111111"
+             data-ad-format="horizontal"
+             data-full-width-responsive="true"></ins>
+        <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+    </section>
+
+    <main class="workspace">
+        <div class="config-grid">
+            <div class="config-item">
+                <label for="uuidVersion" id="lbl-version">UUID Version</label>
+                <select id="uuidVersion">
+                    <option value="v4">Version 4 (Random)</option>
+                    <option value="v1">Version 1 (Time-based)</option>
+                </select>
+            </div>
+            <div class="config-item">
+                <label for="uuidCount" id="lbl-count">Generation Count (Max 50)</label>
+                <input type="number" id="uuidCount" min="1" max="50" value="5">
+            </div>
+            <div class="config-item">
+                <label for="uuidCase" id="lbl-case">Letter Case</label>
+                <select id="uuidCase">
+                    <option value="lower">lowercase (小写)</option>
+                    <option value="upper">UPPERCASE (大写)</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="buttons-group">
+            <button class="action-btn" id="generateBtn"><i class="fas fa-bolt"></i> Generate UUIDs</button>
+            <button class="action-btn btn-secondary" id="copyAllBtn"><i class="fas fa-copy"></i> Copy All Results</button>
+            <button class="action-btn btn-secondary" id="clearBtn"><i class="fas fa-trash-can"></i> Clear List</button>
+        </div>
+
+        <div class="results-wrapper">
+            <div class="results-header">
+                <h3 id="lbl-output-title">Generated Pool</h3>
+            </div>
+            <div class="uuid-list-container" id="uuidList">
+                </div>
+        </div>
+    </main>
+
+    <section class="ad-wrapper" style="margin-top: 36px;">
+        <div class="ad-hint lbl-ad"><i class="fas fa-rectangle-ad"></i> Sponsored Advertisement</div>
+        <ins class="adsbygoogle"
+             style="display:block"
+             data-ad-client="ca-pub-1624261597740761"
+             data-ad-slot="3333333333"
+             data-ad-format="auto"
+             data-full-width-responsive="true"></ins>
+        <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+    </section>
+
+    <footer>
+        <p>© Ultimate Online Toolbox | Client-Side Cryptographic Random Generation Station</p>
+    </footer>
+</div>
+
+<div class="toast" id="toastBox">Notification</div>
+
+<script>
+    // 1. 国际化多语种字典配置
+    const UUID_LANGS = {
+        en: {
+            title: "UUID Generator",
+            desc: "Bulk generate secure random UUID v1 and v4 strings locally within your browser sandbox safely.",
+            back: "<i class='fas fa-arrow-left'></i> Back to Hub",
+            version: "UUID Version",
+            count: "Generation Count (Max 50)",
+            letterCase: "Letter Case",
+            btnGen: "<i class='fas fa-bolt'></i> Generate UUIDs",
+            btnCopy: "<i class='fas fa-copy'></i> Copy All Results",
+            btnClear: "<i class='fas fa-trash-can'></i> Clear List",
+            outTitle: "Generated Pool",
+            empty: "✨ Click 'Generate UUIDs' to start",
+            copied: "Copied to clipboard",
+            allCopied: "All UUIDs copied successfully",
+            ad: "<i class='fas fa-rectangle-ad'></i> Sponsored Advertisement",
+            toastGen: "✅ Successfully generated "
+        },
+        zh: {
+            title: "UUID 批量生成器",
+            desc: "在浏览器本地沙箱安全、快速地批量生成符合标准的密码学高随机 UUID v1 和 v4 字符串。",
+            back: "<i class='fas fa-arrow-left'></i> 返回工具箱",
+            version: "UUID 版本规格",
+            count: "单次生成数量 (上限 50)",
+            letterCase: "字母大小写格式",
+            btnGen: "<i class='fas fa-bolt'></i> 立即批量生成",
+            btnCopy: "<i class='fas fa-copy'></i> 复制全部结果",
+            btnClear: "<i class='fas fa-trash-can'></i> 清空数据列表",
+            outTitle: "已生成的密码学 UUID 列表",
+            empty: "✨ 在上方设定参数并点击“立即批量生成”按钮",
+            copied: "已成功复制该条 UUID",
+            allCopied: "已成功复制全部 UUID 结果到剪贴板",
+            ad: "<i class='fas fa-rectangle-ad'></i> 赞助商广告",
+            toastGen: "✅ 成功生成 "
+        },
+        es: {
+            title: "Generador de UUID",
+            desc: "Genere en lote cadenas aleatorias seguras de UUID v1 y v4 localmente en su navegador de forma segura.",
+            back: "<i class='fas fa-arrow-left'></i> Volver al menú",
+            version: "Versión de UUID",
+            count: "Cantidad a Generar (Máx 50)",
+            letterCase: "Mayúsculas/Minúsculas",
+            btnGen: "<i class='fas fa-bolt'></i> Generar UUIDs",
+            btnCopy: "<i class='fas fa-copy'></i> Copiar Todo",
+            btnClear: "<i class='fas fa-trash-can'></i> Limpiar Lista",
+            outTitle: "Resultados Generados",
+            empty: "✨ Haga clic en 'Generar UUIDs' para comenzar",
+            copied: "Copiado al portapapeles",
+            allCopied: "Todos los UUIDs copiados correctamente",
+            ad: "<i class='fas fa-rectangle-ad'></i> Publicidad Patrocinada",
+            toastGen: "✅ Generado con éxito "
+        },
+        ja: {
+            title: "UUID一括生成器",
+            desc: "ブラウザのローカルサンドボックス内で、安全でランダムなUUID v1およびv4文字列を安全に一括生成します。",
+            back: "<i class='fas fa-arrow-left'></i> ツールボックスに戻る",
+            version: "UUIDのバージョン",
+            count: "生成数量 (最大 50)",
+            letterCase: "大文字・小文字選択",
+            btnGen: "<i class='fas fa-bolt'></i> UUIDを生成する",
+            btnCopy: "<i class='fas fa-copy'></i> すべてコピー",
+            btnClear: "<i class='fas fa-trash-can'></i> リストをクリア",
+            outTitle: "生成されたUUIDプール",
+            empty: "✨ パラメータを設定し、生成ボタンをクリックしてください",
+            copied: "クリップボードにコピーしました",
+            allCopied: "すべてのUUIDをコピーしました",
+            ad: "<i class='fas fa-rectangle-ad'></i> スポンサー広告",
+            toastGen: "✅ 生成に成功しました: "
+        }
+    };
+
+    let currentLang = 'en';
+
+    function switchLang(lang) {
+        currentLang = lang;
+        const t = UUID_LANGS[lang] || UUID_LANGS['en'];
+        
+        // DOM文本映射更新
+        document.title = t.title + " – Online Toolbox";
+        document.getElementById('txt-title').innerHTML = `<i class="fas fa-fingerprint"></i> ` + t.title;
+        document.getElementById('txt-desc').innerText = t.desc;
+        document.getElementById('btn-back').innerHTML = t.back;
+        document.getElementById('lbl-version').innerText = t.version;
+        document.getElementById('lbl-count').innerText = t.count;
+        document.getElementById('lbl-case').innerText = t.letterCase;
+        
+        document.getElementById('generateBtn').innerHTML = t.btnGen;
+        document.getElementById('copyAllBtn').innerHTML = t.btnCopy;
+        document.getElementById('clearBtn').innerHTML = t.btnClear;
+        document.getElementById('lbl-output-title').innerText = t.outTitle;
+        
+        document.querySelectorAll('.lbl-ad').forEach(el => el.innerHTML = t.ad);
+
+        // 刷新激活按钮高亮
+        document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
+        const activeBtn = document.getElementById(`lang-${lang}`);
+        if(activeBtn) activeBtn.classList.add('active');
+
+        // 持久化并同步主页语种首选项
+        localStorage.setItem('user_lang_preference', lang);
+        document.documentElement.lang = lang;
+
+        // 如果当前没有生成的数据，刷新空状态占位符
+        if(uuids.length === 0) render();
+    }
+
+    // 2. 网页颜色（明暗主题）控制器
+    function toggleTheme() {
+        const currentTheme = document.documentElement.getAttribute('data-theme');
+        const targetTheme = currentTheme === 'dark' ? 'light' : 'dark';
+        document.documentElement.setAttribute('data-theme', targetTheme);
+        localStorage.setItem('user_theme_preference', targetTheme);
+    }
+
+    // 初始化主题：默认设置为黑夜极客模式 (dark)
+    function initTheme() {
+        const savedTheme = localStorage.getItem('user_theme_preference') || 'dark';
+        document.documentElement.setAttribute('data-theme', savedTheme);
+    }
+
+    function showToast(msg) {
+        const box = document.getElementById('toastBox');
+        box.innerText = msg; box.classList.add('show');
+        setTimeout(() => box.classList.remove('show'), 2000);
+    }
+
+    // 3. 原生全量留存的密码学本地 UUID 运算引擎逻辑
+    let uuids = [];
+
+    function v1() {
+        let d = new Date().getTime();
+        if (typeof performance !== 'undefined' && typeof performance.now === 'function'){
+            d += performance.now();
+        }
+        return 'xxxxxxxx-xxxx-1xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
+            let r = (d + Math.random() * 16) % 16 | 0;
+            d = Math.floor(d / 16);
+            return (c === 'x' ? r : (r & 0x3 | 0x8)).toString(16);
+        });
+    }
+
+    function v4() {
+        return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+            let r = Math.random() * 16 | 0, v = c === 'x' ? r : (r & 0x3 | 0x8);
+            return v.toString(16);
+        });
+    }
+
+    const versionSel = document.getElementById('uuidVersion');
+    const countInput = document.getElementById('uuidCount');
+    const caseSel    = document.getElementById('uuidCase');
+    const genBtn     = document.getElementById('generateBtn');
+    const copyAll    = document.getElementById('copyAllBtn');
+    const clearBtn   = document.getElementById('clearBtn');
+    const listDiv    = document.getElementById('uuidList');
+
+    function applyCase(s) { 
+        return caseSel.value === 'upper' ? s.toUpperCase() : s.toLowerCase(); 
+    }
+
+    // 列表池 DOM 元素实时高效重绘
+    function render() {
+        if(uuids.length === 0) {
+            listDiv.innerHTML = `<div style="text-align:center; padding:2.5rem 1rem; color:var(--color-sub); font-size:0.95rem;">${UUID_LANGS[currentLang].empty}</div>`;
+            return;
+        }
+        let html = '';
+        uuids.forEach(u => {
+            html += `<div class="uuid-item">
+                        <code>${u}</code>
+                        <button class="copy-btn" data-uuid="${u}"><i class="fas fa-copy"></i></button>
+                     </div>`;
+        });
+        listDiv.innerHTML = html;
+
+        // 为新生成的列表项一键绑定点击事件
+        document.querySelectorAll('.copy-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                navigator.clipboard.writeText(btn.getAttribute('data-uuid'));
+                showToast(UUID_LANGS[currentLang].copied);
+            });
+        });
+    }
+
+    // 原生点击“立即批量生成”控制动作流
+    function generate() {
+        let ver = versionSel.value;
+        let n = parseInt(countInput.value) || 1;
+        if(n > 50) n = 50;
+        if(n < 1) n = 1;
+        countInput.value = n; // 容错重置数值输入
+        
+        let arr = [];
+        for(let i = 0; i < n; i++) {
+            let raw = ver === 'v1' ? v1() : v4();
+            arr.push(applyCase(raw));
+        }
+        uuids = arr;
+        render();
+        showToast(UUID_LANGS[currentLang].toastGen + `${n} UUID(s)`);
+    }
+
+    // 原生事件绑定挂载
+    genBtn.addEventListener('click', generate);
+
+    copyAll.addEventListener('click', () => {
+        if (uuids.length) {
+            navigator.clipboard.writeText(uuids.join('\n'));
+            showToast(UUID_LANGS[currentLang].allCopied);
+        }
+    });
+
+    clearBtn.addEventListener('click', () => {
+        uuids = [];
+        render();
+    });
+
+    // 构造器：页面生命周期就绪后预装载
+    window.addEventListener('DOMContentLoaded', () => {
+        initTheme(); // 明暗颜色主题载入
+        const storedPreference = localStorage.getItem('user_lang_preference') || 'en';
+        switchLang(storedPreference); // 四国多语言环境同步
+    });
+</script>
+</body>
+</html>

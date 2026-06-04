@@ -1,0 +1,735 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title id="page-title">QR Code Generator – Ultimate Online Toolbox</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
+    
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1624261597740761" crossorigin="anonymous"></script>
+    <script>
+         (adsbygoogle = window.adsbygoogle || []).push({
+              google_ad_client: "ca-pub-1624261597740761",
+              enable_page_level_ads: true
+         });
+    </script>
+
+    <style>
+        /* === 延续工具箱的浅色微光系统与暗黑扩展方案 === */
+        * { margin: 0; padding: 0; box-sizing: border-box; -webkit-font-smoothing: antialiased; }
+        
+        :root {
+            --bg-gradient: radial-gradient(circle at 10% 30%, #eef2f9, #e0e8f2);
+            --color-main: #0b2b3b;
+            --color-title: #183e56;
+            --color-muted: #5c7285;
+            --color-sub: #8fa0b0;
+            --card-bg: #ffffff;
+            --card-border: #bfd6ea;
+            --input-bg: #ffffff;
+            --shadow-md: 0 25px 45px -12px rgba(0,0,0,0.1);
+            --item-bg: #f8fafc;
+            --item-border: #e2e8f0;
+            --accent: #3b82f6;
+            --accent-gradient: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+        }
+
+        /* 暗黑极客颜色主题配置 (默认载入激活) */
+        [data-theme="dark"] {
+            --bg-gradient: radial-gradient(circle at 50% 0%, #111827 0%, #030712 100%);
+            --color-main: #f3f4f6;
+            --color-title: #ffffff;
+            --color-muted: #9ca3af;
+            --color-sub: #6b7280;
+            --card-bg: rgba(17, 24, 39, 0.75);
+            --card-border: rgba(37, 99, 235, 0.2);
+            --input-bg: #0b0f19;
+            --shadow-md: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+            --item-bg: rgba(255, 255, 255, 0.03);
+            --item-border: rgba(255, 255, 255, 0.08);
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--bg-gradient);
+            color: var(--color-main);
+            min-height: 100vh;
+            padding: 40px 24px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            transition: background 0.3s ease, color 0.3s ease;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 850px;
+        }
+
+        /* === 顶部控制导航栏 === */
+        .top-bar {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 32px;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+        .left-controls { display: flex; gap: 12px; align-items: center; }
+        
+        .back-btn, .theme-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            color: var(--color-title);
+            padding: 10px 20px;
+            border-radius: 100px;
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            cursor: pointer;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.03);
+            transition: all 0.2s ease;
+        }
+        .back-btn:hover, .theme-btn:hover {
+            background: var(--item-bg);
+            border-color: var(--accent);
+            transform: translateY(-1px);
+        }
+
+        .lang-selector-container { display: flex; gap: 6px; }
+        .lang-btn {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            color: var(--color-muted);
+            padding: 6px 14px;
+            border-radius: 100px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        .lang-btn:hover, .lang-btn.active {
+            background: var(--accent);
+            color: #ffffff;
+            border-color: var(--accent);
+            box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+        }
+
+        /* === 标题区排版 === */
+        header { text-align: center; margin-bottom: 32px; }
+        header h2 {
+            font-size: 2.2rem;
+            font-weight: 800;
+            color: var(--color-title);
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+        }
+        header p { color: var(--color-muted); font-size: 1.05rem; max-width: 600px; margin: 0 auto; line-height: 1.5; }
+
+        /* === AdSense 广告卡片外框 === */
+        .ad-wrapper {
+            margin: 0 auto 32px auto;
+            width: 100%;
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 1.5rem;
+            padding: 16px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.03);
+            text-align: center;
+            backdrop-filter: blur(10px);
+        }
+        .ad-hint {
+            font-size: 0.68rem;
+            color: var(--color-sub);
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin-bottom: 8px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 4px;
+        }
+
+        /* === 核心面板工作面板 === */
+        .workspace {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 2rem;
+            padding: 36px;
+            box-shadow: var(--shadow-md);
+            backdrop-filter: blur(10px);
+            transition: background 0.3s ease, border-color 0.3s ease;
+        }
+
+        /* 标签导航卡 */
+        .tabs {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 28px;
+            border-bottom: 1px solid var(--item-border);
+            padding-bottom: 12px;
+        }
+        .tab-btn {
+            background: none;
+            border: none;
+            color: var(--color-muted);
+            font-size: 1.05rem;
+            font-weight: 600;
+            padding: 8px 16px;
+            cursor: pointer;
+            position: relative;
+            transition: color 0.2s ease;
+        }
+        .tab-btn.active { color: var(--accent); }
+        .tab-btn.active::after {
+            content: '';
+            position: absolute;
+            bottom: -13px;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: var(--accent);
+            border-radius: 100px;
+        }
+
+        .tab-content { display: none; animation: fadeIn 0.3s ease-out forwards; }
+        .tab-content.active { display: block; }
+
+        /* 表单群组排版 */
+        .control-group { display: flex; flex-direction: column; gap: 8px; margin-bottom: 20px; }
+        .control-group label { font-size: 0.9rem; font-weight: 600; color: var(--color-muted); }
+        
+        .styled-input, .styled-select {
+            width: 100%;
+            background: var(--input-bg);
+            border: 1px solid var(--card-border);
+            color: var(--color-main);
+            padding: 14px 18px;
+            border-radius: 12px;
+            font-size: 1rem;
+            outline: none;
+            transition: all 0.2s;
+        }
+        .styled-input:focus, .styled-select:focus {
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15);
+        }
+        .styled-select { cursor: pointer; }
+
+        /* 企业专属级联动区域容器动画 */
+        .enterprise-zone {
+            display: none;
+            border-left: 3px solid var(--accent);
+            padding-left: 14px;
+            margin-bottom: 10px;
+            animation: fadeIn 0.3s ease-out forwards;
+        }
+
+        /* 按钮与画布的双列对齐网格 */
+        .panel-split {
+            display: grid;
+            grid-template-columns: 1fr 220px;
+            gap: 28px;
+            align-items: start;
+        }
+
+        .form-side { display: flex; flex-direction: column; }
+
+        .preview-side {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 16px;
+        }
+        
+        .qr-box {
+            width: 220px;
+            height: 220px;
+            background: #ffffff; /* 确保二维码白底可被扫描 */
+            border: 1px solid var(--item-border);
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 12px;
+            box-shadow: inset 0 0 10px rgba(0,0,0,0.02);
+        }
+        .qr-box img { max-width: 100%; max-height: 100%; }
+
+        /* 核心执行操作按钮 */
+        .calc-action-btn {
+            background: var(--accent-gradient);
+            border: none;
+            color: #ffffff;
+            padding: 14px 24px;
+            border-radius: 12px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            box-shadow: 0 4px 14px rgba(37, 99, 235, 0.2);
+            transition: all 0.2s ease;
+            width: 100%;
+        }
+        .calc-action-btn:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 6px 18px rgba(37, 99, 235, 0.3);
+        }
+
+        .download-btn {
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            box-shadow: 0 4px 14px rgba(16, 185, 129, 0.2);
+        }
+        .download-btn:hover {
+            box-shadow: 0 6px 18px rgba(16, 185, 129, 0.3);
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(4px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 48px;
+            padding: 24px 0;
+            border-top: 1px solid var(--card-border);
+            width: 100%;
+            color: var(--color-sub);
+            font-size: 0.88rem;
+        }
+
+        @media (max-width: 768px) {
+            body { padding: 24px 16px; }
+            .workspace { padding: 20px; }
+            .panel-split { grid-template-columns: 1fr; }
+            .preview-side { order: -1; margin-bottom: 12px; }
+            .top-bar { flex-direction: column; align-items: flex-start; }
+            .lang-selector-container { width: 100%; justify-content: flex-start; margin-top: 4px; }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    
+    <div class="top-bar">
+        <div class="left-controls">
+            <a href="index.html" class="back-btn" id="btn-back"><i class="fas fa-arrow-left"></i> Back to Hub</a>
+            <button class="theme-btn" id="themeToggleBtn" onclick="toggleTheme()"><i class="fas fa-lightbulb"></i> Theme</button>
+        </div>
+        <div class="lang-selector-container">
+            <button class="lang-btn" id="lang-en" onclick="switchLang('en')">English</button>
+            <button class="lang-btn" id="lang-zh" onclick="switchLang('zh')">简体中文</button>
+            <button class="lang-btn" id="lang-es" onclick="switchLang('es')">Español</button>
+            <button class="lang-btn" id="lang-ja" onclick="switchLang('ja')">日本語</button>
+        </div>
+    </div>
+
+    <header>
+        <h2 id="txt-title"><i class="fas fa-qrcode"></i> QR Code Generator</h2>
+        <p id="txt-desc">Generate instant high-quality QR codes for plain text, web links, or advanced wireless Wi-Fi configurations safely on the client side.</p>
+    </header>
+
+    <section class="ad-wrapper">
+        <div class="ad-hint lbl-ad"><i class="fas fa-rectangle-ad"></i> Sponsored Advertisement</div>
+        <ins class="adsbygoogle"
+             style="display:block"
+             data-ad-client="ca-pub-1624261597740761"
+             data-ad-slot="1111111111"
+             data-ad-format="horizontal"
+             data-full-width-responsive="true"></ins>
+        <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+    </section>
+
+    <main class="workspace">
+        <div class="tabs">
+            <button class="tab-btn active" id="tab-text" onclick="switchTab('text-panel')">Text / URL</button>
+            <button class="tab-btn" id="tab-wifi" onclick="switchTab('wifi-panel')">Wi-Fi Network</button>
+        </div>
+
+        <div id="text-panel" class="tab-content active">
+            <div class="panel-split">
+                <div class="form-side">
+                    <div class="control-group">
+                        <label id="lbl-text-input" for="textInput">Text or URL Link</label>
+                        <input type="text" id="textInput" class="styled-input" placeholder="https://example.com">
+                    </div>
+                    <button id="textGenBtn" class="calc-action-btn" style="margin-top: 12px;">
+                        <i class="fas fa-magic"></i> Generate QR
+                    </button>
+                </div>
+                <div class="preview-side">
+                    <div class="qr-box" id="textBox"></div>
+                    <button id="textDownloadBtn" class="calc-action-btn download-btn">
+                        <i class="fas fa-download"></i> Save Image
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div id="wifi-panel" class="tab-content">
+            <div class="panel-split">
+                <div class="form-side">
+                    <div class="control-group">
+                        <label id="lbl-wifi-ssid" for="wifiSsid">Network SSID (Name)</label>
+                        <input type="text" id="wifiSsid" class="styled-input" placeholder="e.g. Home_Network">
+                    </div>
+                    <div class="control-group">
+                        <label id="lbl-wifi-enc" for="wifiEnc">Security Encryption Mode</label>
+                        <select id="wifiEnc" class="styled-select" onchange="handleSecurityChange()">
+                            <option value="WPA">WPA / WPA2-Personal</option>
+                            <option value="WPA3">WPA3-Personal</option>
+                            <option value="WEP">WEP Legacy</option>
+                            <option value="WPA2-EAP">WPA / WPA2 Enterprise (802.1X)</option>
+                            <option value="nopass">Unencrypted (Open)</option>
+                        </select>
+                    </div>
+                    
+                    <div class="enterprise-zone" id="entZone">
+                        <div class="control-group">
+                            <label id="lbl-wifi-eap">EAP Method</label>
+                            <select id="wifiEap" class="styled-select">
+                                <option value="PEAP">PEAP</option>
+                                <option value="TLS">TLS</option>
+                                <option value="TTLS">TTLS</option>
+                            </select>
+                        </div>
+                        <div class="control-group">
+                            <label id="lbl-wifi-identity" for="wifiIdentity">Identity / Username</label>
+                            <input type="text" id="wifiIdentity" class="styled-input" placeholder="e.g. corporate_user">
+                        </div>
+                    </div>
+
+                    <div class="control-group" id="pwdGroup">
+                        <label id="lbl-wifi-pwd" for="wifiPwd">Password Key</label>
+                        <input type="password" id="wifiPwd" class="styled-input" placeholder="••••••••">
+                    </div>
+                    
+                    <button id="wifiGenBtn" class="calc-action-btn" style="margin-top: 12px;">
+                        <i class="fas fa-wifi"></i> Generate Wi-Fi QR
+                    </button>
+                </div>
+                <div class="preview-side">
+                    <div class="qr-box" id="wifiBox"></div>
+                    <button id="wifiDownloadBtn" class="calc-action-btn download-btn">
+                        <i class="fas fa-download"></i> Save Image
+                    </button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <section class="ad-wrapper" style="margin-top: 36px;">
+        <div class="ad-hint lbl-ad"><i class="fas fa-rectangle-ad"></i> Sponsored Advertisement</div>
+        <ins class="adsbygoogle"
+             style="display:block"
+             data-ad-client="ca-pub-1624261597740761"
+             data-ad-slot="3333333333"
+             data-ad-format="auto"
+             data-full-width-responsive="true"></ins>
+        <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+    </section>
+
+    <footer>
+        <p>© Ultimate Online Toolbox | Privacy-Focused Local Static Sandbox Ledger</p>
+    </footer>
+</div>
+
+<script>
+    // 1. 国际化四语种核心语言文字字典 (包含升级版加密选项字典映射)
+    const QR_LANGS = {
+        en: {
+            title: "QR Code Generator",
+            desc: "Generate instant high-quality QR codes for plain text, web links, or advanced wireless Wi-Fi configurations safely on the client side.",
+            back: "<i class='fas fa-arrow-left'></i> Back to Hub",
+            tabText: "Text / URL",
+            tabWifi: "Wi-Fi Network",
+            lblTextInput: "Text or URL Link",
+            btnTextGen: "<i class='fas fa-magic'></i> Generate QR",
+            btnTextDl: "<i class='fas fa-download'></i> Save Image",
+            lblWifiSsid: "Network SSID (Name)",
+            lblWifiEnc: "Security Encryption Mode",
+            lblWifiPwd: "Password Key",
+            lblWifiEap: "EAP Method",
+            lblWifiIdentity: "Identity / Username",
+            btnWifiGen: "<i class='fas fa-wifi'></i> Generate Wi-Fi QR",
+            btnWifiDl: "<i class='fas fa-download'></i> Save Image",
+            ad: "<i class='fas fa-rectangle-ad'></i> Sponsored Advertisement",
+            alertTxtEmpty: "Please enter some text or URL first!",
+            alertSsid: "Please enter the Wi-Fi SSID name!",
+            alertIdentity: "Please enter the enterprise Identity username!",
+            alertPwd: "Please enter the Wi-Fi password!",
+            alertDl: "Please generate your QR code first before downloading!"
+        },
+        zh: {
+            title: "智能二维码生成器",
+            desc: "在浏览器本地秒级安全渲染任意纯文本、网址超链接或多重高级 Wi-Fi 无线网络账密的矩阵二维码，无任何数据泄露风险。",
+            back: "<i class='fas fa-arrow-left'></i> 返回工具箱",
+            tabText: "文本 / 网址超链接",
+            tabWifi: "Wi-Fi 无线网络",
+            lblTextInput: "请输入文本内容或网址链接",
+            btnTextGen: "<i class='fas fa-magic'></i> 立即生成二维码",
+            btnTextDl: "<i class='fas fa-download'></i> 导出保存图片",
+            lblWifiSsid: "无线网络 SSID (名称)",
+            lblWifiEnc: "安全加密模式",
+            lblWifiPwd: "无线访问密码",
+            lblWifiEap: "EAP 认证方法",
+            lblWifiIdentity: "身份识别账号 (Identity)",
+            btnWifiGen: "<i class='fas fa-wifi'></i> 生成 Wi-Fi 专属码",
+            btnWifiDl: "<i class='fas fa-download'></i> 导出保存图片",
+            ad: "<i class='fas fa-rectangle-ad'></i> 赞助商广告",
+            alertTxtEmpty: "请先输入有效的文本或网址链接！",
+            alertSsid: "请输入 Wi-Fi 的 SSID 网络名称！",
+            alertIdentity: "请输入企业级身份认证账号！",
+            alertPwd: "密码不能为空，请输入无线访问密码！",
+            alertDl: "请先点击生成按钮，再进行图像导出下载！"
+        },
+        es: {
+            title: "Generador de Códigos QR",
+            desc: "Genere códigos QR de alta calidad para texto, enlaces web o configuraciones avanzadas de Wi-Fi de forma segura.",
+            back: "<i class='fas fa-arrow-left'></i> Volver al menú",
+            tabText: "Texto / URL",
+            tabWifi: "Red Wi-Fi",
+            lblTextInput: "Texto o enlace URL",
+            btnTextGen: "<i class='fas fa-magic'></i> Generar QR",
+            btnTextDl: "<i class='fas fa-download'></i> Guardar Imagen",
+            lblWifiSsid: "SSID de Red (Nombre)",
+            lblWifiEnc: "Modo de Cifrado de Seguridad",
+            lblWifiPwd: "Clave de Contraseña",
+            lblWifiEap: "Método EAP",
+            lblWifiIdentity: "Identidad / Usuario",
+            btnWifiGen: "<i class='fas fa-wifi'></i> Generar QR de Wi-Fi",
+            btnWifiDl: "<i class='fas fa-download'></i> Guardar Imagen",
+            ad: "<i class='fas fa-rectangle-ad'></i> Publicidad Patrocinada",
+            alertTxtEmpty: "¡Por favor, introduzca algún texto o URL primero!",
+            alertSsid: "¡Por favor, introduzca el nombre SSID de Wi-Fi!",
+            alertIdentity: "¡Por favor, introduzca el usuario de identidad corporativa!",
+            alertPwd: "¡Por favor, introduzca la contraseña de Wi-Fi!",
+            alertDl: "¡Por favor, genere su código QR antes de descargarlo!"
+        },
+        ja: {
+            title: "QRコード生成エンジン",
+            desc: "プレーンテキスト、ウェブURL、または高度なWi-Fi接続認証用の高精度QRコードをローカル環境で瞬時に安全生成します。",
+            back: "<i class='fas fa-arrow-left'></i> ツールボックスに戻る",
+            tabText: "テキスト / URLリンク",
+            tabWifi: "Wi-Fiネットワーク設定",
+            lblTextInput: "テキストまたはURLアドレスを入力してください",
+            btnTextGen: "<i class='fas fa-magic'></i> QRコードを自動生成",
+            btnTextDl: "<i class='fas fa-download'></i> 画像ファイルとして保存",
+            lblWifiSsid: "ネットワーク SSID (名前)",
+            lblWifiEnc: "安全暗号化モード方式",
+            lblWifiPwd: "アクセスパスワードキー",
+            lblWifiEap: "EAP認証方式",
+            lblWifiIdentity: "識別ID / ユーザー名",
+            btnWifiGen: "<i class='fas fa-wifi'></i> Wi-Fi専用QRコードを生成",
+            btnWifiDl: "<i class='fas fa-download'></i> 画像ファイルとして保存",
+            ad: "<i class='fas fa-rectangle-ad'></i> スポンサー広告",
+            alertTxtEmpty: "最初にテキストまたはURLを入力してください！",
+            alertSsid: "Wi-FiのSSID名を入力してください！",
+            alertIdentity: "企業用識別IDユーザー名を入力してください！",
+            alertPwd: "Wi-Fiのパスワードキーを入力してください！",
+            alertDl: "ダウンロードする前に、まずQRコードを生成してください！"
+        }
+    };
+
+    let currentLang = 'en';
+
+    function switchLang(lang) {
+        currentLang = lang;
+        const t = QR_LANGS[lang] || QR_LANGS['en'];
+        
+        document.title = t.title + " – Ultimate Online Toolbox";
+        document.getElementById('txt-title').innerHTML = `<i class="fas fa-qrcode"></i> ` + t.title;
+        document.getElementById('txt-desc').innerText = t.desc;
+        document.getElementById('btn-back').innerHTML = t.back;
+        
+        document.getElementById('tab-text').innerText = t.tabText;
+        document.getElementById('tab-wifi').innerText = t.tabWifi;
+        
+        document.getElementById('lbl-text-input').innerText = t.lblTextInput;
+        document.getElementById('textGenBtn').innerHTML = t.btnTextGen;
+        document.getElementById('textDownloadBtn').innerHTML = t.btnTextDl;
+        
+        document.getElementById('lbl-wifi-ssid').innerText = t.lblWifiSsid;
+        document.getElementById('lbl-wifi-enc').innerText = t.lblWifiEnc;
+        document.getElementById('lbl-wifi-pwd').innerText = t.lblWifiPwd;
+        document.getElementById('lbl-wifi-eap').innerText = t.lblWifiEap;
+        document.getElementById('lbl-wifi-identity').innerText = t.lblWifiIdentity;
+        document.getElementById('wifiGenBtn').innerHTML = t.btnWifiGen;
+        document.getElementById('wifiDownloadBtn').innerHTML = t.btnWifiDl;
+        
+        document.querySelectorAll('.lbl-ad').forEach(el => el.innerHTML = t.ad);
+
+        document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
+        const activeBtn = document.getElementById(`lang-${lang}`);
+        if(activeBtn) activeBtn.classList.add('active');
+
+        localStorage.setItem('user_lang_preference', lang);
+        document.documentElement.lang = lang;
+    }
+
+    function switchTab(panelId) {
+        document.querySelectorAll('.tab-content').forEach(p => p.classList.remove('active'));
+        document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+        
+        document.getElementById(panelId).classList.add('active');
+        if (panelId === 'text-panel') {
+            document.getElementById('tab-text').classList.add('active');
+        } else {
+            document.getElementById('tab-wifi').classList.add('active');
+        }
+    }
+
+    function toggleTheme() {
+        const currentTheme = document.documentElement.getAttribute('data-theme');
+        const targetTheme = currentTheme === 'dark' ? 'light' : 'dark';
+        document.documentElement.setAttribute('data-theme', targetTheme);
+        localStorage.setItem('user_theme_preference', targetTheme);
+    }
+
+    function initTheme() {
+        const savedTheme = localStorage.getItem('user_theme_preference') || 'dark';
+        document.documentElement.setAttribute('data-theme', savedTheme);
+    }
+
+    // 联动表单交互逻辑处理
+    function handleSecurityChange() {
+        const enc = document.getElementById('wifiEnc').value;
+        const entZone = document.getElementById('entZone');
+        const pwdGroup = document.getElementById('pwdGroup');
+        
+        if (enc === 'WPA2-EAP') {
+            entZone.style.display = 'block';
+        } else {
+            entZone.style.display = 'none';
+        }
+
+        if (enc === 'nopass') {
+            pwdGroup.style.display = 'none';
+        } else {
+            pwdGroup.style.display = 'flex';
+        }
+    }
+
+    // === 核心数据交互绑定逻辑机制 (0删减) ===
+    let qr1 = null, qr2 = null;
+
+    const textInput = document.getElementById('textInput');
+    const textGenBtn = document.getElementById('textGenBtn');
+    const textBox = document.getElementById('textBox');
+    const textDownloadBtn = document.getElementById('textDownloadBtn');
+
+    textGenBtn.addEventListener('click', () => {
+        let val = textInput.value.trim();
+        if (!val) { 
+            alert(QR_LANGS[currentLang].alertTxtEmpty); 
+            return; 
+        }
+        if (qr1) qr1.clear();
+        textBox.innerHTML = '<div id="tmptext"></div>';
+        qr1 = new QRCode(document.getElementById("tmptext"), { text: val, width: 200, height: 200 });
+    });
+
+    textDownloadBtn.addEventListener('click', () => {
+        const canvas = textBox.querySelector('canvas');
+        if (canvas) {
+            const a = document.createElement('a');
+            a.href = canvas.toDataURL();
+            a.download = 'qrcode.png';
+            a.click();
+        } else {
+            alert(QR_LANGS[currentLang].alertDl);
+        }
+    });
+
+    const wifiSsid = document.getElementById('wifiSsid');
+    const wifiEnc = document.getElementById('wifiEnc');
+    const wifiEap = document.getElementById('wifiEap');
+    const wifiIdentity = document.getElementById('wifiIdentity');
+    const wifiPwd = document.getElementById('wifiPwd');
+    const wifiGenBtn = document.getElementById('wifiGenBtn');
+    const wifiBox = document.getElementById('wifiBox');
+    const wifiDownloadBtn = document.getElementById('wifiDownloadBtn');
+
+    wifiGenBtn.addEventListener('click', () => {
+        let ssid = wifiSsid.value.trim();
+        let enc = wifiEnc.value;
+        let eap = wifiEap.value;
+        let identity = wifiIdentity.value.trim();
+        let pwd = wifiPwd.value;
+
+        if (!ssid) { 
+            alert(QR_LANGS[currentLang].alertSsid); 
+            return; 
+        }
+        
+        // 组装符合规范的 WiFi 字符串协议
+        let str = "";
+        if (enc === 'WPA2-EAP') {
+            if (!identity) {
+                alert(QR_LANGS[currentLang].alertIdentity);
+                return;
+            }
+            if (!pwd) {
+                alert(QR_LANGS[currentLang].alertPwd);
+                return;
+            }
+            // 企业级标准：WIFI:S:SSID;T:WPA2-EAP;E:EAP_METHOD;I:IDENTITY;P:PASSWORD;;
+            str = `WIFI:S:${ssid};T:WPA2-EAP;E:${eap};I:${identity};P:${pwd};;`;
+        } else if (enc === 'nopass') {
+            str = `WIFI:S:${ssid};T:nopass;;`;
+        } else {
+            if (!pwd) { 
+                alert(QR_LANGS[currentLang].alertPwd); 
+                return; 
+            }
+            // 支持标准的 WPA / WPA3 个人版或 WEP 
+            str = `WIFI:S:${ssid};T:${enc};P:${pwd};;`;
+        }
+
+        if (qr2) qr2.clear();
+        wifiBox.innerHTML = '<div id="tmpwifi"></div>';
+        qr2 = new QRCode(document.getElementById("tmpwifi"), { text: str, width: 200, height: 200 });
+    });
+
+    wifiDownloadBtn.addEventListener('click', () => {
+        const canvas = wifiBox.querySelector('canvas');
+        if (canvas) {
+            const a = document.createElement('a');
+            a.href = canvas.toDataURL();
+            a.download = 'wifi_qrcode.png';
+            a.click();
+        } else {
+            alert(QR_LANGS[currentLang].alertDl);
+        }
+    });
+
+    window.addEventListener('DOMContentLoaded', () => {
+        initTheme(); 
+        const storedPreference = localStorage.getItem('user_lang_preference') || 'en';
+        switchLang(storedPreference);
+        
+        // 初始化运行演示触发生成
+        textInput.value = "https://example.com";
+        textGenBtn.click();
+    });
+</script>
+</body>
+</html>

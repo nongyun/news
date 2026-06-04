@@ -1,0 +1,729 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title id="page-title">Office & Document Converter – Ultimate Online Toolbox</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <script src="https://cdn.jsdelivr.net/npm/mammoth@1.4.2/mammoth.browser.min.js"></script>
+    <script src="https://cdn.sheetjs.com/xlsx-0.20.2/package/dist/xlsx.full.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.4.120/pdf.min.js"></script>
+
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1624261597740761" crossorigin="anonymous"></script>
+    <script>
+         (adsbygoogle = window.adsbygoogle || []).push({
+              google_ad_client: "ca-pub-1624261597740761",
+              enable_page_level_ads: true
+         });
+    </script>
+
+    <style>
+        /* === 延续 index.html 的浅色微光系统与暗黑扩展方案 === */
+        * { margin: 0; padding: 0; box-sizing: border-box; -webkit-font-smoothing: antialiased; }
+        
+        :root {
+            --bg-gradient: radial-gradient(circle at 10% 30%, #eef2f9, #e0e8f2);
+            --color-main: #0b2b3b;
+            --color-title: #183e56;
+            --color-muted: #5c7285;
+            --color-sub: #8fa0b0;
+            --card-bg: #ffffff;
+            --card-border: #bfd6ea;
+            --input-bg: #ffffff;
+            --shadow-md: 0 25px 45px -12px rgba(0,0,0,0.1);
+            --item-bg: #f8fafc;
+            --item-border: #e2e8f0;
+            --dashed-border: #bfd6ea;
+        }
+
+        /* 暗黑极客颜色主题配置 */
+        [data-theme="dark"] {
+            --bg-gradient: radial-gradient(circle at 50% 0%, #111827 0%, #030712 100%);
+            --color-main: #f3f4f6;
+            --color-title: #ffffff;
+            --color-muted: #9ca3af;
+            --color-sub: #6b7280;
+            --card-bg: rgba(17, 24, 39, 0.75);
+            --card-border: rgba(37, 99, 235, 0.2);
+            --input-bg: #0b0f19;
+            --shadow-md: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+            --item-bg: rgba(255, 255, 255, 0.03);
+            --item-border: rgba(255, 255, 255, 0.08);
+            --dashed-border: rgba(59, 130, 246, 0.4);
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--bg-gradient);
+            color: var(--color-main);
+            min-height: 100vh;
+            padding: 40px 24px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            transition: background 0.3s ease, color 0.3s ease;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 900px;
+        }
+
+        /* === 顶部控制导航栏 === */
+        .top-bar {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 32px;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+        .left-controls { display: flex; gap: 12px; align-items: center; }
+        
+        .back-btn, .theme-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            color: var(--color-title);
+            padding: 10px 20px;
+            border-radius: 100px;
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            cursor: pointer;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.03);
+            transition: all 0.2s ease;
+        }
+        .back-btn:hover, .theme-btn:hover {
+            background: var(--item-bg);
+            border-color: #3b82f6;
+            transform: translateY(-1px);
+        }
+
+        .lang-selector-container { display: flex; gap: 6px; }
+        .lang-btn {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            color: var(--color-muted);
+            padding: 6px 14px;
+            border-radius: 100px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            cursor: pointer;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.02);
+            transition: all 0.2s ease;
+        }
+        .lang-btn:hover, .lang-btn.active {
+            background: #3b82f6;
+            color: #ffffff;
+            border-color: #3b82f6;
+            box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+        }
+
+        /* === 标题区排版 === */
+        header { text-align: center; margin-bottom: 32px; }
+        header h2 {
+            font-size: 2.2rem;
+            font-weight: 800;
+            color: var(--color-title);
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+        }
+        header p { color: var(--color-muted); font-size: 1.05rem; max-width: 600px; margin: 0 auto; line-height: 1.5; }
+
+        /* === AdSense 广告卡片样式 === */
+        .ad-wrapper {
+            margin: 0 auto 32px auto;
+            width: 100%;
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 1.5rem;
+            padding: 16px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.03);
+            text-align: center;
+            backdrop-filter: blur(10px);
+        }
+        .ad-hint {
+            font-size: 0.68rem;
+            color: var(--color-sub);
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin-bottom: 8px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 4px;
+        }
+
+        /* === 核心功能工作面板 === */
+        .workspace {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 2rem;
+            padding: 36px;
+            box-shadow: var(--shadow-md);
+            display: flex;
+            flex-direction: column;
+            gap: 28px;
+            backdrop-filter: blur(10px);
+            transition: background 0.3s ease, border-color 0.3s ease;
+        }
+
+        /* 拟物化现代文件拖拽上传区 */
+        .upload-modern {
+            border: 2px dashed var(--dashed-border);
+            border-radius: 1.5rem;
+            padding: 48px 24px;
+            text-align: center;
+            cursor: pointer;
+            background: var(--item-bg);
+            transition: all 0.2s ease;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 14px;
+        }
+        .upload-modern:hover {
+            border-color: #3b82f6;
+            background: rgba(59, 130, 246, 0.03);
+        }
+        .upload-modern i {
+            font-size: 3.2rem;
+            color: #3b82f6;
+            text-shadow: 0 4px 12px rgba(59, 130, 246, 0.15);
+        }
+        .upload-modern h4 { font-size: 1.15rem; font-weight: 700; color: var(--color-title); }
+        .upload-modern p { font-size: 0.88rem; color: var(--color-muted); }
+
+        #fileInput { display: none; }
+
+        /* 高级转换结果渲染区 */
+        .result-wrapper {
+            display: none;
+            animation: fadeIn 0.3s ease-out forwards;
+            flex-direction: column;
+            gap: 20px;
+        }
+        .result-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid var(--item-border);
+            padding-bottom: 12px;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+        .result-header h3 { font-size: 1.1rem; font-weight: 700; color: var(--color-title); display: flex; align-items: center; gap: 8px; }
+        
+        /* 格式动态交叉互转控制组 */
+        .export-controls {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+        .export-controls label { font-size: 0.9rem; font-weight: 600; color: var(--color-muted); }
+        .export-select {
+            background: var(--input-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 8px;
+            padding: 8px 12px;
+            color: var(--color-main);
+            font-size: 0.9rem;
+            outline: none;
+            cursor: pointer;
+            transition: border-color 0.2s;
+        }
+        .export-select:focus { border-color: #3b82f6; }
+
+        /* 核心动作触发按钮 */
+        .action-btn {
+            background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+            border: none;
+            color: #ffffff;
+            padding: 10px 22px;
+            border-radius: 10px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            box-shadow: 0 4px 14px rgba(37, 99, 235, 0.2);
+            transition: all 0.2s ease;
+        }
+        .action-btn:hover { transform: translateY(-1px); box-shadow: 0 6px 18px rgba(37, 99, 235, 0.3); }
+        .action-btn:active { transform: translateY(0); }
+
+        /* 数据代码预览池容器 */
+        .preview-box {
+            background: var(--input-bg);
+            border: 1px solid var(--item-border);
+            border-radius: 1.25rem;
+            padding: 20px;
+            max-height: 400px;
+            overflow-y: auto;
+            transition: background 0.3s;
+        }
+        .preview-box pre {
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 0.9rem;
+            line-height: 1.6;
+            color: var(--color-main);
+            white-space: pre-wrap;
+            word-break: break-all;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(6px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* 全局轻量弹窗通知 */
+        .toast {
+            position: fixed;
+            bottom: 32px;
+            left: 50%;
+            transform: translateX(-50%) translateY(40px);
+            background: #0b2b3b;
+            color: #ffffff;
+            padding: 12px 28px;
+            border-radius: 100px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+            opacity: 0;
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            z-index: 1000;
+            pointer-events: none;
+        }
+        .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+
+        footer {
+            text-align: center;
+            margin-top: 48px;
+            padding: 24px 0;
+            border-top: 1px solid var(--card-border);
+            width: 100%;
+            color: var(--color-sub);
+            font-size: 0.88rem;
+        }
+
+        @media (max-width: 768px) {
+            body { padding: 24px 16px; }
+            .workspace { padding: 20px; }
+            .top-bar { flex-direction: column; align-items: flex-start; }
+            .lang-selector-container { width: 100%; justify-content: flex-start; margin-top: 4px; }
+            .result-header { flex-direction: column; align-items: flex-start; }
+            .export-controls { width: 100%; justify-content: space-between; }
+            .action-btn { width: 100%; }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    
+    <div class="top-bar">
+        <div class="left-controls">
+            <a href="index.html" class="back-btn" id="btn-back"><i class="fas fa-arrow-left"></i> Back to Hub</a>
+            <button class="theme-btn" id="themeToggleBtn" onclick="toggleTheme()"><i class="fas fa-lightbulb"></i> Theme</button>
+        </div>
+        <div class="lang-selector-container">
+            <button class="lang-btn" id="lang-en" onclick="switchLang('en')">English</button>
+            <button class="lang-btn" id="lang-zh" onclick="switchLang('zh')">简体中文</button>
+            <button class="lang-btn" id="lang-es" onclick="switchLang('es')">Español</button>
+            <button class="lang-btn" id="lang-ja" onclick="switchLang('ja')">日本語</button>
+        </div>
+    </div>
+
+    <header>
+        <h2 id="txt-title"><i class="fas fa-file-invoice"></i> Universal Document Converter</h2>
+        <p id="txt-desc">Cross-convert between Word (.docx), Excel (.xlsx), PDF, Markdown, JSON, and Plain Text entirely locally and securely.</p>
+    </header>
+
+    <section class="ad-wrapper">
+        <div class="ad-hint lbl-ad"><i class="fas fa-rectangle-ad"></i> Sponsored Advertisement</div>
+        <ins class="adsbygoogle"
+             style="display:block"
+             data-ad-client="ca-pub-1624261597740761"
+             data-ad-slot="1111111111"
+             data-ad-format="horizontal"
+             data-full-width-responsive="true"></ins>
+        <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+    </section>
+
+    <main class="workspace">
+        <div class="upload-modern" id="uploadArea">
+            <i class="fas fa-cloud-arrow-up"></i>
+            <h4 id="lbl-upload-title">Click or drag file to this area to parse</h4>
+            <p id="lbl-upload-tip">Supports .docx, .xlsx, .pdf, .md, .json, .txt formats</p>
+        </div>
+        <input type="file" id="fileInput" accept=".docx, .xlsx, .pdf, .md, .json, .txt">
+
+        <div class="result-wrapper" id="resultArea">
+            <div class="result-header">
+                <h3 id="fileTitle">📄 Extracted Workspace</h3>
+                
+                <div class="export-controls">
+                    <label for="exportFormat" id="lbl-export-to">Convert to:</label>
+                    <select id="exportFormat" class="export-select" onchange="adaptExportFormat()">
+                        </select>
+                    <button class="action-btn" id="downloadBtn"><i class="fas fa-download"></i> Download</button>
+                </div>
+            </div>
+            <div class="preview-box">
+                <pre id="contentPre"></pre>
+            </div>
+        </div>
+    </main>
+
+    <section class="ad-wrapper" style="margin-top: 36px;">
+        <div class="ad-hint lbl-ad"><i class="fas fa-rectangle-ad"></i> Sponsored Advertisement</div>
+        <ins class="adsbygoogle"
+             style="display:block"
+             data-ad-client="ca-pub-1624261597740761"
+             data-ad-slot="3333333333"
+             data-ad-format="auto"
+             data-full-width-responsive="true"></ins>
+        <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+    </section>
+
+    <footer>
+        <p>© Ultimate Online Toolbox | Client-Side Multi-Format Cross Conversion Engine</p>
+    </footer>
+</div>
+
+<div class="toast" id="toastBox">Notification</div>
+
+<script>
+    // 配置 PDFJS Worker
+    pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.4.120/pdf.worker.min.js';
+
+    // 1. 多国语言映射字典
+    const OFFICE_LANGS = {
+        en: {
+            title: "Universal Document Converter",
+            desc: "Cross-convert between Word (.docx), Excel (.xlsx), PDF, Markdown, JSON, and Plain Text entirely locally and securely.",
+            back: "<i class='fas fa-arrow-left'></i> Back to Hub",
+            uploadTitle: "Click or drag file to this area to parse",
+            uploadTip: "Supports .docx, .xlsx, .pdf, .md, .json, .txt formats",
+            btnDownload: "<i class='fas fa-download'></i> Download",
+            lblExportTo: "Convert to:",
+            lblParsed: "📄 Parsed: ",
+            errFormat: "❌ Format rejected! Unrecognized file extension.",
+            errEmpty: "(No extractable data text detected inside the target file)",
+            successParse: "🎉 File parsed successfully inside local sandbox",
+            ad: "<i class='fas fa-rectangle-ad'></i> Sponsored Advertisement"
+        },
+        zh: {
+            title: "万能文档本地转换器",
+            desc: "在浏览器本地将 Word、Excel、PDF、Markdown、JSON、TXT 等多种格式文件进行安全解析与任意交叉互转。",
+            back: "<i class='fas fa-arrow-left'></i> 返回工具箱",
+            uploadTitle: "点击或将目标支持的文件拖拽到此处进行解析",
+            uploadTip: "完美支持 .docx, .xlsx, .pdf, .md, .json, .txt 格式文件",
+            btnDownload: "<i class='fas fa-download'></i> 立即导出下载",
+            lblExportTo: "目标转换格式:",
+            lblParsed: "📄 已成功解析: ",
+            errFormat: "❌ 格式不支持！请输入正确的受支持文档。",
+            errEmpty: "（该目标文件内未检测到可提取的文本或数据内容）",
+            successParse: "🎉 浏览器本地沙箱无损解析成功",
+            ad: "<i class='fas fa-rectangle-ad'></i> 赞助商广告"
+        },
+        es: {
+            title: "Convertidor Universal de Documentos",
+            desc: "Convierta de forma cruzada entre Word, Excel, PDF, Markdown, JSON y Texto de forma totalmente local y segura.",
+            back: "<i class='fas fa-arrow-left'></i> Volver al menú",
+            uploadTitle: "Haga clic o arrastre el archivo a esta área para analizarlo",
+            uploadTip: "Admite formatos .docx, .xlsx, .pdf, .md, .json, .txt",
+            btnDownload: "<i class='fas fa-download'></i> Descargar",
+            lblExportTo: "Convertir a:",
+            lblParsed: "📄 Analizado: ",
+            errFormat: "❌ ¡Formato rechazado! Extensión de archivo no reconocida.",
+            errEmpty: "(No se detectó texto de datos extraíbles dentro del archivo)",
+            successParse: "🎉 Archivo analizado correctamente localmente",
+            ad: "<i class='fas fa-rectangle-ad'></i> Publicidad Patrocinada"
+        },
+        ja: {
+            title: "万能ドキュメント変換器",
+            desc: "Word, Excel, PDF, Markdown, JSON, TXTなどの多形式ファイルをブラウザ内で安全に解析し、自由に相互変換します。",
+            back: "<i class='fas fa-arrow-left'></i> ツールボックスに戻る",
+            uploadTitle: "ここにファイルを移動するか、クリックして解析します",
+            uploadTip: ".docx, .xlsx, .pdf, .md, .json, .txt 形式をサポートしています",
+            btnDownload: "<i class='fas fa-download'></i> エクスポート",
+            lblExportTo: "変換先の形式:",
+            lblParsed: "📄 解析済み: ",
+            errFormat: "❌ 拡張子が無効です！対応するファイルを指定してください。",
+            errEmpty: "（対象ファイル内に抽出可能なデータが見つかりませんでした）",
+            successParse: "🎉 ローカルサンドボックスでの解析に成功しました",
+            ad: "<i class='fas fa-rectangle-ad'></i> スポンサー広告"
+        }
+    };
+
+    let currentLang = 'en';
+    let parsedData = { type: '', rawText: '', tableRows: [] }; 
+    let currentSourceFileName = '';
+
+    function switchLang(lang) {
+        currentLang = lang;
+        const t = OFFICE_LANGS[lang] || OFFICE_LANGS['en'];
+        
+        document.title = t.title + " – Online Toolbox";
+        document.getElementById('txt-title').innerHTML = `<i class="fas fa-file-invoice"></i> ` + t.title;
+        document.getElementById('txt-desc').innerText = t.desc;
+        document.getElementById('btn-back').innerHTML = t.back;
+        document.getElementById('lbl-upload-title').innerText = t.uploadTitle;
+        document.getElementById('lbl-upload-tip').innerText = t.uploadTip;
+        document.getElementById('downloadBtn').innerHTML = t.btnDownload;
+        document.getElementById('lbl-export-to').innerText = t.lblExportTo;
+        
+        document.querySelectorAll('.lbl-ad').forEach(el => el.innerHTML = t.ad);
+
+        if(parsedData.type) {
+            document.getElementById('fileTitle').innerText = t.lblParsed + parsedData.type.toUpperCase();
+        }
+
+        document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
+        const activeBtn = document.getElementById(`lang-${lang}`);
+        if(activeBtn) activeBtn.classList.add('active');
+
+        localStorage.setItem('user_lang_preference', lang);
+        document.documentElement.lang = lang;
+    }
+
+    // 2. 网页颜色（明暗主题）控制器
+    function toggleTheme() {
+        const currentTheme = document.documentElement.getAttribute('data-theme');
+        const targetTheme = currentTheme === 'dark' ? 'light' : 'dark';
+        document.documentElement.setAttribute('data-theme', targetTheme);
+        localStorage.setItem('user_theme_preference', targetTheme);
+    }
+
+    function initTheme() {
+        const savedTheme = localStorage.getItem('user_theme_preference') || 'dark';
+        document.documentElement.setAttribute('data-theme', savedTheme);
+    }
+
+    function showToast(msg) {
+        const box = document.getElementById('toastBox');
+        box.innerText = msg; box.classList.add('show');
+        setTimeout(() => box.classList.remove('show'), 2000);
+    }
+
+    // 3. 多格式本地交叉互转核心驱动内核
+    const upload = document.getElementById('uploadArea');
+    const fin    = document.getElementById('fileInput');
+    const resultDiv = document.getElementById('resultArea');
+    const fileTitle = document.getElementById('fileTitle');
+    const contentPre = document.getElementById('contentPre');
+    const downloadBtn = document.getElementById('downloadBtn');
+    const exportSelect = document.getElementById('exportFormat');
+
+    upload.addEventListener('click', () => fin.click());
+    upload.addEventListener('dragover', (e) => e.preventDefault());
+    upload.addEventListener('drop', (e) => {
+        e.preventDefault();
+        if(e.dataTransfer.files.length) processFile(e.dataTransfer.files[0]);
+    });
+
+    fin.addEventListener('change', async (e) => {
+        if(e.target.files[0]) await processFile(e.target.files[0]);
+        fin.value = ''; 
+    });
+
+    // 统一数据输入解析中心
+    async function processFile(file) {
+        const t = OFFICE_LANGS[currentLang] || OFFICE_LANGS['en'];
+        let ext = file.name.split('.').pop().toLowerCase();
+        currentSourceFileName = file.name.substring(0, file.name.lastIndexOf('.'));
+        
+        showToast("Parsing file locally...");
+        
+        try {
+            if (ext === 'docx') {
+                let arrayBuffer = await file.arrayBuffer();
+                let result = await mammoth.extractRawText({ arrayBuffer: arrayBuffer });
+                parsedData.type = 'docx';
+                parsedData.rawText = result.value || '';
+                parsedData.tableRows = result.value ? result.value.split('\n').map(line => [line]) : [];
+            } 
+            else if (ext === 'xlsx') {
+                let arrayBuffer = await file.arrayBuffer();
+                let workbook = XLSX.read(arrayBuffer, { type: 'array' });
+                let sheet = workbook.Sheets[workbook.SheetNames[0]];
+                let jsonRows = XLSX.utils.sheet_to_json(sheet, { header: 1 });
+                parsedData.type = 'xlsx';
+                parsedData.tableRows = jsonRows;
+                parsedData.rawText = jsonRows.map(row => row.join(' ')).join('\n');
+            } 
+            else if (ext === 'pdf') {
+                let arrayBuffer = await file.arrayBuffer();
+                let pdf = await pdfjsLib.getDocument({ data: arrayBuffer }).promise;
+                let text = "";
+                for (let i = 1; i <= pdf.numPages; i++) {
+                    let page = await pdf.getPage(i);
+                    let content = await page.getTextContent();
+                    text += content.items.map(item => item.str).join(' ') + '\n';
+                }
+                parsedData.type = 'pdf';
+                parsedData.rawText = text;
+                parsedData.tableRows = text.split('\n').map(line => [line]);
+            }
+            else if (ext === 'json') {
+                let text = await file.text();
+                parsedData.type = 'json';
+                parsedData.rawText = text;
+                try {
+                    let obj = JSON.parse(text);
+                    parsedData.tableRows = Array.isArray(obj) ? obj.map(o => Object.values(o)) : [Object.values(obj)];
+                } catch(e) {
+                    parsedData.tableRows = [[text]];
+                }
+            }
+            else if (ext === 'md' || ext === 'txt') {
+                let text = await file.text();
+                parsedData.type = ext;
+                parsedData.rawText = text;
+                parsedData.tableRows = text.split('\n').map(line => [line]);
+            }
+            else {
+                showToast(t.errFormat);
+                return;
+            }
+
+            // 解析成功后，根据当前输入格式自适应更新互转目标选项下拉框
+            populateExportOptions(ext);
+            fileTitle.innerText = t.lblParsed + ext.toUpperCase();
+            resultDiv.style.display = 'flex';
+            adaptExportFormat(); // 执行首次预览重绘
+            showToast(t.successParse);
+
+        } catch (err) {
+            console.error(err);
+            showToast("Error parsing file structure.");
+        }
+    }
+
+    // 交叉互转：动态排除自身后渲染目标导出格式下拉菜单
+    function populateExportOptions(sourceExt) {
+        const formats = [
+            { ext: 'txt', name: 'Plain Text (.txt)' },
+            { ext: 'csv', name: 'Standard CSV (.csv)' },
+            { ext: 'md', name: 'Markdown (.md)' },
+            { ext: 'json', name: 'Structured JSON (.json)' },
+            { ext: 'xlsx', name: 'Excel Workbook (.xlsx)' }
+        ];
+        
+        exportSelect.innerHTML = '';
+        formats.forEach(f => {
+            if (f.ext !== sourceExt && !(sourceExt === 'xlsx' && f.ext === 'csv')) {
+                let opt = document.createElement('option');
+                opt.value = f.ext;
+                opt.innerText = f.name;
+                exportSelect.appendChild(opt);
+            }
+        });
+    }
+
+    // 计算并生成互转目标数据流并刷新即时代码预览区
+    function generateExportBlob() {
+        let targetExt = exportSelect.value;
+        let exportText = '';
+        let mimeType = 'text/plain;charset=utf-8';
+
+        if (!parsedData.rawText && parsedData.tableRows.length === 0) {
+            return { blob: new Blob([""]), text: "" };
+        }
+
+        switch (targetExt) {
+            case 'txt':
+                exportText = parsedData.rawText;
+                mimeType = 'text/plain;charset=utf-8';
+                break;
+            case 'csv':
+                exportText = parsedData.tableRows.map(row => 
+                    row.map(val => {
+                        let s = String(val === undefined || val === null ? '' : val);
+                        if (s.includes(',') || s.includes('"') || s.includes('\n')) {
+                            s = '"' + s.replace(/"/g, '""') + '"';
+                        }
+                        return s;
+                    }).join(',')
+                ).join('\n');
+                mimeType = 'text/csv;charset=utf-8';
+                break;
+            case 'md':
+                exportText = `## Converted Document\n\n`;
+                if (parsedData.tableRows.length > 0 && parsedData.type === 'xlsx') {
+                    // 表格数据优先转为 Markdown Table 格式
+                    parsedData.tableRows.forEach((row, index) => {
+                        exportText += `| ${row.join(' | ')} |\n`;
+                        if (index === 0) {
+                            exportText += `| ${row.map(() => '---').join(' | ')} |\n`;
+                        }
+                    });
+                } else {
+                    exportText += parsedData.rawText.split('\n').map(line => `> ${line}`).join('\n\n');
+                }
+                mimeType = 'text/markdown;charset=utf-8';
+                break;
+            case 'json':
+                if (parsedData.type === 'xlsx') {
+                    exportText = JSON.stringify(parsedData.tableRows, null, 4);
+                } else {
+                    exportText = JSON.stringify({ source: parsedData.type, content: parsedData.rawText.split('\n').filter(l=>l.trim()) }, null, 4);
+                }
+                mimeType = 'application/json;charset=utf-8';
+                break;
+            case 'xlsx':
+                // 本地将文本流或表格包装回二进制 Excel 资产
+                let ws = XLSX.utils.aoa_to_sheet(parsedData.tableRows);
+                let wb = XLSX.utils.book_new();
+                XLSX.utils.book_append_sheet(wb, ws, "Sheet1");
+                let wbout = XLSX.write(wb, { bookType: 'xlsx', type: 'array' });
+                return { blob: new Blob([wbout], { type: "application/octet-stream" }), text: "[Binary Excel Spreadsheet Data Container]" };
+        }
+
+        return { blob: new Blob([exportText], { type: mimeType }), text: exportText };
+    }
+
+    // 下拉转换格式切换时，实时重绘预览显示
+    function adaptExportFormat() {
+        let res = generateExportBlob();
+        contentPre.innerText = res.text || OFFICE_LANGS[currentLang].errEmpty;
+    }
+
+    // 绑定原生无删减核心下载导出动作事件
+    downloadBtn.addEventListener('click', () => {
+        let targetExt = exportSelect.value;
+        let res = generateExportBlob();
+        if (res.blob) {
+            let a = document.createElement('a');
+            a.href = URL.createObjectURL(res.blob);
+            a.download = `${currentSourceFileName}_converted.${targetExt}`;
+            a.click();
+            URL.revokeObjectURL(a.href);
+        }
+    });
+
+    window.addEventListener('DOMContentLoaded', () => {
+        initTheme();
+        const storedPreference = localStorage.getItem('user_lang_preference') || 'en';
+        switchLang(storedPreference);
+    });
+</script>
+</body>
+</html>

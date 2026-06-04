@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title id="page-title">Loan Calculator – Ultimate Online Toolbox</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1624261597740761" crossorigin="anonymous"></script>
+    <script>
+         (adsbygoogle = window.adsbygoogle || []).push({
+              google_ad_client: "ca-pub-1624261597740761",
+              enable_page_level_ads: true
+         });
+    </script>
+
+    <style>
+        /* === 延续 index.html 的浅色微光系统与暗黑扩展方案 === */
+        * { margin: 0; padding: 0; box-sizing: border-box; -webkit-font-smoothing: antialiased; }
+        
+        :root {
+            --bg-gradient: radial-gradient(circle at 10% 30%, #eef2f9, #e0e8f2);
+            --color-main: #0b2b3b;
+            --color-title: #183e56;
+            --color-muted: #5c7285;
+            --color-sub: #8fa0b0;
+            --card-bg: #ffffff;
+            --card-border: #bfd6ea;
+            --input-bg: #ffffff;
+            --shadow-md: 0 25px 45px -12px rgba(0,0,0,0.1);
+            --item-bg: #f8fafc;
+            --item-border: #e2e8f0;
+        }
+
+        /* 暗黑极客颜色主题配置 (默认激活动作) */
+        [data-theme="dark"] {
+            --bg-gradient: radial-gradient(circle at 50% 0%, #111827 0%, #030712 100%);
+            --color-main: #f3f4f6;
+            --color-title: #ffffff;
+            --color-muted: #9ca3af;
+            --color-sub: #6b7280;
+            --card-bg: rgba(17, 24, 39, 0.75);
+            --card-border: rgba(37, 99, 235, 0.2);
+            --input-bg: #0b0f19;
+            --shadow-md: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+            --item-bg: rgba(255, 255, 255, 0.03);
+            --item-border: rgba(255, 255, 255, 0.08);
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--bg-gradient);
+            color: var(--color-main);
+            min-height: 100vh;
+            padding: 40px 24px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            transition: background 0.3s ease, color 0.3s ease;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 650px;
+        }
+
+        /* === 顶部控制导航栏 === */
+        .top-bar {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 32px;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+        .left-controls { display: flex; gap: 12px; align-items: center; }
+        
+        .back-btn, .theme-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            color: var(--color-title);
+            padding: 10px 20px;
+            border-radius: 100px;
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            cursor: pointer;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.03);
+            transition: all 0.2s ease;
+        }
+        .back-btn:hover, .theme-btn:hover {
+            background: var(--item-bg);
+            border-color: #3b82f6;
+            transform: translateY(-1px);
+        }
+
+        .lang-selector-container { display: flex; gap: 6px; }
+        .lang-btn {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            color: var(--color-muted);
+            padding: 6px 14px;
+            border-radius: 100px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            cursor: pointer;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.02);
+            transition: all 0.2s ease;
+        }
+        .lang-btn:hover, .lang-btn.active {
+            background: #3b82f6;
+            color: #ffffff;
+            border-color: #3b82f6;
+            box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+        }
+
+        /* === 标题区排版 === */
+        header { text-align: center; margin-bottom: 32px; }
+        header h2 {
+            font-size: 2.2rem;
+            font-weight: 800;
+            color: var(--color-title);
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+        }
+        header p { color: var(--color-muted); font-size: 1.05rem; max-width: 600px; margin: 0 auto; line-height: 1.5; }
+
+        /* === AdSense 广告卡片样式 === */
+        .ad-wrapper {
+            margin: 0 auto 32px auto;
+            width: 100%;
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 1.5rem;
+            padding: 16px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.03);
+            text-align: center;
+            backdrop-filter: blur(10px);
+        }
+        .ad-hint {
+            font-size: 0.68rem;
+            color: var(--color-sub);
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin-bottom: 8px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 4px;
+        }
+
+        /* === 核心功能工作面板 === */
+        .workspace {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 2rem;
+            padding: 36px;
+            box-shadow: var(--shadow-md);
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            backdrop-filter: blur(10px);
+            transition: background 0.3s ease, border-color 0.3s ease;
+        }
+
+        /* 表单输入单元排版 */
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+        .form-group label {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--color-muted);
+        }
+        .styled-input, .styled-select {
+            width: 100%;
+            background: var(--input-bg);
+            border: 1px solid var(--card-border);
+            color: var(--color-main);
+            padding: 12px 16px;
+            border-radius: 10px;
+            font-size: 0.95rem;
+            outline: none;
+            transition: all 0.2s;
+        }
+        .styled-input:focus, .styled-select:focus {
+            border-color: #3b82f6;
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15);
+        }
+
+        /* 核心提交动作计算按钮 */
+        .calc-action-btn {
+            background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+            border: none;
+            color: #ffffff;
+            padding: 14px;
+            border-radius: 12px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            box-shadow: 0 4px 14px rgba(37, 99, 235, 0.2);
+            margin-top: 10px;
+            transition: all 0.2s ease;
+        }
+        .calc-action-btn:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 6px 18px rgba(37, 99, 235, 0.3);
+        }
+
+        /* 精美结果看板呈现池 */
+        .results-panel {
+            background: var(--item-bg);
+            border: 1px solid var(--item-border);
+            border-radius: 1.25rem;
+            padding: 24px;
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+            animation: fadeIn 0.3s ease-out forwards;
+        }
+        .result-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-bottom: 10px;
+            border-bottom: 1px dashed var(--item-border);
+        }
+        .result-row:last-child { border-bottom: none; padding-bottom: 0; }
+        .result-label { font-size: 0.95rem; color: var(--color-muted); font-weight: 500; }
+        .result-value { font-size: 1.15rem; color: #3b82f6; font-weight: 700; }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(4px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 48px;
+            padding: 24px 0;
+            border-top: 1px solid var(--card-border);
+            width: 100%;
+            color: var(--color-sub);
+            font-size: 0.88rem;
+        }
+
+        @media (max-width: 600px) {
+            body { padding: 24px 16px; }
+            .workspace { padding: 20px; }
+            .top-bar { flex-direction: column; align-items: flex-start; }
+            .lang-selector-container { width: 100%; justify-content: flex-start; margin-top: 4px; }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    
+    <div class="top-bar">
+        <div class="left-controls">
+            <a href="index.html" class="back-btn" id="btn-back"><i class="fas fa-arrow-left"></i> Back to Hub</a>
+            <button class="theme-btn" id="themeToggleBtn" onclick="toggleTheme()"><i class="fas fa-lightbulb"></i> Theme</button>
+        </div>
+        <div class="lang-selector-container">
+            <button class="lang-btn" id="lang-en" onclick="switchLang('en')">English</button>
+            <button class="lang-btn" id="lang-zh" onclick="switchLang('zh')">简体中文</button>
+            <button class="lang-btn" id="lang-es" onclick="switchLang('es')">Español</button>
+            <button class="lang-btn" id="lang-ja" onclick="switchLang('ja')">日本語</button>
+        </div>
+    </div>
+
+    <header>
+        <h2 id="txt-title"><i class="fas fa-chart-line"></i> Advanced Loan Calculator</h2>
+        <p id="txt-desc">Easily compute mortgage, auto loan, or personal credit installment payments using multiple methods.</p>
+    </header>
+
+    <section class="ad-wrapper">
+        <div class="ad-hint lbl-ad"><i class="fas fa-rectangle-ad"></i> Sponsored Advertisement</div>
+        <ins class="adsbygoogle"
+             style="display:block"
+             data-ad-client="ca-pub-1624261597740761"
+             data-ad-slot="1111111111"
+             data-ad-format="horizontal"
+             data-full-width-responsive="true"></ins>
+        <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+    </section>
+
+    <main class="workspace">
+        <div class="form-group">
+            <label id="lbl-amount" for="loanAmount">Loan Amount (Principal)</label>
+            <input type="number" id="loanAmount" class="styled-input" placeholder="e.g. 100000">
+        </div>
+
+        <div class="form-group">
+            <label id="lbl-rate" for="loanRate">Annual Interest Rate (%)</label>
+            <input type="number" id="loanRate" class="styled-input" step="0.01" placeholder="e.g. 4.5">
+        </div>
+
+        <div class="form-group">
+            <label id="lbl-years" for="loanYears">Term (Years)</label>
+            <input type="number" id="loanYears" class="styled-input" placeholder="e.g. 20">
+        </div>
+
+        <div class="form-group">
+            <label id="lbl-type" for="loanType">Repayment Type</label>
+            <select id="loanType" class="styled-select">
+                <option value="equal_installment" id="opt-ei">Equal Installments (Principal + Interest)</option>
+                <option value="equal_principal" id="opt-ep">Equal Principal Payments</option>
+                <option value="interest_only" id="opt-io">Interest Only (Principal due at end)</option>
+            </select>
+        </div>
+
+        <button id="calcBtn" class="calc-action-btn"><i class="fas fa-calculator"></i> Calculate Mortgage</button>
+
+        <div class="results-panel">
+            <div class="result-row">
+                <span class="result-label" id="lbl-res-monthly">Monthly Installment:</span>
+                <span class="result-value" id="monthlyResult">--</span>
+            </div>
+            <div class="result-row">
+                <span class="result-label" id="lbl-res-interest">Total Interest Payable:</span>
+                <span class="result-value" id="totalInterestResult">--</span>
+            </div>
+        </div>
+    </main>
+
+    <section class="ad-wrapper" style="margin-top: 36px;">
+        <div class="ad-hint lbl-ad"><i class="fas fa-rectangle-ad"></i> Sponsored Advertisement</div>
+        <ins class="adsbygoogle"
+             style="display:block"
+             data-ad-client="ca-pub-1624261597740761"
+             data-ad-slot="3333333333"
+             data-ad-format="auto"
+             data-full-width-responsive="true"></ins>
+        <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+    </section>
+
+    <footer>
+        <p>© Ultimate Online Toolbox | Secure Local Financial Sandbox Engine</p>
+    </footer>
+</div>
+
+<script>
+    // 1. 多语种资源全映射高阶字典
+    const LOAN_LANGS = {
+        en: {
+            title: "Advanced Loan Calculator",
+            desc: "Easily compute mortgage, auto loan, or personal credit installment payments using multiple methods.",
+            back: "<i class='fas fa-arrow-left'></i> Back to Hub",
+            lblAmount: "Loan Amount (Principal)",
+            lblRate: "Annual Interest Rate (%)",
+            lblYears: "Term (Years)",
+            lblType: "Repayment Type",
+            optEI: "Equal Installments (Principal + Interest)",
+            optEP: "Equal Principal Payments",
+            optIO: "Interest Only (Principal due at end)",
+            btnCalc: "<i class='fas fa-calculator'></i> Calculate Mortgage",
+            resMonthly: "Monthly Installment:",
+            resInterest: "Total Interest Payable:",
+            errInput: "Invalid Input",
+            lblEI_Prefix: "Monthly Payment: ",
+            lblEP_Prefix: "First Month: ",
+            lblEP_Suffix: " (decreasing)",
+            lblIO_Prefix: "Monthly Interest: ",
+            lblIO_Suffix: " (principal due at end)",
+            ad: "<i class='fas fa-rectangle-ad'></i> Sponsored Advertisement"
+        },
+        zh: {
+            title: "高阶贷款计算器",
+            desc: "一键精准推算房屋商业贷款、组合贷、汽车消费贷及个人信用贷的月供与利息总支出。",
+            back: "<i class='fas fa-arrow-left'></i> 返回工具箱",
+            lblAmount: "贷款本金总额",
+            lblRate: "贷款年利率 (%)",
+            lblYears: "贷款年限 (年)",
+            lblType: "还款还息方式",
+            optEI: "等额本息 (每月还款金额固定)",
+            optEP: "等额本金 (每月还款本金固定/逐月递减)",
+            optIO: "先息后本 (每月付息/到期一次性还本)",
+            btnCalc: "<i class='fas fa-calculator'></i> 立即计算贷款指标",
+            resMonthly: "每月月供金额:",
+            resInterest: "总利息支出款项:",
+            errInput: "输入的数据无效",
+            lblEI_Prefix: "每月应还: ￥",
+            lblEP_Prefix: "首月还款: ￥",
+            lblEP_Suffix: " (后续逐月递减)",
+            lblIO_Prefix: "每月利息: ￥",
+            lblIO_Suffix: " (最后一期归还本金)",
+            ad: "<i class='fas fa-rectangle-ad'></i> 赞助商广告"
+        },
+        es: {
+            title: "Calculadora de Préstamos",
+            desc: "Calcule fácilmente los pagos de hipotecas, préstamos de auto o créditos personales con múltiples métodos.",
+            back: "<i class='fas fa-arrow-left'></i> Volver al menú",
+            lblAmount: "Monto del préstamo (Principal)",
+            lblRate: "Tasa de interés anual (%)",
+            lblYears: "Plazo (Años)",
+            lblType: "Tipo de reembolso",
+            optEI: "Cuotas iguales (Capital + Interés)",
+            optEP: "Pagos de principal igual",
+            optIO: "Solo interés (Capital al final)",
+            btnCalc: "<i class='fas fa-calculator'></i> Calcular Hipoteca",
+            resMonthly: "Cuota mensual:",
+            resInterest: "Interés total a pagar:",
+            errInput: "Entrada inválida",
+            lblEI_Prefix: "Pago mensual: ",
+            lblEP_Prefix: "Primer mes: ",
+            lblEP_Suffix: " (decreciente)",
+            lblIO_Prefix: "Interés mensual: ",
+            lblIO_Suffix: " (capital al final)",
+            ad: "<i class='fas fa-rectangle-ad'></i> Publicidad Patrocinada"
+        },
+        ja: {
+            title: "高度ローン計算機",
+            desc: "住宅ローン、自動車ローン、または個人向けクレジットの分割返済額を、複数の方式で簡単に計算します。",
+            back: "<i class='fas fa-arrow-left'></i> ツールボックスに戻る",
+            lblAmount: "借入金額 (元金)",
+            lblRate: "年利率 (%)",
+            lblYears: "返済期間 (年)",
+            lblType: "返済方式",
+            optEI: "元利均等返済 (毎月の返済額が一定)",
+            optEP: "元金均等返済 (元金が均等/毎月減少)",
+            optIO: "期日一括返済 (毎月利息のみ/最後に元金返済)",
+            btnCalc: "<i class='fas fa-calculator'></i> ローンを計算する",
+            resMonthly: "毎月の返済額:",
+            resInterest: "総利息支払額:",
+            errInput: "入力値が無効です",
+            lblEI_Prefix: "毎月返済額: ",
+            lblEP_Prefix: "初回返済額: ",
+            lblEP_Suffix: " (毎月減少)",
+            lblIO_Prefix: "毎月の利息: ",
+            lblIO_Suffix: " (元金は最終期に一括返済)",
+            ad: "<i class='fas fa-rectangle-ad'></i> スポンサー広告"
+        }
+    };
+
+    let currentLang = 'en';
+
+    function switchLang(lang) {
+        currentLang = lang;
+        const t = LOAN_LANGS[lang] || LOAN_LANGS['en'];
+        
+        // 渲染基础 DOM 文案
+        document.title = t.title + " – Online Toolbox";
+        document.getElementById('txt-title').innerHTML = `<i class="fas fa-chart-line"></i> ` + t.title;
+        document.getElementById('txt-desc').innerText = t.desc;
+        document.getElementById('btn-back').innerHTML = t.back;
+        document.getElementById('lbl-amount').innerText = t.lblAmount;
+        document.getElementById('lbl-rate').innerText = t.lblRate;
+        document.getElementById('lbl-years').innerText = t.lblYears;
+        document.getElementById('lbl-type').innerText = t.lblType;
+        document.getElementById('opt-ei').innerText = t.optEI;
+        document.getElementById('opt-ep').innerText = t.optEP;
+        document.getElementById('opt-io').innerText = t.optIO;
+        document.getElementById('calcBtn').innerHTML = t.btnCalc;
+        document.getElementById('lbl-res-monthly').innerText = t.resMonthly;
+        document.getElementById('lbl-res-interest').innerText = t.resInterest;
+        
+        document.querySelectorAll('.lbl-ad').forEach(el => el.innerHTML = t.ad);
+
+        // 如果结果区域已经存在计算数据，切语种时实时触发重绘
+        if (document.getElementById('monthlyResult').innerText !== '--' && document.getElementById('monthlyResult').innerText !== LOAN_LANGS.en.errInput && document.getElementById('monthlyResult').innerText !== LOAN_LANGS.zh.errInput) {
+            compute();
+        }
+
+        // 高亮选中按钮
+        document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
+        const activeBtn = document.getElementById(`lang-${lang}`);
+        if(activeBtn) activeBtn.classList.add('active');
+
+        localStorage.setItem('user_lang_preference', lang);
+        document.documentElement.lang = lang;
+    }
+
+    // 2. 主题明暗变换核心引擎
+    function toggleTheme() {
+        const currentTheme = document.documentElement.getAttribute('data-theme');
+        const targetTheme = currentTheme === 'dark' ? 'light' : 'dark';
+        document.documentElement.setAttribute('data-theme', targetTheme);
+        localStorage.setItem('user_theme_preference', targetTheme);
+    }
+
+    function initTheme() {
+        const savedTheme = localStorage.getItem('user_theme_preference') || 'dark';
+        document.documentElement.setAttribute('data-theme', savedTheme);
+    }
+
+    // 3. 完美留存 0 删减的原生精密计算机制
+    const amountInp = document.getElementById('loanAmount');
+    const rateInp = document.getElementById('loanRate');
+    const yearsInp = document.getElementById('loanYears');
+    const typeSel = document.getElementById('loanType');
+    const calcBtn = document.getElementById('calcBtn');
+    const monthlyP = document.getElementById('monthlyResult');
+    const interestP = document.getElementById('totalInterestResult');
+
+    function compute() {
+        let P = parseFloat(amountInp.value) || 0;
+        let r = parseFloat(rateInp.value) / 100;
+        let n = parseFloat(yearsInp.value);
+        const t = LOAN_LANGS[currentLang] || LOAN_LANGS['en'];
+
+        if (P <= 0 || n <= 0 || r < 0) {
+            monthlyP.innerText = t.errInput;
+            interestP.innerText = "";
+            return;
+        }
+
+        let monthlyRate = r / 12;
+        let months = n * 12;
+        let type = typeSel.value;
+
+        if (type === "equal_installment") {
+            let monthly = 0;
+            if (monthlyRate === 0) {
+                monthly = P / months;
+            } else {
+                monthly = P * monthlyRate * Math.pow(1 + monthlyRate, months) / (Math.pow(1 + monthlyRate, months) - 1);
+            }
+            let total = monthly * months;
+            let interest = total - P;
+            
+            monthlyP.innerText = `${t.lblEI_Prefix}${monthly.toFixed(2)}`;
+            interestP.innerText = `${interest.toFixed(2)}`;
+        } 
+        else if (type === "equal_principal") {
+            let principalPerMonth = P / months;
+            let totalInterest = 0;
+            for (let i = 0; i < months; i++) {
+                let remaining = P - principalPerMonth * i;
+                totalInterest += remaining * monthlyRate;
+            }
+            let firstMonth = principalPerMonth + P * monthlyRate;
+            
+            monthlyP.innerText = `${t.lblEP_Prefix}${firstMonth.toFixed(2)}${t.lblEP_Suffix}`;
+            interestP.innerText = `${totalInterest.toFixed(2)}`;
+        } 
+        else {
+            let monthlyInterest = P * monthlyRate;
+            let totalInterest = monthlyInterest * months;
+            
+            monthlyP.innerText = `${t.lblIO_Prefix}${monthlyInterest.toFixed(2)}${t.lblIO_Suffix}`;
+            interestP.innerText = `${totalInterest.toFixed(2)}`;
+        }
+    }
+
+    // 绑定核心原生计算动作
+    calcBtn.addEventListener('click', compute);
+
+    // 页面完全初始化生命周期挂载
+    window.addEventListener('DOMContentLoaded', () => {
+        initTheme(); // 默认高阶黑夜模式
+        const storedPreference = localStorage.getItem('user_lang_preference') || 'en';
+        switchLang(storedPreference); // 完美跨页面全局语种缓存加载
+    });
+</script>
+</body>
+</html>

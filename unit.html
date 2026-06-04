@@ -1,0 +1,601 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title id="page-title">Unit Converter – Ultimate Online Toolbox</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1624261597740761" crossorigin="anonymous"></script>
+    <script>
+         (adsbygoogle = window.adsbygoogle || []).push({
+              google_ad_client: "ca-pub-1624261597740761",
+              enable_page_level_ads: true
+         });
+    </script>
+
+    <style>
+        /* === 延续 index.html 的浅色微光系统与暗黑扩展方案 === */
+        * { margin: 0; padding: 0; box-sizing: border-box; -webkit-font-smoothing: antialiased; }
+        
+        :root {
+            --bg-gradient: radial-gradient(circle at 10% 30%, #eef2f9, #e0e8f2);
+            --color-main: #0b2b3b;
+            --color-title: #183e56;
+            --color-muted: #5c7285;
+            --color-sub: #8fa0b0;
+            --card-bg: #ffffff;
+            --card-border: #bfd6ea;
+            --input-bg: #ffffff;
+            --shadow-md: 0 25px 45px -12px rgba(0,0,0,0.1);
+            --item-bg: #f8fafc;
+            --item-border: #e2e8f0;
+        }
+
+        /* 暗黑极客颜色主题配置 (默认激活动作) */
+        [data-theme="dark"] {
+            --bg-gradient: radial-gradient(circle at 50% 0%, #111827 0%, #030712 100%);
+            --color-main: #f3f4f6;
+            --color-title: #ffffff;
+            --color-muted: #9ca3af;
+            --color-sub: #6b7280;
+            --card-bg: rgba(17, 24, 39, 0.75);
+            --card-border: rgba(37, 99, 235, 0.2);
+            --input-bg: #0b0f19;
+            --shadow-md: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+            --item-bg: rgba(255, 255, 255, 0.03);
+            --item-border: rgba(255, 255, 255, 0.08);
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--bg-gradient);
+            color: var(--color-main);
+            min-height: 100vh;
+            padding: 40px 24px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            transition: background 0.3s ease, color 0.3s ease;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 750px;
+        }
+
+        /* === 顶部控制导航栏 === */
+        .top-bar {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 32px;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+        .left-controls { display: flex; gap: 12px; align-items: center; }
+        
+        .back-btn, .theme-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            color: var(--color-title);
+            padding: 10px 20px;
+            border-radius: 100px;
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            cursor: pointer;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.03);
+            transition: all 0.2s ease;
+        }
+        .back-btn:hover, .theme-btn:hover {
+            background: var(--item-bg);
+            border-color: #3b82f6;
+            transform: translateY(-1px);
+        }
+
+        .lang-selector-container { display: flex; gap: 6px; }
+        .lang-btn {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            color: var(--color-muted);
+            padding: 6px 14px;
+            border-radius: 100px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            cursor: pointer;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.02);
+            transition: all 0.2s ease;
+        }
+        .lang-btn:hover, .lang-btn.active {
+            background: #3b82f6;
+            color: #ffffff;
+            border-color: #3b82f6;
+            box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+        }
+
+        /* === 标题区排版 === */
+        header { text-align: center; margin-bottom: 32px; }
+        header h2 {
+            font-size: 2.2rem;
+            font-weight: 800;
+            color: var(--color-title);
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+        }
+        header p { color: var(--color-muted); font-size: 1.05rem; max-width: 600px; margin: 0 auto; line-height: 1.5; }
+
+        /* === AdSense 广告卡片样式 === */
+        .ad-wrapper {
+            margin: 0 auto 32px auto;
+            width: 100%;
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 1.5rem;
+            padding: 16px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.03);
+            text-align: center;
+            backdrop-filter: blur(10px);
+        }
+        .ad-hint {
+            font-size: 0.68rem;
+            color: var(--color-sub);
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin-bottom: 8px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 4px;
+        }
+
+        /* === 核心功能工作面板 === */
+        .workspace {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 2rem;
+            padding: 36px;
+            box-shadow: var(--shadow-md);
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+            backdrop-filter: blur(10px);
+            transition: background 0.3s ease, border-color 0.3s ease;
+        }
+
+        /* 输入与选择控制行组 */
+        .control-group {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+        .control-group label {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--color-muted);
+        }
+        
+        .styled-select, .styled-input {
+            width: 100%;
+            background: var(--input-bg);
+            border: 1px solid var(--card-border);
+            color: var(--color-main);
+            padding: 14px 18px;
+            border-radius: 12px;
+            font-size: 1rem;
+            outline: none;
+            transition: all 0.2s;
+        }
+        .styled-select:focus, .styled-input:focus {
+            border-color: #3b82f6;
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15);
+        }
+        .styled-select { cursor: pointer; }
+
+        /* 转换方向跨度网格 */
+        .conversion-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+
+        /* 核心换算执行按钮 */
+        .calc-action-btn {
+            background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+            border: none;
+            color: #ffffff;
+            padding: 14px;
+            border-radius: 12px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            box-shadow: 0 4px 14px rgba(37, 99, 235, 0.2);
+            transition: all 0.2s ease;
+        }
+        .calc-action-btn:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 6px 18px rgba(37, 99, 235, 0.3);
+        }
+
+        /* 高级结果换算指标展示区 */
+        .result-box {
+            background: var(--item-bg);
+            border: 1px solid var(--item-border);
+            border-radius: 1.25rem;
+            padding: 24px;
+            min-height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #3b82f6;
+            line-height: 1.5;
+            animation: fadeIn 0.3s ease-out forwards;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(4px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 48px;
+            padding: 24px 0;
+            border-top: 1px solid var(--card-border);
+            width: 100%;
+            color: var(--color-sub);
+            font-size: 0.88rem;
+        }
+
+        @media (max-width: 600px) {
+            body { padding: 24px 16px; }
+            .workspace { padding: 20px; }
+            .top-bar { flex-direction: column; align-items: flex-start; }
+            .lang-selector-container { width: 100%; justify-content: flex-start; margin-top: 4px; }
+            .conversion-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    
+    <div class="top-bar">
+        <div class="left-controls">
+            <a href="index.html" class="back-btn" id="btn-back"><i class="fas fa-arrow-left"></i> Back to Hub</a>
+            <button class="theme-btn" id="themeToggleBtn" onclick="toggleTheme()"><i class="fas fa-lightbulb"></i> Theme</button>
+        </div>
+        <div class="lang-selector-container">
+            <button class="lang-btn" id="lang-en" onclick="switchLang('en')">English</button>
+            <button class="lang-btn" id="lang-zh" onclick="switchLang('zh')">简体中文</button>
+            <button class="lang-btn" id="lang-es" onclick="switchLang('es')">Español</button>
+            <button class="lang-btn" id="lang-ja" onclick="switchLang('ja')">日本語</button>
+        </div>
+    </div>
+
+    <header>
+        <h2 id="txt-title"><i class="fas fa-ruler-combined"></i> Unit Converter</h2>
+        <p id="txt-desc">Convert length, weight, temperature, and volume metrics seamlessly with extreme numerical accuracy.</p>
+    </header>
+
+    <section class="ad-wrapper">
+        <div class="ad-hint lbl-ad"><i class="fas fa-rectangle-ad"></i> Sponsored Advertisement</div>
+        <ins class="adsbygoogle"
+             style="display:block"
+             data-ad-client="ca-pub-1624261597740761"
+             data-ad-slot="1111111111"
+             data-ad-format="horizontal"
+             data-full-width-responsive="true"></ins>
+        <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+    </section>
+
+    <main class="workspace">
+        
+        <div class="control-group">
+            <label id="lbl-type" for="unitType">Measurement Property</label>
+            <select id="unitType" class="styled-select" onchange="populateUnits()">
+                <option value="length" selected>📏 Length / 长度</option>
+                <option value="weight">⚖️ Weight / 重量</option>
+                <option value="temperature">🌡️ Temperature / 温度</option>
+                <option value="volume">🧪 Volume / 体积</option>
+            </select>
+        </div>
+
+        <div class="control-group">
+            <label id="lbl-value" for="unitValue">Value to Convert</label>
+            <input type="number" id="unitValue" class="styled-input" value="1" placeholder="e.g. 1">
+        </div>
+
+        <div class="conversion-grid">
+            <div class="control-group">
+                <label id="lbl-from" for="fromUnit">From Unit</label>
+                <select id="fromUnit" class="styled-select"></select>
+            </div>
+
+            <div class="control-group">
+                <label id="lbl-to" for="toUnit">To Unit</label>
+                <select id="toUnit" class="styled-select"></select>
+            </div>
+        </div>
+
+        <button id="convertBtn" class="calc-action-btn" onclick="convert()"><i class="fas fa-calculator"></i> Convert Now</button>
+
+        <div class="result-box" id="resultText">✨ Waiting for calculation</div>
+    </main>
+
+    <section class="ad-wrapper" style="margin-top: 36px;">
+        <div class="ad-hint lbl-ad"><i class="fas fa-rectangle-ad"></i> Sponsored Advertisement</div>
+        <ins class="adsbygoogle"
+             style="display:block"
+             data-ad-client="ca-pub-1624261597740761"
+             data-ad-slot="3333333333"
+             data-ad-format="auto"
+             data-full-width-responsive="true"></ins>
+        <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+    </section>
+
+    <footer>
+        <p>© Ultimate Online Toolbox | Standardized Metric Harmonization Ledger</p>
+    </footer>
+</div>
+
+<script>
+    // 1. 全局底层高精度换算字典与算法实现映射 (新增扩充了大量主流实用单位)
+    const unitDefs = {
+        length: {
+            units: ['m', 'cm', 'mm', 'um', 'nm', 'km', 'inch', 'ft', 'yd', 'mi', 'nmi'],
+            namesEn: { m: "Meters (m)", cm: "Centimeters (cm)", mm: "Millimeters (mm)", um: "Micrometers (μm)", nm: "Nanometers (nm)", km: "Kilometers (km)", inch: "Inches (in)", ft: "Feet (ft)", yd: "Yards (yd)", mi: "Miles (mi)", nmi: "Nautical Miles (NM)" },
+            namesZh: { m: "米 (m)", cm: "厘米 (cm)", mm: "毫米 (mm)", um: "微米 (μm)", nm: "纳米 (nm)", km: "千米 (km)", inch: "英寸 (in)", ft: "英尺 (ft)", yd: "码 (yd)", mi: "英里 (mi)", nmi: "海里 (NM)" },
+            namesEs: { m: "Metros (m)", cm: "Centímetros (cm)", mm: "Milímetros (mm)", um: "Micrómetros (μm)", nm: "Nanómetros (nm)", km: "Kilómetros (km)", inch: "Pulgadas (in)", ft: "Pies (ft)", yd: "Yardas (yd)", mi: "Millas (mi)", nmi: "Millas Náuticas (NM)" },
+            namesJa: { m: "メートル (m)", cm: "センチ (cm)", mm: "ミリ (mm)", um: "マイクロ (μm)", nm: "ナノ (nm)", km: "キロメートル (km)", inch: "インチ (in)", ft: "フィート (ft)", yd: "ヤード (yd)", mi: "マイル (mi)", nmi: "海里 (NM)" },
+            convert: (val, from, to) => {
+                const toMeter = { m: 1, cm: 0.01, mm: 0.001, um: 0.000001, nm: 0.000000001, km: 1000, inch: 0.0254, ft: 0.3048, yd: 0.9144, mi: 1609.344, nmi: 1852 };
+                return val * toMeter[from] / toMeter[to];
+            }
+        },
+        weight: {
+            units: ['kg', 'g', 'mg', 't', 'lb', 'oz', 'ct', 'gr'],
+            namesEn: { kg: "Kilograms (kg)", g: "Grams (g)", mg: "Milligrams (mg)", t: "Tonnes (t)", lb: "Pounds (lb)", oz: "Ounces (oz)", ct: "Carats (ct)", gr: "Grains (gr)" },
+            namesZh: { kg: "公斤 (kg)", g: "克 (g)", mg: "毫克 (mg)", t: "吨 (t)", lb: "磅 (lb)", oz: "盎司 (oz)", ct: "克拉 (ct)", gr: "格令 (gr)" },
+            namesEs: { kg: "Kilogramos (kg)", g: "Gramos (g)", mg: "Miligramos (mg)", t: "Toneladas (t)", lb: "Libras (lb)", oz: "Onzas (oz)", ct: "Quilates (ct)", gr: "Granos (gr)" },
+            namesJa: { kg: "キログラム (kg)", g: "グラム (g)", mg: "ミリグラム (mg)", t: "トン (t)", lb: "ポンド (lb)", oz: "オンス (oz)", ct: "カラット (ct)", gr: "グレイン (gr)" },
+            convert: (val, from, to) => {
+                const toKg = { kg: 1, g: 0.001, mg: 0.000001, t: 1000, lb: 0.45359237, oz: 0.028349523, ct: 0.0002, gr: 0.00006479891 };
+                return val * toKg[from] / toKg[to];
+            }
+        },
+        temperature: {
+            units: ['c', 'f', 'k'],
+            namesEn: { c: "Celsius (°C)", f: "Fahrenheit (°F)", k: "Kelvin (K)" },
+            namesZh: { c: "摄氏度 (°C)", f: "华氏度 (°F)", k: "开氏度 (K)" },
+            namesEs: { c: "Celsius (°C)", f: "Fahrenheit (°F)", k: "Kelvin (K)" },
+            namesJa: { c: "摂氏 (°C)", f: "華氏 (°F)", k: "ケルビン (K)" },
+            convert: (val, from, to) => {
+                let c;
+                if (from === 'c') c = val;
+                else if (from === 'f') c = (val - 32) * 5 / 9;
+                else c = val - 273.15;
+
+                if (to === 'c') return c;
+                if (to === 'f') return c * 9 / 5 + 32;
+                return c + 273.15;
+            }
+        },
+        volume: {
+            units: ['l', 'ml', 'm3', 'cm3', 'gal', 'floz', 'pt', 'qt'],
+            namesEn: { l: "Liters (L)", ml: "Milliliters (mL)", m3: "Cubic Meters (m³)", cm3: "Cubic Centimeters (cm³)", gal: "Gallons (gal)", floz: "Fluid Ounces (fl oz)", pt: "Pints (pt)", qt: "Quarts (qt)" },
+            namesZh: { l: "升 (L)", ml: "毫升 (mL)", m3: "立方米 (m³)", cm3: "立方厘米 (cm³)", gal: "加仑 (gal)", floz: "液量盎司 (fl oz)", pt: "品脱 (pt)", qt: "夸脱 (qt)" },
+            namesEs: { l: "Litros (L)", ml: "Mililitros (mL)", m3: "Metros Cúbicos (m³)", cm3: "Centímetros Cúbicos (cm³)", gal: "Galones (gal)", floz: "Onzas Líquidas (fl oz)", pt: "Pintas (pt)", qt: "Cuartos (qt)" },
+            namesJa: { l: "リットル (L)", ml: "ミリリットル (mL)", m3: "立方メートル (m³)", cm3: "立方センチメートル (cm³)", gal: "ガロン (gal)", floz: "液量オンス (fl oz)", pt: "パイント (pt)", qt: "クォート (qt)" },
+            convert: (val, from, to) => {
+                const toLiter = { l: 1, ml: 0.001, m3: 1000, cm3: 0.001, gal: 3.785411784, floz: 0.0295735296, pt: 0.473176473, qt: 0.946352946 };
+                return val * toLiter[from] / toLiter[to];
+            }
+        }
+    };
+
+    // 2. 国际化四语种核心语言文字字典
+    const UNIT_LANGS = {
+        en: {
+            title: "Unit Converter",
+            desc: "Convert length, weight, temperature, and volume metrics seamlessly with extreme numerical accuracy.",
+            back: "<i class='fas fa-arrow-left'></i> Back to Hub",
+            lblType: "Measurement Property",
+            lblValue: "Value to Convert",
+            lblFrom: "From Unit",
+            lblTo: "To Unit",
+            btnCalc: "<i class='fas fa-calculator'></i> Convert Now",
+            initRes: "✨ Waiting for calculation",
+            errEmpty: "Please enter a valid number",
+            ad: "<i class='fas fa-rectangle-ad'></i> Sponsored Advertisement"
+        },
+        zh: {
+            title: "多功能物理单位换算",
+            desc: "高精度支持长度、重量、温度及公英制体积转换，内置科学记数规则与交叉比例计算内核。",
+            back: "<i class='fas fa-arrow-left'></i> 返回工具箱",
+            lblType: "选择物理量类型",
+            lblValue: "请输入需要换算的数值",
+            lblFrom: "原始单位",
+            lblTo: "目标单位",
+            btnCalc: "<i class='fas fa-calculator'></i> 立即执行单位换算",
+            initRes: "✨ 等待计算结果",
+            errEmpty: "请输入有效的计算数值",
+            ad: "<i class='fas fa-rectangle-ad'></i> 赞助商广告"
+        },
+        es: {
+            title: "Conversor de Unidades",
+            desc: "Convierta métricas de longitud, peso, temperatura y volumen sin problemas con extrema precisión numérica.",
+            back: "<i class='fas fa-arrow-left'></i> Volver al menú",
+            lblType: "Propiedad de Medición",
+            lblValue: "Valor a Convertir",
+            lblFrom: "Unidad de Origen",
+            lblTo: "Unidad de Destino",
+            btnCalc: "<i class='fas fa-calculator'></i> Convertir Ahora",
+            initRes: "✨ Esperando cálculo",
+            errEmpty: "Por favor, introduzca un número válido",
+            ad: "<i class='fas fa-rectangle-ad'></i> Publicidad Patrocinada"
+        },
+        ja: {
+            title: "単位換算ジェネレーター",
+            desc: "長さ、重量、温度、体積の指標を、極めて高い数値精度でシームレスに換算します。",
+            back: "<i class='fas fa-arrow-left'></i> ツールボックスに戻る",
+            lblType: "測定プロパティの種類",
+            lblValue: "換算する数値",
+            lblFrom: "変換元の単位",
+            lblTo: "変換先の単位",
+            btnCalc: "<i class='fas fa-calculator'></i> 単位を換算する",
+            initRes: "✨ 計算結果を待っています",
+            errEmpty: "有効な数値を入力してください",
+            ad: "<i class='fas fa-rectangle-ad'></i> スポンサー広告"
+        }
+    };
+
+    let currentLang = 'en';
+
+    // 动态装配生成子级单位下拉列表项
+    function populateUnits() {
+        const typeSel = document.getElementById('unitType');
+        const fromSel = document.getElementById('fromUnit');
+        const toSel = document.getElementById('toUnit');
+        
+        let type = typeSel.value;
+        let def = unitDefs[type];
+        
+        // 根据当前的国际化设定选择对应的文字显示映射集
+        let key = 'names' + currentLang.charAt(0).toUpperCase() + currentLang.slice(1);
+        let names = def[key] || def.namesEn;
+        
+        // 保存当前选中的单位，避免在切换语言时重置选项
+        let lastFrom = fromSel.value;
+        let lastTo = toSel.value;
+        
+        // 双向清空重建
+        fromSel.innerHTML = '';
+        toSel.innerHTML = '';
+        
+        def.units.forEach(u => {
+            let opt = document.createElement('option');
+            opt.value = u;
+            opt.innerText = names[u];
+            fromSel.appendChild(opt.cloneNode(true));
+            toSel.appendChild(opt);
+        });
+        
+        // 恢复之前选中的单位，如果是新类型则赋予合理的对位初始值
+        if (lastFrom && def.units.includes(lastFrom) && lastTo && def.units.includes(lastTo)) {
+            fromSel.value = lastFrom;
+            toSel.value = lastTo;
+        } else if (type === "temperature") {
+            fromSel.value = "c";
+            toSel.value = "f";
+        } else {
+            fromSel.value = def.units[0];
+            toSel.value = def.units[1] || def.units[0];
+        }
+    }
+
+    function switchLang(lang) {
+        currentLang = lang;
+        const t = UNIT_LANGS[lang] || UNIT_LANGS['en'];
+        
+        // DOM 文字树渲染替换
+        document.title = t.title + " – Online Toolbox";
+        document.getElementById('txt-title').innerHTML = `<i class="fas fa-ruler-combined"></i> ` + t.title;
+        document.getElementById('txt-desc').innerText = t.desc;
+        document.getElementById('btn-back').innerHTML = t.back;
+        document.getElementById('lbl-type').innerText = t.lblType;
+        document.getElementById('lbl-value').innerText = t.lblValue;
+        document.getElementById('lbl-from').innerText = t.lblFrom;
+        document.getElementById('lbl-to').innerText = t.lblTo;
+        document.getElementById('convertBtn').innerHTML = t.btnCalc;
+        
+        document.querySelectorAll('.lbl-ad').forEach(el => el.innerHTML = t.ad);
+
+        // 重载子菜单名称文字以进行实时变轨
+        populateUnits();
+
+        if (document.getElementById('resultText').innerText.includes('✨') || document.getElementById('resultText').innerText.includes('Waiting') || document.getElementById('resultText').innerText.includes('等待')) {
+            document.getElementById('resultText').innerText = t.initRes;
+        } else {
+            convert(); // 切换语言时已有数据则同步重新格式化刷新
+        }
+
+        // 高亮语言标签状态
+        document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
+        const activeBtn = document.getElementById(`lang-${lang}`);
+        if(activeBtn) activeBtn.classList.add('active');
+
+        localStorage.setItem('user_lang_preference', lang);
+        document.documentElement.lang = lang;
+    }
+
+    // 3. 网页颜色风格明暗调度中心
+    function toggleTheme() {
+        const currentTheme = document.documentElement.getAttribute('data-theme');
+        const targetTheme = currentTheme === 'dark' ? 'light' : 'dark';
+        document.documentElement.setAttribute('data-theme', targetTheme);
+        localStorage.setItem('user_theme_preference', targetTheme);
+    }
+
+    function initTheme() {
+        const savedTheme = localStorage.getItem('user_theme_preference') || 'dark';
+        document.documentElement.setAttribute('data-theme', savedTheme);
+    }
+
+    // 4. 原生换算交互执行逻辑
+    function convert() {
+        const typeSel = document.getElementById('unitType').value;
+        const fromSel = document.getElementById('fromUnit').value;
+        const toSel = document.getElementById('toUnit').value;
+        const valueInp = parseFloat(document.getElementById('unitValue').value);
+        const t = UNIT_LANGS[currentLang] || UNIT_LANGS['en'];
+
+        if (isNaN(valueInp)) {
+            document.getElementById('resultText').innerText = t.errEmpty;
+            return;
+        }
+
+        const def = unitDefs[typeSel];
+        const result = def.convert(valueInp, fromSel, toSel);
+
+        let key = 'names' + currentLang.charAt(0).toUpperCase() + currentLang.slice(1);
+        let names = def[key] || def.namesEn;
+
+        // 去除多余的小数尾巴保留合理科学精度，对于极小的值使用科学记数法或更多保留位数
+        let formattedResult = result;
+        if (Math.abs(result) < 0.000001 && result !== 0) {
+            formattedResult = result.toExponential(4);
+        } else {
+            formattedResult = Number(result.toFixed(6));
+        }
+
+        document.getElementById('resultText').innerHTML = `<strong>${valueInp}</strong> ${names[fromSel]} = <strong style="color:#3b82f6; font-size:1.5rem;">${formattedResult}</strong> ${names[toSel]}`;
+    }
+
+    // 页面构建阶段自动对齐首选项数据
+    window.addEventListener('DOMContentLoaded', () => {
+        initTheme(); // 默认切入高阶黑夜
+        const storedPreference = localStorage.getItem('user_lang_preference') || 'en';
+        switchLang(storedPreference);
+    });
+</script>
+</body>
+</html>

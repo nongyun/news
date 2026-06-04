@@ -1,0 +1,615 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title id="page-title">Ultimate Image Format Converter – Online Toolbox</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <script src="https://cdn.jsdelivr.net/npm/heic2any@0.0.4/dist/heic2any.min.js"></script>
+
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1624261597740761" crossorigin="anonymous"></script>
+    <script>
+         (adsbygoogle = window.adsbygoogle || []).push({
+              google_ad_client: "ca-pub-1624261597740761",
+              enable_page_level_ads: true
+         });
+    </script>
+
+    <style>
+        /* === 全局高级视觉系统（支持明暗双向切换） === */
+        * { margin: 0; padding: 0; box-sizing: border-box; -webkit-font-smoothing: antialiased; }
+        
+        :root {
+            /* 浅色微光主题变量 */
+            --bg-gradient: radial-gradient(circle at 10% 30%, #eef2f9, #e0e8f2);
+            --text-main: #0b2b3b;
+            --text-muted: #5c7285;
+            --text-sub: #8fa0b0;
+            --accent: #3b82f6;
+            --accent-gradient: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+            --card-bg: #ffffff;
+            --card-border: #bfd6ea;
+            --input-bg: #ffffff;
+            --shadow-sm: 0 4px 12px rgba(0, 0, 0, 0.03);
+            --shadow-md: 0 25px 45px -12px rgba(0,0,0,0.1);
+            --shadow-lg: 0 22px 50px -15px rgba(37, 99, 235, 0.15);
+            --radius-lg: 24px;
+            --radius-md: 16px;
+        }
+
+        /* 暗黑极客颜色主题配置 (默认载入激活) */
+        [data-theme="dark"] {
+            --bg-gradient: radial-gradient(circle at 50% 0%, #111827 0%, #030712 100%);
+            --text-main: #f3f4f6;
+            --text-muted: #9ca3af;
+            --text-sub: #6b7280;
+            --accent: #3b82f6;
+            --accent-gradient: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+            --card-bg: rgba(17, 24, 39, 0.7);
+            --card-border: rgba(37, 99, 235, 0.15);
+            --input-bg: rgba(0, 0, 0, 0.3);
+            --shadow-sm: 0 4px 12px rgba(0, 0, 0, 0.3);
+            --shadow-md: 0 12px 40px -12px rgba(0, 0, 0, 0.5);
+            --shadow-lg: 0 22px 50px -15px rgba(37, 99, 235, 0.2);
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--bg-gradient);
+            color: var(--text-main);
+            min-height: 100vh;
+            padding: 40px 24px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            transition: background 0.3s ease, color 0.3s ease;
+        }
+
+        .container { width: 100%; max-width: 1000px; }
+
+        /* 顶部控制栏布局 */
+        .top-bar {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 32px;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+        .left-controls { display: flex; gap: 12px; align-items: center; }
+
+        .back-btn, .theme-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            color: var(--text-main);
+            padding: 8px 18px;
+            border-radius: 100px;
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            cursor: pointer;
+            box-shadow: var(--shadow-sm);
+            transition: all 0.2s ease;
+        }
+        .back-btn:hover, .theme-btn:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: var(--accent);
+            box-shadow: 0 0 10px rgba(59, 130, 246, 0.2);
+            transform: translateY(-1px);
+        }
+
+        .lang-selector-container { display: flex; gap: 8px; }
+        .lang-btn {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            color: var(--text-muted);
+            padding: 6px 14px;
+            border-radius: 100px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        .lang-btn:hover, .lang-btn.active {
+            background: var(--accent);
+            color: #ffffff;
+            border-color: var(--accent);
+            box-shadow: 0 0 12px rgba(59, 130, 246, 0.4);
+        }
+
+        /* 头部排版 */
+        header { text-align: center; margin-bottom: 40px; }
+        header h1 {
+            font-size: 2.6rem;
+            font-weight: 800;
+            letter-spacing: -1px;
+            color: var(--text-main);
+            margin-bottom: 12px;
+        }
+        header p { color: var(--text-muted); font-size: 1.05rem; max-width: 600px; margin: 0 auto; line-height: 1.5; }
+
+        /* 广告美化外框 */
+        .ad-wrapper {
+            margin: 0 auto 32px auto;
+            width: 100%;
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: var(--radius-md);
+            padding: 16px;
+            box-shadow: var(--shadow-sm);
+            text-align: center;
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            transition: background 0.3s ease, border-color 0.3s ease;
+        }
+        .ad-hint {
+            font-size: 0.68rem;
+            color: var(--text-sub);
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin-bottom: 8px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 4px;
+        }
+
+        /* 工作台核心面板 */
+        .workspace {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: var(--radius-lg);
+            padding: 36px;
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            box-shadow: var(--shadow-md);
+            display: flex;
+            flex-direction: column;
+            gap: 28px;
+            transition: background 0.3s ease, border-color 0.3s ease;
+        }
+
+        /* 拖拽点击上传热区 */
+        .upload-area {
+            border: 2px dashed rgba(59, 130, 246, 0.3);
+            border-radius: var(--radius-md);
+            padding: 48px 24px;
+            text-align: center;
+            cursor: pointer;
+            background: rgba(255, 255, 255, 0.01);
+            transition: all 0.3s ease;
+        }
+        .upload-area:hover {
+            border-color: var(--accent);
+            background: rgba(59, 130, 246, 0.04);
+            box-shadow: inset 0 0 20px rgba(59, 130, 246, 0.1);
+        }
+        .upload-area i { font-size: 3rem; color: #60a5fa; margin-bottom: 16px; transition: transform 0.3s ease; }
+        .upload-area:hover i { transform: translateY(-4px); }
+        .upload-area p { font-size: 1.1rem; font-weight: 600; margin-bottom: 6px; color: var(--text-main); }
+        .upload-area span { color: var(--text-sub); font-size: 0.88rem; }
+
+        /* 参数调控区布局 */
+        .controls-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            background: rgba(255, 255, 255, 0.02);
+            padding: 24px;
+            border-radius: var(--radius-md);
+            border: 1px solid var(--card-border);
+            max-width: 400px;
+            margin: 0 auto;
+            width: 100%;
+        }
+        .control-group { display: flex; flex-direction: column; gap: 10px; }
+        .control-group label { font-size: 0.9rem; font-weight: 600; color: var(--text-muted); }
+        
+        .control-group select {
+            background: var(--input-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 8px;
+            padding: 12px 14px;
+            color: var(--text-main);
+            font-size: 0.95rem;
+            outline: none;
+            cursor: pointer;
+            transition: border-color 0.2s, background 0.2s, color 0.2s;
+        }
+        .control-group select:focus { border-color: var(--accent); }
+        .control-group select option { background: #111827; color: #ffffff; }
+
+        /* 核心动作按钮 */
+        .action-btn {
+            background: var(--accent-gradient);
+            border: none;
+            color: #ffffff;
+            padding: 14px 32px;
+            border-radius: 12px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            box-shadow: 0 4px 14px rgba(37, 99, 235, 0.3);
+            transition: all 0.2s ease;
+        }
+        .action-btn:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(37, 99, 235, 0.4); }
+
+        /* 双栏对比预览区 */
+        .preview-area {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+            margin-top: 12px;
+        }
+        .preview-box {
+            background: rgba(0, 0, 0, 0.15);
+            border: 1px solid var(--card-border);
+            border-radius: var(--radius-md);
+            padding: 18px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 12px;
+        }
+        .preview-box h4 { font-size: 0.95rem; color: var(--text-muted); font-weight: 600; width: 100%; text-align: left; border-left: 3px solid var(--accent); padding-left: 8px; }
+        
+        .img-container {
+            width: 100%;
+            height: 280px;
+            background: #0f172a;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            border: 1px solid var(--card-border);
+        }
+        .img-container img { max-width: 100%; max-height: 100%; object-fit: contain; }
+
+        .toast {
+            position: fixed;
+            bottom: 32px;
+            left: 50%;
+            transform: translateX(-50%) translateY(40px);
+            background: rgba(17, 24, 39, 0.95);
+            border: 1px solid var(--accent);
+            color: #ffffff;
+            padding: 12px 28px;
+            border-radius: 100px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            box-shadow: var(--shadow-lg);
+            opacity: 0;
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            z-index: 1000;
+            backdrop-filter: blur(8px);
+            pointer-events: none;
+        }
+        .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+
+        footer {
+            text-align: center;
+            margin-top: 64px;
+            padding: 32px 0;
+            border-top: 1px solid var(--card-border);
+            width: 100%;
+            color: var(--text-sub);
+            font-size: 0.88rem;
+        }
+
+        @media (max-width: 768px) {
+            body { padding: 24px 16px; }
+            header h1 { font-size: 2rem; }
+            .workspace { padding: 20px; }
+            .preview-area { grid-template-columns: 1fr; }
+            .top-bar { flex-direction: column; align-items: flex-start; }
+            .lang-selector-container { width: 100%; justify-content: flex-start; margin-top: 4px; }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    
+    <div class="top-bar">
+        <div class="left-controls">
+            <a href="index.html" class="back-btn" id="btn-back"><i class="fas fa-arrow-left"></i> Back to Hub</a>
+            <button class="theme-btn" id="themeToggleBtn" onclick="toggleTheme()"><i class="fas fa-lightbulb"></i> Theme</button>
+        </div>
+        <div class="lang-selector-container">
+            <button class="lang-btn" id="lang-en" onclick="switchLang('en')">English</button>
+            <button class="lang-btn" id="lang-zh" onclick="switchLang('zh')">简体中文</button>
+            <button class="lang-btn" id="lang-es" onclick="switchLang('es')">Español</button>
+            <button class="lang-btn" id="lang-ja" onclick="switchLang('ja')">日本語</button>
+        </div>
+    </div>
+
+    <header>
+        <h1 id="txt-title">Image Format Converter</h1>
+        <p id="txt-desc">Convert and transform your images to WebP, PNG, JPG, ICO, or BMP format instantly and securely in your local browser.</p>
+    </header>
+
+    <section class="ad-wrapper">
+        <div class="ad-hint lbl-ad"><i class="fas fa-rectangle-ad"></i> Sponsored Advertisement</div>
+        <ins class="adsbygoogle"
+             style="display:block"
+             data-ad-client="ca-pub-1624261597740761"
+             data-ad-slot="1111111111"
+             data-ad-format="horizontal"
+             data-full-width-responsive="true"></ins>
+        <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+    </section>
+
+    <main class="workspace">
+        <input type="file" id="fileInput" accept="image/*,.heic" style="display: none;">
+        
+        <div class="upload-area" id="uploadArea">
+            <i class="fas fa-cloud-arrow-up"></i>
+            <p id="txt-drop-title">Select or drag & drop image here</p>
+            <span id="txt-drop-sub">Supports JPG, PNG, WebP, BMP, GIF, HEIC</span>
+        </div>
+
+        <div class="controls-grid">
+            <div class="control-group">
+                <label for="formatSelect" id="lbl-target-fmt">Target Format</label>
+                <select id="formatSelect">
+                    <option value="image/png">PNG (.png)</option>
+                    <option value="image/jpeg">JPEG (.jpg)</option>
+                    <option value="image/webp">WebP (.webp)</option>
+                    <option value="image/bmp">BMP (.bmp)</option>
+                    <option value="image/x-icon">ICO (.ico)</option>
+                </select>
+            </div>
+        </div>
+
+        <div style="text-align: center;">
+            <button class="action-btn" id="convertBtn"><i class="fas fa-rotate"></i> Convert Image</button>
+        </div>
+
+        <div class="preview-area" id="previewArea" style="display: none;">
+            <div class="preview-box">
+                <h4 id="lbl-orig-title">Original Image</h4>
+                <div class="img-container"><img id="origImg" src="" alt="Original"></div>
+            </div>
+            <div class="preview-box">
+                <h4 id="lbl-conv-title">Converted Result</h4>
+                <div class="img-container"><img id="convertedImg" src="" alt="Converted"></div>
+            </div>
+        </div>
+
+        <div style="text-align: center; display: none;" id="downloadArea">
+            <button class="action-btn" id="downloadBtn" style="background: linear-gradient(135deg, #10b981 0%, #059669 100%); box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);">
+                <i class="fas fa-download"></i> Download Converted Image
+            </button>
+        </div>
+    </main>
+
+    <section class="ad-wrapper" style="margin-top: 36px;">
+        <div class="ad-hint lbl-ad"><i class="fas fa-rectangle-ad"></i> Sponsored Advertisement</div>
+        <ins class="adsbygoogle"
+             style="display:block"
+             data-ad-client="ca-pub-1624261597740761"
+             data-ad-slot="3333333333"
+             data-ad-format="auto"
+             data-full-width-responsive="true"></ins>
+        <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+    </section>
+
+    <footer>
+        <p>© Ultimate Online Toolbox | Client-Side Secure Sandbox Canvas Processing</p>
+    </footer>
+</div>
+
+<div class="toast" id="toastBox">Notification</div>
+
+<script>
+    // 1. 扩容多语言字典
+    const FMT_LANGS = {
+        en: {
+            title: "Image Format Converter", desc: "Convert and transform your images to WebP, PNG, JPG, ICO, or BMP format instantly and securely in your local browser.",
+            back: "<i class='fas fa-arrow-left'></i> Back to Hub", dropTitle: "Select or drag & drop image here", dropSub: "Supports JPG, PNG, WebP, BMP, GIF, HEIC",
+            targetFmt: "Target Format", btnConvert: "<i class='fas fa-rotate'></i> Convert Image", btnDl: "<i class='fas fa-download'></i> Download Converted Image",
+            lblOrig: "Original Image", lblConv: "Converted Result", ad: "<i class='fas fa-rectangle-ad'></i> Sponsored Advertisement",
+            errUpload: "Please upload an image first", sucDl: "Download started", loadImg: "Image loaded successfully", decodingHeic: "Decoding HEIC image locally, please wait..."
+        },
+        zh: {
+            title: "万能图片格式转换", desc: "在浏览器本地零日志安全地将您的图片一键转换为 WebP、PNG、JPG、ICO 或 BMP 等主流格式。",
+            back: "<i class='fas fa-arrow-left'></i> 返回工具箱", dropTitle: "选择文件，或将图片拖拽至此", dropSub: "支持 JPG, PNG, WebP, BMP, GIF, HEIC 格式",
+            targetFmt: "输出目标格式", btnConvert: "<i class='fas fa-rotate'></i> 开始转换格式", btnDl: "<i class='fas fa-download'></i> 保存下载新图片",
+            lblOrig: "原始输入图像", lblConv: "转换后的新图像", ad: "<i class='fas fa-rectangle-ad'></i> 赞助商广告",
+            errUpload: "请先上传一张有效的图片！", sucDl: "图片下载已开始", loadImg: "图像载入成功，请选择格式并转换", decodingHeic: "正在本地解码 HEIC 特殊高效率格式，请稍候..."
+        },
+        es: {
+            title: "Convertidor de Formatos", desc: "Convierta sus imágenes a WebP, PNG, JPG, ICO o BMP de forma instantánea y segura en su navegador local.",
+            back: "<i class='fas fa-arrow-left'></i> Volver al menú", dropTitle: "Seleccione o arrastre y suelte la imagen aquí", dropSub: "Soporta JPG, PNG, WebP, BMP, GIF, HEIC",
+            targetFmt: "Formato de Destino", btnConvert: "<i class='fas fa-rotate'></i> Convertir Imagen", btnDl: "<i class='fas fa-download'></i> Descargar Imagen Convertida",
+            lblOrig: "Imagen Original", lblConv: "Resultado Convertido", ad: "<i class='fas fa-rectangle-ad'></i> Publicidad Patrocinada",
+            errUpload: "Por favor, cargue una imagen primero", sucDl: "Descarga iniciada", loadImg: "Imagen cargada con éxito", decodingHeic: "Decodificando imagen HEIC localmente, espere por favor..."
+        },
+        ja: {
+            title: "万能画像フォーマット変換", desc: "サーバーに送信することなく、ローカル環境で安全にWebP、PNG、JPG、ICO、BMPフォーマットへ相互変換します。",
+            back: "<i class='fas fa-arrow-left'></i> ツールボックスに戻る", dropTitle: "ファイルを選択するか、ここに画像をドラッグ＆ドロップ", dropSub: "JPG, PNG, WebP, BMP, GIF, HEIC に対応",
+            targetFmt: "出力ターゲット形式", btnConvert: "<i class='fas fa-rotate'></i> フォーマット変換を実行", btnDl: "<i class='fas fa-download'></i> 変換後の画像を保存",
+            lblOrig: "変換前のオリジナル画像", lblConv: "変換後の出力画像", ad: "<i class='fas fa-rectangle-ad'></i> スポンサー広告",
+            errUpload: "最初に画像をアップロードしてください", sucDl: "ダウンロードを開始しました", loadImg: "画像の読み込みに成功しました", decodingHeic: "ローカルでHEIC画像をデコード中、少々お待ちください..."
+        }
+    };
+
+    let currentLang = 'en';
+
+    function switchLang(lang) {
+        currentLang = lang;
+        const t = FMT_LANGS[lang] || FMT_LANGS['en'];
+        
+        document.title = t.title + " – Ultimate Online Toolbox";
+        document.getElementById('txt-title').innerText = t.title;
+        document.getElementById('txt-desc').innerText = t.desc;
+        document.getElementById('btn-back').innerHTML = t.back;
+        document.getElementById('txt-drop-title').innerText = t.dropTitle;
+        document.getElementById('txt-drop-sub').innerText = t.dropSub;
+        document.getElementById('lbl-target-fmt').innerText = t.targetFmt;
+        
+        document.getElementById('convertBtn').innerHTML = t.btnConvert;
+        document.getElementById('downloadBtn').innerHTML = t.btnDl;
+        document.getElementById('lbl-orig-title').innerText = t.lblOrig;
+        document.getElementById('lbl-conv-title').innerText = t.lblConv;
+        
+        document.querySelectorAll('.lbl-ad').forEach(el => el.innerHTML = t.ad);
+
+        document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
+        const activeBtn = document.getElementById(`lang-${lang}`);
+        if(activeBtn) activeBtn.classList.add('active');
+
+        localStorage.setItem('user_lang_preference', lang);
+        document.documentElement.lang = lang;
+    }
+
+    function showToast(msg) {
+        const box = document.getElementById('toastBox');
+        box.innerText = msg; box.classList.add('show');
+        setTimeout(() => box.classList.remove('show'), 2500);
+    }
+
+    // 网页颜色风格明暗调度中心
+    function toggleTheme() {
+        const currentTheme = document.documentElement.getAttribute('data-theme');
+        const targetTheme = currentTheme === 'dark' ? 'light' : 'dark';
+        document.documentElement.setAttribute('data-theme', targetTheme);
+        localStorage.setItem('user_theme_preference', targetTheme);
+    }
+
+    function initTheme() {
+        // 默认强制高阶黑夜模式
+        const savedTheme = localStorage.getItem('user_theme_preference') || 'dark';
+        document.documentElement.setAttribute('data-theme', savedTheme);
+    }
+
+    // 2. 核心转换与 HEIC 支持内核
+    let img = null; let blob = null;
+    const uploadArea = document.getElementById('uploadArea');
+    const fileInput = document.getElementById('fileInput');
+    const previewArea = document.getElementById('previewArea');
+    const origImg = document.getElementById('origImg');
+    const convertedImg = document.getElementById('convertedImg');
+    const formatSelect = document.getElementById('formatSelect');
+    const convertBtn = document.getElementById('convertBtn');
+    const downloadArea = document.getElementById('downloadArea');
+    const downloadBtn = document.getElementById('downloadBtn');
+
+    uploadArea.addEventListener('click', () => fileInput.click());
+
+    uploadArea.addEventListener('dragover', (e) => { e.preventDefault(); uploadArea.style.borderColor = "#3b82f6"; });
+    uploadArea.addEventListener('dragleave', () => { uploadArea.style.borderColor = "rgba(59, 130, 246, 0.3)"; });
+    uploadArea.addEventListener('drop', (e) => {
+        e.preventDefault(); uploadArea.style.borderColor = "rgba(59, 130, 246, 0.3)";
+        if (e.dataTransfer.files.length > 0) processImageFile(e.dataTransfer.files[0]);
+    });
+
+    fileInput.addEventListener('change', (e) => {
+        if (e.target.files.length > 0) processImageFile(e.target.files[0]);
+    });
+
+    function processImageFile(file) {
+        let ext = file.name.split('.').pop().toLowerCase();
+        
+        if (ext === 'heic') {
+            showToast(FMT_LANGS[currentLang].decodingHeic);
+            heic2any({ blob: file, toType: "image/jpeg", quality: 0.9 })
+                .then(convertedBlob => {
+                    let url = URL.createObjectURL(convertedBlob);
+                    setupImage(url);
+                })
+                .catch(err => {
+                    showToast("HEIC Decoding Error");
+                });
+        } else {
+            let url = URL.createObjectURL(file);
+            setupImage(url);
+        }
+    }
+
+    function setupImage(url) {
+        let image = new Image();
+        image.onload = () => {
+            img = image;
+            origImg.src = url;
+            previewArea.style.display = 'grid';
+            downloadArea.style.display = 'none';
+            convertedImg.src = '';
+            showToast(FMT_LANGS[currentLang].loadImg);
+        };
+        image.src = url;
+        fileInput.value = '';
+    }
+
+    // 3. 全量矩阵重绘与导出核心 (0删减点击事件)
+    function convert() {
+        if (!img) { showToast(FMT_LANGS[currentLang].errUpload); return; }
+        
+        let canvas = document.createElement('canvas');
+        canvas.width = img.width;
+        canvas.height = img.height;
+        let ctx = canvas.getContext('2d');
+        ctx.drawImage(img, 0, 0);
+        
+        let mime = formatSelect.value;
+        try {
+            canvas.toBlob(b => {
+                blob = b;
+                let url = URL.createObjectURL(b);
+                convertedImg.src = url;
+                downloadArea.style.display = 'block';
+            }, mime, mime === 'image/jpeg' ? 0.9 : undefined);
+        } catch(e) {
+            fallbackDataURL(canvas, mime);
+        }
+    }
+
+    function fallbackDataURL(canvas, mime) {
+        let dataUrl = canvas.toDataURL(mime);
+        convertedImg.src = dataUrl;
+        fetch(dataUrl).then(res => res.blob()).then(b => {
+            blob = b;
+            downloadArea.style.display = 'block';
+        });
+    }
+
+    convertBtn.addEventListener('click', convert);
+
+    downloadBtn.addEventListener('click', () => {
+        if (blob) {
+            let a = document.createElement('a');
+            a.href = URL.createObjectURL(blob);
+            let ext = 'png';
+            if(formatSelect.value === 'image/jpeg') ext = 'jpg';
+            else if(formatSelect.value === 'image/webp') ext = 'webp';
+            else if(formatSelect.value === 'image/bmp') ext = 'bmp';
+            else if(formatSelect.value === 'image/x-icon') ext = 'ico';
+            
+            a.download = `converted_image.${ext}`;
+            a.click();
+            showToast(FMT_LANGS[currentLang].sucDl);
+        }
+    });
+
+    window.addEventListener('DOMContentLoaded', () => {
+        initTheme();
+        const storedPreference = localStorage.getItem('user_lang_preference') || 'en';
+        switchLang(storedPreference);
+    });
+</script>
+</body>
+</html>
