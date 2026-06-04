@@ -1,16 +1,15 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <meta name="google-adsense-account" content="ca-pub-1624261597740761">
-    <title>万能在线工具箱 - 免费、纯本地、隐私安全的日常效率工具集</title>
-    <meta name="description" content="聚合多种高频日常效率工具，包括智能图片压缩、文字水印添加、图片格式互转（PNG/JPEG/WebP）、批量UUID生成、Office离线转换、Wi-Fi二维码生成、中国亲属关系计算、精准贷款利率计算及多国汇率单位换算。所有计算均在本地浏览器完成，绝不上传数据，保障绝对隐私。">
-    <meta name="keywords" content="在线工具箱,图片压缩,图片水印,格式转换,UUID生成,Office转换,二维码生成,亲属关系计算,贷款计算器,汇率换算,单位换算">
+    <title>Ultimate Online Toolbox - Free, Local & Privacy-Safe Web Tools</title>
+    <meta name="description" content="A premium collection of essential productivity tools including smart image compression, text watermark, image format converter, bulk UUID generator, offline Office converter, Wi-Fi QR code generator, and financial calculators. 100% local, safe and private.">
+    <meta name="keywords" content="online toolbox, image compress, watermark, format convert, UUID generator, Office converter, QR code, loan calculator, currency exchange, unit converter">
     
     <meta property="og:type" content="website">
-    <meta property="og:title" content="万能在线工具箱 - 免费、纯本地、隐私安全的日常效率工具集">
-    <meta property="og:description" content="所有工具100%本地运行，不消耗服务器流量，不泄露任何隐私数据。高效、极简、即开即用。">
+    <meta property="og:title" content="Ultimate Online Toolbox - Free, Local & Privacy-Safe Tools">
+    <meta property="og:description" content="100% client-side tools running securely in your browser sandboxes. Zero data leak.">
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -21,32 +20,32 @@
     <script>
          (adsbygoogle = window.adsbygoogle || []).push({
               google_ad_client: "ca-pub-1624261597740761",
-              enable_page_level_ads: true /* 自动激活移动端超高收益的“网页间隙穿插广告” */
+              enable_page_level_ads: true
          });
     </script>
 
     <style>
-        /* === 全局视觉现代重置 === */
+        /* === Global Premium UI Styling === */
         * { margin: 0; padding: 0; box-sizing: border-box; -webkit-font-smoothing: antialiased; }
         
         :root {
-            --bg-gradient: radial-gradient(circle at 50% 0%, #f4f7fc 0%, #eef2f9 100%);
-            --text-main: #0f172a;
-            --text-muted: #475569;
-            --text-sub: #94a3b8;
-            --accent: #2563eb;
-            --accent-gradient: linear-gradient(135deg, #2563eb 0%, #3b82f6 100%);
-            --card-bg: rgba(255, 255, 255, 0.85);
-            --card-border: rgba(226, 232, 240, 0.8);
-            --shadow-sm: 0 2px 8px rgba(15, 23, 42, 0.04);
-            --shadow-md: 0 10px 30px -10px rgba(15, 23, 42, 0.08);
-            --shadow-lg: 0 20px 40px -15px rgba(37, 99, 235, 0.12);
-            --radius-lg: 20px;
+            --bg-gradient: radial-gradient(circle at 50% 0%, #111827 0%, #030712 100%);
+            --text-main: #f3f4f6;
+            --text-muted: #9ca3af;
+            --text-sub: #6b7280;
+            --accent: #3b82f6;
+            --accent-gradient: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+            --card-bg: rgba(17, 24, 39, 0.7);
+            --card-border: rgba(37, 99, 235, 0.15);
+            --shadow-sm: 0 4px 12px rgba(0, 0, 0, 0.3);
+            --shadow-md: 0 12px 40px -12px rgba(0, 0, 0, 0.5);
+            --shadow-lg: 0 22px 50px -15px rgba(37, 99, 235, 0.2);
+            --radius-lg: 24px;
             --radius-md: 16px;
         }
 
         body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
             background: var(--bg-gradient);
             color: var(--text-main);
             min-height: 100vh;
@@ -61,44 +60,71 @@
             max-width: 1240px;
         }
 
-        /* === 头部排版 === */
+        /* === Language Selector === */
+        .lang-selector-container {
+            width: 100%;
+            display: flex;
+            justify-content: flex-end;
+            margin-bottom: 24px;
+            gap: 8px;
+        }
+        .lang-btn {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--text-muted);
+            padding: 6px 14px;
+            border-radius: 100px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        .lang-btn:hover, .lang-btn.active {
+            background: var(--accent);
+            color: #ffffff;
+            border-color: var(--accent);
+            box-shadow: 0 0 12px rgba(59, 130, 246, 0.4);
+        }
+
+        /* === Header Styling === */
         header {
             text-align: center;
-            margin-bottom: 40px;
+            margin-bottom: 48px;
         }
         header .badge {
             display: inline-flex;
             align-items: center;
             gap: 6px;
             padding: 6px 14px;
-            background: rgba(37, 99, 235, 0.1);
-            color: var(--accent);
+            background: rgba(59, 130, 246, 0.15);
+            color: #60a5fa;
             border-radius: 100px;
             font-size: 0.85rem;
             font-weight: 600;
-            margin-bottom: 16px;
+            margin-bottom: 20px;
+            border: 1px solid rgba(59, 130, 246, 0.2);
             letter-spacing: 0.5px;
         }
         header h1 {
-            font-size: 2.75rem;
+            font-size: 3rem;
             font-weight: 800;
             letter-spacing: -1px;
-            background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+            background: linear-gradient(135deg, #ffffff 0%, #9ca3af 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            margin-bottom: 12px;
+            margin-bottom: 14px;
         }
         header p {
             color: var(--text-muted);
-            font-size: 1.1rem;
-            max-width: 600px;
+            font-size: 1.15rem;
+            max-width: 650px;
             margin: 0 auto;
             line-height: 1.6;
         }
 
-        /* === 广告包裹容器样式 === */
+        /* === Ad Wrapper === */
         .ad-wrapper {
-            margin: 0 auto 32px auto;
+            margin: 0 auto 36px auto;
             width: 100%;
             background: var(--card-bg);
             border: 1px solid var(--card-border);
@@ -107,9 +133,11 @@
             box-shadow: var(--shadow-sm);
             text-align: center;
             position: relative;
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
         }
         .ad-wrapper.top-banner { max-width: 970px; }
-        .ad-wrapper.bottom-banner { max-width: 728px; margin-top: 48px; }
+        .ad-wrapper.bottom-banner { max-width: 728px; margin-top: 56px; }
         .ad-hint {
             font-size: 0.68rem;
             color: var(--text-sub);
@@ -123,7 +151,7 @@
             gap: 4px;
         }
 
-        /* === 工具网格布局 === */
+        /* === Tool Grid & Premium Cards === */
         .grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
@@ -134,15 +162,15 @@
             background: var(--card-bg);
             border: 1px solid var(--card-border);
             border-radius: var(--radius-lg);
-            padding: 32px 24px 50px 24px; /* 底边留空给箭头 */
+            padding: 32px 24px 54px 24px;
             text-decoration: none;
             color: var(--text-main);
             display: flex;
             flex-direction: column;
             align-items: flex-start;
             text-align: left;
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             box-shadow: var(--shadow-md);
             position: relative;
@@ -151,26 +179,32 @@
         
         .tool-card:hover {
             transform: translateY(-6px);
-            border-color: rgba(37, 99, 235, 0.3);
+            border-color: rgba(59, 130, 246, 0.5);
             box-shadow: var(--shadow-lg);
+            background: rgba(17, 24, 39, 0.85);
         }
 
         .icon-wrapper {
             width: 56px;
             height: 56px;
-            background: linear-gradient(135deg, rgba(37, 99, 235, 0.06) 0%, rgba(59, 130, 246, 0.15) 100%);
-            border-radius: 14px;
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.1) 0%, rgba(37, 99, 235, 0.2) 100%);
+            border-radius: 16px;
             display: flex;
             align-items: center;
             justify-content: center;
-            margin-bottom: 20px;
+            margin-bottom: 24px;
+            border: 1px solid rgba(59, 130, 246, 0.15);
             transition: all 0.3s ease;
         }
-        .tool-card:hover .icon-wrapper { background: var(--accent-gradient); }
-        .icon-wrapper i { font-size: 1.5rem; color: var(--accent); transition: all 0.3s ease; }
+        .tool-card:hover .icon-wrapper { 
+            background: var(--accent-gradient); 
+            border-color: transparent;
+            box-shadow: 0 0 15px rgba(59, 130, 246, 0.3);
+        }
+        .icon-wrapper i { font-size: 1.5rem; color: #60a5fa; transition: all 0.3s ease; }
         .tool-card:hover .icon-wrapper i { color: #ffffff; transform: scale(1.1); }
 
-        .tool-card h2 { font-size: 1.25rem; font-weight: 700; margin-bottom: 8px; letter-spacing: -0.3px; }
+        .tool-card h2 { font-size: 1.3rem; font-weight: 700; margin-bottom: 10px; letter-spacing: -0.3px; }
         .tool-card p { font-size: 0.92rem; color: var(--text-muted); line-height: 1.6; }
 
         .tool-card .arrow-link {
@@ -179,53 +213,62 @@
             right: 24px;
             opacity: 0;
             transform: translateX(-5px);
-            color: var(--accent);
+            color: #60a5fa;
             transition: all 0.3s ease;
-            font-size: 0.9rem;
+            font-size: 0.88rem;
+            font-weight: 500;
         }
         .tool-card:hover .arrow-link { opacity: 1; transform: translateX(0); }
         
-        /* === 原生混合广告卡片（样式、尺寸与普通卡片完全一致，CTR收益最高） === */
+        /* === Native Feed Ad Card === */
         .tool-card.ad-feed-card {
-            background: linear-gradient(145deg, rgba(255,255,255,0.9) 0%, rgba(248,250,252,0.8) 100%);
-            border: 1px dashed rgba(37, 99, 235, 0.25);
+            background: linear-gradient(145deg, rgba(17, 24, 39, 0.8) 0%, rgba(11, 17, 30, 0.9) 100%);
+            border: 1px dashed rgba(59, 130, 246, 0.3);
             padding: 20px;
             justify-content: center;
             align-items: center;
         }
 
+        /* === Footer === */
         footer {
             text-align: center;
-            margin-top: 80px;
+            margin-top: 88px;
             padding: 32px 0;
-            border-top: 1px solid rgba(226, 232, 240, 0.8);
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
             width: 100%;
             color: var(--text-sub);
             font-size: 0.88rem;
         }
         footer p { line-height: 1.8; }
-        footer .privacy-tag { color: var(--text-muted); font-weight: 500; margin-top: 6px; display: inline-block; }
+        footer .privacy-tag { color: var(--text-muted); font-weight: 500; margin-top: 8px; display: inline-block; }
 
         @media (max-width: 768px) {
             body { padding: 24px 16px; }
-            header h1 { font-size: 2.2rem; }
+            header h1 { font-size: 2.3rem; }
             .grid { gap: 16px; }
-            .tool-card { padding: 24px 20px 48px 20px; }
-            .ad-wrapper { padding: 8px; }
+            .tool-card { padding: 24px 20px 50px 20px; }
+            .ad-wrapper { padding: 12px; }
         }
     </style>
 </head>
 <body>
 <div class="container">
     
+    <div class="lang-selector-container">
+        <button class="lang-btn active" onclick="switchLang('en')">English</button>
+        <button class="lang-btn" onclick="switchLang('zh')">简体中文</button>
+        <button class="lang-btn" onclick="switchLang('es')">Español</button>
+        <button class="lang-btn" onclick="switchLang('ja')">日本語</button>
+    </div>
+
     <header>
-        <div class="badge"><i class="fas fa-shield-halved"></i> 100% 隐私安全 · 纯本地运行</div>
-        <h1>万能在线工具箱</h1>
-        <p>无需上传文件的极简生产力工具集。所有操作均在您的浏览器内通过沙箱环境离线完成，绝对保障隐私。</p>
+        <div class="badge" id="badge-text"><i class="fas fa-shield-halved"></i> 100% Privacy Safe · Runs Locally</div>
+        <h1 id="main-title">Ultimate Online Toolbox</h1>
+        <p id="main-desc">A premium collection of zero-upload utilities. All operations are processed completely offline inside your browser sandbox to guarantee absolute privacy.</p>
     </header>
 
     <section class="ad-wrapper top-banner">
-        <div class="ad-hint"><i class="fas fa-rectangle-ad"></i> 赞助商广告</div>
+        <div class="ad-hint" id="ad-hint-1"><i class="fas fa-rectangle-ad"></i> Sponsored Advertisement</div>
         <ins class="adsbygoogle"
              style="display:block"
              data-ad-client="ca-pub-1624261597740761"
@@ -239,27 +282,39 @@
         
         <a href="compress.html" class="tool-card">
             <div class="icon-wrapper"><i class="fas fa-file-zipper"></i></div>
-            <h2>图片压缩</h2>
-            <p>智能优化 JPG/PNG/WebP 文件体积，支持自定义画质比例与尺寸限制，高效利落。</p>
-            <div class="arrow-link">立即开启 <i class="fas fa-arrow-right"></i></div>
+            <h2 class="i18n" data-en="Image Compressor" data-zh="图片压缩" data-es="Compresor de Imagen" data-ja="画像圧縮"></h2>
+            <p class="i18n" 
+               data-en="Intelligently optimize JPG/PNG/WebP file size with customized quality ratio and dimension boundaries smoothly." 
+               data-zh="智能优化 JPG/PNG/WebP 文件体积，支持自定义画质比例与尺寸限制，高效利落。" 
+               data-es="Optimice inteligentemente imágenes JPG/PNG/WebP con relaciones de calidad personalizadas." 
+               data-ja="JPG/PNG/WebPファイルのサイズをインテリジェントに最適化。画質とサイズ制限をカスタム可能。"></p>
+            <div class="arrow-link i18n" data-en="Launch <i class='fas fa-arrow-right'></i>" data-zh="立即开启 <i class='fas fa-arrow-right'></i>" data-es="Iniciar <i class='fas fa-arrow-right'></i>" data-ja="起動する <i class='fas fa-arrow-right'></i>"></div>
         </a>
 
         <a href="watermark.html" class="tool-card">
             <div class="icon-wrapper"><i class="fas fa-paintbrush"></i></div>
-            <h2>图片水印</h2>
-            <p>可视化添加全屏倾斜或单点文字防盗印章，自由调整大小、透明度与安全图层。</p>
-            <div class="arrow-link">立即开启 <i class="fas fa-arrow-right"></i></div>
+            <h2 class="i18n" data-en="Add Watermark" data-zh="图片水印" data-es="Marca de Agua" data-ja="画像ウォーターマーク"></h2>
+            <p class="i18n" 
+               data-en="Visually stamp full-screen repeated or single text layers on your photos with adjustable size and opacity settings." 
+               data-zh="可视化添加全屏倾斜或单点文字防盗印章，自由调整大小、透明度与安全图层。" 
+               data-es="Agregue sellos visuales de texto a sus fotos con configuraciones ajustables de tamaño y opacidad." 
+               data-ja="写真にフルスクリーンまたは単一のテキストウォーターマークを視覚的に追加。サイズや不透明度を自由調整。"></p>
+            <div class="arrow-link i18n" data-en="Launch <i class='fas fa-arrow-right'></i>" data-zh="立即开启 <i class='fas fa-arrow-right'></i>" data-es="Iniciar <i class='fas fa-arrow-right'></i>" data-ja="起動する <i class='fas fa-arrow-right'></i>"></div>
         </a>
 
         <a href="formatext.html" class="tool-card">
             <div class="icon-wrapper"><i class="fas fa-code-branch"></i></div>
-            <h2>格式拓展</h2>
-            <p>高级媒体解构、图像底层元数据提取与多线程分布式虚拟渲染拓展控制台。</p>
-            <div class="arrow-link">立即开启 <i class="fas fa-arrow-right"></i></div>
+            <h2 class="i18n" data-en="Format Extension" data-zh="格式拓展" data-es="Extensión de Formato" data-ja="フォーマット拡張"></h2>
+            <p class="i18n" 
+               data-en="Advanced media metadata extraction, core structures decoding, and multi-threaded virtual rendering controller." 
+               data-zh="高级媒体解构、图像底层元数据提取与多线程分布式虚拟渲染拓展控制台。" 
+               data-es="Extracción avanzada de metadatos de medios, decodificación de estructuras básicas y renderizado." 
+               data-ja="高度なメディアメタデータ抽出、コア構造のデコード、およびマルチスレッド仮想レンダリング制御。"></p>
+            <div class="arrow-link i18n" data-en="Launch <i class='fas fa-arrow-right'></i>" data-zh="立即开启 <i class='fas fa-arrow-right'></i>" data-es="Iniciar <i class='fas fa-arrow-right'></i>" data-ja="起動する <i class='fas fa-arrow-right'></i>"></div>
         </a>
 
         <article class="tool-card ad-feed-card">
-            <div class="ad-hint" style="margin-bottom:12px;"><i class="fas fa-star"></i> 赞助商精心推荐</div>
+            <div class="ad-hint" id="ad-hint-2" style="margin-bottom:12px;"><i class="fas fa-star"></i> Recommended For You</div>
             <ins class="adsbygoogle"
                  style="display:block"
                  data-ad-format="fluid"
@@ -268,66 +323,99 @@
                  data-ad-slot="2222222222"></ins>
             <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
         </article>
+
         <a href="convert.html" class="tool-card">
             <div class="icon-wrapper"><i class="fas fa-exchange-alt"></i></div>
-            <h2>格式转换</h2>
-            <p>在 PNG、JPEG、WebP 格式之间进行高保真、零常规画质损耗的本地对冲互转。</p>
-            <div class="arrow-link">立即开启 <i class="fas fa-arrow-right"></i></div>
+            <h2 class="i18n" data-en="Format Converter" data-zh="格式转换" data-es="Conversor de Formatos" data-ja="画像フォーマット変換"></h2>
+            <p class="i18n" 
+               data-en="Convert cross-matches seamlessly between PNG, JPEG, and WebP instantly with absolute zero generation loss." 
+               data-zh="在 PNG、JPEG、WebP 格式之间进行高保真、零常规画质损耗的本地对冲互转。" 
+               data-es="Convierta sin problemas entre formatos PNG, JPEG y WebP al instante con cero pérdidas de calidad." 
+               data-ja="PNG、JPEG、WebPフォーマット間で、画質損失なしのローカル相互変換を即座に実行。"></p>
+            <div class="arrow-link i18n" data-en="Launch <i class='fas fa-arrow-right'></i>" data-zh="立即开启 <i class='fas fa-arrow-right'></i>" data-es="Iniciar <i class='fas fa-arrow-right'></i>" data-ja="起動する <i class='fas fa-arrow-right'></i>"></div>
         </a>
 
         <a href="uuid.html" class="tool-card">
             <div class="icon-wrapper"><i class="fas fa-fingerprint"></i></div>
-            <h2>UUID 生成</h2>
-            <p>批量快速生成符合全球 RFC4122 标准的高强度密匙，支持 v1、v4 随机版本。</p>
-            <div class="arrow-link">立即开启 <i class="fas fa-arrow-right"></i></div>
+            <h2 class="i18n" data-en="UUID Generator" data-zh="UUID 生成" data-es="Generador de UUID" data-ja="UUID 生成器"></h2>
+            <p class="i18n" 
+               data-en="Generate high-entropy cryptographic bulk UUID keys compliant perfectly with global RFC4122 v1/v4 standards." 
+               data-zh="批量快速生成符合全球 RFC4122 标准的高强度密匙，支持 v1、v4 随机版本。" 
+               data-es="Genere claves UUID por lotes de alta entropía que cumplen perfectamente con las normas RFC4122." 
+               data-ja="グローバルなRFC4122規格に完全準拠した、高エントロピーの暗号化暗号バルクUUIDキー（v1/v4）を生成。"></p>
+            <div class="arrow-link i18n" data-en="Launch <i class='fas fa-arrow-right'></i>" data-zh="立即开启 <i class='fas fa-arrow-right'></i>" data-es="Iniciar <i class='fas fa-arrow-right'></i>" data-ja="起動する <i class='fas fa-arrow-right'></i>"></div>
         </a>
 
         <a href="office.html" class="tool-card">
             <div class="icon-wrapper"><i class="fas fa-file-alt"></i></div>
-            <h2>Office 转换</h2>
-            <p>快速将 Word (.docx) 提纯提取为结构化 TXT，或将 Excel 转换为标准 CSV 数据。</p>
-            <div class="arrow-link">立即开启 <i class="fas fa-arrow-right"></i></div>
+            <h2 class="i18n" data-en="Office Extractions" data-zh="Office 转换" data-es="Conversor Office" data-ja="Office 抽出変換"></h2>
+            <p class="i18n" 
+               data-en="Safely extract complex Word (.docx) into structural clean TXT or parse Excel spreadsheets down into standard CSV matrix." 
+               data-zh="快速将 Word (.docx) 提纯提取为结构化 TXT，或将 Excel 转换为标准 CSV 数据。" 
+               data-es="Extraiga de forma segura Word (.docx) en TXT limpio o analice Excel en matrices CSV estándar." 
+               data-ja="Word (.docx)を構造化されたクリーンなTXTに抽出、またはExcelスプレッドシートを標準的なCSVデータに素早く変換。"></p>
+            <div class="arrow-link i18n" data-en="Launch <i class='fas fa-arrow-right'></i>" data-zh="立即开启 <i class='fas fa-arrow-right'></i>" data-es="Iniciar <i class='fas fa-arrow-right'></i>" data-ja="起動する <i class='fas fa-arrow-right'></i>"></div>
         </a>
 
         <a href="qr.html" class="tool-card">
             <div class="icon-wrapper"><i class="fas fa-qrcode"></i></div>
-            <h2>二维码生成</h2>
-            <p>除常用文本网址外，更支持直接生成一扫即连的加密 Wi‑Fi 账密扫描配对二维码。</p>
-            <div class="arrow-link">立即开启 <i class="fas fa-arrow-right"></i></div>
+            <h2 class="i18n" data-en="QR Code Maker" data-zh="二维码生成" data-es="Creador de QR" data-ja="QRコード生成"></h2>
+            <p class="i18n" 
+               data-en="Instantly render standard URL codes along with advanced encrypted Wi-Fi configuration pairing access points." 
+               data-zh="除常用文本网址外，更支持直接生成一扫即连的加密 Wi‑Fi 账密扫描配对二维码。" 
+               data-es="Cree códigos QR estándar o genere configuraciones cifradas para emparejamiento directo de Wi-Fi." 
+               data-ja="通常のテキストやURLのほか、スキャンするだけで即座に接続できる暗号化されたWi-FiペアリングQRコードの生成に対応。"></p>
+            <div class="arrow-link i18n" data-en="Launch <i class='fas fa-arrow-right'></i>" data-zh="立即开启 <i class='fas fa-arrow-right'></i>" data-es="Iniciar <i class='fas fa-arrow-right'></i>" data-ja="起動する <i class='fas fa-arrow-right'></i>"></div>
         </a>
 
         <a href="relation.html" class="tool-card">
             <div class="icon-wrapper"><i class="fas fa-users"></i></div>
-            <h2>亲属关系</h2>
-            <p>中国传统三代/多代复杂血亲三姑六婆复杂称谓精准互查与双向链路反向测算。</p>
-            <div class="arrow-link">立即开启 <i class="fas fa-arrow-right"></i></div>
+            <h2 class="i18n" data-en="Kinship Calculator" data-zh="亲属关系" data-es="Calculadora de Parentesco" data-ja="親族関係計算機"></h2>
+            <p class="i18n" 
+               data-en="Resolve intricate Chinese multi-generation kinship relations and complex family hierarchy charts accurate." 
+               data-zh="中国传统三代/多代复杂血亲三姑六婆复杂称谓精准互查与双向链路反向测算。" 
+               data-es="Resuelva e identifique las denominaciones tradicionales chinas de parentesco multigeneracional." 
+               data-ja="中国伝統の三代・多世代にわたる複雑な親族関係や、親戚の呼び名を正確に双方向で割り出し・計算。"></p>
+            <div class="arrow-link i18n" data-en="Launch <i class='fas fa-arrow-right'></i>" data-zh="立即开启 <i class='fas fa-arrow-right'></i>" data-es="Iniciar <i class='fas fa-arrow-right'></i>" data-ja="起動する <i class='fas fa-arrow-right'></i>"></div>
         </a>
 
         <a href="loan.html" class="tool-card">
             <div class="icon-wrapper"><i class="fas fa-chart-line"></i></div>
-            <h2>贷款计算</h2>
-            <p>精确测算对比等额本息、等额本金等不同摊还金融方案的本金利息还款明细。</p>
-            <div class="arrow-link">立即开启 <i class="fas fa-arrow-right"></i></div>
+            <h2 class="i18n" data-en="Loan Mortgage" data-zh="贷款计算" data-es="Calculadora Hipotecaria" data-ja="ローン計算機"></h2>
+            <p class="i18n" 
+               data-en="Breakdown amortization payments to track principal schedules between equal principal or interest terms." 
+               data-zh="精确测算对比等额本息、等额本金等不同摊还金融方案的本金利息还款明细。" 
+               data-es="Desglose los pagos de amortización para realizar un seguimiento de los intereses principales." 
+               data-ja="元利均等返済・元金均等返済など、異なる償還プランの元金・利息の返済明細を正確にシミュレーション。"></p>
+            <div class="arrow-link i18n" data-en="Launch <i class='fas fa-arrow-right'></i>" data-zh="立即开启 <i class='fas fa-arrow-right'></i>" data-es="Iniciar <i class='fas fa-arrow-right'></i>" data-ja="起動する <i class='fas fa-arrow-right'></i>"></div>
         </a>
 
         <a href="currency.html" class="tool-card">
             <div class="icon-wrapper"><i class="fas fa-dollar-sign"></i></div>
-            <h2>汇率换算</h2>
-            <p>一键快速进行多币种双向对冲汇率换算，可扩展接入公网实时 Spot 价格管道。</p>
-            <div class="arrow-link">立即开启 <i class="fas fa-arrow-right"></i></div>
+            <h2 class="i18n" data-en="Exchange Rates" data-zh="汇率换算" data-es="Tipos de Cambio" data-ja="為替レート換算"></h2>
+            <p class="i18n" 
+               data-en="Quick cross-currency pairs converter ready for direct extensions into dynamic global asset channels easily." 
+               data-zh="一键快速进行多币种双向对冲汇率换算，可扩展接入公网实时 Spot 价格管道。" 
+               data-es="Conversor rápido de divisas listo para extensiones directas a canales de activos mundiales." 
+               data-ja="ワンクリックで複数通貨の双方向の為替換算を実行。リアルタイムのスポット価格チャネルに拡張可能。"></p>
+            <div class="arrow-link i18n" data-en="Launch <i class='fas fa-arrow-right'></i>" data-zh="立即开启 <i class='fas fa-arrow-right'></i>" data-es="Iniciar <i class='fas fa-arrow-right'></i>" data-ja="起動する <i class='fas fa-arrow-right'></i>"></div>
         </a>
 
         <a href="unit.html" class="tool-card">
             <div class="icon-wrapper"><i class="fas fa-ruler"></i></div>
-            <h2>单位换算</h2>
-            <p>覆盖长度、重量、温度、面积等多维度国际标准度量衡单位的高精度网格转换器。</p>
-            <div class="arrow-link">立即开启 <i class="fas fa-arrow-right"></i></div>
+            <h2 class="i18n" data-en="Unit Converter" data-zh="单位换算" data-es="Conversor de Unidades" data-ja="単位換算ツール"></h2>
+            <p class="i18n" 
+               data-en="Cover extensive international systems for metrics encompassing dimensions, weight matrices, and thermal indexes." 
+               data-zh="覆盖长度、重量、温度、面积等多维度国际标准度量衡单位的高精度网格转换器。" 
+               data-es="Conversor de alta precisión que cubre longitud, peso, temperatura y múltiples dimensiones métricas." 
+               data-ja="長さ、重量、温度、面積など、多次元にわたる国際標準度量衡（メトリックシステム）を高精度に一括換算。"></p>
+            <div class="arrow-link i18n" data-en="Launch <i class='fas fa-arrow-right'></i>" data-zh="立即开启 <i class='fas fa-arrow-right'></i>" data-es="Iniciar <i class='fas fa-arrow-right'></i>" data-ja="起動する <i class='fas fa-arrow-right'></i>"></div>
         </a>
 
     </main>
 
     <section class="ad-wrapper bottom-banner">
-        <div class="ad-hint"><i class="fas fa-rectangle-ad"></i> 赞助商广告</div>
+        <div class="ad-hint" id="ad-hint-3"><i class="fas fa-rectangle-ad"></i> Sponsored Advertisement</div>
         <ins class="adsbygoogle"
              style="display:block"
              data-ad-client="ca-pub-1624261597740761"
@@ -338,9 +426,89 @@
     </section>
 
     <footer>
-        <p>© 万能在线工具箱 | 纯前端零追踪工坊</p>
-        <p class="privacy-tag"><i class="fas fa-user-shield"></i> 隐私政策声明：所有工具均基于客户端沙箱运行，数据 100% 留存在您的本地浏览器中，绝无任何服务器端数据持久化。</p>
+        <p id="footer-cr">© Ultimate Online Toolbox | Client-Side Sandbox Workshop</p>
+        <p class="privacy-tag" id="footer-privacy"><i class="fas fa-user-shield"></i> Privacy Policy Notice: All tools compute independently via pure client-side sandbox environments. Absolutely zero records are cached or stored onto server pipelines.</p>
     </footer>
 </div>
+
+<script>
+    // i18n Variable Dictionary Config (Fallback Text Blocks For Base Page Nodes)
+    const LANG_CONFIG = {
+        en: {
+            badge: '<i class="fas fa-shield-halved"></i> 100% Privacy Safe · Runs Locally',
+            title: 'Ultimate Online Toolbox',
+            desc: 'A premium collection of zero-upload utilities. All operations are processed completely offline inside your browser sandbox to guarantee absolute privacy.',
+            adHint: '<i class="fas fa-rectangle-ad"></i> Sponsored Advertisement',
+            feedHint: '<i class="fas fa-star"></i> Recommended For You',
+            footerCr: '© Ultimate Online Toolbox | Client-Side Sandbox Workshop',
+            footerPr: '<i class="fas fa-user-shield"></i> Privacy Policy Notice: All tools compute independently via pure client-side sandbox environments. Absolutely zero records are cached or stored onto server pipelines.'
+        },
+        zh: {
+            badge: '<i class="fas fa-shield-halved"></i> 100% 隐私安全 · 纯本地运行',
+            title: '万能在线工具箱',
+            desc: '无需上传文件的极简生产力工具集。所有操作均在您的浏览器内通过沙箱环境离线完成，绝对保障隐私。',
+            adHint: '<i class="fas fa-rectangle-ad"></i> 赞助商广告',
+            feedHint: '<i class="fas fa-star"></i> 赞助商精心推荐',
+            footerCr: '© 万能在线工具箱 | 纯前端零追踪工坊',
+            footerPr: '<i class="fas fa-user-shield"></i> 隐私政策声明：所有工具均基于客户端沙箱运行，数据 100% 留存在您的本地浏览器中，绝无任何服务器端数据持久化。'
+        },
+        es: {
+            badge: '<i class="fas fa-shield-halved"></i> 100% Privado · Ejecución Local',
+            title: 'Caja de Herramientas Online',
+            desc: 'Colección premium de utilidades sin carga de archivos. Todas las operaciones se procesan sin conexión dentro del navegador para garantizar la privacidad.',
+            adHint: '<i class="fas fa-rectangle-ad"></i> Publicidad Patrocinada',
+            feedHint: '<i class="fas fa-star"></i> Recomendado Para Ti',
+            footerCr: '© Ultimate Online Toolbox | Taller en el lado del cliente',
+            footerPr: '<i class="fas fa-user-shield"></i> Aviso de privacidad: Todas las herramientas se calculan localmente en su navegador, nunca se envían datos al servidor.'
+        },
+        ja: {
+            badge: '<i class="fas fa-shield-halved"></i> 100% 秘密厳守 · 完全ローカル実行',
+            title: '万能オンラインツールボックス',
+            desc: 'ファイルのアップロードが不要な極速生産性ツールコレクション。すべての処理はブラウザのサンドボックス内でオフラインで完結。',
+            adHint: '<i class="fas fa-rectangle-ad"></i> スポンサー広告',
+            feedHint: '<i class="fas fa-star"></i> あなたへのおすすめ',
+            footerCr: '© 万能オンラインツールボックス | クライアントサイド工房',
+            footerPr: '<i class="fas fa-user-shield"></i> プライバシーポリシー声明：すべてのツールはクライアントサイドで独立して動作し、サーバーへのデータ送信は一切行われません。'
+        }
+    };
+
+    function switchLang(lang) {
+        // 1. Core Structural Selectors Injection
+        const data = LANG_CONFIG[lang] || LANG_CONFIG['en'];
+        
+        document.getElementById('badge-text').innerHTML = data.badge;
+        document.getElementById('main-title').innerText = data.title;
+        document.getElementById('main-desc').innerText = data.desc;
+        document.getElementById('ad-hint-1').innerHTML = data.adHint;
+        document.getElementById('ad-hint-2').innerHTML = data.feedHint;
+        document.getElementById('ad-hint-3').innerHTML = data.adHint;
+        document.getElementById('footer-cr').innerText = data.footerCr;
+        document.getElementById('footer-privacy').innerHTML = data.footerPr;
+
+        // 2. Loop & Replace Sub-elements inside the Grid
+        document.querySelectorAll('.i18n').forEach(el => {
+            const translatedVal = el.getAttribute(`data-${lang}`) || el.getAttribute('data-en');
+            if (translatedVal) el.innerHTML = translatedVal;
+        });
+
+        // 3. UI Active State Highlight Control Switches
+        document.querySelectorAll('.lang-btn').forEach(btn => {
+            btn.classList.remove('active');
+            if(btn.getAttribute('onclick').includes(`'${lang}'`)) {
+                btn.classList.add('active');
+            }
+        });
+
+        // 4. Record Preferences Into Browsers LocalStorage Pipelines
+        localStorage.setItem('user_lang_preference', lang);
+        document.documentElement.lang = lang;
+    }
+
+    // Initialize Page Setup (Defaults to English unless a preference is already saved)
+    window.addEventListener('DOMContentLoaded', () => {
+        const storedPreference = localStorage.getItem('user_lang_preference') || 'en';
+        switchLang(storedPreference);
+    });
+</script>
 </body>
 </html>
