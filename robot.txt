@@ -1,11 +1,3 @@
-# https://www.robotstxt.org/robotstxt.html
-# Robots.txt for Ultimate Online Toolbox
-
 User-agent: *
 Allow: /
-
-# 允许抓取核心静态资源
-Allow: /*.html
-
-# 声明网站的站点地图（请将 example.com 替换为您实际的域名）
 Sitemap: https://tools123.asia/webmap.xml
