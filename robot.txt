@@ -8,4 +8,4 @@ Allow: /
 Allow: /*.html
 
 # 声明网站的站点地图（请将 example.com 替换为您实际的域名）
-Sitemap: https://example.com/webmap.xml
+Sitemap: https://tools123.asia/webmap.xml
