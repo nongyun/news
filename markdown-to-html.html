@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title data-i18n="pageTitle">Markdown to HTML Converter - Ultimate Online Toolbox</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1624261597740761" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; -webkit-font-smoothing: antialiased; }
+        
+        :root {
+            --bg-gradient: radial-gradient(circle at 10% 30%, #eef2f9, #e0e8f2);
+            --text-main: #0b2b3b;
+            --text-muted: #5c7285;
+            --text-sub: #8fa0b0;
+            --accent: #3b82f6;
+            --card-bg: #ffffff;
+            --card-border: #bfd6ea;
+            --input-bg: #f8fafc;
+            --shadow-md: 0 25px 45px -12px rgba(0,0,0,0.1);
+            --radius-lg: 24px;
+            --radius-md: 16px;
+        }
+
+        [data-theme="dark"] {
+            --bg-gradient: radial-gradient(circle at 50% 0%, #111827 0%, #030712 100%);
+            --text-main: #f3f4f6;
+            --text-muted: #9ca3af;
+            --text-sub: #6b7280;
+            --accent: #3b82f6;
+            --card-bg: rgba(17, 24, 39, 0.7);
+            --card-border: rgba(37, 99, 235, 0.15);
+            --input-bg: rgba(15, 23, 42, 0.6);
+        }
+
+        body { font-family: 'Inter', sans-serif; background: var(--bg-gradient); color: var(--text-main); min-height: 100vh; padding: 40px 24px; display: flex; flex-direction: column; align-items: center; transition: background 0.3s ease, color 0.3s ease; }
+        .container { width: 100%; max-width: 1140px; }
+
+        .top-navbar { width: 100%; display: flex; justify-content: space-between; align-items: center; margin-bottom: 32px; }
+        .nav-controls { display: flex; gap: 12px; align-items: center; }
+        
+        .nav-btn {
+            display: inline-flex; align-items: center; gap: 8px; background: var(--card-bg); border: 1px solid var(--card-border);
+            color: var(--text-main); padding: 8px 18px; border-radius: 100px; font-size: 0.85rem; font-weight: 500; text-decoration: none; transition: all 0.2s ease; cursor: pointer;
+        }
+        .nav-btn:hover { border-color: var(--accent); transform: translateY(-1px); }
+        
+        select.nav-btn { padding-right: 28px; appearance: none; -webkit-appearance: none; background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='%235c7285' viewBox='0 0 16 16'><path d='M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z'/></svg>"); background-repeat: no-repeat; background-position: calc(100% - 12px) center; }
+
+        header { text-align: center; margin-bottom: 36px; }
+        header h1 { font-size: 2.5rem; font-weight: 800; letter-spacing: -1px; background: linear-gradient(135deg, #ffffff 0%, #9ca3af 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 10px; }
+        [data-theme="light"] header h1 { background: linear-gradient(135deg, #0b2b3b 0%, #1e3a8a 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        header p { color: var(--text-muted); }
+
+        .workspace { display: flex; gap: 24px; margin-bottom: 36px; }
+        .editor-box { flex: 1; background: var(--card-bg); border: 1px solid var(--card-border); border-radius: var(--radius-lg); padding: 24px; box-shadow: var(--shadow-md); display: flex; flex-direction: column; gap: 12px; }
+        .editor-box h3 { font-size: 1.1rem; font-weight: 600; color: var(--text-main); display: flex; align-items: center; gap: 8px; }
+        
+        textarea, .output-html { width: 100%; height: 380px; padding: 16px; background: var(--input-bg); border: 1px solid var(--card-border); border-radius: var(--radius-md); color: var(--text-main); font-family: monospace; font-size: 0.9rem; line-height: 1.6; outline: none; }
+        .output-html { overflow-y: auto; white-space: pre-wrap; word-break: break-all; }
+
+        .ad-wrapper { margin: 0 auto 36px auto; width: 100%; background: var(--card-bg); border: 1px solid var(--card-border); border-radius: var(--radius-md); padding: 16px; text-align: center; backdrop-filter: blur(12px); }
+        .ad-hint { font-size: 0.68rem; color: var(--text-sub); text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 8px; font-weight: 600; display: flex; align-items: center; justify-content: center; gap: 4px; }
+
+        footer { text-align: center; color: var(--text-sub); font-size: 0.85rem; }
+        @media (max-width: 768px) { .workspace { flex-direction: column; } }
+    </style>
+</head>
+<body>
+<div class="container">
+    
+    <div class="top-navbar">
+        <a href="index.html" class="nav-btn"><i class="fas fa-arrow-left"></i> <span data-i18n="backToHub">Back to Hub</span></a>
+        <div class="nav-controls">
+            <select class="nav-btn" id="langSelect" onchange="changeLanguage(this.value)">
+                <option value="en">English</option>
+                <option value="zh">简体中文</option>
+                <option value="es">Español</option>
+                <option value="ja">日本語</option>
+            </select>
+            <button class="theme-btn nav-btn" onclick="toggleTheme()"><i class="fas fa-lightbulb"></i> <span data-i18n="themeBtn">Theme</span></button>
+        </div>
+    </div>
+
+    <header>
+        <h1 data-i18n="mainTitle">Markdown Real-time Converter</h1>
+        <p data-i18n="subTitle">Type markdown on the left and immediately harvest neat clean HTML structures.</p>
+    </header>
+
+    <section class="ad-wrapper">
+        <div class="ad-hint"><i class="fas fa-rectangle-ad"></i> <span data-i18n="adHint">Sponsored Advertisement</span></div>
+        <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-1624261597740761" data-ad-slot="7441222926" data-ad-format="auto" data-full-width-responsive="true"></ins>
+        <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+    </section>
+
+    <main class="workspace">
+        <div class="editor-box">
+            <h3><i class="fab fa-markdown" style="color:#60a5fa;"></i> <span data-i18n="mdInputLabel">Markdown Input</span></h3>
+            <textarea id="mdInput" data-i18n-attr="placeholder:inputPlaceholder" placeholder="Type Markdown here..." oninput="convert()"></textarea>
+        </div>
+        <div class="editor-box">
+            <h3><i class="fas fa-code" style="color:#34d399;"></i> <span data-i18n="htmlOutputLabel">HTML Source Output</span></h3>
+            <div id="htmlOutput" class="output-html"></div>
+        </div>
+    </main>
+
+    <section class="ad-wrapper">
+        <div class="ad-hint"><i class="fas fa-rectangle-ad"></i> <span data-i18n="adHint">Sponsored Advertisement</span></div>
+        <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-1624261597740761" data-ad-slot="7441222926" data-ad-format="auto" data-full-width-responsive="true"></ins>
+        <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+    </section>
+
+    <footer>
+        <p data-i18n="footerText">© Ultimate Online Toolbox | Privacy Secure Virtual Compiler</p>
+    </footer>
+</div>
+
+<script>
+    const i18nConfig = {
+        en: {
+            pageTitle: "Markdown to HTML Converter - Ultimate Online Toolbox",
+            backToHub: "Back to Hub",
+            themeBtn: "Theme",
+            mainTitle: "Markdown Real-time Converter",
+            subTitle: "Type markdown on the left and immediately harvest neat clean HTML structures.",
+            adHint: "Sponsored Advertisement",
+            mdInputLabel: "Markdown Input",
+            htmlOutputLabel: "HTML Source Output",
+            inputPlaceholder: "Type Markdown here...",
+            footerText: "© Ultimate Online Toolbox | Privacy Secure Virtual Compiler"
+        },
+        zh: {
+            pageTitle: "Markdown 转 HTML 转换器 - 终极在线工具箱",
+            backToHub: "返回主页",
+            themeBtn: "切换主题",
+            mainTitle: "Markdown 实时转换器",
+            subTitle: "在左侧输入 Markdown，立即获得整洁的 HTML 结构。",
+            adHint: "赞助广告",
+            mdInputLabel: "Markdown 输入",
+            htmlOutputLabel: "HTML 源码输出",
+            inputPlaceholder: "在此处输入 Markdown...",
+            footerText: "© 终极在线工具箱 | 隐私安全虚拟编译器"
+        },
+        es: {
+            pageTitle: "Convertidor de Markdown a HTML - Ultimate Online Toolbox",
+            backToHub: "Volver al Hub",
+            themeBtn: "Tema",
+            mainTitle: "Convertidor de Markdown en Tiempo Real",
+            subTitle: "Escriba markdown a la izquierda e inmediatamente obtenga estructuras HTML limpias y ordenadas.",
+            adHint: "Anuncio Patrocinado",
+            mdInputLabel: "Entrada Markdown",
+            htmlOutputLabel: "Salida de Código HTML",
+            inputPlaceholder: "Escriba Markdown aquí...",
+            footerText: "© Ultimate Online Toolbox | Compilador Virtual Seguro y Privado"
+        },
+        ja: {
+            pageTitle: "Markdown から HTML へのコンバーター - 究極のオンラインツールボックス",
+            backToHub: "ハブに戻る",
+            themeBtn: "テーマ変更",
+            mainTitle: "Markdown リアルタイムコンバーター",
+            subTitle: "左側に Markdown を入力すると、すぐに綺麗な HTML 構造が生成されます。",
+            adHint: "スポンサー広告",
+            mdInputLabel: "Markdown 入力",
+            htmlOutputLabel: "HTML ソース出力",
+            inputPlaceholder: "ここに Markdown を入力...",
+            footerText: "© 究極のオンラインツールボックス | プライバシー保護仮想コンパイラ"
+        }
+    };
+
+    function applyTranslations(lang) {
+        document.documentElement.setAttribute('lang', lang);
+        const langData = i18nConfig[lang] || i18nConfig.en;
+        document.querySelectorAll('[data-i18n]').forEach(el => { const key = el.getAttribute('data-i18n'); if (langData[key]) el.textContent = langData[key]; });
+        document.querySelectorAll('[data-i18n-attr]').forEach(el => { const attrConfig = el.getAttribute('data-i18n-attr'); const [attrName, key] = attrConfig.split(':'); if (langData[key]) el.setAttribute(attrName, langData[key]); });
+        document.getElementById('langSelect').value = lang;
+    }
+
+    function changeLanguage(lang) { localStorage.setItem('user_language_preference', lang); applyTranslations(lang); }
+
+    function convert() {
+        const input = document.getElementById('mdInput').value;
+        const rawHtml = marked.parse(input);
+        document.getElementById('htmlOutput').textContent = rawHtml;
+    }
+
+    function toggleTheme() {
+        const currentTheme = document.documentElement.getAttribute('data-theme');
+        const targetTheme = currentTheme === 'dark' ? 'light' : 'dark';
+        document.documentElement.setAttribute('data-theme', targetTheme);
+        localStorage.setItem('user_theme_preference', targetTheme);
+    }
+
+    function getBrowserLanguage() {
+        const navLang = navigator.language || navigator.userLanguage;
+        if (!navLang) return 'en';
+        const shortLang = navLang.toLowerCase().split('-')[0];
+        return i18nConfig[shortLang] ? shortLang : 'en';
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+        document.documentElement.setAttribute('data-theme', localStorage.getItem('user_theme_preference') || 'dark');
+        const savedLang = localStorage.getItem('user_language_preference');
+        applyTranslations(savedLang || getBrowserLanguage());
+    });
+</script>
+</body>
+</html>

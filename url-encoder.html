@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title data-i18n="pageTitle">URL Encoder/Decoder - Ultimate Online Toolbox</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1624261597740761" crossorigin="anonymous"></script>
+
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; -webkit-font-smoothing: antialiased; }
+        
+        :root {
+            --bg-gradient: radial-gradient(circle at 10% 30%, #eef2f9, #e0e8f2);
+            --text-main: #0b2b3b;
+            --text-muted: #5c7285;
+            --text-sub: #8fa0b0;
+            --accent: #e67e22;
+            --accent-gradient: linear-gradient(135deg, #e67e22 0%, #d35400 100%);
+            --card-bg: #ffffff;
+            --card-border: #bfd6ea;
+            --input-bg: #f8fafc;
+            --shadow-md: 0 25px 45px -12px rgba(0,0,0,0.1);
+            --radius-lg: 24px;
+            --radius-md: 16px;
+        }
+
+        [data-theme="dark"] {
+            --bg-gradient: radial-gradient(circle at 50% 0%, #111827 0%, #030712 100%);
+            --text-main: #f3f4f6;
+            --text-muted: #9ca3af;
+            --text-sub: #6b7280;
+            --accent: #3b82f6;
+            --accent-gradient: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+            --card-bg: rgba(17, 24, 39, 0.7);
+            --card-border: rgba(37, 99, 235, 0.15);
+            --input-bg: rgba(15, 23, 42, 0.6);
+        }
+
+        body {
+            font-family: 'Inter', sans-serif; background: var(--bg-gradient); color: var(--text-main);
+            min-height: 100vh; padding: 40px 24px; display: flex; flex-direction: column; align-items: center;
+            transition: background 0.3s ease, color 0.3s ease;
+        }
+
+        .container { width: 100%; max-width: 970px; }
+
+        .top-navbar { width: 100%; display: flex; justify-content: space-between; align-items: center; margin-bottom: 32px; }
+        
+        .nav-controls { display: flex; gap: 12px; align-items: center; }
+        
+        .nav-btn {
+            display: inline-flex; align-items: center; gap: 8px; background: var(--card-bg); border: 1px solid var(--card-border);
+            color: var(--text-main); padding: 8px 18px; border-radius: 100px; font-size: 0.85rem; font-weight: 500; text-decoration: none; transition: all 0.2s ease;
+            cursor: pointer;
+        }
+        .nav-btn:hover { border-color: var(--accent); transform: translateY(-1px); }
+        
+        select.nav-btn { padding-right: 28px; appearance: none; -webkit-appearance: none; background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='%235c7285' viewBox='0 0 16 16'><path d='M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z'/></svg>"); background-repeat: no-repeat; background-position: calc(100% - 12px) center; }
+
+        header { text-align: center; margin-bottom: 36px; }
+        header h1 {
+            font-size: 2.5rem; font-weight: 800; letter-spacing: -1px;
+            background: linear-gradient(135deg, #ffffff 0%, #9ca3af 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 10px;
+        }
+        [data-theme="light"] header h1 { background: linear-gradient(135deg, #0b2b3b 0%, #1e3a8a 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        header p { color: var(--text-muted); }
+
+        .main-card { background: var(--card-bg); border: 1px solid var(--card-border); border-radius: var(--radius-lg); padding: 32px; box-shadow: var(--shadow-md); margin-bottom: 36px; }
+
+        textarea {
+            width: 100%; height: 260px; padding: 16px; background: var(--input-bg); border: 1px solid var(--card-border);
+            border-radius: var(--radius-md); color: var(--text-main); font-family: monospace; font-size: 0.95rem; line-height: 1.5; resize: vertical; outline: none;
+        }
+
+        .btn-group { display: flex; gap: 14px; margin-top: 20px; flex-wrap: wrap; }
+        .action-btn {
+            flex: 1; min-width: 150px; padding: 14px; border: none; border-radius: 12px;
+            font-size: 0.95rem; font-weight: 600; cursor: pointer; transition: all 0.2s;
+            display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+        }
+        .btn-primary { background: var(--accent-gradient); color: #ffffff; box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3); }
+        .btn-primary:hover { opacity: 0.9; transform: translateY(-1px); }
+        .btn-secondary { background: rgba(139, 92, 246, 0.15); color: #a78bfa; border: 1px solid rgba(139, 92, 246, 0.2); }
+        .btn-secondary:hover { background: rgba(139, 92, 246, 0.25); }
+        .btn-clear { background: transparent; color: var(--text-muted); border: 1px solid var(--card-border); }
+        .btn-clear:hover { border-color: #ef4444; color: #ef4444; }
+
+        .ad-wrapper {
+            margin: 0 auto 36px auto; width: 100%; background: var(--card-bg); border: 1px solid var(--card-border);
+            border-radius: var(--radius-md); padding: 16px; text-align: center; backdrop-filter: blur(12px);
+        }
+        .ad-hint { font-size: 0.68rem; color: var(--text-sub); text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 8px; font-weight: 600; display: flex; align-items: center; justify-content: center; gap: 4px; }
+
+        footer { text-align: center; color: var(--text-sub); font-size: 0.85rem; }
+    </style>
+</head>
+<body>
+<div class="container">
+    
+    <div class="top-navbar">
+        <a href="index.html" class="nav-btn"><i class="fas fa-arrow-left"></i> <span data-i18n="backToHub">Back to Hub</span></a>
+        <div class="nav-controls">
+            <select class="nav-btn" id="langSelect" onchange="changeLanguage(this.value)">
+                <option value="en">English</option>
+                <option value="zh">简体中文</option>
+                <option value="es">Español</option>
+                <option value="ja">日本語</option>
+            </select>
+            <button class="theme-btn nav-btn" onclick="toggleTheme()"><i class="fas fa-lightbulb"></i> <span data-i18n="themeBtn">Theme</span></button>
+        </div>
+    </div>
+
+    <header>
+        <h1 data-i18n="mainTitle">URL Uniform Encoder / Decoder</h1>
+        <p data-i18n="subTitle">Safely transform raw web addresses with target params using standard safe URI protocols.</p>
+    </header>
+
+    <section class="ad-wrapper">
+        <div class="ad-hint"><i class="fas fa-rectangle-ad"></i> <span data-i18n="adHint">Sponsored Advertisement</span></div>
+        <ins class="adsbygoogle"
+             style="display:block"
+             data-ad-client="ca-pub-1624261597740761"
+             data-ad-slot="7441222926"
+             data-ad-format="auto"
+             data-full-width-responsive="true"></ins>
+        <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+    </section>
+
+    <main class="main-card">
+        <textarea id="urlInput" data-i18n-attr="placeholder:inputPlaceholder" placeholder="Enter standard URL stream or parsed queries here..."></textarea>
+        
+        <div class="btn-group">
+            <button class="action-btn btn-primary" onclick="handleUrl(true)"><i class="fas fa-rocket"></i> <span data-i18n="btnEncode">URL Encode</span></button>
+            <button class="action-btn btn-secondary" onclick="handleUrl(false)"><i class="fas fa-puzzle-piece"></i> <span data-i18n="btnDecode">URL Decode</span></button>
+            <button class="action-btn btn-clear" onclick="document.getElementById('urlInput').value=''"><i class="fas fa-trash-can"></i> <span data-i18n="btnClear">Clear</span></button>
+        </div>
+    </main>
+
+    <section class="ad-wrapper">
+        <div class="ad-hint"><i class="fas fa-rectangle-ad"></i> <span data-i18n="adHint">Sponsored Advertisement</span></div>
+        <ins class="adsbygoogle"
+             style="display:block"
+             data-ad-client="ca-pub-1624261597740761"
+             data-ad-slot="7441222926"
+             data-ad-format="auto"
+             data-full-width-responsive="true"></ins>
+        <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+    </section>
+
+    <footer>
+        <p data-i18n="footerText">© Ultimate Online Toolbox | Client Sandboxed Privacy Routing</p>
+    </footer>
+</div>
+
+<script>
+    // --- 多语言核心配置字典 ---
+    const i18nConfig = {
+        en: {
+            pageTitle: "URL Encoder/Decoder - Ultimate Online Toolbox",
+            backToHub: "Back to Hub",
+            themeBtn: "Theme",
+            mainTitle: "URL Uniform Encoder / Decoder",
+            subTitle: "Safely transform raw web addresses with target params using standard safe URI protocols.",
+            adHint: "Sponsored Advertisement",
+            inputPlaceholder: "Enter standard URL stream or parsed queries here...",
+            btnEncode: "URL Encode",
+            btnDecode: "URL Decode",
+            btnClear: "Clear",
+            footerText: "© Ultimate Online Toolbox | Client Sandboxed Privacy Routing",
+            alertError: "Invalid conversion format targets."
+        },
+        zh: {
+            pageTitle: "URL 编码/解码工具 - 终极在线工具箱",
+            backToHub: "返回主页",
+            themeBtn: "切换主题",
+            mainTitle: "URL 统一编码 / 解码器",
+            subTitle: "使用标准的安全 URI 协议，安全地转换带有目标参数的原始网页地址。",
+            adHint: "赞助广告",
+            inputPlaceholder: "在此处输入标准的 URL 文本流或待解析的查询参数...",
+            btnEncode: "URL 编码",
+            btnDecode: "URL 解码",
+            btnClear: "清空",
+            footerText: "© 终极在线工具箱 | 客户端沙盒隐私保护路由",
+            alertError: "无效的转换格式目标。"
+        },
+        es: {
+            pageTitle: "Codificador/Decodificador URL - Ultimate Online Toolbox",
+            backToHub: "Volver al Hub",
+            themeBtn: "Tema",
+            mainTitle: "Codificador / Decodificador Uniforme de URL",
+            subTitle: "Transforme de forma segura direcciones web sin procesar con parámetros de destino utilizando protocolos URI seguros estándar.",
+            adHint: "Anuncio Patrocinado",
+            inputPlaceholder: "Ingrese el flujo de URL estándar o las consultas analizadas aquí...",
+            btnEncode: "Codificar URL",
+            btnDecode: "Decodificar URL",
+            btnClear: "Limpiar",
+            footerText: "© Ultimate Online Toolbox | Enrutamiento de privacidad en espacio de trabajo del cliente",
+            alertError: "Formatos de conversión de destino no válidos."
+        },
+        ja: {
+            pageTitle: "URL エンコード/デコード - 究極のオンラインツールボックス",
+            backToHub: "ハブに戻る",
+            themeBtn: "テーマ変更",
+            mainTitle: "URL 統一エンコーダ / デコーダ",
+            subTitle: "標準の安全な URI プロトコルを使用して、ターゲットパラメータを含む生の Web アドレスを安全に変換します。",
+            adHint: "スポンサー広告",
+            inputPlaceholder: "ここに標準の URL ストリームまたは解析されたクエリを入力してください...",
+            btnEncode: "URL エンコード",
+            btnDecode: "URL デコード",
+            btnClear: "クリア",
+            footerText: "© 究極のオンラインツールボックス | クライアントサンドボックスプライバシールーティング",
+            alertError: "無効な変換形式ターゲットです。"
+        }
+    };
+
+    function applyTranslations(lang) {
+        document.documentElement.setAttribute('lang', lang);
+        const langData = i18nConfig[lang] || i18nConfig.en;
+
+        document.querySelectorAll('[data-i18n]').forEach(el => {
+            const key = el.getAttribute('data-i18n');
+            if (langData[key]) el.textContent = langData[key];
+        });
+
+        document.querySelectorAll('[data-i18n-attr]').forEach(el => {
+            const attrConfig = el.getAttribute('data-i18n-attr');
+            const [attrName, key] = attrConfig.split(':');
+            if (langData[key]) el.setAttribute(attrName, langData[key]);
+        });
+        
+        document.getElementById('langSelect').value = lang;
+    }
+
+    function changeLanguage(lang) {
+        localStorage.setItem('user_language_preference', lang);
+        applyTranslations(lang);
+    }
+
+    function handleUrl(isEncode) {
+        const textarea = document.getElementById('urlInput');
+        let val = textarea.value;
+        if(!val) return;
+        try {
+            textarea.value = isEncode ? encodeURIComponent(val) : decodeURIComponent(val);
+        } catch (e) {
+            const currentLang = localStorage.getItem('user_language_preference') || getBrowserLanguage();
+            alert(i18nConfig[currentLang]?.alertError || i18nConfig.en.alertError);
+        }
+    }
+
+    function toggleTheme() {
+        const currentTheme = document.documentElement.getAttribute('data-theme');
+        const targetTheme = currentTheme === 'dark' ? 'light' : 'dark';
+        document.documentElement.setAttribute('data-theme', targetTheme);
+        localStorage.setItem('user_theme_preference', targetTheme);
+    }
+
+    function getBrowserLanguage() {
+        const navLang = navigator.language || navigator.userLanguage;
+        if (!navLang) return 'en';
+        const shortLang = navLang.toLowerCase().split('-')[0];
+        return i18nConfig[shortLang] ? shortLang : 'en';
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+        document.documentElement.setAttribute('data-theme', localStorage.getItem('user_theme_preference') || 'dark');
+        
+        const savedLang = localStorage.getItem('user_language_preference');
+        const defaultLang = savedLang || getBrowserLanguage();
+        applyTranslations(defaultLang);
+    });
+</script>
+</body>
+</html>
