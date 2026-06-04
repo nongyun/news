@@ -6,8 +6,6 @@ Allow: /
 
 # 允许抓取核心静态资源
 Allow: /*.html
-Allow: /*.css
-Allow: /*.js
 
 # 声明网站的站点地图（请将 example.com 替换为您实际的域名）
-Sitemap: https://example.com/sitemap.xml
+Sitemap: https://example.com/webmap.xml
