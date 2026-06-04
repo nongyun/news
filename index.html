@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>万能在线工具箱 - 免费、纯本地、隐私安全的日常效率工具集</title>
+    <meta name="description" content="聚合多种高频日常效率工具，包括智能图片压缩、文字水印添加、图片格式互转（PNG/JPEG/WebP）、批量UUID生成、Office离线转换、Wi-Fi二维码生成、中国亲属关系计算、精准贷款利率计算及多国汇率单位换算。所有计算均在本地浏览器完成，绝不上传数据，保障绝对隐私。">
+    <meta name="keywords" content="在线工具箱,图片压缩,图片水印,格式转换,UUID生成,Office转换,二维码生成,亲属关系计算,贷款计算器,汇率换算,单位换算">
+    
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="万能在线工具箱 - 免费、纯本地、隐私安全的日常效率工具集">
+    <meta property="og:description" content="所有工具100%本地运行，不消耗服务器流量，不泄露任何隐私数据。高效、极简、即开即用。">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1624261597740761" crossorigin="anonymous"></script>
+    <script>
+         (adsbygoogle = window.adsbygoogle || []).push({
+              google_ad_client: "ca-pub-1624261597740761",
+              enable_page_level_ads: true /* 自动激活移动端超高收益的“网页间隙穿插广告” */
+         });
+    </script>
+
+    <style>
+        /* === 全局视觉现代重置 === */
+        * { margin: 0; padding: 0; box-sizing: border-box; -webkit-font-smoothing: antialiased; }
+        
+        :root {
+            --bg-gradient: radial-gradient(circle at 50% 0%, #f4f7fc 0%, #eef2f9 100%);
+            --text-main: #0f172a;
+            --text-muted: #475569;
+            --text-sub: #94a3b8;
+            --accent: #2563eb;
+            --accent-gradient: linear-gradient(135deg, #2563eb 0%, #3b82f6 100%);
+            --card-bg: rgba(255, 255, 255, 0.85);
+            --card-border: rgba(226, 232, 240, 0.8);
+            --shadow-sm: 0 2px 8px rgba(15, 23, 42, 0.04);
+            --shadow-md: 0 10px 30px -10px rgba(15, 23, 42, 0.08);
+            --shadow-lg: 0 20px 40px -15px rgba(37, 99, 235, 0.12);
+            --radius-lg: 20px;
+            --radius-md: 16px;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            background: var(--bg-gradient);
+            color: var(--text-main);
+            min-height: 100vh;
+            padding: 40px 24px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1240px;
+        }
+
+        /* === 头部排版 === */
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        header .badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 6px 14px;
+            background: rgba(37, 99, 235, 0.1);
+            color: var(--accent);
+            border-radius: 100px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 16px;
+            letter-spacing: 0.5px;
+        }
+        header h1 {
+            font-size: 2.75rem;
+            font-weight: 800;
+            letter-spacing: -1px;
+            background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 12px;
+        }
+        header p {
+            color: var(--text-muted);
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        /* === 广告包裹容器样式 === */
+        .ad-wrapper {
+            margin: 0 auto 32px auto;
+            width: 100%;
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: var(--radius-md);
+            padding: 16px;
+            box-shadow: var(--shadow-sm);
+            text-align: center;
+            position: relative;
+        }
+        .ad-wrapper.top-banner { max-width: 970px; }
+        .ad-wrapper.bottom-banner { max-width: 728px; margin-top: 48px; }
+        .ad-hint {
+            font-size: 0.68rem;
+            color: var(--text-sub);
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin-bottom: 8px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 4px;
+        }
+
+        /* === 工具网格布局 === */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 24px;
+        }
+        
+        .tool-card {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: var(--radius-lg);
+            padding: 32px 24px 50px 24px; /* 底边留空给箭头 */
+            text-decoration: none;
+            color: var(--text-main);
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            text-align: left;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: var(--shadow-md);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .tool-card:hover {
+            transform: translateY(-6px);
+            border-color: rgba(37, 99, 235, 0.3);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .icon-wrapper {
+            width: 56px;
+            height: 56px;
+            background: linear-gradient(135deg, rgba(37, 99, 235, 0.06) 0%, rgba(59, 130, 246, 0.15) 100%);
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+            transition: all 0.3s ease;
+        }
+        .tool-card:hover .icon-wrapper { background: var(--accent-gradient); }
+        .icon-wrapper i { font-size: 1.5rem; color: var(--accent); transition: all 0.3s ease; }
+        .tool-card:hover .icon-wrapper i { color: #ffffff; transform: scale(1.1); }
+
+        .tool-card h2 { font-size: 1.25rem; font-weight: 700; margin-bottom: 8px; letter-spacing: -0.3px; }
+        .tool-card p { font-size: 0.92rem; color: var(--text-muted); line-height: 1.6; }
+
+        .tool-card .arrow-link {
+            position: absolute;
+            bottom: 24px;
+            right: 24px;
+            opacity: 0;
+            transform: translateX(-5px);
+            color: var(--accent);
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+        }
+        .tool-card:hover .arrow-link { opacity: 1; transform: translateX(0); }
+        
+        /* === 原生混合广告卡片（样式、尺寸与普通卡片完全一致，CTR收益最高） === */
+        .tool-card.ad-feed-card {
+            background: linear-gradient(145deg, rgba(255,255,255,0.9) 0%, rgba(248,250,252,0.8) 100%);
+            border: 1px dashed rgba(37, 99, 235, 0.25);
+            padding: 20px;
+            justify-content: center;
+            align-items: center;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 80px;
+            padding: 32px 0;
+            border-top: 1px solid rgba(226, 232, 240, 0.8);
+            width: 100%;
+            color: var(--text-sub);
+            font-size: 0.88rem;
+        }
+        footer p { line-height: 1.8; }
+        footer .privacy-tag { color: var(--text-muted); font-weight: 500; margin-top: 6px; display: inline-block; }
+
+        @media (max-width: 768px) {
+            body { padding: 24px 16px; }
+            header h1 { font-size: 2.2rem; }
+            .grid { gap: 16px; }
+            .tool-card { padding: 24px 20px 48px 20px; }
+            .ad-wrapper { padding: 8px; }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    
+    <header>
+        <div class="badge"><i class="fas fa-shield-halved"></i> 100% 隐私安全 · 纯本地运行</div>
+        <h1>万能在线工具箱</h1>
+        <p>无需上传文件的极简生产力工具集。所有操作均在您的浏览器内通过沙箱环境离线完成，绝对保障隐私。</p>
+    </header>
+
+    <section class="ad-wrapper top-banner">
+        <div class="ad-hint"><i class="fas fa-rectangle-ad"></i> 赞助商广告</div>
+        <ins class="adsbygoogle"
+             style="display:block"
+             data-ad-client="ca-pub-1624261597740761"
+             data-ad-slot="1111111111"
+             data-ad-format="horizontal"
+             data-full-width-responsive="true"></ins>
+        <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+    </section>
+
+    <main class="grid">
+        
+        <a href="compress.html" class="tool-card">
+            <div class="icon-wrapper"><i class="fas fa-file-zipper"></i></div>
+            <h2>图片压缩</h2>
+            <p>智能优化 JPG/PNG/WebP 文件体积，支持自定义画质比例与尺寸限制，高效利落。</p>
+            <div class="arrow-link">立即开启 <i class="fas fa-arrow-right"></i></div>
+        </a>
+
+        <a href="watermark.html" class="tool-card">
+            <div class="icon-wrapper"><i class="fas fa-paintbrush"></i></div>
+            <h2>图片水印</h2>
+            <p>可视化添加全屏倾斜或单点文字防盗印章，自由调整大小、透明度与安全图层。</p>
+            <div class="arrow-link">立即开启 <i class="fas fa-arrow-right"></i></div>
+        </a>
+
+        <a href="formatext.html" class="tool-card">
+            <div class="icon-wrapper"><i class="fas fa-code-branch"></i></div>
+            <h2>格式拓展</h2>
+            <p>高级媒体解构、图像底层元数据提取与多线程分布式虚拟渲染拓展控制台。</p>
+            <div class="arrow-link">立即开启 <i class="fas fa-arrow-right"></i></div>
+        </a>
+
+        <article class="tool-card ad-feed-card">
+            <div class="ad-hint" style="margin-bottom:12px;"><i class="fas fa-star"></i> 赞助商精心推荐</div>
+            <ins class="adsbygoogle"
+                 style="display:block"
+                 data-ad-format="fluid"
+                 data-ad-layout-key="-fb+5w+4e-db+86"
+                 data-ad-client="ca-pub-1624261597740761"
+                 data-ad-slot="2222222222"></ins>
+            <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+        </article>
+        <a href="convert.html" class="tool-card">
+            <div class="icon-wrapper"><i class="fas fa-exchange-alt"></i></div>
+            <h2>格式转换</h2>
+            <p>在 PNG、JPEG、WebP 格式之间进行高保真、零常规画质损耗的本地对冲互转。</p>
+            <div class="arrow-link">立即开启 <i class="fas fa-arrow-right"></i></div>
+        </a>
+
+        <a href="uuid.html" class="tool-card">
+            <div class="icon-wrapper"><i class="fas fa-fingerprint"></i></div>
+            <h2>UUID 生成</h2>
+            <p>批量快速生成符合全球 RFC4122 标准的高强度密匙，支持 v1、v4 随机版本。</p>
+            <div class="arrow-link">立即开启 <i class="fas fa-arrow-right"></i></div>
+        </a>
+
+        <a href="office.html" class="tool-card">
+            <div class="icon-wrapper"><i class="fas fa-file-alt"></i></div>
+            <h2>Office 转换</h2>
+            <p>快速将 Word (.docx) 提纯提取为结构化 TXT，或将 Excel 转换为标准 CSV 数据。</p>
+            <div class="arrow-link">立即开启 <i class="fas fa-arrow-right"></i></div>
+        </a>
+
+        <a href="qr.html" class="tool-card">
+            <div class="icon-wrapper"><i class="fas fa-qrcode"></i></div>
+            <h2>二维码生成</h2>
+            <p>除常用文本网址外，更支持直接生成一扫即连的加密 Wi‑Fi 账密扫描配对二维码。</p>
+            <div class="arrow-link">立即开启 <i class="fas fa-arrow-right"></i></div>
+        </a>
+
+        <a href="relation.html" class="tool-card">
+            <div class="icon-wrapper"><i class="fas fa-users"></i></div>
+            <h2>亲属关系</h2>
+            <p>中国传统三代/多代复杂血亲三姑六婆复杂称谓精准互查与双向链路反向测算。</p>
+            <div class="arrow-link">立即开启 <i class="fas fa-arrow-right"></i></div>
+        </a>
+
+        <a href="loan.html" class="tool-card">
+            <div class="icon-wrapper"><i class="fas fa-chart-line"></i></div>
+            <h2>贷款计算</h2>
+            <p>精确测算对比等额本息、等额本金等不同摊还金融方案的本金利息还款明细。</p>
+            <div class="arrow-link">立即开启 <i class="fas fa-arrow-right"></i></div>
+        </a>
+
+        <a href="currency.html" class="tool-card">
+            <div class="icon-wrapper"><i class="fas fa-dollar-sign"></i></div>
+            <h2>汇率换算</h2>
+            <p>一键快速进行多币种双向对冲汇率换算，可扩展接入公网实时 Spot 价格管道。</p>
+            <div class="arrow-link">立即开启 <i class="fas fa-arrow-right"></i></div>
+        </a>
+
+        <a href="unit.html" class="tool-card">
+            <div class="icon-wrapper"><i class="fas fa-ruler"></i></div>
+            <h2>单位换算</h2>
+            <p>覆盖长度、重量、温度、面积等多维度国际标准度量衡单位的高精度网格转换器。</p>
+            <div class="arrow-link">立即开启 <i class="fas fa-arrow-right"></i></div>
+        </a>
+
+    </main>
+
+    <section class="ad-wrapper bottom-banner">
+        <div class="ad-hint"><i class="fas fa-rectangle-ad"></i> 赞助商广告</div>
+        <ins class="adsbygoogle"
+             style="display:block"
+             data-ad-client="ca-pub-1624261597740761"
+             data-ad-slot="3333333333"
+             data-ad-format="auto"
+             data-full-width-responsive="true"></ins>
+        <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+    </section>
+
+    <footer>
+        <p>© 万能在线工具箱 | 纯前端零追踪工坊</p>
+        <p class="privacy-tag"><i class="fas fa-user-shield"></i> 隐私政策声明：所有工具均基于客户端沙箱运行，数据 100% 留存在您的本地浏览器中，绝无任何服务器端数据持久化。</p>
+    </footer>
+</div>
+</body>
+</html>
