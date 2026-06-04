@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
+    <!-- 主页 / 工具箱导航 -->
+    <url>
+        <loc>https://example.com/index.html</loc>
+        <lastmod>2026-06-05</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>1.00</priority>
+    </url>
+
+    <!-- 1. 智能图片压缩 -->
+    <url>
+        <loc>https://example.com/compress.html</loc>
+        <lastmod>2026-06-05</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.90</priority>
+    </url>
+
+    <!-- 2. 图片水印 -->
+    <url>
+        <loc>https://example.com/watermark.html</loc>
+        <lastmod>2026-06-05</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.80</priority>
+    </url>
+
+    <!-- 3. 格式拓展 -->
+    <url>
+        <loc>https://example.com/formatext.html</loc>
+        <lastmod>2026-06-05</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.80</priority>
+    </url>
+
+    <!-- 4. 格式转换 -->
+    <url>
+        <loc>https://example.com/convert.html</loc>
+        <lastmod>2026-06-05</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.80</priority>
+    </url>
+
+    <!-- 5. UUID 生成 -->
+    <url>
+        <loc>https://example.com/uuid.html</loc>
+        <lastmod>2026-06-05</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.80</priority>
+    </url>
+
+    <!-- 6. Office 转换 -->
+    <url>
+        <loc>https://example.com/office.html</loc>
+        <lastmod>2026-06-05</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.80</priority>
+    </url>
+
+    <!-- 7. 二维码生成 -->
+    <url>
+        <loc>https://example.com/qr.html</loc>
+        <lastmod>2026-06-05</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.80</priority>
+    </url>
+
+    <!-- 8. 亲属关系 -->
+    <url>
+        <loc>https://example.com/relation.html</loc>
+        <lastmod>2026-06-05</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.70</priority>
+    </url>
+
+    <!-- 9. 贷款计算 -->
+    <url>
+        <loc>https://example.com/loan.html</loc>
+        <lastmod>2026-06-05</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.70</priority>
+    </url>
+
+    <!-- 10. 汇率换算 -->
+    <url>
+        <loc>https://example.com/currency.html</loc>
+        <lastmod>2026-06-05</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.70</priority>
+    </url>
+
+    <!-- 11. 单位换算 -->
+    <url>
+        <loc>https://example.com/unit.html</loc>
+        <lastmod>2026-06-05</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.70</priority>
+    </url>
+
+    <!-- 隐私政策页面 -->
+    <url>
+        <loc>https://example.com/privacy.html</loc>
+        <lastmod>2026-06-05</lastmod>
+        <changefreq>yearly</changefreq>
+        <priority>0.30</priority>
+    </url>
+
+</urlset>
