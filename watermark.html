@@ -20,11 +20,10 @@
     </script>
 
     <style>
-        /* === 延续 index.html 的全局高级视觉系统（支持明暗双向切换） === */
+        /* === 延续 index.html 的全局高级暗黑视觉系统 === */
         * { margin: 0; padding: 0; box-sizing: border-box; -webkit-font-smoothing: antialiased; }
         
         :root {
-            /* 浅色微光主题变量 */
             --bg-gradient: radial-gradient(circle at 10% 30%, #eef2f9, #e0e8f2);
             --text-main: #0b2b3b;
             --text-muted: #5c7285;
@@ -34,14 +33,14 @@
             --card-bg: #ffffff;
             --card-border: #bfd6ea;
             --input-bg: #ffffff;
-            --shadow-sm: 0 4px 12px rgba(0, 0, 0, 0.03);
+            --shadow-sm: 0 4px 12px rgba(0,0,0,0.03);
             --shadow-md: 0 25px 45px -12px rgba(0,0,0,0.1);
-            --shadow-lg: 0 22px 50px -15px rgba(37, 99, 235, 0.15);
+            --shadow-lg: 0 22px 50px -15px rgba(37, 99, 235, 0.1);
             --radius-lg: 24px;
             --radius-md: 16px;
+            --preview-img-bg: #f1f5f9;
         }
 
-        /* 暗黑极客颜色主题配置 (默认载入激活) */
         [data-theme="dark"] {
             --bg-gradient: radial-gradient(circle at 50% 0%, #111827 0%, #030712 100%);
             --text-main: #f3f4f6;
@@ -49,12 +48,15 @@
             --text-sub: #6b7280;
             --accent: #3b82f6;
             --accent-gradient: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
-            --card-bg: rgba(17, 24, 39, 0.7);
+            --card-bg: rgba(17, 24, 39, 0.75);
             --card-border: rgba(37, 99, 235, 0.15);
             --input-bg: rgba(0, 0, 0, 0.3);
             --shadow-sm: 0 4px 12px rgba(0, 0, 0, 0.3);
-            --shadow-md: 0 12px 40px -12px rgba(0, 0, 0, 0.5);
+            --shadow-md: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
             --shadow-lg: 0 22px 50px -15px rgba(37, 99, 235, 0.2);
+            --radius-lg: 24px;
+            --radius-md: 16px;
+            --preview-img-bg: #0f172a;
         }
 
         body {
@@ -71,7 +73,6 @@
 
         .container { width: 100%; max-width: 1000px; }
 
-        /* 顶部控制栏布局 */
         .top-bar {
             width: 100%;
             display: flex;
@@ -96,7 +97,6 @@
             font-size: 0.9rem;
             font-weight: 500;
             cursor: pointer;
-            box-shadow: var(--shadow-sm);
             transition: all 0.2s ease;
         }
         .back-btn:hover, .theme-btn:hover {
@@ -125,18 +125,10 @@
             box-shadow: 0 0 12px rgba(59, 130, 246, 0.4);
         }
 
-        /* 头部排版 */
         header { text-align: center; margin-bottom: 40px; }
-        header h1 {
-            font-size: 2.6rem;
-            font-weight: 800;
-            letter-spacing: -1px;
-            color: var(--text-main);
-            margin-bottom: 12px;
-        }
+        header h1 { font-size: 2.6rem; font-weight: 800; letter-spacing: -1px; margin-bottom: 12px; }
         header p { color: var(--text-muted); font-size: 1.05rem; max-width: 600px; margin: 0 auto; line-height: 1.5; }
 
-        /* 广告美化外框 */
         .ad-wrapper {
             margin: 0 auto 32px auto;
             width: 100%;
@@ -148,7 +140,6 @@
             text-align: center;
             backdrop-filter: blur(12px);
             -webkit-backdrop-filter: blur(12px);
-            transition: background 0.3s ease, border-color 0.3s ease;
         }
         .ad-hint {
             font-size: 0.68rem;
@@ -163,7 +154,6 @@
             gap: 4px;
         }
 
-        /* 工作台核心面板 */
         .workspace {
             background: var(--card-bg);
             border: 1px solid var(--card-border);
@@ -175,10 +165,8 @@
             display: flex;
             flex-direction: column;
             gap: 28px;
-            transition: background 0.3s ease, border-color 0.3s ease;
         }
 
-        /* 拖拽点击上传热区 */
         .upload-area {
             border: 2px dashed rgba(59, 130, 246, 0.3);
             border-radius: var(--radius-md);
@@ -195,10 +183,9 @@
         }
         .upload-area i { font-size: 3rem; color: #60a5fa; margin-bottom: 16px; transition: transform 0.3s ease; }
         .upload-area:hover i { transform: translateY(-4px); }
-        .upload-area p { font-size: 1.1rem; font-weight: 600; margin-bottom: 6px; color: var(--text-main); }
+        .upload-area p { font-size: 1.1rem; font-weight: 600; margin-bottom: 6px; }
         .upload-area span { color: var(--text-sub); font-size: 0.88rem; }
 
-        /* 参数调控区布局 */
         .controls-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
@@ -209,7 +196,7 @@
             border: 1px solid var(--card-border);
         }
         .control-group { display: flex; flex-direction: column; gap: 10px; }
-        .control-group label { font-size: 0.9rem; font-weight: 600; color: var(--text-muted); display: flex; justify-content: space-between; }
+        .control-group label { font-size: 0.9rem; font-weight: 600; color: var(--text-muted); display: flex; justify-content: space-between; align-items: center; }
         .control-group label span.val-badge { color: #60a5fa; background: rgba(59, 130, 246, 0.1); padding: 2px 8px; border-radius: 6px; font-size: 0.8rem; }
         
         .control-group input[type="text"], .control-group select {
@@ -220,112 +207,62 @@
             color: var(--text-main);
             font-size: 0.95rem;
             outline: none;
-            transition: border-color 0.2s, background 0.2s, color 0.2s;
         }
         .control-group input[type="text"]:focus, .control-group select:focus { border-color: var(--accent); }
-        .control-group select option { background: #111827; color: #ffffff; }
 
-        /* 美化滑动条 */
-        .control-group input[type="range"] {
+        /* 颜色选择器美化 */
+        .color-picker-wrapper {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            background: var(--input-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 8px;
+            padding: 6px 12px;
+        }
+        .control-group input[type="color"] {
             -webkit-appearance: none;
-            width: 100%;
-            height: 6px;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 100px;
-            outline: none;
+            border: none;
+            width: 32px;
+            height: 32px;
+            border-radius: 6px;
+            cursor: pointer;
+            background: none;
+        }
+        .control-group input[type="color"]::-webkit-color-swatch-wrapper { padding: 0; }
+        .control-group input[type="color"]::-webkit-color-swatch { border: 1px solid var(--card-border); border-radius: 6px; }
+        .color-hex-text { font-size: 0.9rem; font-family: monospace; color: var(--text-main); text-transform: uppercase; }
+
+        .control-group input[type="range"] {
+            -webkit-appearance: none; width: 100%; height: 6px; background: rgba(255, 255, 255, 0.1); border-radius: 100px; outline: none;
         }
         .control-group input[type="range"]::-webkit-slider-thumb {
-            -webkit-appearance: none;
-            width: 18px;
-            height: 18px;
-            background: var(--accent);
-            border-radius: 50%;
-            cursor: pointer;
-            box-shadow: 0 0 10px rgba(59, 130, 246, 0.5);
-            transition: transform 0.1s;
+            -webkit-appearance: none; width: 18px; height: 18px; background: var(--accent); border-radius: 50%; cursor: pointer; box-shadow: 0 0 10px rgba(59, 130, 246, 0.5);
         }
 
-        /* 核心动作按钮 */
         .action-btn {
-            background: var(--accent-gradient);
-            border: none;
-            color: #ffffff;
-            padding: 14px 32px;
-            border-radius: 12px;
-            font-size: 1rem;
-            font-weight: 600;
-            cursor: pointer;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-            box-shadow: 0 4px 14px rgba(37, 99, 235, 0.3);
-            transition: all 0.2s ease;
+            background: var(--accent-gradient); border: none; color: #ffffff; padding: 14px 32px; border-radius: 12px; font-size: 1rem; font-weight: 600; cursor: pointer; display: inline-flex; align-items: center; justify-content: center; gap: 10px; box-shadow: 0 4px 14px rgba(37, 99, 235, 0.3); transition: all 0.2s ease;
         }
         .action-btn:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(37, 99, 235, 0.4); }
 
-        /* 预览区输出视图 */
-        .preview-zone {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 20px;
-            margin-top: 8px;
-            background: rgba(0, 0, 0, 0.1);
-            border: 1px solid var(--card-border);
-            border-radius: var(--radius-md);
-            padding: 24px;
-        }
-        .preview-zone h4 { font-size: 0.95rem; color: var(--text-muted); font-weight: 600; width: 100%; text-align: left; border-left: 3px solid var(--accent); padding-left: 8px; }
+        .preview-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px; margin-top: 8px; }
+        .preview-card { background: rgba(0, 0, 0, 0.1); border: 1px solid var(--card-border); border-radius: var(--radius-md); padding: 20px; text-align: center; display: flex; flex-direction: column; align-items: center; }
+        .preview-card h4 { font-size: 0.95rem; color: var(--text-muted); margin-bottom: 14px; font-weight: 600; width: 100%; text-align: left; border-left: 3px solid var(--accent); padding-left: 8px; }
         
-        .img-box {
-            width: 100%;
-            max-height: 450px;
-            background: #0f172a;
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            overflow: hidden;
-            border: 1px solid var(--card-border);
-        }
-        .img-box img { max-width: 100%; max-height: 450px; object-fit: contain; }
+        .img-box { width: 100%; height: 320px; background: var(--preview-img-bg); border-radius: 12px; display: flex; align-items: center; justify-content: center; overflow: hidden; margin-bottom: 14px; border: 1px solid var(--card-border); }
+        .img-box img { max-width: 100%; max-height: 100%; object-fit: contain; }
 
-        .toast {
-            position: fixed;
-            bottom: 32px;
-            left: 50%;
-            transform: translateX(-50%) translateY(40px);
-            background: rgba(17, 24, 39, 0.95);
-            border: 1px solid var(--accent);
-            color: #ffffff;
-            padding: 12px 28px;
-            border-radius: 100px;
-            font-size: 0.9rem;
-            font-weight: 500;
-            box-shadow: var(--shadow-lg);
-            opacity: 0;
-            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            z-index: 1000;
-            backdrop-filter: blur(8px);
-            pointer-events: none;
-        }
+        .toast { position: fixed; bottom: 32px; left: 50%; transform: translateX(-50%) translateY(40px); background: rgba(17, 24, 39, 0.95); border: 1px solid var(--accent); color: #ffffff; padding: 12px 28px; border-radius: 100px; font-size: 0.9rem; font-weight: 500; box-shadow: var(--shadow-lg); opacity: 0; transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); z-index: 1000; pointer-events: none; }
         .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
 
-        footer {
-            text-align: center;
-            margin-top: 64px;
-            padding: 32px 0;
-            border-top: 1px solid var(--card-border);
-            width: 100%;
-            color: var(--text-sub);
-            font-size: 0.88rem;
-        }
+        footer { text-align: center; margin-top: 64px; padding: 32px 0; border-top: 1px solid var(--card-border); width: 100%; color: var(--text-sub); font-size: 0.88rem; }
 
         @media (max-width: 768px) {
             body { padding: 24px 16px; }
             header h1 { font-size: 2rem; }
             .workspace { padding: 20px; }
+            .controls-grid { padding: 16px; }
+            .img-box { height: 220px; }
             .top-bar { flex-direction: column; align-items: flex-start; }
             .lang-selector-container { width: 100%; justify-content: flex-start; margin-top: 4px; }
         }
@@ -348,73 +285,11 @@
     </div>
 
     <header>
-        <h1 id="txt-title">Image Watermark Studio</h1>
-        <p id="txt-desc">Add customized secure text watermarks to your personal photos directly inside your browser.</p>
+        <h1 id="txt-title">Image Watermark Workshop</h1>
+        <p id="txt-desc">Inject customized cryptographic text signs onto imagery arrays instantly inside local runtime sandbox.</p>
     </header>
 
     <section class="ad-wrapper">
-        <div class="ad-hint lbl-ad"><i class="fas fa-rectangle-ad"></i> Sponsored Advertisement</div>
-        <ins class="google"
-             style="display:block"
-             data-ad-client="ca-pub-1624261597740761"
-             data-ad-slot="7441222926"
-             data-ad-format="horizontal"
-             data-full-width-responsive="true"></ins>
-        <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-    </section>
-
-    <main class="workspace">
-        <input type="file" id="fileInput" accept="image/*" style="display: none;">
-        
-        <div class="upload-area" id="dropZone">
-            <i class="fas fa-images"></i>
-            <p id="txt-drop-title">Drag & drop your image here or click to browse</p>
-            <span id="txt-drop-sub">Supports PNG, JPG, JPEG, WebP</span>
-        </div>
-
-        <div class="controls-grid">
-            <div class="control-group">
-                <label for="wmText" id="lbl-wmtext">Watermark Text</label>
-                <input type="text" id="wmText" value="Watermark" placeholder="e.g. Confidential">
-            </div>
-            
-            <div class="control-group">
-                <label for="wmPos" id="lbl-wmpos">Position</label>
-                <select id="wmPos">
-                    <option value="nw" id="opt-nw">Top Left</option>
-                    <option value="n" id="opt-n">Top Center</option>
-                    <option value="ne" id="opt-ne">Top Right</option>
-                    <option value="w" id="opt-w">Center Left</option>
-                    <option value="center" id="opt-center">Center</option>
-                    <option value="e" id="opt-e">Center Right</option>
-                    <option value="sw" id="opt-sw">Bottom Left</option>
-                    <option value="s" id="opt-s">Bottom Center</option>
-                    <option value="se" id="opt-se">Bottom Right</option>
-                </select>
-            </div>
-            <div class="control-group">
-                <label><span id="lbl-wmopacity">Opacity</span> <span id="opacityVal" class="val-badge">0.5</span></label>
-                <input type="range" id="wmOpacity" min="0.1" max="1.0" step="0.05" value="0.5">
-            </div>
-        </div>
-
-        <div style="text-align: center;">
-            <button class="action-btn" id="applyBtn"><i class="fas fa-paintbrush"></i> Apply Watermark</button>
-        </div>
-
-        <div class="preview-zone" id="previewDiv" style="display: none;">
-            <h4 id="lbl-preview-title">Image Preview</h4>
-            <div class="img-box"><img id="watermarkedImg" src="" alt="Watermarked Result"></div>
-            
-            <div style="margin-top: 12px; display: none; width: 100%; max-width: 320px;" id="downloadDiv">
-                <button class="action-btn" id="downloadBtn" style="width: 100%; background: linear-gradient(135deg, #10b981 0%, #059669 100%); box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);">
-                    <i class="fas fa-download"></i> Download Image
-                </button>
-            </div>
-        </div>
-    </main>
-
-    <section class="ad-wrapper" style="margin-top: 36px;">
         <div class="ad-hint lbl-ad"><i class="fas fa-rectangle-ad"></i> Sponsored Advertisement</div>
         <ins class="adsbygoogle"
              style="display:block"
@@ -425,60 +300,163 @@
         <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
     </section>
 
+    <main class="workspace">
+        <input type="file" id="fileInput" accept="image/*" style="display: none;">
+        
+        <div class="upload-area" id="dropZone">
+            <i class="fas fa-cloud-arrow-up"></i>
+            <p id="txt-drop-title">Drag & drop image here or click to choose</p>
+            <span id="txt-drop-sub">Runs locally. Supports JPG, PNG, WebP up to 50MB</span>
+        </div>
+
+        <div class="controls-grid">
+            <div class="control-group">
+                <label id="lbl-wm-text">Watermark Text</label>
+                <input type="text" id="wmTextInput" value="tools123.asia" placeholder="Enter text...">
+            </div>
+            <div class="control-group">
+                <label id="lbl-wm-size">Font Size Scale</label>
+                <select id="wmSizeSelect">
+                    <option value="0.02">Small</option>
+                    <option value="0.04" selected>Normal</option>
+                    <option value="0.06">Large</option>
+                    <option value="0.09">Extra Large</option>
+                </select>
+            </div>
+            <div class="control-group">
+                <label id="lbl-wm-pos">Position Alignment</label>
+                <select id="wmPosSelect">
+                    <option value="center">Center</option>
+                    <option value="nw">Top Left</option>
+                    <option value="n">Top Center</option>
+                    <option value="ne">Top Right</option>
+                    <option value="e">Middle Right</option>
+                    <option value="se" selected>Bottom Right</option>
+                    <option value="s">Bottom Center</option>
+                    <option value="sw">Bottom Left</option>
+                    <option value="w">Middle Left</option>
+                </select>
+            </div>
+            <div class="control-group">
+                <label><span id="lbl-wm-opacity">Opacity Density</span> <span id="opacityVal" class="val-badge">60%</span></label>
+                <input type="range" id="wmOpacitySlider" min="0.1" max="1.0" step="0.05" value="0.6">
+            </div>
+            <div class="control-group">
+                <label id="lbl-wm-color">Watermark Color</label>
+                <div class="color-picker-wrapper">
+                    <input type="color" id="wmColorInput" value="#ffffff">
+                    <span class="color-hex-text" id="colorHexLabel">#FFFFFF</span>
+                </div>
+            </div>
+        </div>
+
+        <div style="text-align: center;">
+            <button class="action-btn" id="applyBtn"><i class="fas fa-wand-magic-sparkles"></i> Apply Watermark</button>
+        </div>
+
+        <div class="preview-grid" id="previewDiv" style="display: none;">
+            <div class="preview-card">
+                <h4 id="lbl-orig">Original Image</h4>
+                <div class="img-box"><img id="origImg" src="" alt="Original"></div>
+            </div>
+            <div class="preview-card">
+                <h4 id="lbl-comp">Watermarked Output</h4>
+                <div class="img-box"><img id="watermarkedImg" src="" alt="Watermarked"></div>
+                
+                <div style="margin-top: 20px; display: none; width: 100%;" id="downloadDiv">
+                    <button class="action-btn" id="downloadBtn" style="width: 100%; padding: 12px 20px; font-size: 0.95rem; background: linear-gradient(135deg, #10b981 0%, #059669 100%); box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);">
+                        <i class="fas fa-download"></i> Save Watermarked Image
+                    </button>
+                </div>
+            </div>
+        </div>
+    </main>
+
     <footer>
-        <p>© Ultimate Online Toolbox | Client-Side Secure Sandbox Canvas Processing</p>
+        <p>© Ultimate Online Toolbox | Client-Side Secure Sandbox Workshop</p>
     </footer>
 </div>
 
 <div class="toast" id="toastBox">Notification</div>
-<canvas id="canvas" style="display: none;"></canvas>
 
 <script>
-    // 1. 扩容多语言字典，加入全新方位词条
+    // 多语言数据库同步补充颜色条目
     const WM_LANGS = {
         en: {
-            title: "Image Watermark Studio", desc: "Add customized secure text watermarks to your personal photos directly inside your browser.",
-            back: "<i class='fas fa-arrow-left'></i> Back to Hub", dropTitle: "Drag & drop your image here or click to browse", dropSub: "Supports PNG, JPG, JPEG, WebP",
-            wmText: "Watermark Text", wmPos: "Position", wmOpacity: "Opacity",
-            optNw: "Top Left", optN: "Top Center", optNe: "Top Right",
-            optW: "Center Left", optCenter: "Center", optE: "Center Right",
-            optSw: "Bottom Left", optS: "Bottom Center", optSe: "Bottom Right",
-            btnApply: "<i class='fas fa-paintbrush'></i> Apply Watermark", btnDl: "<i class='fas fa-download'></i> Download Image",
-            lblPreview: "Image Preview", ad: "<i class='fas fa-rectangle-ad'></i> Sponsored Advertisement",
-            errUpload: "Please upload an image first", sucDl: "Download started", loadImg: "Image loaded successfully"
+            title: "Image Watermark Workshop",
+            desc: "Inject customized cryptographic text signs onto imagery arrays instantly inside local runtime sandbox.",
+            back: "<i class='fas fa-arrow-left'></i> Back to Hub",
+            dropTitle: "Drag & drop image here or click to choose",
+            dropSub: "Runs locally. Supports JPG, PNG, WebP up to 50MB",
+            wmText: "Watermark Text",
+            wmSize: "Font Size Scale",
+            wmPos: "Position Alignment",
+            wmOpacity: "Opacity Density",
+            wmColor: "Watermark Color", // 补录
+            btnApply: "<i class='fas fa-wand-magic-sparkles'></i> Apply Watermark",
+            lblOrig: "Original Image",
+            lblComp: "Watermarked Output",
+            btnDl: "<i class='fas fa-download'></i> Save Watermarked Image",
+            ad: "<i class='fas fa-rectangle-ad'></i> Sponsored Advertisement",
+            suc: "Processing accomplished",
+            err: "Please upload an image first"
         },
         zh: {
-            title: "图片数字水印", desc: "在浏览器本地一键快速安全地为您的私密图像、照片加入自定义防盗用文本水印。",
-            back: "<i class='fas fa-arrow-left'></i> 返回工具箱", dropTitle: "将图片拖拽至此，或点击选择文件", dropSub: "支持 PNG, JPG, JPEG, WebP 格式",
-            wmText: "自定义水印文本", wmPos: "水印放置位置", wmOpacity: "不透明度",
-            optNw: "左上角", optN: "顶部居中", optNe: "右上角",
-            optW: "中部居左", optCenter: "正中央", optE: "中部居右",
-            optSw: "左下角", optS: "底部居中", optSe: "右下角",
-            btnApply: "<i class='fas fa-paintbrush'></i> 立即合成水印", btnDl: "<i class='fas fa-download'></i> 保存下载图片",
-            lblPreview: "实时效果预览", ad: "<i class='fas fa-rectangle-ad'></i> 赞助商广告",
-            errUpload: "请先上传一张有效的图片！", sucDl: "图片下载已开始", loadImg: "图像载入成功，请调整配置"
+            title: "现代图像水印工坊",
+            desc: "在浏览器本地沙箱安全赋予图像自定义版权文本标签，完全保护数据免受外部泄露。",
+            back: "<i class='fas fa-arrow-left'></i> 返回工具箱",
+            dropTitle: "将图片拖拽至此，或点击选择文件",
+            dropSub: "本地运行。支持 50MB 以内的 JPG, PNG, WebP 格式",
+            wmText: "自定义水印文本内容",
+            wmSize: "字体大小粗细比例",
+            wmPos: "图层对齐锚定方位",
+            wmOpacity: "图层不可见度透明度",
+            wmColor: "水印文字颜色选择", // 补录
+            btnApply: "<i class='fas fa-wand-magic-sparkles'></i> 立即渲染应用水印",
+            lblOrig: "原始输入文件",
+            lblComp: "渲染输出成果",
+            btnDl: "<i class='fas fa-download'></i> 保存高清洗印图像",
+            ad: "<i class='fas fa-rectangle-ad'></i> 赞助商广告",
+            suc: "渲染成功",
+            err: "请先载入有效的图片文件"
         },
         es: {
-            title: "Marca de Agua de Imagen", desc: "Agregue marcas de agua de texto seguras y personalizadas a sus fotos directamente en su navegador.",
-            back: "<i class='fas fa-arrow-left'></i> Volver al menú", dropTitle: "Arrastre y suelte su imagen aquí o haga clic para buscar", dropSub: "Soporta PNG, JPG, JPEG, WebP",
-            wmText: "Texto de la Marca", wmPos: "Posición", wmOpacity: "Opacidad",
-            optNw: "Arriba a la Izquierda", optN: "Arriba al Centro", optNe: "Arriba a la Derecha",
-            optW: "Centro a la Izquierda", optCenter: "Centro", optE: "Centro a la Derecha",
-            optSw: "Abajo a la Izquierda", optS: "Abajo al Centro", optSe: "Abajo a la Derecha",
-            btnApply: "<i class='fas fa-paintbrush'></i> Aplicar Marca de Agua", btnDl: "<i class='fas fa-download'></i> Descargar Imagen",
-            lblPreview: "Vista Previa de Imagen", ad: "<i class='fas fa-rectangle-ad'></i> Publicidad Patrocinada",
-            errUpload: "Por favor, cargue una imagen primero", sucDl: "Descarga iniciada", loadImg: "Imagen cargada con éxito"
+            title: "Taller de Marca de Agua",
+            desc: "Inyecte texto personalizado en sus imágenes localmente dentro del navegador sin fugas de datos.",
+            back: "<i class='fas fa-arrow-left'></i> Volver al menú",
+            dropTitle: "Arrastre y suelte la imagen aquí o haga clic para elegir",
+            dropSub: "Soporta JPG, PNG, WebP hasta 50MB",
+            wmText: "Texto de la Marca",
+            wmSize: "Escala del Tamaño",
+            wmPos: "Alineación de Posición",
+            wmOpacity: "Densidad de Opacidad",
+            wmColor: "Color de marca de agua", // 补录
+            btnApply: "<i class='fas fa-wand-magic-sparkles'></i> Aplicar Marca de Agua",
+            lblOrig: "Imagen Original",
+            lblComp: "Resultado Final",
+            btnDl: "<i class='fas fa-download'></i> Guardar Imagen Protegida",
+            ad: "<i class='fas fa-rectangle-ad'></i> Publicidad Patrocinada",
+            suc: "Procesamiento completado",
+            err: "Por favor, cargue una imagen primero"
         },
         ja: {
-            title: "画像透かしスタンプ", desc: "サーバーへの送信なしで、写真や画像に著作権保護のためのカスタムテキスト透かしを合成します。",
-            back: "<i class='fas fa-arrow-left'></i> ツールボックスに戻る", dropTitle: "ここに画像をドラッグ＆ドロップするか、クリックして選択してください", dropSub: "PNG、JPG、JPEG、WebP に対応",
-            wmText: "透かしテキスト内容", wmPos: "配置位置", wmOpacity: "不透明度",
-            optNw: "左上", optN: "上部中央", optNe: "右上",
-            optW: "中央左", optCenter: "中央", optE: "中央右",
-            optSw: "左下", optS: "下部中央", optSe: "右下",
-            btnApply: "<i class='fas fa-paintbrush'></i> 透かしを適用する", btnDl: "<i class='fas fa-download'></i> 画像をダウンロード",
-            lblPreview: "リアルタイムプレビュー", ad: "<i class='fas fa-rectangle-ad'></i> スポンサー広告",
-            errUpload: "最初に画像をアップロードしてください", sucDl: "ダウンロードを開始しました", loadImg: "画像の読み込みに成功しました"
+            title: "画像ウォーターマーク工房",
+            desc: "サーバーにアップロードせず、ブラウザのローカル環境で安全に画像へ著作権テキストを挿入します。",
+            back: "<i class='fas fa-arrow-left'></i> ツールボックスに戻る",
+            dropTitle: "ここに画像をドラッグ＆ドロップするか、クリックして選択してください",
+            dropSub: "ローカル処理。最大 50MB までの JPG、PNG、WebP に対応",
+            wmText: "透かしテキスト内容",
+            wmSize: "フォントサイズ比率",
+            wmPos: "配置・固定位置選択",
+            wmOpacity: "不透明度・透明度",
+            wmColor: "水印の色（カラー）", // 补录
+            btnApply: "<i class='fas fa-wand-magic-sparkles'></i> 透かしを適用する",
+            lblOrig: "元の画像",
+            lblComp: "出力された成果画像",
+            btnDl: "<i class='fas fa-download'></i> 透かし入り画像を保存",
+            ad: "<i class='fas fa-rectangle-ad'></i> スポンサー広告",
+            suc: "処理が完了しました",
+            err: "まず画像ファイルを読み込んでください"
         }
     };
 
@@ -494,24 +472,15 @@
         document.getElementById('btn-back').innerHTML = t.back;
         document.getElementById('txt-drop-title').innerText = t.dropTitle;
         document.getElementById('txt-drop-sub').innerText = t.dropSub;
-        document.getElementById('lbl-wmtext').innerText = t.wmText;
-        document.getElementById('lbl-wmpos').innerText = t.wmPos;
-        document.getElementById('lbl-wmopacity').innerText = t.wmOpacity;
-        
-        // 映射全量菜单位置名
-        document.getElementById('opt-nw').innerText = t.optNw;
-        document.getElementById('opt-n').innerText = t.optN;
-        document.getElementById('opt-ne').innerText = t.optNe;
-        document.getElementById('opt-w').innerText = t.optW;
-        document.getElementById('opt-center').innerText = t.optCenter;
-        document.getElementById('opt-e').innerText = t.optE;
-        document.getElementById('opt-sw').innerText = t.optSw;
-        document.getElementById('opt-s').innerText = t.optS;
-        document.getElementById('opt-se').innerText = t.optSe;
-        
+        document.getElementById('lbl-wm-text').innerText = t.wmText;
+        document.getElementById('lbl-wm-size').innerText = t.wmSize;
+        document.getElementById('lbl-wm-pos').innerText = t.wmPos;
+        document.getElementById('lbl-wm-opacity').innerText = t.wmOpacity;
+        document.getElementById('lbl-wm-color').innerText = t.wmColor; // 同步切换文本
         document.getElementById('applyBtn').innerHTML = t.btnApply;
+        document.getElementById('lbl-orig').innerText = t.lblOrig;
+        document.getElementById('lbl-comp').innerText = t.lblComp;
         document.getElementById('downloadBtn').innerHTML = t.btnDl;
-        document.getElementById('lbl-preview-title').innerText = t.lblPreview;
         
         document.querySelectorAll('.lbl-ad').forEach(el => el.innerHTML = t.ad);
 
@@ -521,17 +490,15 @@
 
         localStorage.setItem('user_lang_preference', lang);
         document.documentElement.lang = lang;
-        updateOpacityBadge();
+        
+        updateSliderBadge();
     }
 
-    function updateOpacityBadge() { opacityVal.innerText = wmOpacity.value; }
-    function showToast(msg) {
-        const box = document.getElementById('toastBox');
-        box.innerText = msg; box.classList.add('show');
-        setTimeout(() => box.classList.remove('show'), 2000);
+    function updateSliderBadge() {
+        const val = Math.round(wmOpacitySlider.value * 100) + '%';
+        opacityVal.innerText = val;
     }
 
-    // 网页颜色风格明暗调度中心
     function toggleTheme() {
         const currentTheme = document.documentElement.getAttribute('data-theme');
         const targetTheme = currentTheme === 'dark' ? 'light' : 'dark';
@@ -540,33 +507,50 @@
     }
 
     function initTheme() {
-        // 强制默认切入高阶黑夜模式
         const savedTheme = localStorage.getItem('user_theme_preference') || 'dark';
         document.documentElement.setAttribute('data-theme', savedTheme);
     }
 
-    // 2. 底座 Canvas 计算内核（新增全矩阵九方位映射）
+    function showToast(msg) {
+        const box = document.getElementById('toastBox');
+        box.innerText = msg;
+        box.classList.add('show');
+        setTimeout(() => box.classList.remove('show'), 2000);
+    }
+
+    // === 核心功能层控制句柄映射 ===
     const fileInput = document.getElementById('fileInput');
     const dropZone = document.getElementById('dropZone');
-    const wmText = document.getElementById('wmText');
-    const wmPos = document.getElementById('wmPos');
-    const wmOpacity = document.getElementById('wmOpacity');
+    const wmTextInput = document.getElementById('wmTextInput');
+    const wmSizeSelect = document.getElementById('wmSizeSelect');
+    const wmPosSelect = document.getElementById('wmPosSelect');
+    const wmOpacitySlider = document.getElementById('wmOpacitySlider');
     const opacityVal = document.getElementById('opacityVal');
+    const wmColorInput = document.getElementById('wmColorInput'); // 新增
+    const colorHexLabel = document.getElementById('colorHexLabel'); // 新增
+    
     const previewDiv = document.getElementById('previewDiv');
     const downloadDiv = document.getElementById('downloadDiv');
+    const origImg = document.getElementById('origImg');
     const watermarkedImg = document.getElementById('watermarkedImg');
-    const canvas = document.getElementById('canvas');
     const applyBtn = document.getElementById('applyBtn');
     const downloadBtn = document.getElementById('downloadBtn');
 
-    let img = null; let ctx = null;
-    wmOpacity.addEventListener('input', updateOpacityBadge);
-    dropZone.addEventListener('click', () => fileInput.click());
+    let sourceImage = null;
 
+    wmOpacitySlider.addEventListener('input', updateSliderBadge);
+    
+    // 监听颜色变化实时更新 Hex 文本标签
+    wmColorInput.addEventListener('input', (e) => {
+        colorHexLabel.innerText = e.target.value.toUpperCase();
+    });
+
+    dropZone.addEventListener('click', () => fileInput.click());
     dropZone.addEventListener('dragover', (e) => { e.preventDefault(); dropZone.style.borderColor = "#3b82f6"; });
     dropZone.addEventListener('dragleave', () => { dropZone.style.borderColor = "rgba(59, 130, 246, 0.3)"; });
     dropZone.addEventListener('drop', (e) => {
-        e.preventDefault(); dropZone.style.borderColor = "rgba(59, 130, 246, 0.3)";
+        e.preventDefault();
+        dropZone.style.borderColor = "rgba(59, 130, 246, 0.3)";
         if (e.dataTransfer.files.length > 0) handleFile(e.dataTransfer.files[0]);
     });
     fileInput.addEventListener('change', (e) => {
@@ -575,41 +559,71 @@
 
     function handleFile(file) {
         if (!file.type.startsWith('image/')) return;
-        const url = URL.createObjectURL(file);
-        img = new Image();
-        img.onload = () => {
-            canvas.width = img.width; canvas.height = img.height;
-            ctx = canvas.getContext('2d');
-            ctx.drawImage(img, 0, 0);
-            watermarkedImg.src = url;
-            previewDiv.style.display = 'flex'; downloadDiv.style.display = 'none';
-            showToast(WM_LANGS[currentLang].loadImg);
+        const reader = new FileReader();
+        reader.onload = (event) => {
+            sourceImage = new Image();
+            sourceImage.onload = () => {
+                origImg.src = event.target.result;
+                previewDiv.style.display = 'grid';
+                downloadDiv.style.display = 'none';
+                applyWatermark();
+            };
+            sourceImage.src = event.target.result;
         };
-        img.src = url;
-        fileInput.value = '';
+        reader.readAsDataURL(file);
     }
 
-    // 3. 全量矩阵重绘公式核心 (0删减点击事件)
+    // 转换为符合 Canvas 标准带透明通道的颜色声明函数
+    function hexToRGBA(hex, alpha) {
+        let c;
+        if(/^#([A-Fa-f0-9]{3}){1,2}$/.test(hex)){
+            c= hex.substring(1).split('');
+            if(c.length== 3){
+                c= [c[0], c[0], c[1], c[1], c[2], c[2]];
+            }
+            c= '0x'+c.join('');
+            return 'rgba('+[(c>>16)&255, (c>>8)&255, c&255].join(',')+','+alpha+')';
+        }
+        return 'rgba(255,255,255,' + alpha + ')'; // 安全降级默认白
+    }
+
+    // 处理核心水印合成渲染
     function applyWatermark() {
-        if(!img) { showToast(WM_LANGS[currentLang].errUpload); return; }
-        ctx.drawImage(img, 0, 0);
+        if (!sourceImage) {
+            showToast(WM_LANGS[currentLang].err);
+            return;
+        }
+        const canvas = document.createElement('canvas');
+        const ctx = canvas.getContext('2d');
         
-        let fontSize = Math.max(24, canvas.width * 0.05);
-        ctx.font = `bold ${fontSize}px "Inter", -apple-system, sans-serif`;
-        ctx.textBaseline = 'middle'; // 统一使用中央基准线以保证测算精度
-        ctx.fillStyle = `rgba(255, 255, 255, ${wmOpacity.value})`;
+        canvas.width = sourceImage.naturalWidth;
+        canvas.height = sourceImage.naturalHeight;
         
-        const text = wmText.value || 'Watermark';
+        ctx.drawImage(sourceImage, 0, 0);
+
+        // 动态测算基准字号尺度比例
+        const baseSize = Math.max(canvas.width, canvas.height);
+        const fontScale = parseFloat(wmSizeSelect.value);
+        const fontSize = Math.max(14, Math.round(baseSize * fontScale));
+        
+        ctx.font = `bold ${fontSize}px 'Inter', sans-serif`;
+        
+        // 核心注入：动态生成附带用户自选颜色和透明度系数的混合填色规则
+        const targetColorHex = wmColorInput.value;
+        const opacityRatio = parseFloat(wmOpacitySlider.value);
+        ctx.fillStyle = hexToRGBA(targetColorHex, opacityRatio);
+        
+        const text = wmTextInput.value || 'tools123.asia';
         const textWidth = ctx.measureText(text).width;
         
-        // 动态边界安全内衬（Padding）
+        // 内衬安全边距（Padding）
         let padX = canvas.width * 0.03 + 10;
         let padY = canvas.height * 0.03 + fontSize/2;
         
         let x, y;
-        const mode = wmPos.value;
+        const mode = wmPosSelect.value;
 
-        // X轴方位测算
+        // X轴方位测算锚定
         if (mode === 'nw' || mode === 'w' || mode === 'sw') {
             x = padX;
         } else if (mode === 'n' || mode === 'center' || mode === 's') {
@@ -618,7 +632,7 @@
             x = canvas.width - textWidth - padX;
         }
 
-        // Y轴方位测算
+        // Y轴方位测算锚定
         if (mode === 'nw' || mode === 'n' || mode === 'ne') {
             y = padY;
         } else if (mode === 'w' || mode === 'center' || mode === 'e') {
@@ -630,6 +644,7 @@
         ctx.fillText(text, x, y);
         watermarkedImg.src = canvas.toDataURL('image/jpeg', 0.95);
         downloadDiv.style.display = 'block';
+        showToast(WM_LANGS[currentLang].suc);
     }
 
     applyBtn.addEventListener('click', applyWatermark);
@@ -640,7 +655,6 @@
             a.href = watermarkedImg.src;
             a.download = 'watermarked_image.jpg';
             a.click();
-            showToast(WM_LANGS[currentLang].sucDl);
         }
     });
 
