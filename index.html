@@ -298,7 +298,6 @@
 <body>
 <div class="container">
     
-    <!-- 顶部导航控制条：整合颜色切换与多语言 -->
     <div class="top-navbar">
         <button class="theme-btn" id="themeToggleBtn" onclick="toggleTheme()"><i class="fas fa-lightbulb"></i> Theme</button>
         <div class="lang-selector-container">
@@ -315,7 +314,6 @@
         <p id="main-desc">A premium collection of zero-upload utilities. All operations are processed completely offline inside your browser sandbox to guarantee absolute privacy.</p>
     </header>
 
-    <!-- 广告位 1：顶部横幅广告 -->
     <section class="ad-wrapper top-banner">
         <div class="ad-hint" id="ad-hint-1"><i class="fas fa-rectangle-ad"></i> Sponsored Advertisement</div>
         <ins class="adsbygoogle"
@@ -327,10 +325,8 @@
         <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
     </section>
 
-    <!-- 11 款核心功能矩阵与卡片区（包含原生信息流广告卡片） -->
     <main class="grid">
         
-        <!-- 1. 智能图片压缩 -->
         <a href="compress.html" class="tool-card">
             <div class="icon-wrapper"><i class="fas fa-file-zipper"></i></div>
             <h2 class="i18n" data-en="Image Compressor" data-zh="图片压缩" data-es="Compresor de Imagen" data-ja="画像圧縮">Image Compressor</h2>
@@ -342,7 +338,6 @@
             <div class="arrow-link i18n" data-en="Launch <i class='fas fa-arrow-right'></i>" data-zh="立即开启 <i class='fas fa-arrow-right'></i>" data-es="Iniciar <i class='fas fa-arrow-right'></i>" data-ja="起動する <i class='fas fa-arrow-right'></i>">Launch <i class='fas fa-arrow-right'></i></div>
         </a>
 
-        <!-- 2. 图片水印 -->
         <a href="watermark.html" class="tool-card">
             <div class="icon-wrapper"><i class="fas fa-paintbrush"></i></div>
             <h2 class="i18n" data-en="Add Watermark" data-zh="图片水印" data-es="Marca de Agua" data-ja="画像ウォーターマーク">Add Watermark</h2>
@@ -354,7 +349,6 @@
             <div class="arrow-link i18n" data-en="Launch <i class='fas fa-arrow-right'></i>" data-zh="立即开启 <i class='fas fa-arrow-right'></i>" data-es="Iniciar <i class='fas fa-arrow-right'></i>" data-ja="起動する <i class='fas fa-arrow-right'></i>">Launch <i class='fas fa-arrow-right'></i></div>
         </a>
 
-        <!-- 3. 格式拓展 (已修复补全图标) -->
         <a href="formatext.html" class="tool-card">
             <div class="icon-wrapper"><i class="fas fa-images"></i></div>
             <h2 class="i18n" data-en="Format Extension" data-zh="格式拓展" data-es="Extensión de Formato" data-ja="フォーマット拡張">Format Extension</h2>
@@ -366,7 +360,6 @@
             <div class="arrow-link i18n" data-en="Launch <i class='fas fa-arrow-right'></i>" data-zh="立即开启 <i class='fas fa-arrow-right'></i>" data-es="Iniciar <i class='fas fa-arrow-right'></i>" data-ja="起動する <i class='fas fa-arrow-right'></i>">Launch <i class='fas fa-arrow-right'></i></div>
         </a>
 
-        <!-- 广告位 2：原生信息流广告卡片 -->
         <article class="tool-card ad-feed-card">
             <div class="ad-hint" id="ad-hint-2" style="margin-bottom:12px;"><i class="fas fa-star"></i> Recommended For You</div>
             <ins class="adsbygoogle"
@@ -378,7 +371,39 @@
             <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
         </article>
 
-        <!-- 4. 格式转换 -->
+        <a href="html-encoder.html" class="tool-card">
+            <div class="icon-wrapper"><i class="fas fa-code-compare"></i></div>
+            <h2 class="i18n" data-en="HTML Entity Safe" data-zh="HTML实体转换" data-es="Entidad HTML" data-ja="HTMLエンティティ変換">HTML Entity Safe</h2>
+            <p class="i18n" 
+               data-en="Safely encode special source tags into neat entity strings or parse raw components back securely." 
+               data-zh="快速将 HTML 代码进行安全实体转义防解析乱码，或一键将转义符反向还原。" 
+               data-es="Codifique etiquetas de origen en cadenas de entidades limpias o analice de forma segura." 
+               data-ja="特殊タグをエンティティ文字列に安全にエンコード、または元の構造にデコード。">Safely encode special source tags into neat entity strings or parse raw components back securely.</p>
+            <div class="arrow-link i18n" data-en="Launch <i class='fas fa-arrow-right'></i>" data-zh="立即开启 <i class='fas fa-arrow-right'></i>" data-es="Iniciar <i class='fas fa-arrow-right'></i>" data-ja="起動する <i class='fas fa-arrow-right'></i>">Launch <i class='fas fa-arrow-right'></i></div>
+        </a>
+
+        <a href="markdown-to-html.html" class="tool-card">
+            <div class="icon-wrapper"><i class="fab fa-markdown"></i></div>
+            <h2 class="i18n" data-en="Markdown Live" data-zh="Markdown转换" data-es="Markdown a HTML" data-ja="Markdown 変換">Markdown Live</h2>
+            <p class="i18n" 
+               data-en="Compile standard Markdown strings down into modular pure semantic clean HTML structural objects instantly." 
+               data-zh="实时将 Markdown 标记语言编译转换为结构清晰、可直接复制的标准 HTML 网页源码。" 
+               data-es="Compile cadenas Markdown en objetos estructurales HTML limpios y semánticos al instante." 
+               data-ja="Markdown構文を、構造化されたクリーンなセマンティックHTMLソースに即座にコンパイル。">Compile standard Markdown strings down into modular pure semantic clean HTML structural objects instantly.</p>
+            <div class="arrow-link i18n" data-en="Launch <i class='fas fa-arrow-right'></i>" data-zh="立即开启 <i class='fas fa-arrow-right'></i>" data-es="Iniciar <i class='fas fa-arrow-right'></i>" data-ja="起動する <i class='fas fa-arrow-right'></i>">Launch <i class='fas fa-arrow-right'></i></div>
+        </a>
+
+        <a href="url-encoder.html" class="tool-card">
+            <div class="icon-wrapper"><i class="fas fa-link-slash"></i></div>
+            <h2 class="i18n" data-en="URL Uniform Code" data-zh="URL编码解码" data-es="Codificador URL" data-ja="URLエンコード">URL Uniform Code</h2>
+            <p class="i18n" 
+               data-en="Encrypt intricate web paths or parse complex percent-encoded parameters streams inside browser sandboxes." 
+               data-zh="本地安全转义网址参数中的中文字符与特殊符号，轻松解决网页跳转传参乱码问题。" 
+               data-es="Codifique rutas web o analice flujos de parámetros codificados en porcentajes sin conexión." 
+               data-ja="複雑なWebパスのエスケープ処理や、パーセントエンコードされたパラメータをローカルで復元。">Encrypt intricate web paths or parse complex percent-encoded parameters streams inside browser sandboxes.</p>
+            <div class="arrow-link i18n" data-en="Launch <i class='fas fa-arrow-right'></i>" data-zh="立即开启 <i class='fas fa-arrow-right'></i>" data-es="Iniciar <i class='fas fa-arrow-right'></i>" data-ja="起動する <i class='fas fa-arrow-right'></i>">Launch <i class='fas fa-arrow-right'></i></div>
+        </a>
+
         <a href="convert.html" class="tool-card">
             <div class="icon-wrapper"><i class="fas fa-exchange-alt"></i></div>
             <h2 class="i18n" data-en="Format Converter" data-zh="格式转换" data-es="Conversor de Formatos" data-ja="画像フォーマット変換">Format Converter</h2>
@@ -390,7 +415,6 @@
             <div class="arrow-link i18n" data-en="Launch <i class='fas fa-arrow-right'></i>" data-zh="立即开启 <i class='fas fa-arrow-right'></i>" data-es="Iniciar <i class='fas fa-arrow-right'></i>" data-ja="起動する <i class='fas fa-arrow-right'></i>">Launch <i class='fas fa-arrow-right'></i></div>
         </a>
 
-        <!-- 5. UUID 生成 -->
         <a href="uuid.html" class="tool-card">
             <div class="icon-wrapper"><i class="fas fa-fingerprint"></i></div>
             <h2 class="i18n" data-en="UUID Generator" data-zh="UUID 生成" data-es="Generador de UUID" data-ja="UUID 生成器">UUID Generator</h2>
@@ -402,7 +426,6 @@
             <div class="arrow-link i18n" data-en="Launch <i class='fas fa-arrow-right'></i>" data-zh="立即开启 <i class='fas fa-arrow-right'></i>" data-es="Iniciar <i class='fas fa-arrow-right'></i>" data-ja="起動する <i class='fas fa-arrow-right'></i>">Launch <i class='fas fa-arrow-right'></i></div>
         </a>
 
-        <!-- 6. Office 转换 -->
         <a href="office.html" class="tool-card">
             <div class="icon-wrapper"><i class="fas fa-file-alt"></i></div>
             <h2 class="i18n" data-en="Office Extractions" data-zh="Office 转换" data-es="Conversor Office" data-ja="Office 抽出変換">Office Extractions</h2>
@@ -414,7 +437,6 @@
             <div class="arrow-link i18n" data-en="Launch <i class='fas fa-arrow-right'></i>" data-zh="立即开启 <i class='fas fa-arrow-right'></i>" data-es="Iniciar <i class='fas fa-arrow-right'></i>" data-ja="起動する <i class='fas fa-arrow-right'></i>">Launch <i class='fas fa-arrow-right'></i></div>
         </a>
 
-        <!-- 7. 二维码生成 -->
         <a href="qr.html" class="tool-card">
             <div class="icon-wrapper"><i class="fas fa-qrcode"></i></div>
             <h2 class="i18n" data-en="QR Code Maker" data-zh="二维码生成" data-es="Creador de QR" data-ja="QRコード生成">QR Code Maker</h2>
@@ -426,7 +448,6 @@
             <div class="arrow-link i18n" data-en="Launch <i class='fas fa-arrow-right'></i>" data-zh="立即开启 <i class='fas fa-arrow-right'></i>" data-es="Iniciar <i class='fas fa-arrow-right'></i>" data-ja="起動する <i class='fas fa-arrow-right'></i>">Launch <i class='fas fa-arrow-right'></i></div>
         </a>
 
-        <!-- 8. 亲属关系 (已修复补全图标) -->
         <a href="relation.html" class="tool-card">
             <div class="icon-wrapper"><i class="fas fa-users"></i></div>
             <h2 class="i18n" data-en="Kinship Calculator" data-zh="亲属关系" data-es="Calculadora de Parentesco" data-ja="親族関係計算機">Kinship Calculator</h2>
@@ -438,7 +459,6 @@
             <div class="arrow-link i18n" data-en="Launch <i class='fas fa-arrow-right'></i>" data-zh="立即开启 <i class='fas fa-arrow-right'></i>" data-es="Iniciar <i class='fas fa-arrow-right'></i>" data-ja="起動する <i class='fas fa-arrow-right'></i>">Launch <i class='fas fa-arrow-right'></i></div>
         </a>
 
-        <!-- 9. 贷款计算 (已修复补全图标) -->
         <a href="loan.html" class="tool-card">
             <div class="icon-wrapper"><i class="fas fa-chart-line"></i></div>
             <h2 class="i18n" data-en="Loan Mortgage" data-zh="贷款计算" data-es="Calculadora Hipotecaria" data-ja="ローン計算機">Loan Mortgage</h2>
@@ -450,7 +470,6 @@
             <div class="arrow-link i18n" data-en="Launch <i class='fas fa-arrow-right'></i>" data-zh="立即开启 <i class='fas fa-arrow-right'></i>" data-es="Iniciar <i class='fas fa-arrow-right'></i>" data-ja="起動する <i class='fas fa-arrow-right'></i>">Launch <i class='fas fa-arrow-right'></i></div>
         </a>
 
-        <!-- 10. 汇率换算 (已修复补全图标) -->
         <a href="currency.html" class="tool-card">
             <div class="icon-wrapper"><i class="fas fa-dollar-sign"></i></div>
             <h2 class="i18n" data-en="Exchange Rates" data-zh="汇率换算" data-es="Tipos de Cambio" data-ja="為替レート換算">Exchange Rates</h2>
@@ -462,7 +481,6 @@
             <div class="arrow-link i18n" data-en="Launch <i class='fas fa-arrow-right'></i>" data-zh="立即开启 <i class='fas fa-arrow-right'></i>" data-es="Iniciar <i class='fas fa-arrow-right'></i>" data-ja="起動する <i class='fas fa-arrow-right'></i>">Launch <i class='fas fa-arrow-right'></i></div>
         </a>
 
-        <!-- 11. 单位换算 (已修复补全图标) -->
         <a href="unit.html" class="tool-card">
             <div class="icon-wrapper"><i class="fas fa-ruler"></i></div>
             <h2 class="i18n" data-en="Unit Converter" data-zh="单位换算" data-es="Conversor de Unidades" data-ja="単位換算ツール">Unit Converter</h2>
@@ -476,7 +494,6 @@
 
     </main>
 
-    <!-- 广告位 3：底部横幅广告 -->
     <section class="ad-wrapper bottom-banner">
         <div class="ad-hint" id="ad-hint-3"><i class="fas fa-rectangle-ad"></i> Sponsored Advertisement</div>
         <ins class="adsbygoogle"
@@ -495,7 +512,7 @@
 </div>
 
 <script>
-    // i18n 语言字典配置
+    // i18n 语言字典配置 - 已合规并加入了 3 个全新子工具的文本定义
     const LANG_CONFIG = {
         en: {
             badge: '<i class="fas fa-shield-halved"></i> 100% Privacy Safe · Runs Locally',
