@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <meta name="google-adsense-account" content="ca-pub-1624261597740761">
+    <title id="page-title">IndexNow Instant Submit – Ultimate Online Toolbox</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1624261597740761" crossorigin="anonymous"></script>
+    <script>
+         (adsbygoogle = window.adsbygoogle || []).push({
+              google_ad_client: "ca-pub-1624261597740761",
+              enable_page_level_ads: true
+         });
+    </script>
+
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; -webkit-font-smoothing: antialiased; }
+        
+        :root {
+            --bg-gradient: radial-gradient(circle at 10% 30%, #eef2f9 0%, #e0e8f2 100%);
+            --text-main: #0b2b3b;
+            --text-muted: #5c7285;
+            --text-sub: #8fa0b0;
+            --accent: #10b981;
+            --accent-hover: #059669;
+            --card-bg: #ffffff;
+            --card-border: #bfd6ea;
+            --shadow-sm: 0 4px 12px rgba(0,0,0,0.03);
+            --shadow-md: 0 25px 45px -12px rgba(0,0,0,0.08);
+            --radius-lg: 24px;
+            --radius-md: 16px;
+            --select-bg: #ffffff;
+        }
+
+        [data-theme="dark"] {
+            --bg-gradient: radial-gradient(circle at 50% 0%, #111827 0%, #030712 100%);
+            --text-main: #f3f4f6;
+            --text-muted: #9ca3af;
+            --text-sub: #6b7280;
+            --accent: #10b981;
+            --accent-hover: #059669;
+            --card-bg: rgba(17, 24, 39, 0.75);
+            --card-border: rgba(16, 185, 129, 0.15);
+            --shadow-sm: 0 4px 12px rgba(0,0,0,0.3);
+            --shadow-md: 0 25px 50px -12px rgba(0,0,0,0.5);
+            --select-bg: #1f2937;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, sans-serif;
+            background: var(--bg-gradient);
+            color: var(--text-main);
+            min-height: 100vh;
+            padding: 40px 24px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            transition: background 0.3s ease, color 0.3s ease;
+        }
+
+        .container { width: 100%; max-width: 1000px; }
+        
+        .top-bar { width: 100%; display: flex; justify-content: space-between; align-items: center; margin-bottom: 32px; gap: 12px; flex-wrap: wrap; }
+        .left-controls { display: flex; gap: 12px; align-items: center; }
+        
+        .back-btn, .theme-btn { background: var(--card-bg); border: 1px solid var(--card-border); color: var(--text-main); padding: 8px 18px; border-radius: 100px; font-size: 0.9rem; font-weight: 500; cursor: pointer; text-decoration: none; display: inline-flex; align-items: center; gap: 8px; transition: all 0.2s ease; }
+        .back-btn:hover, .theme-btn:hover { border-color: var(--accent); transform: translateY(-1px); }
+
+        .lang-selector-container { display: flex; gap: 8px; }
+        .lang-btn {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            color: var(--text-muted);
+            padding: 6px 14px;
+            border-radius: 100px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        .lang-btn:hover, .lang-btn.active {
+            background: var(--accent);
+            color: #ffffff;
+            border-color: var(--accent);
+            box-shadow: 0 0 12px rgba(16, 185, 129, 0.4);
+        }
+
+        header { text-align: center; margin-bottom: 40px; }
+        header h1 { font-size: 2.5rem; font-weight: 800; letter-spacing: -1px; margin-bottom: 12px; color: var(--text-main); }
+        header p { color: var(--text-muted); font-size: 1.05rem; max-width: 650px; margin: 0 auto; line-height: 1.5; }
+
+        .workspace { background: var(--card-bg); border: 1px solid var(--card-border); border-radius: var(--radius-lg); padding: 32px; box-shadow: var(--shadow-md); display: flex; flex-direction: column; gap: 24px; margin-bottom: 32px; }
+        
+        .input-group { display: flex; flex-direction: column; gap: 8px; }
+        .input-group label { font-size: 0.95rem; font-weight: 600; color: var(--text-main); display: flex; align-items: center; gap: 6px; }
+        
+        .input-group input, .input-group textarea, .input-group select { 
+            background: rgba(0,0,0,0.02); 
+            border: 1px solid var(--card-border); 
+            border-radius: var(--radius-md); 
+            padding: 14px; 
+            font-family: inherit; 
+            font-size: 0.95rem; 
+            color: var(--text-main); 
+            outline: none; 
+            transition: border-color 0.2s, background 0.2s, color 0.2s; 
+            -webkit-appearance: none; 
+            -moz-appearance: none;
+            appearance: none;
+        }
+
+        .input-group select {
+            background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%2310b981' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><polyline points='6 9 12 15 18 9'></polyline></svg>");
+            background-repeat: no-repeat;
+            background-position: right 14px center;
+            background-size: 16px;
+            padding-right: 40px;
+        }
+
+        [data-theme="dark"] .input-group input, 
+        [data-theme="dark"] .input-group textarea { 
+            background: rgba(255,255,255,0.02); 
+        }
+
+        [data-theme="dark"] .input-group select {
+            background-color: var(--select-bg);
+            color: var(--text-main);
+        }
+        .input-group select option {
+            background-color: var(--select-bg);
+            color: var(--text-main);
+        }
+
+        .input-group input:focus, .input-group textarea:focus, .input-group select:focus { border-color: var(--accent); }
+        
+        .config-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+
+        .key-wrapper { display: flex; gap: 8px; width: 100%; }
+        .key-wrapper input { flex: 1; }
+        .btn-sub-action { background: rgba(0,0,0,0.04); border: 1px solid var(--card-border); color: var(--text-main); padding: 0 16px; border-radius: var(--radius-md); font-size: 0.88rem; font-weight: 600; cursor: pointer; display: inline-flex; align-items: center; gap: 6px; transition: all 0.2s; white-space: nowrap; }
+        [data-theme="dark"] .btn-sub-action { background: rgba(255,255,255,0.04); }
+        .btn-sub-action:hover { border-color: var(--accent); background: var(--accent); color: #ffffff; }
+
+        .btn-primary { background: var(--accent); color: #ffffff; border: none; padding: 14px; border-radius: var(--radius-md); font-size: 1rem; font-weight: 600; cursor: pointer; transition: background 0.2s, transform 0.2s; display: flex; align-items: center; justify-content: center; gap: 8px; box-shadow: 0 4px 12px rgba(16,185,129,0.2); }
+        .btn-primary:hover { background: var(--accent-hover); transform: translateY(-1px); }
+
+        .result-zone { display: none; grid-template-columns: 1fr; gap: 24px; animation: fadeIn 0.4s ease forwards; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+        .output-card { background: var(--card-bg); border: 1px solid var(--card-border); border-radius: var(--radius-md); padding: 20px; display: flex; flex-direction: column; gap: 12px; }
+        .output-header { display: flex; justify-content: space-between; align-items: center; }
+        .output-header h3 { font-size: 1.05rem; font-weight: 700; display: flex; align-items: center; gap: 8px; }
+        
+        /* 状态微光徽章样式 */
+        .status-badge { padding: 4px 12px; border-radius: 100px; font-size: 0.8rem; font-weight: 700; }
+        .status-badge.success { background: rgba(16,185,129,0.15); color: #10b981; }
+        .status-badge.error { background: rgba(239,68,68,0.15); color: #ef4444; }
+
+        pre { background: rgba(0,0,0,0.03); border: 1px solid var(--card-border); border-radius: 10px; padding: 14px; font-family: 'Courier New', Courier, monospace; font-size: 0.88rem; overflow-x: auto; max-height: 260px; color: var(--text-main); white-space: pre-wrap; word-break: break-all; }
+        [data-theme="dark"] pre { background: rgba(255,255,255,0.03); }
+
+        .ad-wrapper { margin: 24px auto; width: 100%; text-align: center; }
+        
+        .toast { position: fixed; bottom: 30px; left: 50%; transform: translateX(-50%) translateY(40px); background: #10b981; color: #ffffff; padding: 10px 24px; border-radius: 100px; font-size: 0.9rem; font-weight: 600; box-shadow: 0 10px 25px rgba(16,185,129,0.3); opacity: 0; pointer-events: none; transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.3s; z-index: 9999; display: flex; align-items: center; gap: 8px; }
+        .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+        .toast.err-toast { background: #ef4444; box-shadow: 0 10px 25px rgba(239,68,68,0.3); }
+
+        @media (max-width: 768px) {
+            .top-bar { flex-direction: column; align-items: flex-start; }
+            .lang-selector-container { width: 100%; justify-content: flex-start; margin-top: 4px; }
+            .config-row { grid-template-columns: 1fr; }
+            .workspace { padding: 20px; }
+            .key-wrapper { flex-direction: column; }
+            .btn-sub-action { padding: 12px; justify-content: center; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="top-bar">
+        <div class="left-controls">
+            <a href="index.html" class="back-btn"><i class="fas fa-arrow-left"></i> <span class="i18n" data-en="Back" data-zh="返回工具箱" data-es="Atrás" data-ja="戻る">Back</span></a>
+            <button class="theme-btn" onclick="toggleTheme()"><i class="fas fa-lightbulb"></i> Theme</button>
+        </div>
+        <div class="lang-selector-container">
+            <button class="lang-btn" id="lang-en" onclick="switchLang('en')">English</button>
+            <button class="lang-btn" id="lang-zh" onclick="switchLang('zh')">简体中文</button>
+            <button class="lang-btn" id="lang-es" onclick="switchLang('es')">Español</button>
+            <button class="lang-btn" id="lang-ja" onclick="switchLang('ja')">日本語</button>
+        </div>
+    </div>
+
+    <header>
+        <h1 id="txt-title" class="i18n" data-en="IndexNow Instant Submitter" data-zh="IndexNow 网址秒级推送器" data-es="IndexNow Submitidor Instantáneo" data-ja="IndexNow インスタント送信ツール">IndexNow Instant Submitter</h1>
+        <p class="i18n" data-en="Instantly ping Search Engines (Bing, Yandex, Seznam) to let them crawl your newly updated links on the fly." data-zh="直连官方接口！一键向 Bing、Yandex 等搜索引擎下发主动抓取指令，大幅缩短网站新内容被索引的等待周期。" data-es="Notifique instantáneamente a los motores de búsqueda para indexar sus páginas web de forma inmediata." data-ja="検索エンジン（Bing、Yandex等）にリンクを直接プッシュし、新しいコンテンツのインデックス登録を最速化します。">Instantly ping Search Engines to let them crawl your newly updated links on the fly.</p>
+    </header>
+
+    <div class="workspace">
+        <div class="config-row">
+            <div class="input-group">
+                <label class="i18n" data-en="Search Engine Endpoint" data-zh="目标搜索引擎网关" data-es="Endpoint del Motor" data-ja="検索エンジン網（エンドポイント）">Search Engine Endpoint</label>
+                <select id="engineSelect">
+                    <option value="https://www.bing.com/indexnow" selected>Bing (Recommended)</option>
+                    <option value="https://api.indexnow.org/indexnow">IndexNow.org (Global Hub)</option>
+                    <option value="https://yandex.com/indexnow">Yandex</option>
+                </select>
+            </div>
+            <div class="input-group">
+                <label class="i18n" data-en="Target Domain (host)" data-zh="目标网站域名 (host)" data-es="Dominio Base (host)" data-ja="対象ドメイン (host)">Target Domain</label>
+                <input type="url" id="domainInput" placeholder="https://www.yourdomain.com" value="https://www.yourdomain.com">
+            </div>
+        </div>
+
+        <div class="input-group">
+            <label class="i18n" data-en="IndexNow API Key (8 - 32 alphanumeric)" data-zh="IndexNow 专属 API 密钥 (key)" data-es="Clave API (key)" data-ja="IndexNow API キー (key)">IndexNow API Key</label>
+            <div class="key-wrapper">
+                <input type="text" id="keyInput" placeholder="e.g. 523a677e48b846fcbb65c401bc3bbf0f">
+                <button class="btn-sub-action" id="genKeyBtn"><i class="fas fa-random"></i> <span class="i18n" data-en="Random Key" data-zh="随机生成密钥" data-es="Generar Clave" data-ja="キーを自動生成">Random Key</span></button>
+            </div>
+        </div>
+
+        <div class="input-group">
+            <label class="i18n" data-en="Key Verification Location URL" data-zh="验证密钥存放对应的完整文件 URL (keyLocation)" data-es="URL de verificación de clave" data-ja="キー検証ファイルの配置URL (keyLocation)">Key Verification Location URL</label>
+            <input type="url" id="keyLocationInput" placeholder="https://www.yourdomain.com/523a677e48b846fcbb65c401bc3bbf0f.txt">
+        </div>
+
+        <div class="input-group">
+            <label class="i18n" data-en="URLs to Push (One link per line, up to 10,000)" data-zh="要推送的网址列表（一行一个完整 URL，单次最多 10000 条）" data-es="URLs a enviar (Una por línea)" data-ja="送信するURLリスト（1行に1つ、最大10,000URL）">URLs to Push</label>
+            <textarea id="urlsInput" rows="6" placeholder="https://www.yourdomain.com/page1.html&#10;https://www.yourdomain.com/blog/article.html"></textarea>
+        </div>
+
+        <button class="btn-primary" id="submitBtn">
+            <i class="fas fa-paper-plane"></i>
+            <span class="i18n" data-en="Submit to IndexNow" data-zh="立即提交推送" data-es="Enviar a IndexNow" data-ja="IndexNowに即時送信">Submit to IndexNow</span>
+        </button>
+    </div>
+
+    <div class="ad-wrapper">
+        <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-1624261597740761" data-ad-slot="7441222926" data-ad-format="auto" data-full-width-responsive="true"></ins>
+        <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+    </div>
+
+    <div class="result-zone" id="resultDiv">
+        <div class="output-card">
+            <div class="output-header">
+                <h3 class="i18n" data-en="Server Response Status" data-zh="🔄 接口服务器响应状态" data-es="Estado de Respuesta" data-ja="サーバー応答ステータス">Server Response Status</h3>
+                <span id="statusBadge" class="status-badge success">HTTP 200</span>
+            </div>
+            <pre id="responseOutput"></pre>
+        </div>
+    </div>
+</div>
+
+<div class="toast" id="toastBox"><i class="fas fa-check-circle"></i> <span id="toastMsg"></span></div>
+
+<script>
+    let currentLang = 'en';
+
+    const IN_LANGS = {
+        en: { 
+            suc: "Submitted successfully!", 
+            errField: "Please fully populate all form parameters.", 
+            errUrl: "Please insert valid URLs belonging to the designated target domain.",
+            keyTip: "New API Key generated! Ensure you upload the corresponding .txt validation file to your site root.",
+            fail: "Submission Failed. See HTTP status details below."
+        },
+        zh: { 
+            suc: "主动推送请求发送成功！", 
+            errField: "请先完整填写所有必需的表单控制字段。", 
+            errUrl: "请输入与上方配置的目标根域名相匹配的有效绝对超链接网址。",
+            keyTip: "随机密钥已成功构建！请务必在服务器或云根目录下挂载对应的 txt 文件用以通过搜索引擎确权。",
+            fail: "接口握手失败，请查看下方返回的详细网络异常状态码。"
+        },
+        es: { 
+            suc: "¡Enviado con éxito!", 
+            errField: "Por favor, complete todos los campos requeridos.", 
+            errUrl: "Por favor, ingrese URLs válidas que pertenezcan al dominio.",
+            keyTip: "¡Clave API generada! Asegúrese de subir el archivo .txt de verificación.",
+            fail: "Error al enviar. Vea los detalles del estado HTTP abajo."
+        },
+        ja: { 
+            suc: "正常にプッシュ送信されました！", 
+            errField: "すべての必須項目を正しく入力してください。", 
+            errUrl: "設定されたドメインに一致する有効な絶対URLを入力してください。",
+            keyTip: "APIキーを作成しました。検証用.txtファイルをサーバーのルートに配置してください。",
+            fail: "送信エラー。詳細は下記のHTTP応答内容を確認してください。"
+        }
+    };
+
+    function switchLang(lang) {
+        currentLang = lang;
+        const titleMap = { en: "IndexNow Instant Submit", zh: "IndexNow 网址秒级推送器", es: "IndexNow Submitidor Instantáneo", ja: "IndexNow インスタント送信ツール" };
+        document.title = (titleMap[lang] || titleMap['en']) + " – Ultimate Online Toolbox";
+        
+        document.querySelectorAll('.i18n').forEach(el => {
+            const translation = el.getAttribute(`data-${lang}`);
+            if (translation) el.innerHTML = translation;
+        });
+
+        document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
+        const activeBtn = document.getElementById(`lang-${lang}`);
+        if(activeBtn) activeBtn.classList.add('active');
+
+        localStorage.setItem('user_lang_preference', lang);
+        document.documentElement.lang = lang;
+    }
+
+    function toggleTheme() {
+        const currentTheme = document.documentElement.getAttribute('data-theme');
+        const targetTheme = currentTheme === 'dark' ? 'light' : 'dark';
+        document.documentElement.setAttribute('data-theme', targetTheme);
+        localStorage.setItem('user_theme_preference', targetTheme);
+    }
+
+    function initTheme() {
+        const savedTheme = localStorage.getItem('user_theme_preference') || 'dark';
+        document.documentElement.setAttribute('data-theme', savedTheme);
+    }
+
+    function showToast(msg, isError = false) {
+        const toast = document.getElementById('toastBox');
+        const icon = toast.querySelector('i');
+        document.getElementById('toastMsg').innerText = msg;
+        
+        if (isError) {
+            toast.classList.add('err-toast');
+            icon.className = 'fas fa-exclamation-circle';
+        } else {
+            toast.classList.remove('err-toast');
+            icon.className = 'fas fa-check-circle';
+        }
+        
+        toast.classList.add('show');
+        setTimeout(() => toast.classList.remove('show'), 3500);
+    }
+
+    // ===================================================
+    // 🎲 实用辅助逻辑：高强度随机 API Key 生成器
+    // ===================================================
+    document.getElementById('genKeyBtn').addEventListener('click', () => {
+        const chars = '0123456789abcdefghijklmnopqrstuvwxyz';
+        let token = '';
+        for (let i = 0; i < 32; i++) {
+            token += chars[Math.floor(Math.random() * chars.length)];
+        }
+        document.getElementById('keyInput').value = token;
+        
+        // 自动联动猜测推导 keyLocation 校验文件路径
+        let domain = document.getElementById('domainInput').value.trim();
+        if (domain) {
+            if (!domain.startsWith('http://') && !domain.startsWith('https://')) domain = 'https://' + domain;
+            if (domain.endsWith('/')) domain = domain.slice(0, -1);
+            document.getElementById('keyLocationInput').value = `${domain}/${token}.txt`;
+        }
+        showToast(IN_LANGS[currentLang].keyTip);
+    });
+
+    // 当用户输入主域名时，动态同步更新默认的 KeyLocation 
+    document.getElementById('domainInput').addEventListener('input', (e) => {
+        let domain = e.target.value.trim();
+        const currentKey = document.getElementById('keyInput').value.trim();
+        if (domain && currentKey) {
+            if (domain.endsWith('/')) domain = domain.slice(0, -1);
+            document.getElementById('keyLocationInput').value = `${domain}/${currentKey}.txt`;
+        }
+    });
+
+    // ===================================================
+    // 🚀 核心提交引擎 (采用 Fetch API 规范异步投递)
+    // ===================================================
+    document.getElementById('submitBtn').addEventListener('click', async () => {
+        const endpoint = document.getElementById('engineSelect').value;
+        let host = document.getElementById('domainInput').value.trim();
+        const key = document.getElementById('keyInput').value.trim();
+        const keyLocation = document.getElementById('keyLocationInput').value.trim();
+        const rawUrls = document.getElementById('urlsInput').value;
+
+        // 1. 基本非空字段拦截器
+        if (!host || !key || !keyLocation || !rawUrls.trim()) {
+            showToast(IN_LANGS[currentLang].errField, true);
+            return;
+        }
+
+        // 清理清洗格式
+        if (host.startsWith('https://')) host = host.replace('https://', '');
+        if (host.startsWith('http://')) host = host.replace('http://', '');
+        if (host.endsWith('/')) host = host.slice(0, -1);
+
+        const urlList = rawUrls.split('\n')
+                               .map(u => u.trim())
+                               .filter(u => u.length > 0);
+
+        if (urlList.length === 0) {
+            showToast(IN_LANGS[currentLang].errField, true);
+            return;
+        }
+
+        // 2. 检查输入的子 URL 是否包含配置的主域名
+        const invalidUrls = urlList.filter(u => !u.includes(host));
+        if (invalidUrls.length > 0) {
+            showToast(IN_LANGS[currentLang].errUrl, true);
+            return;
+        }
+
+        // 构建标准 IndexNow JSON 数据负载
+        const payload = { host, key, keyLocation, urlList };
+
+        const badge = document.getElementById('statusBadge');
+        const outputBox = document.getElementById('responseOutput');
+        const resultZone = document.getElementById('resultDiv');
+
+        try {
+            // 发起原生网络异步跨域请求
+            const response = await fetch(endpoint, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json; charset=utf-8' },
+                body: JSON.stringify(payload)
+            });
+
+            resultZone.style.display = 'grid';
+
+            // 根据 IndexNow 官方规范，成功处理通常直接返回 200 OK 状态且无返回值
+            if (response.status === 200) {
+                badge.className = "status-badge success";
+                badge.innerText = `HTTP ${response.status} : Success`;
+                outputBox.innerText = `{\n  "success": true,\n  "message": "IndexNow received URLs. Search engines will crawl these links shortly."\n}`;
+                showToast(IN_LANGS[currentLang].suc);
+            } else {
+                // 如果出现 400（格式有误）、403（Key 验证不通过）等异常状态
+                badge.className = "status-badge error";
+                badge.innerText = `HTTP ${response.status}`;
+                outputBox.innerText = `{\n  "success": false,\n  "status": ${response.status},\n  "statusText": "${response.statusText || 'Error'}",\n  "tip": "Check if the key verification file is uploaded properly to your host root."\n}`;
+                showToast(IN_LANGS[currentLang].fail, true);
+            }
+        } catch (error) {
+            // 如果遇到跨域 CORS 拦截或本地无网络环境时的异常兜底
+            resultZone.style.display = 'grid';
+            badge.className = "status-badge error";
+            badge.innerText = "Network Error / CORS Blocked";
+            outputBox.innerText = `Error Details: ${error.message}\n\n[CORS Note] IndexNow protocol endpoint requires direct submission from the server or from browsers supporting CORS. If the endpoint blocks client-side requests, setting up a Cloudflare Worker or reverse proxy is recommended.`;
+            showToast("Request failed due to network error.", true);
+        }
+    });
+
+    window.addEventListener('DOMContentLoaded', () => {
+        initTheme();
+        const storedPreference = localStorage.getItem('user_lang_preference') || 'en';
+        switchLang(storedPreference);
+    });
+</script>
+</body>
+</html>
