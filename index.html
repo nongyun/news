@@ -2,20 +2,13 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
     <meta name="google-adsense-account" content="ca-pub-1624261597740761">
-    <title>Ultimate Online Toolbox - Free, Local & Privacy-Safe Web Tools</title>
-    <meta name="description" content="A premium collection of essential productivity tools including smart image compression, text watermark, image format converter, bulk UUID generator, offline Office converter, Wi-Fi QR code generator, and financial calculators. 100% local, safe and private.">
-    <meta name="keywords" content="online toolbox, image compress, watermark, format convert, UUID generator, Office converter, QR code, loan calculator, currency exchange, unit converter">
-    <meta name="msvalidate.01" content="A77A155333B8287C20EA2B7FFEACEB1E" />
-    
-    <meta property="og:type" content="website">
-    <meta property="og:title" content="Ultimate Online Toolbox - Free, Local & Privacy-Safe Tools">
-    <meta property="og:description" content="100% client-side tools running securely in your browser sandboxes. Zero data leak.">
+    <title id="page-title">Sitemap & Robots Optimizer – Ultimate Online Toolbox</title>
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1624261597740761" crossorigin="anonymous"></script>
@@ -27,53 +20,40 @@
     </script>
 
     <style>
-        /* ==========================================
-           1. 全局设计核心变量与主题系统优化
-           ========================================== */
         * { margin: 0; padding: 0; box-sizing: border-box; -webkit-font-smoothing: antialiased; }
         
         :root {
-            /* 🌞 明亮模式优化：温润奶白微光视觉 */
-            --bg-gradient: radial-gradient(circle at 50% 0%, #f8fafc 0%, #f1f5f9 50%, #e2e8f0 100%);
-            --text-main: #0f172a;
-            --text-muted: #475569;
-            --text-sub: #94a3b8;
-            --accent: #2563eb;
-            --accent-gradient: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
-            --card-bg: rgba(255, 255, 255, 0.85);
-            --card-border: rgba(226, 232, 240, 0.8);
-            --card-hover-border: rgba(37, 99, 235, 0.5);
-            --shadow-sm: 0 2px 8px rgba(15, 23, 42, 0.04);
-            --shadow-md: 0 16px 32px -10px rgba(15, 23, 42, 0.06);
-            --shadow-lg: 0 24px 48px -12px rgba(37, 99, 235, 0.12);
+            --bg-gradient: radial-gradient(circle at 10% 30%, #eef2f9 0%, #e0e8f2 100%);
+            --text-main: #0b2b3b;
+            --text-muted: #5c7285;
+            --text-sub: #8fa0b0;
+            --accent: #10b981;
+            --accent-hover: #059669;
+            --card-bg: #ffffff;
+            --card-border: #bfd6ea;
+            --shadow-sm: 0 4px 12px rgba(0,0,0,0.03);
+            --shadow-md: 0 25px 45px -12px rgba(0,0,0,0.08);
             --radius-lg: 24px;
-            --radius-md: 18px;
-            --badge-bg: rgba(37, 99, 235, 0.06);
-            --badge-border: rgba(37, 99, 235, 0.15);
-            --badge-text: #1d4ed8;
+            --radius-md: 16px;
+            --select-bg: #ffffff; /* 浅色模式下拉菜单背景 */
         }
 
-        /* 🌙 暗黑模式优化：大厂极客最爱深空灰 */
         [data-theme="dark"] {
-            --bg-gradient: radial-gradient(circle at 50% -10%, #0f172a 0%, #070a13 60%, #020408 100%);
-            --text-main: #f8fafc;
-            --text-muted: #94a3b8;
-            --text-sub: #64748b;
-            --accent: #3b82f6;
-            --accent-gradient: linear-gradient(135deg, #3b82f6 0%, #6366f1 100%);
-            --card-bg: rgba(15, 23, 42, 0.45);
-            --card-border: rgba(255, 255, 255, 0.05);
-            --card-hover-border: rgba(59, 130, 246, 0.4);
-            --shadow-sm: 0 4px 12px rgba(0, 0, 0, 0.4);
-            --shadow-md: 0 16px 40px -12px rgba(0, 0, 0, 0.6);
-            --shadow-lg: 0 24px 60px -12px rgba(59, 130, 246, 0.16);
-            --badge-bg: rgba(59, 130, 246, 0.1);
-            --badge-border: rgba(59, 130, 246, 0.2);
-            --badge-text: #60a5fa;
+            --bg-gradient: radial-gradient(circle at 50% 0%, #111827 0%, #030712 100%);
+            --text-main: #f3f4f6;
+            --text-muted: #9ca3af;
+            --text-sub: #6b7280;
+            --accent: #10b981;
+            --accent-hover: #059669;
+            --card-bg: rgba(17, 24, 39, 0.75);
+            --card-border: rgba(16, 185, 129, 0.15);
+            --shadow-sm: 0 4px 12px rgba(0,0,0,0.3);
+            --shadow-md: 0 25px 50px -12px rgba(0,0,0,0.5);
+            --select-bg: #1f2937; /* 深色模式下拉菜单及选项的纯正黑夜背景色 */
         }
 
         body {
-            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-family: 'Inter', -apple-system, sans-serif;
             background: var(--bg-gradient);
             color: var(--text-main);
             min-height: 100vh;
@@ -81,581 +61,250 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            transition: background 0.4s cubic-bezier(0.4, 0, 0.2, 1), color 0.4s ease;
+            transition: background 0.3s ease, color 0.3s ease;
         }
 
-        .container {
-            width: 100%;
-            max-width: 1280px;
-        }
-
-        /* ==========================================
-           2. 导航控制组件美化
-           ========================================== */
-        .top-navbar {
-            width: 100%;
-            display: flex;
-            justify-content: flex-end;
-            align-items: center;
-            gap: 16px;
-            margin-bottom: 40px;
-            flex-wrap: wrap;
-        }
-
-        .theme-btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            background: var(--card-bg);
-            border: 1px solid var(--card-border);
-            color: var(--text-main);
-            padding: 9px 20px;
-            border-radius: 99px;
-            font-size: 0.85rem;
-            font-weight: 600;
-            cursor: pointer;
-            backdrop-filter: blur(8px);
-            -webkit-backdrop-filter: blur(8px);
-            box-shadow: var(--shadow-sm);
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-        .theme-btn:hover {
-            border-color: var(--card-hover-border);
-            transform: translateY(-2px);
-            box-shadow: var(--shadow-md);
-        }
-        .theme-btn i {
-            color: #eab308;
-        }
-
-        .lang-selector-container { display: flex; gap: 6px; background: rgba(0,0,0,0.05); padding: 4px; border-radius: 99px; border: 1px solid var(--card-border); }
-        [data-theme="dark"] .lang-selector-container { background: rgba(255,255,255,0.02); }
+        .container { width: 100%; max-width: 1000px; }
         
+        .top-bar { width: 100%; display: flex; justify-content: space-between; align-items: center; margin-bottom: 32px; gap: 12px; flex-wrap: wrap; }
+        .left-controls { display: flex; gap: 12px; align-items: center; }
+        
+        .back-btn, .theme-btn { background: var(--card-bg); border: 1px solid var(--card-border); color: var(--text-main); padding: 8px 18px; border-radius: 100px; font-size: 0.9rem; font-weight: 500; cursor: pointer; text-decoration: none; display: inline-flex; align-items: center; gap: 8px; transition: all 0.2s ease; }
+        .back-btn:hover, .theme-btn:hover { border-color: var(--accent); transform: translateY(-1px); }
+
+        .lang-selector-container { display: flex; gap: 8px; }
         .lang-btn {
-            background: transparent;
-            border: none;
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
             color: var(--text-muted);
-            padding: 6px 16px;
-            border-radius: 99px;
+            padding: 6px 14px;
+            border-radius: 100px;
             font-size: 0.85rem;
-            font-weight: 600;
+            font-weight: 500;
             cursor: pointer;
-            transition: all 0.25s ease;
+            transition: all 0.2s ease;
         }
-        .lang-btn:hover {
-            color: var(--text-main);
-        }
-        .lang-btn.active {
-            background: var(--accent-gradient);
+        .lang-btn:hover, .lang-btn.active {
+            background: var(--accent);
             color: #ffffff;
-            box-shadow: 0 4px 12px rgba(59, 130, 246, 0.25);
+            border-color: var(--accent);
+            box-shadow: 0 0 12px rgba(16, 185, 129, 0.4);
         }
 
-        /* ==========================================
-           3. 头部文案艺术排版
-           ========================================== */
-        header { text-align: center; margin-bottom: 48px; }
-        header .badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            padding: 7px 18px;
-            background: var(--badge-bg);
-            color: var(--badge-text);
-            border-radius: 99px;
-            font-size: 0.85rem;
-            font-weight: 700;
-            margin-bottom: 24px;
-            border: 1px solid var(--badge-border);
-            letter-spacing: 0.3px;
-        }
-        header h1 {
-            font-size: 3.2rem;
-            font-weight: 800;
-            letter-spacing: -1.5px;
-            background: linear-gradient(135deg, #ffffff 20%, #cbd5e100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            margin-bottom: 16px;
-            line-height: 1.15;
-        }
-        [data-theme="light"] header h1 {
-            background: linear-gradient(135deg, #0f172a 0%, #334155 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-        header p { color: var(--text-muted); font-size: 1.15rem; max-width: 720px; margin: 0 auto; line-height: 1.65; font-weight: 400; }
+        header { text-align: center; margin-bottom: 40px; }
+        header h1 { font-size: 2.5rem; font-weight: 800; letter-spacing: -1px; margin-bottom: 12px; color: var(--text-main); }
+        header p { color: var(--text-muted); font-size: 1.05rem; max-width: 600px; margin: 0 auto; line-height: 1.5; }
 
-        /* ==========================================
-           4. 广告位融合美化设计
-           ========================================== */
-        .ad-wrapper {
-            margin: 0 auto 40px auto;
-            width: 100%;
-            background: var(--card-bg);
-            border: 1px solid var(--card-border);
-            border-radius: var(--radius-md);
-            padding: 16px;
-            box-shadow: var(--shadow-sm);
-            text-align: center;
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-            transition: all 0.3s ease;
-        }
-        .ad-wrapper.top-banner { max-width: 970px; border: 1px dashed rgba(59, 130, 246, 0.15); background: rgba(59, 130, 246, 0.01); }
-        .ad-wrapper.bottom-banner { max-width: 728px; margin-top: 64px; }
-        .ad-hint {
-            font-size: 0.68rem;
-            color: var(--text-sub);
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            margin-bottom: 10px;
-            font-weight: 700;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 6px;
-        }
-
-        /* ==========================================
-           5. 响应式多维工具网格卡片
-           ========================================== */
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
-            gap: 24px;
-        }
+        .workspace { background: var(--card-bg); border: 1px solid var(--card-border); border-radius: var(--radius-lg); padding: 32px; box-shadow: var(--shadow-md); display: flex; flex-direction: column; gap: 24px; margin-bottom: 32px; }
         
-        .tool-card {
-            background: var(--card-bg);
-            border: 1px solid var(--card-border);
-            border-radius: var(--radius-lg);
-            padding: 30px 24px;
-            text-decoration: none;
+        .input-group { display: flex; flex-direction: column; gap: 8px; }
+        .input-group label { font-size: 0.95rem; font-weight: 600; color: var(--text-main); display: flex; align-items: center; gap: 6px; }
+        
+        /* 优化后的输入组件和选择框统一样式库 */
+        .input-group input, .input-group textarea, .input-group select { 
+            background: rgba(0,0,0,0.02); 
+            border: 1px solid var(--card-border); 
+            border-radius: var(--radius-md); 
+            padding: 14px; 
+            font-family: inherit; 
+            font-size: 0.95rem; 
+            color: var(--text-main); 
+            outline: none; 
+            transition: border-color 0.2s, background 0.2s, color 0.2s; 
+            -webkit-appearance: none; 
+            -moz-appearance: none;
+            appearance: none;
+        }
+
+        /* 针对 Select 元素增加高雅的手风琴倒三角箭头支持 */
+        .input-group select {
+            background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%2310b981' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><polyline points='6 9 12 15 18 9'></polyline></svg>");
+            background-repeat: no-repeat;
+            background-position: right 14px center;
+            background-size: 16px;
+            padding-right: 40px; /* 避免文字与箭头重叠 */
+        }
+
+        [data-theme="dark"] .input-group input, 
+        [data-theme="dark"] .input-group textarea { 
+            background: rgba(255,255,255,0.02); 
+        }
+
+        /* 🛠️ 核心修复：强制重塑 Select 和 Option 标签在深色架构下的色彩表现 */
+        [data-theme="dark"] .input-group select {
+            background-color: var(--select-bg);
             color: var(--text-main);
-            display: flex;
-            flex-direction: column;
-            align-items: flex-start;
-            text-align: left;
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
-            box-shadow: var(--shadow-md);
-            position: relative;
         }
+        .input-group select option {
+            background-color: var(--select-bg);
+            color: var(--text-main);
+        }
+
+        .input-group input:focus, .input-group textarea:focus, .input-group select:focus { border-color: var(--accent); }
         
-        /* 悬浮微调：流光感外廓与升力 */
-        .tool-card:hover {
-            transform: translateY(-6px);
-            border-color: var(--card-hover-border);
-            box-shadow: var(--shadow-lg), 0 0 0 1px rgba(59, 130, 246, 0.1);
-        }
+        .config-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
 
-        .icon-wrapper {
-            width: 52px;
-            height: 52px;
-            background: rgba(59, 130, 246, 0.06);
-            border-radius: 16px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 24px;
-            border: 1px solid rgba(59, 130, 246, 0.12);
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-        .tool-card:hover .icon-wrapper { 
-            background: var(--accent-gradient); 
-            border-color: transparent;
-            box-shadow: 0 8px 20px rgba(59, 130, 246, 0.3);
-            transform: scale(1.05) rotate(3deg);
-        }
-        .icon-wrapper i { font-size: 1.4rem; color: var(--accent); transition: all 0.3s ease; }
-        [data-theme="dark"] .icon-wrapper i { color: #60a5fa; }
-        .tool-card:hover .icon-wrapper i { color: #ffffff; }
+        .btn-primary { background: var(--accent); color: #ffffff; border: none; padding: 14px; border-radius: var(--radius-md); font-size: 1rem; font-weight: 600; cursor: pointer; transition: background 0.2s, transform 0.2s; display: flex; align-items: center; justify-content: center; gap: 8px; box-shadow: 0 4px 12px rgba(16,185,129,0.2); }
+        .btn-primary:hover { background: var(--accent-hover); transform: translateY(-1px); }
 
-        .tool-card h2 { font-size: 1.25rem; font-weight: 700; margin-bottom: 12px; letter-spacing: -0.3px; color: var(--text-main); }
-        .tool-card p { font-size: 0.92rem; color: var(--text-muted); line-height: 1.6; flex-grow: 1; margin-bottom: 20px; }
+        .result-zone { display: none; grid-template-columns: 1fr; gap: 24px; animation: fadeIn 0.4s ease forwards; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
-        .tool-card .arrow-link {
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            font-size: 0.88rem;
-            font-weight: 600;
-            color: var(--accent);
-            opacity: 0.8;
-            transform: translateX(0);
-            transition: all 0.3s ease;
-        }
-        [data-theme="dark"] .tool-card .arrow-link { color: #60a5fa; }
-        .tool-card:hover .arrow-link { opacity: 1; transform: translateX(4px); }
+        .output-card { background: var(--card-bg); border: 1px solid var(--card-border); border-radius: var(--radius-md); padding: 20px; display: flex; flex-direction: column; gap: 12px; }
+        .output-header { display: flex; justify-content: space-between; align-items: center; }
+        .output-header h3 { font-size: 1.05rem; font-weight: 700; display: flex; align-items: center; gap: 8px; }
+        .badge-count { background: rgba(16,185,129,0.1); color: var(--accent); padding: 2px 10px; border-radius: 100px; font-size: 0.78rem; font-weight: 700; }
         
-        /* 原生流式广告卡片深度融合与伪装设计 */
-        .tool-card.ad-feed-card {
-            background: linear-gradient(145deg, rgba(59, 130, 246, 0.02) 0%, rgba(139, 92, 246, 0.02) 100%) !important;
-            border: 1px dashed rgba(139, 92, 246, 0.3) !important;
-            padding: 24px 20px;
-            justify-content: flex-start;
-            align-items: stretch;
-            box-shadow: none !important;
-        }
-        .tool-card.ad-feed-card:hover {
-            border-color: rgba(139, 92, 246, 0.5) !important;
-            transform: translateY(-4px);
-        }
+        .action-btns { display: flex; gap: 8px; }
+        .btn-action { background: rgba(0,0,0,0.04); border: 1px solid var(--card-border); color: var(--text-main); padding: 6px 12px; border-radius: 8px; font-size: 0.82rem; font-weight: 600; cursor: pointer; display: inline-flex; align-items: center; gap: 4px; transition: all 0.2s; }
+        [data-theme="dark"] .btn-action { background: rgba(255,255,255,0.04); }
+        .btn-action:hover { border-color: var(--accent); background: var(--accent); color: #ffffff; }
 
-        /* ==========================================
-           6. 页脚与合规免责布局
-           ========================================== */
-        footer {
-            text-align: center;
-            margin-top: 96px;
-            padding: 40px 0;
-            border-top: 1px solid var(--card-border);
-            width: 100%;
-            color: var(--text-sub);
-            font-size: 0.88rem;
-        }
-        footer p { line-height: 1.8; }
-        footer .privacy-tag { 
-            color: var(--text-muted); 
-            font-weight: 500; 
-            margin-top: 12px; 
-            display: inline-flex; 
-            align-items: center;
-            gap: 6px;
-            background: rgba(0,0,0,0.02);
-            padding: 6px 16px;
-            border-radius: 8px;
-        }
-        [data-theme="dark"] footer .privacy-tag { background: rgba(255,255,255,0.01); }
-        footer a { color: var(--accent); text-decoration: none; font-weight: 600; }
-        footer a:hover { text-decoration: underline; }
+        pre { background: rgba(0,0,0,0.03); border: 1px solid var(--card-border); border-radius: 10px; padding: 14px; font-family: 'Courier New', Courier, monospace; font-size: 0.88rem; overflow-x: auto; max-height: 260px; color: var(--text-main); white-space: pre-wrap; word-break: break-all; }
+        [data-theme="dark"] pre { background: rgba(255,255,255,0.03); }
 
-        /* ==========================================
-           7. 移动端断点弹性适配优化
-           ========================================== */
+        .ad-wrapper { margin: 24px auto; width: 100%; text-align: center; }
+        
+        .toast { position: fixed; bottom: 30px; left: 50%; transform: translateX(-50%) translateY(40px); background: #10b981; color: #ffffff; padding: 10px 24px; border-radius: 100px; font-size: 0.9rem; font-weight: 600; box-shadow: 0 10px 25px rgba(16,185,129,0.3); opacity: 0; pointer-events: none; transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.3s; z-index: 9999; display: flex; align-items: center; gap: 8px; }
+        .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+
         @media (max-width: 768px) {
-            body { padding: 32px 16px; }
-            header h1 { font-size: 2.4rem; letter-spacing: -0.8px; }
-            header p { font-size: 1rem; }
-            .grid { gap: 16px; grid-template-columns: 1fr; } /* 移动端采用全长卡片流 */
-            .tool-card { padding: 24px 20px; }
-            .ad-wrapper { padding: 12px; }
-            .top-navbar { justify-content: center; gap: 14px; margin-bottom: 32px; }
+            .top-bar { flex-direction: column; align-items: flex-start; }
+            .lang-selector-container { width: 100%; justify-content: flex-start; margin-top: 4px; }
+            .config-row { grid-template-columns: 1fr; }
+            .workspace { padding: 20px; }
         }
     </style>
 </head>
 <body>
+
 <div class="container">
-    
-    <div class="top-navbar">
-        <button class="theme-btn" id="themeToggleBtn" onclick="toggleTheme()"><i class="fas fa-lightbulb"></i> Theme</button>
+    <div class="top-bar">
+        <div class="left-controls">
+            <a href="index.html" class="back-btn"><i class="fas fa-arrow-left"></i> <span class="i18n" data-en="Back" data-zh="返回工具箱" data-es="Atrás" data-ja="戻る">Back</span></a>
+            <button class="theme-btn" onclick="toggleTheme()"><i class="fas fa-lightbulb"></i> Theme</button>
+        </div>
         <div class="lang-selector-container">
-            <button class="lang-btn active" onclick="switchLang('en')">English</button>
-            <button class="lang-btn" onclick="switchLang('zh')">简体中文</button>
-            <button class="lang-btn" onclick="switchLang('es')">Español</button>
-            <button class="lang-btn" onclick="switchLang('ja')">日本語</button>
+            <button class="lang-btn" id="lang-en" onclick="switchLang('en')">English</button>
+            <button class="lang-btn" id="lang-zh" onclick="switchLang('zh')">简体中文</button>
+            <button class="lang-btn" id="lang-es" onclick="switchLang('es')">Español</button>
+            <button class="lang-btn" id="lang-ja" onclick="switchLang('ja')">日本語</button>
         </div>
     </div>
 
     <header>
-        <div class="badge" id="badge-text"><i class="fas fa-shield-halved"></i> 100% Privacy Safe · Runs Locally</div>
-        <h1 id="main-title">Ultimate Online Toolbox</h1>
-        <p id="main-desc">A premium collection of zero-upload utilities. All operations are processed completely offline inside your browser sandbox to guarantee absolute privacy.</p>
+        <h1 id="txt-title" class="i18n" data-en="Sitemap & Robots Optimizer" data-zh="Sitemap & Robots 深度优化器" data-es="Optimizador de Sitemap y Robots" data-ja="Sitemap & Robots 統合最適化ツール">Sitemap & Robots Optimizer</h1>
+        <p class="i18n" data-en="Extract web links from raw HTML or text content to dynamically build structured index maps locally." data-zh="粘贴网页 HTML 源代码或任意包含链接的文本，本地智能提取并自动打包构建规范的 XML 映射文件与爬虫控制策略。" data-es="Extraiga enlaces web de código HTML para compilar mapas XML de motores de búsqueda de forma nativa." data-ja="HTMLソースコードやテキストからリンクを自动で抽出し、検索エンジンに最適化されたXMLサイトマップを作成します。">Extract web links from raw HTML or text content to dynamically build structured index maps locally.</p>
     </header>
 
-    <section class="ad-wrapper top-banner">
-        <div class="ad-hint" id="ad-hint-1"><i class="fas fa-rectangle-ad"></i> Sponsored Advertisement</div>
-        <ins class="adsbygoogle"
-             style="display:block"
-             data-ad-client="ca-pub-1624261597740761"
-             data-ad-slot="7441222926"
-             data-ad-format="horizontal"
-             data-full-width-responsive="true"></ins>
-        <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-    </section>
+    <div class="workspace">
+        <div class="input-group">
+            <label class="i18n" data-en="Target Website Domain URL (With www or prefix)" data-zh="目标网站根域名 URL（建议包含协议头与前缀）" data-es="URL del Dominio Base" data-ja="対象サイトのルートURL">Target Website Domain URL</label>
+            <input type="url" id="domainInput" placeholder="https://www.yourdomain.com" value="https://www.yourdomain.com">
+        </div>
 
-    <main class="grid">
-        
-        <a href="compress.html" class="tool-card">
-            <div class="icon-wrapper"><i class="fas fa-file-zipper"></i></div>
-            <h2 class="i18n" data-en="Image Compressor" data-zh="图片压缩" data-es="Compresor de Imagen" data-ja="画像圧縮">Image Compressor</h2>
-            <p class="i18n" 
-               data-en="Intelligently optimize JPG/PNG/WebP file size with customized quality ratio and dimension boundaries smoothly." 
-               data-zh="智能优化 JPG/PNG/WebP 文件体积，支持自定义画质比例与尺寸限制，高效利落。" 
-               data-es="Optimice inteligentemente imágenes JPG/PNG/WebP con relaciones de calidad personalizadas." 
-               data-ja="JPG/PNG/WebPファイルのサイズをインテリジェントに最適化。画質とサイズ制限をカスタム可能。">Intelligently optimize JPG/PNG/WebP file size with customized quality ratio and dimension boundaries smoothly.</p>
-            <div class="arrow-link i18n" data-en="Launch <i class='fas fa-arrow-right'></i>" data-zh="立即开启 <i class='fas fa-arrow-right'></i>" data-es="Iniciar <i class='fas fa-arrow-right'></i>" data-ja="起動する <i class='fas fa-arrow-right'></i>">Launch <i class='fas fa-arrow-right'></i></div>
-        </a>
-
-        <a href="watermark.html" class="tool-card">
-            <div class="icon-wrapper"><i class="fas fa-paintbrush"></i></div>
-            <h2 class="i18n" data-en="Add Watermark" data-zh="图片水印" data-es="Marca de Agua" data-ja="画像ウォーターマーク">Add Watermark</h2>
-            <p class="i18n" 
-               data-en="Visually stamp full-screen repeated or single text layers on your photos with adjustable size and opacity settings." 
-               data-zh="可视化添加全屏倾斜或单点文字防盗印章，自由调整大小、透明度与安全图层。" 
-               data-es="Agregue sellos visuales de texto a sus fotos con configuraciones ajustables de tamaño y opacidad." 
-               data-ja="写真にフルスクリーンまたは単一のテキストウォーターマークを視覚的に追加。サイズや不透明度を自由調整。">Visually stamp full-screen repeated or single text layers on your photos with adjustable size and opacity settings.</p>
-            <div class="arrow-link i18n" data-en="Launch <i class='fas fa-arrow-right'></i>" data-zh="立即开启 <i class='fas fa-arrow-right'></i>" data-es="Iniciar <i class='fas fa-arrow-right'></i>" data-ja="起動する <i class='fas fa-arrow-right'></i>">Launch <i class='fas fa-arrow-right'></i></div>
-        </a>
-
-        <a href="formatext.html" class="tool-card">
-            <div class="icon-wrapper"><i class="fas fa-images"></i></div>
-            <h2 class="i18n" data-en="Format Extension" data-zh="格式拓展" data-es="Extensión de Formato" data-ja="フォーマット拡張">Format Extension</h2>
-            <p class="i18n" 
-               data-en="Advanced media metadata extraction, core structures decoding, and multi-threaded virtual rendering controller." 
-               data-zh="高级媒体解构、图像底层元数据提取与多线程分布式虚拟渲染拓展控制台。" 
-               data-es="Extracción avanzada de metadatos de medios, decodificación de estructuras básicas y renderizado." 
-               data-ja="高度なメディアメタデータ抽出、コア構造のデコード、およびマルチスレッド仮想レンダリング制御。">Advanced media metadata extraction, core structures decoding, and multi-threaded virtual rendering controller.</p>
-            <div class="arrow-link i18n" data-en="Launch <i class='fas fa-arrow-right'></i>" data-zh="立即开启 <i class='fas fa-arrow-right'></i>" data-es="Iniciar <i class='fas fa-arrow-right'></i>" data-ja="起動する <i class='fas fa-arrow-right'></i>">Launch <i class='fas fa-arrow-right'></i></div>
-        </a>
-
-        <article class="tool-card ad-feed-card">
-            <div class="ad-hint" id="ad-hint-2" style="margin-bottom:14px; justify-content: flex-start; color: #a855f7;"><i class="fas fa-star"></i> Recommended For You</div>
-            <div style="width: 100%; min-height: 200px;">
-                <ins class="adsbygoogle"
-                     style="display:block"
-                     data-ad-format="fluid"
-                     data-ad-layout-key="-fb+5w+4e-db+86"
-                     data-ad-client="ca-pub-1624261597740761"
-                     data-ad-slot="7441222926"></ins>
-                <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+        <div class="config-row">
+            <div class="input-group">
+                <label class="i18n" data-en="Update Frequency (changefreq)" data-zh="更新频率 (changefreq)" data-es="Frecuencia de actualización" data-ja="更新頻度 (changefreq)">Update Frequency</label>
+                <select id="freqInput">
+                    <option value="always">always</option>
+                    <option value="hourly">hourly</option>
+                    <option value="daily" selected>daily</option>
+                    <option value="weekly">weekly</option>
+                    <option value="monthly">monthly</option>
+                    <option value="yearly">yearly</option>
+                    <option value="never">never</option>
+                </select>
             </div>
-        </article>
+            <div class="input-group">
+                <label class="i18n" data-en="Default Priority (0.0 - 1.0)" data-zh="默认权重 (priority)" data-es="Prioridad predeterminada" data-ja="デフォルト優先度 (0.0 - 1.0)">Default Priority</label>
+                <select id="priorityInput">
+                    <option value="1.0">1.0 (Highest)</option>
+                    <option value="0.9">0.9</option>
+                    <option value="0.8" selected>0.8 (Default)</option>
+                    <option value="0.7">0.7</option>
+                    <option value="0.6">0.6</option>
+                    <option value="0.5">0.5 (Neutral)</option>
+                    <option value="0.4">0.4</option>
+                    <option value="0.3">0.3</option>
+                    <option value="0.2">0.2</option>
+                    <option value="0.1">0.1</option>
+                </select>
+            </div>
+        </div>
 
-        <a href="sitemap.html" class="tool-card">
-            <div class="icon-wrapper" style="background: rgba(16, 185, 129, 0.06); border-color: rgba(16, 185, 129, 0.12);"><i class="fas fa-sitemap" style="color: #10b981;"></i></div>
-            <h2 class="i18n" data-en="Sitemap & Robots" data-zh="站点地图生成" data-es="Sitemap y Robots" data-ja="サイトマップ生成">Sitemap & Robots</h2>
-            <p class="i18n" 
-               data-en="Build standardized search engine structure index maps and crawl instruction policies dynamically inside your browser." 
-               data-zh="在浏览器本地快速一键构建符合搜索引擎规范的 XML 映射树结构与 robots.txt 爬虫指引策略。" 
-               data-es="Cree mapas de índice de estructura de motores de búsqueda y políticas de instrucciones de rastreo estructurados." 
-               data-ja="検索エンジン向けの標準的なサイトマップ(sitemap.xml)とクローラー制御方針(robots.txt)をローカル環境で作成。">Build standardized search engine structure index maps and crawl instruction policies dynamically inside your browser.</p>
-            <div class="arrow-link i18n" data-en="Launch <i class='fas fa-arrow-right'></i>" data-zh="立即开启 <i class='fas fa-arrow-right'></i>" data-es="Iniciar <i class='fas fa-arrow-right'></i>" data-ja="起動する <i class='fas fa-arrow-right'></i>">Launch <i class='fas fa-arrow-right'></i></div>
-        </a>
+        <div class="input-group">
+            <label class="i18n" data-en="Paste Web HTML Code or Raw Text" data-zh="粘贴网页 HTML 源代码或原始混杂文本内容" data-es="Pegar código HTML de la página web" data-ja="ウェブページのHTMLソースコードまたはテキストを貼り付け">Paste Web HTML Code or Raw Text</label>
+            <textarea id="htmlInput" rows="8" placeholder="<a href='/page1.html'>Link 1</a>&#10;<a href='https://www.yourdomain.com/about'>Link 2</a>&#10;..."></textarea>
+        </div>
 
-        <a href="ip.html" class="tool-card">
-            <div class="icon-wrapper" style="background: rgba(99, 102, 241, 0.06); border-color: rgba(99, 102, 241, 0.12);"><i class="fas fa-globe" style="color: #6366f1;"></i></div>
-            <h2 class="i18n" data-en="IP & Network Intelligence" data-zh="IP 与网络信息查询" data-es="Inteligencia de IP y Red" data-ja="IP・ネットワーク診断">IP & Network Intelligence</h2>
-            <p class="i18n" 
-               data-en="Instantly audit public internet protocols mapping, geographic grid coordinates, and service ISP nodes routing data." 
-               data-zh="秒级本地探测解析公网网络协议地址、地理网格经纬度坐标以及网络服务商(ISP)分配节点数据。" 
-               data-es="Audite el mapeo de protocolos de internet, coordenadas geográficas y enrutamiento de nodos ISP de red." 
-               data-ja="現在のパブリックIPアドレス、詳細な位置情報の地理座標、インターネットプロバイダ(ISP)の情報を瞬時に診断。">Instantly audit public internet protocols mapping, geographic grid coordinates, and service ISP nodes routing data.</p>
-            <div class="arrow-link i18n" data-en="Launch <i class='fas fa-arrow-right'></i>" data-zh="立即开启 <i class='fas fa-arrow-right'></i>" data-es="Iniciar <i class='fas fa-arrow-right'></i>" data-ja="起動する <i class='fas fa-arrow-right'></i>">Launch <i class='fas fa-arrow-right'></i></div>
-        </a>
+        <button class="btn-primary" id="generateBtn">
+            <i class="fas fa-wand-magic-sparkles"></i>
+            <span class="i18n" data-en="Extract & Generate Map" data-zh="提取并智能生成" data-es="Extraer y Generar" data-ja="リンク抽出・サイトマップ生成">Extract & Generate Map</span>
+        </button>
+    </div>
 
-        <a href="html-encoder.html" class="tool-card">
-            <div class="icon-wrapper"><i class="fas fa-code-compare"></i></div>
-            <h2 class="i18n" data-en="HTML Entity Safe" data-zh="HTML实体转换" data-es="Entidad HTML" data-ja="HTMLエンティティ変換">HTML Entity Safe</h2>
-            <p class="i18n" 
-               data-en="Safely encode special source tags into neat entity strings or parse raw components back securely." 
-               data-zh="快速将 HTML 代码进行安全实体转义防解析乱码，或一键将转义符反向还原。" 
-               data-es="Codifique etiquetas de origen en cadenas de entidades limpias o analice de forma segura." 
-               data-ja="特殊タグをエンティティ文字列に安全にエンコード、または元の構造にデコード。">Safely encode special source tags into neat entity strings or parse raw components back securely.</p>
-            <div class="arrow-link i18n" data-en="Launch <i class='fas fa-arrow-right'></i>" data-zh="立即开启 <i class='fas fa-arrow-right'></i>" data-es="Iniciar <i class='fas fa-arrow-right'></i>" data-ja="起動する <i class='fas fa-arrow-right'></i>">Launch <i class='fas fa-arrow-right'></i></div>
-        </a>
-
-        <a href="markdown-to-html.html" class="tool-card">
-            <div class="icon-wrapper"><i class="fab fa-markdown"></i></div>
-            <h2 class="i18n" data-en="Markdown Live" data-zh="Markdown转换" data-es="Markdown a HTML" data-ja="Markdown 変換">Markdown Live</h2>
-            <p class="i18n" 
-               data-en="Compile standard Markdown strings down into modular pure semantic clean HTML structural objects instantly." 
-               data-zh="实时将 Markdown 标记语言编译转换为结构清晰、可直接复制的标准 HTML 网页源码。" 
-               data-es="Compile cadenas Markdown en objetos estructurales HTML limpios y semánticos al instante." 
-               data-ja="Markdown構文を、構造化されたクリーンなセマンティックHTMLソースに即座にコンパイル。">Compile standard Markdown strings down into modular pure semantic clean HTML structural objects instantly.</p>
-            <div class="arrow-link i18n" data-en="Launch <i class='fas fa-arrow-right'></i>" data-zh="立即开启 <i class='fas fa-arrow-right'></i>" data-es="Iniciar <i class='fas fa-arrow-right'></i>" data-ja="起動する <i class='fas fa-arrow-right'></i>">Launch <i class='fas fa-arrow-right'></i></div>
-        </a>
-
-        <a href="url-encoder.html" class="tool-card">
-            <div class="icon-wrapper"><i class="fas fa-link-slash"></i></div>
-            <h2 class="i18n" data-en="URL Uniform Code" data-zh="URL编码解码" data-es="Codificador URL" data-ja="URLエンコード">URL Uniform Code</h2>
-            <p class="i18n" 
-               data-en="Encrypt intricate web paths or parse complex percent-encoded parameters streams inside browser sandboxes." 
-               data-zh="本地安全转义网址参数中的中文字符与特殊符号，轻松解决网页跳转传参乱码问题。" 
-               data-es="Codifique rutas web o analice flujos de parámetros codificados en porcentajes sin conexión." 
-               data-ja="複雑なWebパスのエスケープ処理や、パーセントエンコードされたパラメータをローカルで復元。">Encrypt intricate web paths or parse complex percent-encoded parameters streams inside browser sandboxes.</p>
-            <div class="arrow-link i18n" data-en="Launch <i class='fas fa-arrow-right'></i>" data-zh="立即开启 <i class='fas fa-arrow-right'></i>" data-es="Iniciar <i class='fas fa-arrow-right'></i>" data-ja="起動する <i class='fas fa-arrow-right'></i>">Launch <i class='fas fa-arrow-right'></i></div>
-        </a>
-
-        <a href="convert.html" class="tool-card">
-            <div class="icon-wrapper"><i class="fas fa-exchange-alt"></i></div>
-            <h2 class="i18n" data-en="Format Converter" data-zh="格式转换" data-es="Conversor de Formatos" data-ja="画像フォーマット変換">Format Converter</h2>
-            <p class="i18n" 
-               data-en="Convert cross-matches seamlessly between PNG, JPEG, and WebP instantly with absolute zero generation loss." 
-               data-zh="在 PNG、JPEG、WebP 格式之间进行高保真、零常规画质损耗的本地对冲互转。" 
-               data-es="Convierta sin problemas entre formatos PNG, JPEG y WebP al instante con cero pérdidas de calidad." 
-               data-ja="PNG、JPEG、WebPフォーマット間で、画質損失なしのローカル相互変換を即座に実行。">Convert cross-matches seamlessly between PNG, JPEG, and WebP instantly with absolute zero generation loss.</p>
-            <div class="arrow-link i18n" data-en="Launch <i class='fas fa-arrow-right'></i>" data-zh="立即开启 <i class='fas fa-arrow-right'></i>" data-es="Iniciar <i class='fas fa-arrow-right'></i>" data-ja="起動する <i class='fas fa-arrow-right'></i>">Launch <i class='fas fa-arrow-right'></i></div>
-        </a>
-
-        <a href="uuid.html" class="tool-card">
-            <div class="icon-wrapper"><i class="fas fa-fingerprint"></i></div>
-            <h2 class="i18n" data-en="UUID Generator" data-zh="UUID 生成" data-es="Generador de UUID" data-ja="UUID 生成器">UUID Generator</h2>
-            <p class="i18n" 
-               data-en="Generate high-entropy cryptographic bulk UUID keys compliant perfectly with global RFC4122 v1/v4 standards." 
-               data-zh="批量快速生成符合全球 RFC4122 标准的高强度密匙，支持 v1、v4 随机版本。" 
-               data-es="Genere claves UUID por lotes de alta entropía que cumplen perfectamente con las normas RFC4122." 
-               data-ja="グローバルなRFC4122規格に完全準拠した、高エントロピーの暗号化暗号バルクUUIDキー（v1/v4）を生成。">Generate high-entropy cryptographic bulk UUID keys compliant perfectly with global RFC4122 v1/v4 standards.</p>
-            <div class="arrow-link i18n" data-en="Launch <i class='fas fa-arrow-right'></i>" data-zh="立即开启 <i class='fas fa-arrow-right'></i>" data-es="Iniciar <i class='fas fa-arrow-right'></i>" data-ja="起動する <i class='fas fa-arrow-right'></i>">Launch <i class='fas fa-arrow-right'></i></div>
-        </a>
-
-        <a href="office.html" class="tool-card">
-            <div class="icon-wrapper"><i class="fas fa-file-alt"></i></div>
-            <h2 class="i18n" data-en="Office Extractions" data-zh="Office 转换" data-es="Conversor Office" data-ja="Office 抽出変換">Office Extractions</h2>
-            <p class="i18n" 
-               data-en="Safely extract complex Word (.docx) into structural clean TXT or parse Excel spreadsheets down into standard CSV matrix." 
-               data-zh="快速将 Word (.docx) 提纯提取为结构化 TXT，或将 Excel 转换为标准 CSV 数据。" 
-               data-es="Extraiga de forma segura Word (.docx) en TXT limpio o analice Excel en matrices CSV estándar." 
-               data-ja="Word (.docx)を構造化されたクリーンなTXTに抽出、またはExcelスプレッドシートを標準的なCSVデータに素早く変換。">Safely extract complex Word (.docx) into structural clean TXT or parse Excel spreadsheets down into standard CSV matrix.</p>
-            <div class="arrow-link i18n" data-en="Launch <i class='fas fa-arrow-right'></i>" data-zh="立即开启 <i class='fas fa-arrow-right'></i>" data-es="Iniciar <i class='fas fa-arrow-right'></i>" data-ja="起動する <i class='fas fa-arrow-right'></i>">Launch <i class='fas fa-arrow-right'></i></div>
-        </a>
-
-        <a href="qr.html" class="tool-card">
-            <div class="icon-wrapper"><i class="fas fa-qrcode"></i></div>
-            <h2 class="i18n" data-en="QR Code Maker" data-zh="二维码生成" data-es="Creador de QR" data-ja="QRコード生成">QR Code Maker</h2>
-            <p class="i18n" 
-               data-en="Instantly render standard URL codes along with advanced encrypted Wi-Fi configuration pairing access points." 
-               data-zh="除常用文本网址外，更支持直接生成一扫即连的加密 Wi‑Fi 账密扫描配对二维码。" 
-               data-es="Cree códigos QR estándar o genere configuraciones cifradas para emparejamiento directo de Wi-Fi." 
-               data-ja="通常のテキストやURLのほか、スキャンするだけで即座に接続できる暗号化されたWi-FiペアリングQRコードの生成に対応。">Instantly render standard URL codes along with advanced encrypted Wi-Fi configuration pairing access points.</p>
-            <div class="arrow-link i18n" data-en="Launch <i class='fas fa-arrow-right'></i>" data-zh="立即开启 <i class='fas fa-arrow-right'></i>" data-es="Iniciar <i class='fas fa-arrow-right'></i>" data-ja="起動する <i class='fas fa-arrow-right'></i>">Launch <i class='fas fa-arrow-right'></i></div>
-        </a>
-
-        <a href="relation.html" class="tool-card">
-            <div class="icon-wrapper"><i class="fas fa-users"></i></div>
-            <h2 class="i18n" data-en="Kinship Calculator" data-zh="亲属关系" data-es="Calculadora de Parentesco" data-ja="親族関係計算機">Kinship Calculator</h2>
-            <p class="i18n" 
-               data-en="Resolve intricate Chinese multi-generation kinship relations and complex family hierarchy charts accurate." 
-               data-zh="中国传统三代/多代复杂血亲三姑六婆复杂称谓精准互查与双向链路反向测算。" 
-               data-es="Resuelva e identifique las denominaciones tradicionales chinas de parentesco multigeneracional." 
-               data-ja="中国伝統の三代・多世代にわたる複雑な親族関係や、親戚の呼び名を正確に双方向で割り出し・計算。">Resolve intricate Chinese multi-generation kinship relations and complex family hierarchy charts accurate.</p>
-            <div class="arrow-link i18n" data-en="Launch <i class='fas fa-arrow-right'></i>" data-zh="立即开启 <i class='fas fa-arrow-right'></i>" data-es="Iniciar <i class='fas fa-arrow-right'></i>" data-ja="起動する <i class='fas fa-arrow-right'></i>">Launch <i class='fas fa-arrow-right'></i></div>
-        </a>
-
-        <a href="loan.html" class="tool-card">
-            <div class="icon-wrapper"><i class="fas fa-chart-line"></i></div>
-            <h2 class="i18n" data-en="Loan Mortgage" data-zh="贷款计算" data-es="Calculadora Hipotecaria" data-ja="ローン計算機">Loan Mortgage</h2>
-            <p class="i18n" 
-               data-en="Breakdown amortization payments to track principal schedules between equal principal or interest terms." 
-               data-zh="精确测算对比等额本息、等额本金等不同摊还金融方案的本金利息还款明细。" 
-               data-es="Desglose los pagos de amortización para realizar un seguimiento de los intereses principales." 
-               data-ja="元利均等返済・元金均等返済など、異なる償還プランの元金・利息の返済明細を正確にシミュレーション。">Breakdown amortization payments to track principal schedules between equal principal or interest terms.</p>
-            <div class="arrow-link i18n" data-en="Launch <i class='fas fa-arrow-right'></i>" data-zh="立即开启 <i class='fas fa-arrow-right'></i>" data-es="Iniciar <i class='fas fa-arrow-right'></i>" data-ja="起動する <i class='fas fa-arrow-right'></i>">Launch <i class='fas fa-arrow-right'></i></div>
-        </a>
-
-        <a href="currency.html" class="tool-card">
-            <div class="icon-wrapper"><i class="fas fa-dollar-sign"></i></div>
-            <h2 class="i18n" data-en="Exchange Rates" data-zh="汇率换算" data-es="Tipos de Cambio" data-ja="為替レート換算">Exchange Rates</h2>
-            <p class="i18n" 
-               data-en="Quick cross-currency pairs converter ready for direct extensions into dynamic global asset channels easily." 
-               data-zh="一键快速进行多币种双向对冲汇率换算，可扩展接入公网实时 Spot 价格管道。" 
-               data-es="Conversor rápido de divisas listo para extensiones directas a canales de activos mundiales." 
-               data-ja="ワンクリックで複数通貨の双方向の為替換算を実行。リアルタイムのスポット価格チャネルに拡張可能。">Quick cross-currency pairs converter ready for direct extensions into dynamic global asset channels easily.</p>
-            <div class="arrow-link i18n" data-en="Launch <i class='fas fa-arrow-right'></i>" data-zh="立即开启 <i class='fas fa-arrow-right'></i>" data-es="Iniciar <i class='fas fa-arrow-right'></i>" data-ja="起動する <i class='fas fa-arrow-right'></i>">Launch <i class='fas fa-arrow-right'></i></div>
-        </a>
-
-        <a href="unit.html" class="tool-card">
-            <div class="icon-wrapper"><i class="fas fa-ruler"></i></div>
-            <h2 class="i18n" data-en="Unit Converter" data-zh="单位换算" data-es="Conversor de Unidades" data-ja="単位換算ツール">Unit Converter</h2>
-            <p class="i18n" 
-               data-en="Cover extensive international systems for metrics encompassing dimensions, weight matrices, and thermal indexes." 
-               data-zh="覆盖长度、重量、温度、面积等多维度国际标准度量衡单位的高精度网格转换器。" 
-               data-es="Conversor de alta precisión que cubre longitud, peso, temperatura y múltiples dimensiones métricas." 
-               data-ja="長さ、重量、温度、面積など、多次元にわたる国際標準度量衡（メトリックシステム）を高精度に一括換算。">Cover extensive international systems for metrics encompassing dimensions, weight matrices, and thermal indexes.</p>
-            <div class="arrow-link i18n" data-en="Launch <i class='fas fa-arrow-right'></i>" data-zh="立即开启 <i class='fas fa-arrow-right'></i>" data-es="Iniciar <i class='fas fa-arrow-right'></i>" data-ja="起動する <i class='fas fa-arrow-right'></i>">Launch <i class='fas fa-arrow-right'></i></div>
-        </a>
-
-    </main>
-
-    <section class="ad-wrapper bottom-banner">
-        <div class="ad-hint" id="ad-hint-3"><i class="fas fa-rectangle-ad"></i> Sponsored Advertisement</div>
-        <ins class="adsbygoogle"
-             style="display:block"
-             data-ad-client="ca-pub-1624261597740761"
-             data-ad-slot="7441222926"
-             data-ad-format="auto"
-             data-full-width-responsive="true"></ins>
+    <div class="ad-wrapper">
+        <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-1624261597740761" data-ad-slot="7441222926" data-ad-format="auto" data-full-width-responsive="true"></ins>
         <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-    </section>
+    </div>
 
-    <footer>
-        <p id="footer-cr">© Ultimate Online Toolbox | Client-Side Sandbox Workshop</p>
-        <p class="privacy-tag" id="footer-privacy"><i class="fas fa-user-shield"></i> Privacy Policy Notice: All tools compute independently via pure client-side sandbox environments. Absolutely zero records are cached or stored onto server pipelines.</p>
-    </footer>
+    <div class="result-zone" id="resultDiv">
+        <div class="output-card">
+            <div class="output-header">
+                <h3><i class="fas fa-code" style="color: #10b981;"></i> sitemap.xml <span class="badge-count" id="badge-sm-count">0 URLs</span></h3>
+                <div class="action-btns">
+                    <button class="btn-action" onclick="copyCode('sitemapOutput')"><i class="fas fa-copy"></i> <span class="i18n" data-en="Copy" data-zh="复制" data-es="Copiar" data-ja="コピー">Copy</span></button>
+                    <button class="btn-action" onclick="downloadFile('sitemapOutput', 'sitemap.xml')"><i class="fas fa-download"></i> <span class="i18n" data-en="Download" data-zh="下载" data-es="Descargar" data-ja="ダウンロード">Download</span></button>
+                </div>
+            </div>
+            <pre id="sitemapOutput"></pre>
+        </div>
+
+        <div class="output-card">
+            <div class="output-header">
+                <h3><i class="fas fa-robot" style="color: #3b82f6;"></i> robots.txt</h3>
+                <div class="action-btns">
+                    <button class="btn-action" onclick="copyCode('robotsOutput')"><i class="fas fa-copy"></i> <span class="i18n" data-en="Copy" data-zh="复制" data-es="Copiar" data-ja="コピー">Copy</span></button>
+                    <button class="btn-action" onclick="downloadFile('robotsOutput', 'robots.txt')"><i class="fas fa-download"></i> <span class="i18n" data-en="Download" data-zh="下载" data-es="Descargar" data-ja="ダウンロード">Download</span></button>
+                </div>
+            </div>
+            <pre id="robotsOutput"></pre>
+        </div>
+    </div>
 </div>
 
+<div class="toast" id="toastBox"><i class="fas fa-check-circle"></i> <span id="toastMsg"></span></div>
+
 <script>
-    // i18n 核心调度系统
-    const LANG_CONFIG = {
-        en: {
-            badge: '<i class="fas fa-shield-halved"></i> 100% Privacy Safe · Runs Locally',
-            title: 'Ultimate Online Toolbox',
-            desc: 'A premium collection of zero-upload utilities. All operations are processed completely offline inside your browser sandbox to guarantee absolute privacy.',
-            adHint: '<i class="fas fa-rectangle-ad"></i> Sponsored Advertisement',
-            feedHint: '<i class="fas fa-star"></i> Recommended For You',
-            footerCr: '© Ultimate Online Toolbox | Client-Side Sandbox Workshop',
-            footerPr: '<i class="fas fa-user-shield"></i> Privacy Policy Notice: All tools compute independently via pure client-side sandbox environments. Absolutely zero records are cached or stored onto server pipelines.'
-        },
-        zh: {
-            badge: '<i class="fas fa-shield-halved"></i> 100% 隐私安全 · 纯本地运行',
-            title: '万能在线工具箱',
-            desc: '无需上传文件的极简生产力工具集。所有操作均在您的浏览器内通过沙箱环境离线完成，绝对保障隐私。',
-            adHint: '<i class="fas fa-rectangle-ad"></i> 赞助商广告',
-            feedHint: '<i class="fas fa-star"></i> 赞助商功能推荐',
-            footerCr: '© 万能在线工具箱 | 纯前端零追踪工坊',
-            footerPr: '<i class="fas fa-user-shield"></i> 隐私政策声明：所有工具均基于客户端沙箱运行，数据 100% 留存在您的本地浏览器中，绝无任何服务器端数据持久化。'
-        },
-        es: {
-            badge: '<i class="fas fa-shield-halved"></i> 100% Privado · Ejecución Local',
-            title: 'Caja de Herramientas Online',
-            desc: 'Colección premium de utilidades sin carga de archivos. Todas las operaciones se procesan sin conexión dentro del navegador para garantizar la privacidad.',
-            adHint: '<i class="fas fa-rectangle-ad"></i> Publicidad Patrocinada',
-            feedHint: '<i class="fas fa-star"></i> Recomendado Para Ti',
-            footerCr: '© Ultimate Online Toolbox | Taller en el lado del cliente',
-            footerPr: '<i class="fas fa-user-shield"></i> Aviso de privacidad: Todas las herramientas se calculan localmente en su navegador, nunca se envían datos al servidor.'
-        },
-        ja: {
-            badge: '<i class="fas fa-shield-halved"></i> 100% 秘密厳守 · 完全ローカル実行',
-            title: '万能オンラインツールボックス',
-            desc: 'ファイルのアップロードが不要な極速生産性ツールコレクション。すべての処理はブラウザのサンドボックス内でオフラインで完結。',
-            adHint: '<i class="fas fa-rectangle-ad"></i> スポンサー広告',
-            feedHint: '<i class="fas fa-star"></i> あなたへのおすすめ',
-            footerCr: '© 万能オンラインツールボックス | クライアントサイド工房',
-            footerPr: '<i class="fas fa-user-shield"></i> プライバシーポリシー声明：すべてのツールはクライアントサイドで独立して動作し、サーバーへのデータ送信は一切行われません。'
-        }
+    let currentLang = 'en';
+
+    const SM_LANGS = {
+        en: { suc: "Sitemap generated successfully!", copy: "Copied to clipboard!", err: "Please paste text containing valid links first." },
+        zh: { suc: "站点地图及指引策略生成成功！", copy: "已成功复制到剪贴板！", err: "请先粘贴包含有效链接的 HTML 或文本内容。" },
+        es: { suc: "¡Sitemap generado con éxito!", copy: "¡Copiado al portapapeles!", err: "Por favor, pegue texto con enlaces válidos primero." },
+        ja: { suc: "サイトマップが正常に作成されました！", copy: "クリップボードにコピーしました！", err: "有効なリンクを含むテキストを入力してください。" }
     };
 
     function switchLang(lang) {
-        const data = LANG_CONFIG[lang] || LANG_CONFIG['en'];
+        currentLang = lang;
         
-        document.getElementById('badge-text').innerHTML = data.badge;
-        document.getElementById('main-title').innerText = data.title;
-        document.getElementById('main-desc').innerText = data.desc;
-        document.getElementById('ad-hint-1').innerHTML = data.adHint;
-        document.getElementById('ad-hint-2').innerHTML = data.feedHint;
-        document.getElementById('ad-hint-3').innerHTML = data.adHint;
-        document.getElementById('footer-cr').innerText = data.footerCr;
-        document.getElementById('footer-privacy').innerHTML = data.footerPr;
-
+        const titleMap = { en: "Sitemap & Robots Optimizer", zh: "Sitemap & Robots 深度优化器", es: "Optimizador de Sitemap y Robots", ja: "Sitemap & Robots 統合最適化ツール" };
+        document.title = (titleMap[lang] || titleMap['en']) + " – Ultimate Online Toolbox";
+        
         document.querySelectorAll('.i18n').forEach(el => {
-            const translatedVal = el.getAttribute(`data-${lang}`) || el.getAttribute('data-en');
-            if (translatedVal) el.innerHTML = translatedVal;
+            const translation = el.getAttribute(`data-${lang}`);
+            if (translation) el.innerHTML = translation;
         });
 
-        document.querySelectorAll('.lang-btn').forEach(btn => {
-            btn.classList.remove('active');
-            if(btn.getAttribute('onclick').includes(`'${lang}'`)) {
-                btn.classList.add('active');
-            }
-        });
+        document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
+        const activeBtn = document.getElementById(`lang-${lang}`);
+        if(activeBtn) activeBtn.classList.add('active');
 
         localStorage.setItem('user_lang_preference', lang);
         document.documentElement.lang = lang;
     }
 
-    // 网页明暗皮肤调度中心
     function toggleTheme() {
         const currentTheme = document.documentElement.getAttribute('data-theme');
         const targetTheme = currentTheme === 'dark' ? 'light' : 'dark';
@@ -664,9 +313,125 @@
     }
 
     function initTheme() {
-        // 默认强制高级黑夜主题
         const savedTheme = localStorage.getItem('user_theme_preference') || 'dark';
         document.documentElement.setAttribute('data-theme', savedTheme);
+    }
+
+    function showToast(msg) {
+        const toast = document.getElementById('toastBox');
+        document.getElementById('toastMsg').innerText = msg;
+        toast.classList.add('show');
+        setTimeout(() => toast.classList.remove('show'), 2500);
+    }
+
+    document.getElementById('generateBtn').addEventListener('click', () => {
+        let domain = document.getElementById('domainInput').value.trim();
+        const htmlContent = document.getElementById('htmlInput').value;
+        const freq = document.getElementById('freqInput').value;
+        const priority = document.getElementById('priorityInput').value;
+
+        if (!htmlContent.trim()) {
+            showToast(SM_LANGS[currentLang].err);
+            return;
+        }
+
+        if (domain && !domain.startsWith('http://') && !domain.startsWith('https://')) {
+            domain = 'https://' + domain;
+        }
+        if (domain.endsWith('/')) {
+            domain = domain.slice(0, -1);
+        }
+
+        const hrefRegex = /href=["']([^"']+)["']/g;
+        let match;
+        const extractedUrls = [];
+
+        while ((match = hrefRegex.exec(htmlContent)) !== null) {
+            let url = match[1].trim();
+
+            if (!url || url.startsWith('#') || url.startsWith('javascript:') || url.startsWith('mailto:') || url.startsWith('tel:')) {
+                continue;
+            }
+
+            if (url.startsWith('/')) {
+                url = domain + url;
+            } else if (!url.startsWith('http://') && !url.startsWith('https://')) {
+                url = domain + '/' + url;
+            }
+
+            if (url.includes('#')) {
+                url = url.split('#')[0];
+            }
+
+            extractedUrls.push(url);
+        }
+
+        if (extractedUrls.length === 0) {
+            const rawUrlRegex = /(https?:\/\/[^\s"'><]+)/g;
+            let rawMatch;
+            while ((rawMatch = rawUrlRegex.exec(htmlContent)) !== null) {
+                extractedUrls.push(rawMatch[1].trim());
+            }
+        }
+
+        const uniqueUrls = [...new Set(extractedUrls)];
+
+        if (uniqueUrls.length === 0 && domain) {
+            uniqueUrls.push(domain + '/');
+        }
+
+        const today = new Date().toISOString().split('T')[0];
+
+        let xml = '<?xml version="1.0" encoding="UTF-8"?>\n';
+        xml += '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n';
+        
+        uniqueUrls.forEach(link => {
+            xml += '  <url>\n';
+            xml += `    <loc>${escapeXml(link)}</loc>\n`;
+            xml += `    <lastmod>${today}</lastmod>\n`;
+            xml += `    <changefreq>${freq}</changefreq>\n`;
+            xml += `    <priority>${priority}</priority>\n`;
+            xml += '  </url>\n';
+        });
+        xml += '</urlset>';
+
+        let robots = 'User-agent: *\n';
+        robots += 'Allow: /\n';
+        robots += `Sitemap: ${domain}/sitemap.xml`;
+
+        document.getElementById('sitemapOutput').innerText = xml;
+        document.getElementById('robotsOutput').innerText = robots;
+        document.getElementById('badge-sm-count').innerText = `${uniqueUrls.length} URLs`;
+        document.getElementById('resultDiv').style.display = 'grid';
+        showToast(SM_LANGS[currentLang].suc);
+    });
+
+    function escapeXml(string) {
+        return string.replace(/[<>&'"]/g, (c) => {
+            switch (c) {
+                case '<': return '&lt;';
+                case '>': return '&gt;';
+                case '&': return '&amp;';
+                case '\'': return '&apos;';
+                case '"': return '&quot;';
+            }
+        });
+    }
+
+    function copyCode(id) {
+        const text = document.getElementById(id).innerText;
+        navigator.clipboard.writeText(text).then(() => {
+            showToast(SM_LANGS[currentLang].copy);
+        });
+    }
+
+    function downloadFile(id, filename) {
+        const text = document.getElementById(id).innerText;
+        const blob = new Blob([text], {type: 'text/plain'});
+        const a = document.createElement('a');
+        a.href = URL.createObjectURL(blob);
+        a.download = filename;
+        a.click();
     }
 
     window.addEventListener('DOMContentLoaded', () => {
