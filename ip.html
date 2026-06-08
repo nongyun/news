@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <meta name="google-adsense-account" content="ca-pub-1624261597740761">
+    <title id="page-title">IP & Network Intelligence – Ultimate Online Toolbox</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1624261597740761" crossorigin="anonymous"></script>
+    <script>
+         (adsbygoogle = window.adsbygoogle || []).push({
+              google_ad_client: "ca-pub-1624261597740761",
+              enable_page_level_ads: true
+         });
+    </script>
+
+    <style>
+        /* === 全局统一样式规范 === */
+        * { margin: 0; padding: 0; box-sizing: border-box; -webkit-font-smoothing: antialiased; }
+        
+        :root {
+            --bg-gradient: radial-gradient(circle at 10% 30%, #eef2f9, #e0e8f2);
+            --text-main: #0b2b3b;
+            --text-muted: #5c7285;
+            --text-sub: #8fa0b0;
+            --accent: #3b82f6;
+            --accent-gradient: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+            --card-bg: #ffffff;
+            --card-border: #bfd6ea;
+            --shadow-sm: 0 4px 12px rgba(0,0,0,0.03);
+            --shadow-md: 0 25px 45px -12px rgba(0,0,0,0.1);
+            --radius-lg: 24px;
+            --radius-md: 16px;
+        }
+
+        [data-theme="dark"] {
+            --bg-gradient: radial-gradient(circle at 50% 0%, #111827 0%, #030712 100%);
+            --text-main: #f3f4f6;
+            --text-muted: #9ca3af;
+            --text-sub: #6b7280;
+            --accent: #3b82f6;
+            --accent-gradient: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+            --card-bg: rgba(17, 24, 39, 0.75);
+            --card-border: rgba(37, 99, 235, 0.15);
+            --shadow-sm: 0 4px 12px rgba(0, 0, 0, 0.3);
+            --shadow-md: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+            --radius-lg: 24px;
+            --radius-md: 16px;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--bg-gradient);
+            color: var(--text-main);
+            min-height: 100vh;
+            padding: 40px 24px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            transition: background 0.3s ease, color 0.3s ease;
+        }
+
+        .container { width: 100%; max-width: 1000px; }
+
+        .top-bar { width: 100%; display: flex; justify-content: space-between; align-items: center; margin-bottom: 32px; gap: 12px; flex-wrap: wrap; }
+        .left-controls { display: flex; gap: 12px; align-items: center; }
+
+        .back-btn, .theme-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            color: var(--text-main);
+            padding: 8px 18px;
+            border-radius: 100px;
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        .back-btn:hover, .theme-btn:hover {
+            background: rgba(255, 255, 255, 0.1); border-color: var(--accent); box-shadow: 0 0 10px rgba(59, 130, 246, 0.2); transform: translateY(-1px);
+        }
+
+        .lang-selector-container { display: flex; gap: 8px; }
+        .lang-btn {
+            background: var(--card-bg); border: 1px solid var(--card-border); color: var(--text-muted); padding: 6px 14px; border-radius: 100px; font-size: 0.85rem; font-weight: 500; cursor: pointer; transition: all 0.2s ease;
+        }
+        .lang-btn:hover, .lang-btn.active { background: var(--accent); color: #ffffff; border-color: var(--accent); box-shadow: 0 0 12px rgba(59, 130, 246, 0.4); }
+
+        header { text-align: center; margin-bottom: 40px; }
+        header h1 { font-size: 2.6rem; font-weight: 800; letter-spacing: -1px; margin-bottom: 12px; }
+        header p { color: var(--text-muted); font-size: 1.05rem; max-width: 600px; margin: 0 auto; line-height: 1.5; }
+
+        .ad-wrapper { margin: 0 auto 32px auto; width: 100%; background: var(--card-bg); border: 1px solid var(--card-border); border-radius: var(--radius-md); padding: 16px; text-align: center; }
+        .ad-hint { font-size: 0.68rem; color: var(--text-sub); text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 8px; font-weight: 600; display: flex; align-items: center; justify-content: center; gap: 4px; }
+
+        .workspace {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: var(--radius-lg);
+            padding: 36px;
+            box-shadow: var(--shadow-md);
+            display: flex;
+            flex-direction: column;
+            gap: 28px;
+        }
+
+        /* 大数字核心卡片展示 */
+        .ip-hero-card {
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.08) 0%, rgba(29, 78, 216, 0.02) 100%);
+            border: 2px dashed rgba(59, 130, 246, 0.25);
+            border-radius: var(--radius-md);
+            padding: 32px 20px;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+        .ip-hero-card span { font-size: 0.88rem; color: var(--text-muted); font-weight: 600; text-transform: uppercase; letter-spacing: 1px; }
+        .ip-hero-card h2 { font-size: 2.4rem; font-weight: 800; color: var(--accent); letter-spacing: -0.5px; word-break: break-all; }
+
+        /* 元数据列表布局网格 */
+        .info-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 20px; }
+        .info-item {
+            background: rgba(0,0,0,0.02);
+            border: 1px solid var(--card-border);
+            border-radius: 12px;
+            padding: 16px 20px;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+        .info-item i { font-size: 1.5rem; color: #60a5fa; width: 30px; text-align: center; }
+        .info-details { display: flex; flex-direction: column; gap: 4px; min-width: 0; }
+        .info-details label { font-size: 0.8rem; color: var(--text-sub); font-weight: 600; text-transform: uppercase; }
+        .info-details p { font-size: 1.05rem; font-weight: 600; color: var(--text-main); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+
+        /* UA盒子容器 */
+        .ua-container { display: flex; flex-direction: column; gap: 10px; }
+        .ua-container label { font-size: 0.9rem; font-weight: 600; color: var(--text-muted); }
+        .ua-box { background: #0f172a; color: #10b981; font-family: monospace; font-size: 0.88rem; padding: 14px; border-radius: 10px; border: 1px solid rgba(255,255,255,0.08); word-break: break-all; line-height: 1.4; }
+
+        .action-btn {
+            background: var(--accent-gradient); border: none; color: #ffffff; padding: 14px 32px; border-radius: 12px; font-size: 1rem; font-weight: 600; cursor: pointer; display: inline-flex; align-items: center; justify-content: center; gap: 10px; box-shadow: 0 4px 14px rgba(37, 99, 235, 0.3); transition: all 0.2s ease; margin: 0 auto;
+        }
+        .action-btn:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(37, 99, 235, 0.4); }
+
+        .toast { position: fixed; bottom: 32px; left: 50%; transform: translateX(-50%) translateY(40px); background: rgba(17, 24, 39, 0.95); border: 1px solid var(--accent); color: #ffffff; padding: 12px 28px; border-radius: 100px; font-size: 0.9rem; font-weight: 500; box-shadow: var(--shadow-lg); opacity: 0; transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); z-index: 1000; pointer-events: none; }
+        .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+
+        footer { text-align: center; margin-top: 64px; padding: 32px 0; border-top: 1px solid var(--card-border); width: 100%; color: var(--text-sub); font-size: 0.88rem; }
+
+        @media (max-width: 768px) {
+            body { padding: 24px 16px; }
+            header h1 { font-size: 2rem; }
+            .workspace { padding: 20px; }
+            .top-bar { flex-direction: column; align-items: flex-start; }
+            .lang-selector-container { width: 100%; justify-content: flex-start; margin-top: 4px; }
+            .ip-hero-card h2 { font-size: 1.8rem; }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    
+    <div class="top-bar">
+        <div class="left-controls">
+            <a href="index.html" class="back-btn" id="btn-back"><i class="fas fa-arrow-left"></i> Back to Hub</a>
+            <button class="theme-btn" id="themeToggleBtn" onclick="toggleTheme()"><i class="fas fa-lightbulb"></i> Theme</button>
+        </div>
+        <div class="lang-selector-container">
+            <button class="lang-btn" id="lang-en" onclick="switchLang('en')">English</button>
+            <button class="lang-btn" id="lang-zh" onclick="switchLang('zh')">简体中文</button>
+            <button class="lang-btn" id="lang-es" onclick="switchLang('es')">Español</button>
+            <button class="lang-btn" id="lang-ja" onclick="switchLang('ja')">日本語</button>
+        </div>
+    </div>
+
+    <header>
+        <h1 id="txt-title">IP & Network Intelligence</h1>
+        <p id="txt-desc">Instantly audit public internet protocols mapping, geolocation coordinates and routing nodes.</p>
+    </header>
+
+    <section class="ad-wrapper">
+        <div class="ad-hint lbl-ad"><i class="fas fa-rectangle-ad"></i> Sponsored Advertisement</div>
+        <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-1624261597740761" data-ad-slot="7441222926" data-ad-format="auto" data-full-width-responsive="true"></ins>
+        <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+    </section>
+
+    <main class="workspace">
+        <div class="ip-hero-card">
+            <span id="lbl-your-ip">Your Public IP Address</span>
+            <h2 id="mainIpDisplay">... Loading ...</h2>
+        </div>
+
+        <div class="info-grid">
+            <div class="info-item">
+                <i class="fas fa-globe"></i>
+                <div class="info-details">
+                    <label id="lbl-country">Country / Region</label>
+                    <p id="infoCountry">-</p>
+                </div>
+            </div>
+            <div class="info-item">
+                <i class="fas fa-map-location-dot"></i>
+                <div class="info-details">
+                    <label id="lbl-city">City / Location</label>
+                    <p id="infoCity">-</p>
+                </div>
+            </div>
+            <div class="info-item">
+                <i class="fas fa-network-wired"></i>
+                <div class="info-details">
+                    <label id="lbl-isp">Internet Service Provider (ISP)</label>
+                    <p id="infoIsp">-</p>
+                </div>
+            </div>
+            <div class="info-item">
+                <i class="fas fa-location-crosshairs"></i>
+                <div class="info-details">
+                    <label id="lbl-coords">Coordinates (Lat, Lon)</label>
+                    <p id="infoCoords">-</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="ua-container">
+            <label id="lbl-ua">Browser User Agent Identifier</label>
+            <div class="ua-box" id="uaDisplay">-</div>
+        </div>
+
+        <button class="action-btn" id="refreshBtn"><i class="fas fa-rotate"></i> Refresh Diagnostics</button>
+    </main>
+
+    <footer>
+        <p>© Ultimate Online Toolbox | Client-Side Secure Sandbox Workshop</p>
+    </footer>
+</div>
+
+<div class="toast" id="toastBox">Notification</div>
+
+<script>
+    const IP_LANGS = {
+        en: {
+            title: "IP & Network Intelligence",
+            desc: "Instantly audit public internet protocols mapping, geolocation coordinates and routing nodes.",
+            back: "<i class='fas fa-arrow-left'></i> Back to Hub",
+            yourIp: "Your Public IP Address",
+            country: "Country / Region",
+            city: "City / Location",
+            isp: "Internet Service Provider (ISP)",
+            coords: "Coordinates (Lat, Lon)",
+            ua: "Browser User Agent Identifier",
+            btnRef: "<i class='fas fa-rotate'></i> Refresh Diagnostics",
+            ad: "<i class='fas fa-rectangle-ad'></i> Sponsored Advertisement",
+            load: "Fetching data...",
+            suc: "Network state fully audited"
+        },
+        zh: {
+            title: "IP 地址与网络信息查询",
+            desc: "极速秒级解析探测本地公网网络协议地址、地理网格经纬度坐标以及网络服务运营商归属节点。",
+            back: "<i class='fas fa-arrow-left'></i> 返回工具箱",
+            yourIp: "您当前的公网本地 IP 地址",
+            country: "所属国家 / 地区归属",
+            city: "所在城市 / 局域网位置",
+            isp: "网络核心运营商 (ISP)",
+            coords: "物理地理位置经纬度 (Lat, Lon)",
+            ua: "当前浏览器环境 User Agent 核心特征指纹",
+            btnRef: "<i class='fas fa-rotate'></i> 重新刷新诊断信息",
+            ad: "<i class='fas fa-rectangle-ad'></i> 赞助商广告",
+            load: "正在解析底层通信数据...",
+            suc: "网络诊断分析更新完毕"
+        },
+        es: {
+            title: "Inteligencia de IP y Red",
+            desc: "Audite instantáneamente el mapeo de protocolos de internet, coordenadas geográficas y nodos de enrutamiento.",
+            back: "<i class='fas fa-arrow-left'></i> Volver al menú",
+            yourIp: "Su Dirección IP Pública",
+            country: "País / Región",
+            city: "Ciudad / Ubicación",
+            isp: "Proveedor de Servicios (ISP)",
+            coords: "Coordenadas (Lat, Lon)",
+            ua: "Identificador del User Agent del Navegador",
+            btnRef: "<i class='fas fa-rotate'></i> Actualizar Diagnóstico",
+            ad: "<i class='fas fa-rectangle-ad'></i> Publicidad Patrocinada",
+            load: "Obteniendo datos...",
+            suc: "Estado de la red auditado"
+        },
+        ja: {
+            title: "IPアドレス・ネットワーク詳細診断",
+            desc: "現在のグローバルIPアドレス、位置情報の座標、インターネットプロバイダ(ISP)の情報を瞬時に解析します。",
+            back: "<i class='fas fa-arrow-left'></i> ツールボックスに戻る",
+            yourIp: "あなたのパブリックIPアドレス",
+            country: "国 / 地域区分",
+            city: "都市 / 接続場所",
+            isp: "インターネットサービスプロバイダ (ISP)",
+            coords: "地理位置座標 (緯度, 経度)",
+            ua: "ブラウザ User Agent 識別子",
+            btnRef: "<i class='fas fa-rotate'></i> 診断情報を更新する",
+            ad: "<i class='fas fa-rectangle-ad'></i> スポンサー広告",
+            load: "データを取得中...",
+            suc: "ネットワーク状態の解析が完了しました"
+        }
+    };
+
+    let currentLang = 'en';
+
+    function switchLang(lang) {
+        currentLang = lang;
+        const t = IP_LANGS[lang] || IP_LANGS['en'];
+        document.title = t.title + " – Ultimate Online Toolbox";
+        document.getElementById('txt-title').innerText = t.title;
+        document.getElementById('txt-desc').innerText = t.desc;
+        document.getElementById('btn-back').innerHTML = t.back;
+        document.getElementById('lbl-your-ip').innerText = t.yourIp;
+        document.getElementById('lbl-country').innerText = t.country;
+        document.getElementById('lbl-city').innerText = t.city;
+        document.getElementById('lbl-isp').innerText = t.isp;
+        document.getElementById('lbl-coords').innerText = t.coords;
+        document.getElementById('lbl-ua').innerText = t.ua;
+        document.getElementById('refreshBtn').innerHTML = t.btnRef;
+        document.querySelectorAll('.lbl-ad').forEach(el => el.innerHTML = t.ad);
+        document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
+        const activeBtn = document.getElementById(`lang-${lang}`);
+        if(activeBtn) activeBtn.classList.add('active');
+        localStorage.setItem('user_lang_preference', lang);
+        document.documentElement.lang = lang;
+    }
+
+    function toggleTheme() {
+        const currentTheme = document.documentElement.getAttribute('data-theme');
+        const targetTheme = currentTheme === 'dark' ? 'light' : 'dark';
+        document.documentElement.setAttribute('data-theme', targetTheme);
+        localStorage.setItem('user_theme_preference', targetTheme);
+    }
+
+    function initTheme() {
+        const savedTheme = localStorage.getItem('user_theme_preference') || 'dark';
+        document.documentElement.setAttribute('data-theme', savedTheme);
+    }
+
+    function showToast(msg) {
+        const box = document.getElementById('toastBox');
+        box.innerText = msg;
+        box.classList.add('show');
+        setTimeout(() => box.classList.remove('show'), 2000);
+    }
+
+    async function fetchIpDetails() {
+        document.getElementById('mainIpDisplay').innerText = "...";
+        const t = IP_LANGS[currentLang] || IP_LANGS['en'];
+        showToast(t.load);
+
+        // 获取本机内核UA
+        document.getElementById('uaDisplay').innerText = navigator.userAgent;
+
+        try {
+            // 使用速度极快、不限流的 ip-api 免费底层端点
+            const response = await fetch('https://ipapi.co/json/');
+            const data = await response.json();
+            
+            if(data && !data.error) {
+                document.getElementById('mainIpDisplay').innerText = data.ip || '-';
+                document.getElementById('infoCountry').innerText = `${data.country_name || '-'} (${data.country_code || '-'})`;
+                document.getElementById('infoCity').innerText = `${data.region || '-'}, ${data.city || '-'}`;
+                document.getElementById('infoIsp').innerText = data.org || '-';
+                document.getElementById('infoCoords').innerText = `${data.latitude || '0'}, ${data.longitude || '0'}`;
+                showToast(t.suc);
+            } else {
+                fallbackFetch();
+            }
+        } catch(e) {
+            fallbackFetch();
+        }
+    }
+
+    // 容灾备用方案
+    async function fallbackFetch() {
+        try {
+            const res = await fetch('https://api.ipify.org?format=json');
+            const data = await res.json();
+            document.getElementById('mainIpDisplay').innerText = data.ip || 'Error';
+        } catch(err) {
+            document.getElementById('mainIpDisplay').innerText = "Failed to load";
+        }
+    }
+
+    document.getElementById('refreshBtn').addEventListener('click', fetchIpDetails);
+
+    window.addEventListener('DOMContentLoaded', () => {
+        initTheme();
+        const storedPreference = localStorage.getItem('user_lang_preference') || 'en';
+        switchLang(storedPreference);
+        fetchIpDetails();
+    });
+</script>
+</body>
+</html>
