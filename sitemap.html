@@ -24,18 +24,16 @@
         * { margin: 0; padding: 0; box-sizing: border-box; -webkit-font-smoothing: antialiased; }
         
         :root {
-            --bg-gradient: radial-gradient(circle at 10% 30%, #eef2f9, #e0e8f2);
+            --bg-gradient: radial-gradient(circle at 10% 30%, #eef2f9 0%, #e0e8f2 100%);
             --text-main: #0b2b3b;
             --text-muted: #5c7285;
             --text-sub: #8fa0b0;
-            --accent: #3b82f6;
-            --accent-gradient: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+            --accent: #10b981;
+            --accent-hover: #059669;
             --card-bg: #ffffff;
             --card-border: #bfd6ea;
-            --input-bg: #ffffff;
             --shadow-sm: 0 4px 12px rgba(0,0,0,0.03);
-            --shadow-md: 0 25px 45px -12px rgba(0,0,0,0.1);
-            --shadow-lg: 0 22px 50px -15px rgba(37, 99, 235, 0.1);
+            --shadow-md: 0 25px 45px -12px rgba(0,0,0,0.08);
             --radius-lg: 24px;
             --radius-md: 16px;
         }
@@ -45,20 +43,16 @@
             --text-main: #f3f4f6;
             --text-muted: #9ca3af;
             --text-sub: #6b7280;
-            --accent: #3b82f6;
-            --accent-gradient: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+            --accent: #10b981;
+            --accent-hover: #059669;
             --card-bg: rgba(17, 24, 39, 0.75);
-            --card-border: rgba(37, 99, 235, 0.15);
-            --input-bg: rgba(0, 0, 0, 0.3);
-            --shadow-sm: 0 4px 12px rgba(0, 0, 0, 0.3);
-            --shadow-md: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
-            --shadow-lg: 0 22px 50px -15px rgba(37, 99, 235, 0.2);
-            --radius-lg: 24px;
-            --radius-md: 16px;
+            --card-border: rgba(16, 185, 129, 0.15);
+            --shadow-sm: 0 4px 12px rgba(0,0,0,0.3);
+            --shadow-md: 0 25px 50px -12px rgba(0,0,0,0.5);
         }
 
         body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            font-family: 'Inter', -apple-system, sans-serif;
             background: var(--bg-gradient);
             color: var(--text-main);
             min-height: 100vh;
@@ -70,40 +64,14 @@
         }
 
         .container { width: 100%; max-width: 1000px; }
-
-        .top-bar {
-            width: 100%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 32px;
-            gap: 12px;
-            flex-wrap: wrap;
-        }
+        
+        .top-bar { width: 100%; display: flex; justify-content: space-between; align-items: center; margin-bottom: 32px; gap: 12px; flex-wrap: wrap; }
         .left-controls { display: flex; gap: 12px; align-items: center; }
+        
+        .back-btn, .theme-btn { background: var(--card-bg); border: 1px solid var(--card-border); color: var(--text-main); padding: 8px 18px; border-radius: 100px; font-size: 0.9rem; font-weight: 500; cursor: pointer; text-decoration: none; display: inline-flex; align-items: center; gap: 8px; transition: all 0.2s ease; }
+        .back-btn:hover, .theme-btn:hover { border-color: var(--accent); transform: translateY(-1px); }
 
-        .back-btn, .theme-btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            background: var(--card-bg);
-            border: 1px solid var(--card-border);
-            color: var(--text-main);
-            padding: 8px 18px;
-            border-radius: 100px;
-            text-decoration: none;
-            font-size: 0.9rem;
-            font-weight: 500;
-            cursor: pointer;
-            transition: all 0.2s ease;
-        }
-        .back-btn:hover, .theme-btn:hover {
-            background: rgba(255, 255, 255, 0.1);
-            border-color: var(--accent);
-            box-shadow: 0 0 10px rgba(59, 130, 246, 0.2);
-            transform: translateY(-1px);
-        }
-
+        /* 语言选择器样式 */
         .lang-selector-container { display: flex; gap: 8px; }
         .lang-btn {
             background: var(--card-bg);
@@ -120,124 +88,63 @@
             background: var(--accent);
             color: #ffffff;
             border-color: var(--accent);
-            box-shadow: 0 0 12px rgba(59, 130, 246, 0.4);
+            box-shadow: 0 0 12px rgba(16, 185, 129, 0.4);
         }
 
         header { text-align: center; margin-bottom: 40px; }
-        header h1 { font-size: 2.6rem; font-weight: 800; letter-spacing: -1px; margin-bottom: 12px; }
+        header h1 { font-size: 2.5rem; font-weight: 800; letter-spacing: -1px; margin-bottom: 12px; color: var(--text-main); }
         header p { color: var(--text-muted); font-size: 1.05rem; max-width: 600px; margin: 0 auto; line-height: 1.5; }
 
-        .ad-wrapper {
-            margin: 0 auto 32px auto;
-            width: 100%;
-            background: var(--card-bg);
-            border: 1px solid var(--card-border);
-            border-radius: var(--radius-md);
-            padding: 16px;
-            box-shadow: var(--shadow-sm);
-            text-align: center;
-        }
-        .ad-hint {
-            font-size: 0.68rem;
-            color: var(--text-sub);
-            text-transform: uppercase;
-            letter-spacing: 1.5px;
-            margin-bottom: 8px;
-            font-weight: 600;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 4px;
-        }
-
-        .workspace {
-            background: var(--card-bg);
-            border: 1px solid var(--card-border);
-            border-radius: var(--radius-lg);
-            padding: 36px;
-            box-shadow: var(--shadow-md);
-            display: flex;
-            flex-direction: column;
-            gap: 24px;
-        }
-
-        .input-group { display: flex; flex-direction: column; gap: 10px; }
-        .input-group label { font-size: 0.95rem; font-weight: 600; color: var(--text-muted); display: flex; align-items: center; gap: 6px; }
+        .workspace { background: var(--card-bg); border: 1px solid var(--card-border); border-radius: var(--radius-lg); padding: 32px; box-shadow: var(--shadow-md); display: flex; flex-direction: column; gap: 24px; margin-bottom: 32px; }
         
-        textarea {
-            width: 100%;
-            height: 160px;
-            background: var(--input-bg);
-            border: 1px solid var(--card-border);
-            border-radius: var(--radius-md);
-            padding: 16px;
-            color: var(--text-main);
-            font-family: monospace;
-            font-size: 0.95rem;
-            outline: none;
-            resize: vertical;
-            transition: border-color 0.2s;
-        }
-        textarea:focus { border-color: var(--accent); }
-
-        .config-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 20px;
-            background: rgba(0, 0, 0, 0.02);
-            padding: 20px;
-            border-radius: var(--radius-md);
-            border: 1px solid var(--card-border);
-        }
-        .config-group { display: flex; flex-direction: column; gap: 8px; }
-        .config-group label { font-size: 0.88rem; font-weight: 600; color: var(--text-muted); }
-        .config-group select {
-            background: var(--input-bg);
-            border: 1px solid var(--card-border);
-            border-radius: 8px;
-            padding: 10px;
-            color: var(--text-main);
-            outline: none;
-            cursor: pointer;
-        }
-
-        .action-btn {
-            background: var(--accent-gradient); border: none; color: #ffffff; padding: 14px 32px; border-radius: 12px; font-size: 1rem; font-weight: 600; cursor: pointer; display: inline-flex; align-items: center; justify-content: center; gap: 10px; box-shadow: 0 4px 14px rgba(37, 99, 235, 0.3); transition: all 0.2s ease; margin: 0 auto;
-        }
-        .action-btn:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(37, 99, 235, 0.4); }
-
-        .result-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 24px; margin-top: 12px; }
-        .result-card { background: rgba(0, 0, 0, 0.03); border: 1px solid var(--card-border); border-radius: var(--radius-md); padding: 20px; display: flex; flex-direction: column; gap: 14px; }
-        .result-card h4 { font-size: 1rem; color: var(--text-main); font-weight: 700; border-left: 3px solid var(--accent); padding-left: 8px; display: flex; justify-content: space-between; align-items: center; }
-        .val-badge { font-size: 0.75rem; background: var(--accent); color: #ffffff; padding: 2px 8px; border-radius: 100px; font-weight: 500; }
+        .input-group { display: flex; flex-direction: column; gap: 8px; }
+        .input-group label { font-size: 0.95rem; font-weight: 600; color: var(--text-main); display: flex; align-items: center; gap: 6px; }
+        .input-group input, .input-group textarea { background: rgba(0,0,0,0.02); border: 1px solid var(--card-border); border-radius: var(--radius-md); padding: 14px; font-family: inherit; font-size: 0.95rem; color: var(--text-main); outline: none; transition: border-color 0.2s; }
+        [data-theme="dark"] .input-group input, [data-theme="dark"] .input-group textarea { background: rgba(255,255,255,0.02); }
+        .input-group input:focus, .input-group textarea:focus { border-color: var(--accent); }
         
-        .code-box { width: 100%; height: 260px; background: #0f172a; color: #38bdf8; border-radius: 10px; padding: 14px; font-family: monospace; font-size: 0.88rem; overflow: auto; white-space: pre; border: 1px solid rgba(255,255,255,0.1); line-height: 1.4; }
-        
-        .card-actions { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
-        .sub-btn { background: var(--card-bg); border: 1px solid var(--card-border); color: var(--text-main); padding: 10px; border-radius: 8px; font-size: 0.88rem; font-weight: 500; cursor: pointer; display: inline-flex; align-items: center; justify-content: center; gap: 6px; transition: all 0.2s; }
-        .sub-btn:hover { border-color: var(--accent); background: rgba(59, 130, 246, 0.05); }
+        .config-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
 
-        .toast { position: fixed; bottom: 32px; left: 50%; transform: translateX(-50%) translateY(40px); background: rgba(17, 24, 39, 0.95); border: 1px solid var(--accent); color: #ffffff; padding: 12px 28px; border-radius: 100px; font-size: 0.9rem; font-weight: 500; box-shadow: var(--shadow-lg); opacity: 0; transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); z-index: 1000; pointer-events: none; }
+        .btn-primary { background: var(--accent); color: #ffffff; border: none; padding: 14px; border-radius: var(--radius-md); font-size: 1rem; font-weight: 600; cursor: pointer; transition: background 0.2s, transform 0.2s; display: flex; align-items: center; justify-content: center; gap: 8px; box-shadow: 0 4px 12px rgba(16,185,129,0.2); }
+        .btn-primary:hover { background: var(--accent-hover); transform: translateY(-1px); }
+
+        .result-zone { display: none; grid-template-columns: 1fr; gap: 24px; animation: fadeIn 0.4s ease forwards; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+        .output-card { background: var(--card-bg); border: 1px solid var(--card-border); border-radius: var(--radius-md); padding: 20px; display: flex; flex-direction: column; gap: 12px; }
+        .output-header { display: flex; justify-content: space-between; align-items: center; }
+        .output-header h3 { font-size: 1.05rem; font-weight: 700; display: flex; align-items: center; gap: 8px; }
+        .badge-count { background: rgba(16,185,129,0.1); color: var(--accent); padding: 2px 10px; border-radius: 100px; font-size: 0.78rem; font-weight: 700; }
+        
+        .action-btns { display: flex; gap: 8px; }
+        .btn-action { background: rgba(0,0,0,0.04); border: 1px solid var(--card-border); color: var(--text-main); padding: 6px 12px; border-radius: 8px; font-size: 0.82rem; font-weight: 600; cursor: pointer; display: inline-flex; align-items: center; gap: 4px; transition: all 0.2s; }
+        [data-theme="dark"] .btn-action { background: rgba(255,255,255,0.04); }
+        .btn-action:hover { border-color: var(--accent); background: var(--accent); color: #ffffff; }
+
+        pre { background: rgba(0,0,0,0.03); border: 1px solid var(--card-border); border-radius: 10px; padding: 14px; font-family: 'Courier New', Courier, monospace; font-size: 0.88rem; overflow-x: auto; max-height: 260px; color: var(--text-main); white-space: pre-wrap; word-break: break-all; }
+        [data-theme="dark"] pre { background: rgba(255,255,255,0.03); }
+
+        .ad-wrapper { margin: 24px auto; width: 100%; text-align: center; }
+        
+        .toast { position: fixed; bottom: 30px; left: 50%; transform: translateX(-50%) translateY(40px); background: #10b981; color: #ffffff; padding: 10px 24px; border-radius: 100px; font-size: 0.9rem; font-weight: 600; box-shadow: 0 10px 25px rgba(16,185,129,0.3); opacity: 0; pointer-events: none; transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.3s; z-index: 9999; display: flex; align-items: center; gap: 8px; }
         .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
 
-        footer { text-align: center; margin-top: 64px; padding: 32px 0; border-top: 1px solid var(--card-border); width: 100%; color: var(--text-sub); font-size: 0.88rem; }
-
         @media (max-width: 768px) {
-            body { padding: 24px 16px; }
-            header h1 { font-size: 2rem; }
-            .workspace { padding: 20px; }
             .top-bar { flex-direction: column; align-items: flex-start; }
             .lang-selector-container { width: 100%; justify-content: flex-start; margin-top: 4px; }
+            .config-row { grid-template-columns: 1fr; }
+            .workspace { padding: 20px; }
         }
     </style>
 </head>
 <body>
+
 <div class="container">
-    
+    <!-- 顶端控制条（含返回按钮、主题按钮和多国语言按钮组） -->
     <div class="top-bar">
         <div class="left-controls">
-            <a href="index.html" class="back-btn" id="btn-back"><i class="fas fa-arrow-left"></i> Back to Hub</a>
-            <button class="theme-btn" id="themeToggleBtn" onclick="toggleTheme()"><i class="fas fa-lightbulb"></i> Theme</button>
+            <a href="index.html" class="back-btn"><i class="fas fa-arrow-left"></i> <span class="i18n" data-en="Back" data-zh="返回工具箱" data-es="Atrás" data-ja="戻る">Back</span></a>
+            <button class="theme-btn" onclick="toggleTheme()"><i class="fas fa-lightbulb"></i> Theme</button>
         </div>
         <div class="lang-selector-container">
             <button class="lang-btn" id="lang-en" onclick="switchLang('en')">English</button>
@@ -248,157 +155,104 @@
     </div>
 
     <header>
-        <h1 id="txt-title">Sitemap & Robots Optimizer</h1>
-        <p id="txt-desc">Build search engine structure index maps and spider instructions natively inside your browser.</p>
+        <h1 id="txt-title" class="i18n" data-en="Sitemap & Robots Optimizer" data-zh="Sitemap & Robots 深度优化器" data-es="Optimizador de Sitemap y Robots" data-ja="Sitemap & Robots 統合最適化ツール">Sitemap & Robots Optimizer</h1>
+        <p class="i18n" data-en="Extract web links from raw HTML or text content to dynamically build structured index maps locally." data-zh="粘贴网页 HTML 源代码或任意包含链接的文本，本地智能提取并自动打包构建规范的 XML 映射文件与爬虫控制策略。" data-es="Extraiga enlaces web de código HTML para compilar mapas XML de motores de búsqueda indestructibles de forma nativa." data-ja="HTMLソースコードやテキストからリンクを自動で抽出し、検索エンジンに最適化されたXMLサイトマップを作成します。">Extract web links from raw HTML or text content to dynamically build structured index maps locally.</p>
     </header>
 
-    <section class="ad-wrapper">
-        <div class="ad-hint lbl-ad"><i class="fas fa-rectangle-ad"></i> Sponsored Advertisement</div>
+    <div class="workspace">
+        <div class="input-group">
+            <label class="i18n" data-en="Target Website Domain URL (With www or prefix)" data-zh="目标网站根域名 URL（建议包含协议头与前缀）" data-es="URL del Dominio Base" data-ja="対象サイトのルートURL">Target Website Domain URL</label>
+            <input type="url" id="domainInput" placeholder="https://www.yourdomain.com" value="https://www.yourdomain.com">
+        </div>
+
+        <div class="config-row">
+            <div class="input-group">
+                <label class="i18n" data-en="Update Frequency" data-zh="更新频率 (changefreq)" data-es="Frecuencia" data-ja="更新頻度">Update Frequency</label>
+                <input type="text" id="freqInput" value="daily" placeholder="daily / weekly / monthly">
+            </div>
+            <div class="input-group">
+                <label class="i18n" data-en="Default Priority" data-zh="默认权重 (priority)" data-es="Prioridad" data-ja="優先度">Default Priority</label>
+                <input type="text" id="priorityInput" value="0.8" placeholder="0.0 - 1.0">
+            </div>
+        </div>
+
+        <div class="input-group">
+            <label class="i18n" data-en="Paste Web HTML Code or Raw Text" data-zh="粘贴网页 HTML 源代码或原始混杂文本内容" data-es="Pegar código HTML de la página web" data-ja="ウェブページのHTMLソースコードまたはテキストを貼り付け">Paste Web HTML Code or Raw Text</label>
+            <textarea id="htmlInput" rows="8" placeholder="<a href='/page1.html'>Link 1</a>&#10;<a href='https://www.yourdomain.com/about'>Link 2</a>&#10;..."></textarea>
+        </div>
+
+        <button class="btn-primary" id="generateBtn">
+            <i class="fas fa-wand-magic-sparkles"></i>
+            <span class="i18n" data-en="Extract & Generate Map" data-zh="提取并智能生成" data-es="Extraer y Generar" data-ja="リンク抽出・サイトマップ生成">Extract & Generate Map</span>
+        </button>
+    </div>
+
+    <!-- AdSense 广告占位区 -->
+    <div class="ad-wrapper">
         <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-1624261597740761" data-ad-slot="7441222926" data-ad-format="auto" data-full-width-responsive="true"></ins>
         <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-    </section>
+    </div>
 
-    <main class="workspace">
-        <div class="input-group">
-            <label id="lbl-input-urls"><i class="fas fa-link"></i> Paste Website URLs (One URL per line)</label>
-            <textarea id="urlsInput" placeholder="https://www.example.com/&#10;https://www.example.com/about&#10;https://www.example.com/blog"></textarea>
-        </div>
-
-        <div class="config-grid">
-            <div class="config-group">
-                <label id="lbl-changefreq">Change Frequency</label>
-                <select id="freqSelect">
-                    <option value="daily">daily</option>
-                    <option value="weekly" selected>weekly</option>
-                    <option value="monthly">monthly</option>
-                    <option value="yearly">yearly</option>
-                </select>
-            </div>
-            <div class="config-group">
-                <label id="lbl-priority">Default Priority</label>
-                <select id="prioritySelect">
-                    <option value="1.0">1.0 (Homepage)</option>
-                    <option value="0.8" selected>0.8 (Standard)</option>
-                    <option value="0.5">0.5 (Low)</option>
-                </select>
-            </div>
-            <div class="config-group">
-                <label id="lbl-robots-policy">Robots Spider Policy</label>
-                <select id="robotsPolicySelect">
-                    <option value="allow-all" selected>Allow All Spiders</option>
-                    <option value="block-admin">Block Admin Paths (/admin)</option>
-                    <option value="disallow-all">Disallow All Spiders</option>
-                </select>
-            </div>
-        </div>
-
-        <button class="action-btn" id="genBtn"><i class="fas fa-wand-magic-sparkles"></i> Generate SEO Package</button>
-
-        <div class="result-grid" id="resultDiv" style="display: none;">
-            <div class="result-card">
-                <h4>sitemap.xml <span class="val-badge" id="badge-sm-count">0 URLs</span></h4>
-                <div class="code-box" id="sitemapOutput"></div>
-                <div class="card-actions">
-                    <button class="sub-btn" onclick="copyCode('sitemapOutput')"><i class="fas fa-copy"></i> Copy</button>
-                    <button class="sub-btn" onclick="downloadFile('sitemapOutput', 'sitemap.xml')"><i class="fas fa-download"></i> Download</button>
+    <!-- 结果渲染区 -->
+    <div class="result-zone" id="resultDiv">
+        <!-- sitemap.xml -->
+        <div class="output-card">
+            <div class="output-header">
+                <h3><i class="fas fa-code" style="color: #10b981;"></i> sitemap.xml <span class="badge-count" id="badge-sm-count">0 URLs</span></h3>
+                <div class="action-btns">
+                    <button class="btn-action" onclick="copyCode('sitemapOutput')"><i class="fas fa-copy"></i> <span class="i18n" data-en="Copy" data-zh="复制" data-es="Copiar" data-ja="コピー">Copy</span></button>
+                    <button class="btn-action" onclick="downloadFile('sitemapOutput', 'sitemap.xml')"><i class="fas fa-download"></i> <span class="i18n" data-en="Download" data-zh="下载" data-es="Descargar" data-ja="ダウンロード">Download</span></button>
                 </div>
             </div>
-            <div class="result-card">
-                <h4>robots.txt</h4>
-                <div class="code-box" id="robotsOutput"></div>
-                <div class="card-actions">
-                    <button class="sub-btn" onclick="copyCode('robotsOutput')"><i class="fas fa-copy"></i> Copy</button>
-                    <button class="sub-btn" onclick="downloadFile('robotsOutput', 'robots.txt')"><i class="fas fa-download"></i> Download</button>
+            <pre id="sitemapOutput"></pre>
+        </div>
+
+        <!-- robots.txt -->
+        <div class="output-card">
+            <div class="output-header">
+                <h3><i class="fas fa-robot" style="color: #3b82f6;"></i> robots.txt</h3>
+                <div class="action-btns">
+                    <button class="btn-action" onclick="copyCode('robotsOutput')"><i class="fas fa-copy"></i> <span class="i18n" data-en="Copy" data-zh="复制" data-es="Copiar" data-ja="コピー">Copy</span></button>
+                    <button class="btn-action" onclick="downloadFile('robotsOutput', 'robots.txt')"><i class="fas fa-download"></i> <span class="i18n" data-en="Download" data-zh="下载" data-es="Descargar" data-ja="ダウンロード">Download</span></button>
                 </div>
             </div>
+            <pre id="robotsOutput"></pre>
         </div>
-    </main>
-
-    <footer>
-        <p>© Ultimate Online Toolbox | Client-Side Secure Sandbox Workshop</p>
-    </footer>
+    </div>
 </div>
 
-<div class="toast" id="toastBox">Notification</div>
+<div class="toast" id="toastBox"><i class="fas fa-check-circle"></i> <span id="toastMsg"></span></div>
 
 <script>
-    const SM_LANGS = {
-        en: {
-            title: "Sitemap & Robots Optimizer",
-            desc: "Build search engine structure index maps and spider instructions natively inside your browser.",
-            back: "<i class='fas fa-arrow-left'></i> Back to Hub",
-            inputUrls: "Paste Website URLs (One URL per line)",
-            changefreq: "Change Frequency",
-            priority: "Default Priority",
-            robotsPolicy: "Robots Spider Policy",
-            btnGen: "<i class='fas fa-wand-magic-sparkles'></i> Generate SEO Package",
-            ad: "<i class='fas fa-rectangle-ad'></i> Sponsored Advertisement",
-            err: "Please input valid absolute URLs!",
-            suc: "SEO Files successfully compiled",
-            copy: "Copied to clipboard"
-        },
-        zh: {
-            title: "Sitemap & Robots 深度优化器",
-            desc: "在浏览器本地一键快速构建符合搜索引擎高标准规范的 sitemap.xml 映射结构树与 robots.txt 爬虫控制策略。",
-            back: "<i class='fas fa-arrow-left'></i> 返回工具箱",
-            inputUrls: "输入网站链接 URL 集合（每行一个网址）",
-            changefreq: "更新探测频率 (Changefreq)",
-            priority: "全局默认权重权重 (Priority)",
-            robotsPolicy: "Robots 爬虫对齐策略",
-            btnGen: "<i class='fas fa-wand-magic-sparkles'></i> 立即交叉生成 SEO 套件",
-            ad: "<i class='fas fa-rectangle-ad'></i> 赞助商广告",
-            err: "请输入符合规范的绝对路径URL地址！",
-            suc: "站点地图和规则套件模型构建成功",
-            copy: "已成功复制到剪贴板"
-        },
-        es: {
-            title: "Optimizador de Sitemap y Robots",
-            desc: "Cree mapas de índice y reglas de rastreo estructurados de forma nativa en su navegador.",
-            back: "<i class='fas fa-arrow-left'></i> Volver al menú",
-            inputUrls: "Pegue las URL del sitio web (Una URL por línea)",
-            changefreq: "Frecuencia de Cambio",
-            priority: "Prioridad por Defecto",
-            robotsPolicy: "Política de Robots.txt",
-            btnGen: "<i class='fas fa-wand-magic-sparkles'></i> Generar Paquete SEO",
-            ad: "<i class='fas fa-rectangle-ad'></i> Publicidad Patrocinada",
-            err: "¡Por favor introduzca URL absolutas válidas!",
-            suc: "Archivos SEO compilados con éxito",
-            copy: "Copiado al portapapeles"
-        },
-        ja: {
-            title: "Sitemap & Robots 統合最適化ツール",
-            desc: "検索エンジン向けのサイトマップ(sitemap.xml)とクローラー制御ファイル(robots.txt)をローカル環境で作成します。",
-            back: "<i class='fas fa-arrow-left'></i> ツールボックスに戻る",
-            inputUrls: "対象のURLリストを入力（1行に1つのURL）",
-            changefreq: "更新頻度",
-            priority: "優先度設定",
-            robotsPolicy: "Robotsクローラー制御方針",
-            btnGen: "<i class='fas fa-wand-magic-sparkles'></i> SEOファイルを一括生成",
-            ad: "<i class='fas fa-rectangle-ad'></i> スポンサー広告",
-            err: "有効な絶対URLを入力してください！",
-            suc: "SEOファイルの作成に成功しました",
-            copy: "クリップボードにコピーしました"
-        }
-    };
-
     let currentLang = 'en';
+
+    const SM_LANGS = {
+        en: { suc: "Sitemap generated successfully!", copy: "Copied to clipboard!", err: "Please paste text containing valid links first." },
+        zh: { suc: "站点地图及指引策略生成成功！", copy: "已成功复制到剪贴板！", err: "请先粘贴包含有效链接的 HTML 或文本内容。" },
+        es: { suc: "¡Sitemap generado con éxito!", copy: "¡Copiado al portapapeles!", err: "Por favor, pegue texto con enlaces válidos primero." },
+        ja: { suc: "サイトマップが正常に作成されました！", copy: "クリップボードにコピーしました！", err: "有効なリンクを含むテキストを入力してください。" }
+    };
 
     function switchLang(lang) {
         currentLang = lang;
+        
+        // 动态更改主页面的 title 标签属性
         const t = SM_LANGS[lang] || SM_LANGS['en'];
-        document.title = t.title + " – Ultimate Online Toolbox";
-        document.getElementById('txt-title').innerText = t.title;
-        document.getElementById('txt-desc').innerText = t.desc;
-        document.getElementById('btn-back').innerHTML = t.back;
-        document.getElementById('lbl-input-urls').innerHTML = `<i class="fas fa-link"></i> ` + t.inputUrls;
-        document.getElementById('lbl-changefreq').innerText = t.changefreq;
-        document.getElementById('lbl-priority').innerText = t.priority;
-        document.getElementById('lbl-robots-policy').innerText = t.robotsPolicy;
-        document.getElementById('genBtn').innerHTML = t.btnGen;
-        document.querySelectorAll('.lbl-ad').forEach(el => el.innerHTML = t.ad);
+        const titleMap = { en: "Sitemap & Robots Optimizer", zh: "Sitemap & Robots 深度优化器", es: "Optimizador de Sitemap y Robots", ja: "Sitemap & Robots 統合最適化ツール" };
+        document.title = (titleMap[lang] || titleMap['en']) + " – Ultimate Online Toolbox";
+        
+        // 遍历更新所有带 i18n 标识的 DOM 翻译
+        document.querySelectorAll('.i18n').forEach(el => {
+            const translation = el.getAttribute(`data-${lang}`);
+            if (translation) el.innerHTML = translation;
+        });
+
+        // 高亮选中状态按钮
         document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
         const activeBtn = document.getElementById(`lang-${lang}`);
         if(activeBtn) activeBtn.classList.add('active');
+
+        // 缓存偏好至本地
         localStorage.setItem('user_lang_preference', lang);
         document.documentElement.lang = lang;
     }
@@ -416,71 +270,90 @@
     }
 
     function showToast(msg) {
-        const box = document.getElementById('toastBox');
-        box.innerText = msg;
-        box.classList.add('show');
-        setTimeout(() => box.classList.remove('show'), 2000);
+        const toast = document.getElementById('toastBox');
+        document.getElementById('toastMsg').innerText = msg;
+        toast.classList.add('show');
+        setTimeout(() => toast.classList.remove('show'), 2500);
     }
 
-    document.getElementById('genBtn').addEventListener('click', () => {
-        const lines = document.getElementById('urlsInput').value.split('\n');
-        const urls = [];
-        let extractedBaseDomain = "https://www.example.com";
+    // ===================================================
+    // ⚙️ 核心逻辑：本地高精准 HTML/文本超链接提取
+    // ===================================================
+    document.getElementById('generateBtn').addEventListener('click', () => {
+        let domain = document.getElementById('domainInput').value.trim();
+        const htmlContent = document.getElementById('htmlInput').value;
+        const freq = document.getElementById('freqInput').value.trim() || 'daily';
+        const priority = document.getElementById('priorityInput').value.trim() || '0.8';
 
-        lines.forEach(l => {
-            let trimStr = l.trim();
-            if(trimStr) {
-                if(!trimStr.startsWith('http://') && !trimStr.startsWith('https://')) {
-                    return;
-                }
-                urls.push(trimStr);
-                try {
-                    let urlObj = new URL(trimStr);
-                    extractedBaseDomain = urlObj.origin;
-                } catch(e){}
-            }
-        });
-
-        if(urls.length === 0) {
+        if (!htmlContent.trim()) {
             showToast(SM_LANGS[currentLang].err);
             return;
         }
 
-        // 核心数组去重
-        const uniqueUrls = [...new Set(urls)];
-        const freq = document.getElementById('freqSelect').value;
-        const prio = document.getElementById('prioritySelect').value;
-        const robotPolicy = document.getElementById('robotsPolicySelect').value;
-        const today = new Date().toISOString().split('T')[0];
-
-        // === 1. 构建标准的 XML Sitemap ===
-        let xml = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n`;
-        uniqueUrls.forEach(url => {
-            xml += `  <url>\n`;
-            xml += `    <loc>${escapeXml(url)}</loc>\n`;
-            xml += `    <lastmod>${today}</lastmod>\n`;
-            xml += `    <changefreq>${freq}</changefreq>\n`;
-            // 如果是根首页，赋予最高权重 1.0，其余页面使用指定权重
-            xml += `    <priority>${url === extractedBaseDomain || url === extractedBaseDomain + '/' ? '1.0' : prio}</priority>\n`;
-            xml += `  </url>\n`;
-        });
-        xml += `</urlset>`;
-
-        // === 2. 联动动态构建完美的 Robots.txt ===
-        let robots = `# Robots.txt optimized via Ultimate Online Toolbox\n# Target Core Host: ${extractedBaseDomain}\n\n`;
-        
-        if (robotPolicy === 'allow-all') {
-            robots += `User-agent: *\nAllow: /\nDisallow: /admin/\nDisallow: /config/\nDisallow: /tmp/\n`;
-        } else if (robotPolicy === 'block-admin') {
-            robots += `User-agent: *\nAllow: /\nDisallow: /admin/\nDisallow: /wp-admin/\nDisallow: /login/\nDisallow: /api/\n`;
-        } else if (robotPolicy === 'disallow-all') {
-            robots += `User-agent: *\nDisallow: /\n`;
+        if (domain && !domain.startsWith('http://') && !domain.startsWith('https://')) {
+            domain = 'https://' + domain;
+        }
+        if (domain.endsWith('/')) {
+            domain = domain.slice(0, -1);
         }
 
-        // 附带规范的站点索引绝对地址映射规则
-        robots += `\n# Modern XML Sitemap Navigation Blueprint\nSitemap: ${extractedBaseDomain}/sitemap.xml`;
+        const hrefRegex = /href=["']([^"']+)["']/g;
+        let match;
+        const extractedUrls = [];
 
-        // 渲染输出
+        while ((match = hrefRegex.exec(htmlContent)) !== null) {
+            let url = match[1].trim();
+
+            if (!url || url.startsWith('#') || url.startsWith('javascript:') || url.startsWith('mailto:') || url.startsWith('tel:')) {
+                continue;
+            }
+
+            if (url.startsWith('/')) {
+                url = domain + url;
+            } else if (!url.startsWith('http://') && !url.startsWith('https://')) {
+                url = domain + '/' + url;
+            }
+
+            if (url.includes('#')) {
+                url = url.split('#')[0];
+            }
+
+            extractedUrls.push(url);
+        }
+
+        if (extractedUrls.length === 0) {
+            const rawUrlRegex = /(https?:\/\/[^\s"'><]+)/g;
+            let rawMatch;
+            while ((rawMatch = rawUrlRegex.exec(htmlContent)) !== null) {
+                extractedUrls.push(rawMatch[1].trim());
+            }
+        }
+
+        const uniqueUrls = [...new Set(extractedUrls)];
+
+        if (uniqueUrls.length === 0 && domain) {
+            uniqueUrls.push(domain + '/');
+        }
+
+        const today = new Date().toISOString().split('T')[0];
+
+        let xml = '<?xml version="1.0" encoding="UTF-8"?>\n';
+        xml += '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n';
+        
+        uniqueUrls.forEach(link => {
+            xml += '  <url>\n';
+            xml += `    <loc>${escapeXml(link)}</loc>\n`;
+            xml += `    <lastmod>${today}</lastmod>\n`;
+            xml += `    <changefreq>${freq}</changefreq>\n`;
+            xml += `    <priority>${priority}</priority>\n`;
+            xml += '  </url>\n';
+        });
+        xml += '</urlset>';
+
+        let robots = 'User-agent: *\n';
+        robots += 'Allow: /\n';
+        robots += `Sitemap: ${domain}/sitemap.xml`;
+
         document.getElementById('sitemapOutput').innerText = xml;
         document.getElementById('robotsOutput').innerText = robots;
         document.getElementById('badge-sm-count').innerText = `${uniqueUrls.length} URLs`;
