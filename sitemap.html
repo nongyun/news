@@ -20,7 +20,6 @@
     </script>
 
     <style>
-        /* === 延续全局高级暗黑/浅色微光视觉系统 === */
         * { margin: 0; padding: 0; box-sizing: border-box; -webkit-font-smoothing: antialiased; }
         
         :root {
@@ -36,6 +35,7 @@
             --shadow-md: 0 25px 45px -12px rgba(0,0,0,0.08);
             --radius-lg: 24px;
             --radius-md: 16px;
+            --select-bg: #ffffff; /* 浅色模式下拉菜单背景 */
         }
 
         [data-theme="dark"] {
@@ -49,6 +49,7 @@
             --card-border: rgba(16, 185, 129, 0.15);
             --shadow-sm: 0 4px 12px rgba(0,0,0,0.3);
             --shadow-md: 0 25px 50px -12px rgba(0,0,0,0.5);
+            --select-bg: #1f2937; /* 深色模式下拉菜单及选项的纯正黑夜背景色 */
         }
 
         body {
@@ -71,7 +72,6 @@
         .back-btn, .theme-btn { background: var(--card-bg); border: 1px solid var(--card-border); color: var(--text-main); padding: 8px 18px; border-radius: 100px; font-size: 0.9rem; font-weight: 500; cursor: pointer; text-decoration: none; display: inline-flex; align-items: center; gap: 8px; transition: all 0.2s ease; }
         .back-btn:hover, .theme-btn:hover { border-color: var(--accent); transform: translateY(-1px); }
 
-        /* 语言选择器样式 */
         .lang-selector-container { display: flex; gap: 8px; }
         .lang-btn {
             background: var(--card-bg);
@@ -99,9 +99,48 @@
         
         .input-group { display: flex; flex-direction: column; gap: 8px; }
         .input-group label { font-size: 0.95rem; font-weight: 600; color: var(--text-main); display: flex; align-items: center; gap: 6px; }
-        .input-group input, .input-group textarea { background: rgba(0,0,0,0.02); border: 1px solid var(--card-border); border-radius: var(--radius-md); padding: 14px; font-family: inherit; font-size: 0.95rem; color: var(--text-main); outline: none; transition: border-color 0.2s; }
-        [data-theme="dark"] .input-group input, [data-theme="dark"] .input-group textarea { background: rgba(255,255,255,0.02); }
-        .input-group input:focus, .input-group textarea:focus { border-color: var(--accent); }
+        
+        /* 优化后的输入组件和选择框统一样式库 */
+        .input-group input, .input-group textarea, .input-group select { 
+            background: rgba(0,0,0,0.02); 
+            border: 1px solid var(--card-border); 
+            border-radius: var(--radius-md); 
+            padding: 14px; 
+            font-family: inherit; 
+            font-size: 0.95rem; 
+            color: var(--text-main); 
+            outline: none; 
+            transition: border-color 0.2s, background 0.2s, color 0.2s; 
+            -webkit-appearance: none; 
+            -moz-appearance: none;
+            appearance: none;
+        }
+
+        /* 针对 Select 元素增加高雅的手风琴倒三角箭头支持 */
+        .input-group select {
+            background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%2310b981' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><polyline points='6 9 12 15 18 9'></polyline></svg>");
+            background-repeat: no-repeat;
+            background-position: right 14px center;
+            background-size: 16px;
+            padding-right: 40px; /* 避免文字与箭头重叠 */
+        }
+
+        [data-theme="dark"] .input-group input, 
+        [data-theme="dark"] .input-group textarea { 
+            background: rgba(255,255,255,0.02); 
+        }
+
+        /* 🛠️ 核心修复：强制重塑 Select 和 Option 标签在深色架构下的色彩表现 */
+        [data-theme="dark"] .input-group select {
+            background-color: var(--select-bg);
+            color: var(--text-main);
+        }
+        .input-group select option {
+            background-color: var(--select-bg);
+            color: var(--text-main);
+        }
+
+        .input-group input:focus, .input-group textarea:focus, .input-group select:focus { border-color: var(--accent); }
         
         .config-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
 
@@ -140,7 +179,6 @@
 <body>
 
 <div class="container">
-    <!-- 顶端控制条（含返回按钮、主题按钮和多国语言按钮组） -->
     <div class="top-bar">
         <div class="left-controls">
             <a href="index.html" class="back-btn"><i class="fas fa-arrow-left"></i> <span class="i18n" data-en="Back" data-zh="返回工具箱" data-es="Atrás" data-ja="戻る">Back</span></a>
@@ -156,7 +194,7 @@
 
     <header>
         <h1 id="txt-title" class="i18n" data-en="Sitemap & Robots Optimizer" data-zh="Sitemap & Robots 深度优化器" data-es="Optimizador de Sitemap y Robots" data-ja="Sitemap & Robots 統合最適化ツール">Sitemap & Robots Optimizer</h1>
-        <p class="i18n" data-en="Extract web links from raw HTML or text content to dynamically build structured index maps locally." data-zh="粘贴网页 HTML 源代码或任意包含链接的文本，本地智能提取并自动打包构建规范的 XML 映射文件与爬虫控制策略。" data-es="Extraiga enlaces web de código HTML para compilar mapas XML de motores de búsqueda indestructibles de forma nativa." data-ja="HTMLソースコードやテキストからリンクを自動で抽出し、検索エンジンに最適化されたXMLサイトマップを作成します。">Extract web links from raw HTML or text content to dynamically build structured index maps locally.</p>
+        <p class="i18n" data-en="Extract web links from raw HTML or text content to dynamically build structured index maps locally." data-zh="粘贴网页 HTML 源代码或任意包含链接的文本，本地智能提取并自动打包构建规范的 XML 映射文件与爬虫控制策略。" data-es="Extraiga enlaces web de código HTML para compilar mapas XML de motores de búsqueda de forma nativa." data-ja="HTMLソースコードやテキストからリンクを自动で抽出し、検索エンジンに最適化されたXMLサイトマップを作成します。">Extract web links from raw HTML or text content to dynamically build structured index maps locally.</p>
     </header>
 
     <div class="workspace">
@@ -167,12 +205,31 @@
 
         <div class="config-row">
             <div class="input-group">
-                <label class="i18n" data-en="Update Frequency" data-zh="更新频率 (changefreq)" data-es="Frecuencia" data-ja="更新頻度">Update Frequency</label>
-                <input type="text" id="freqInput" value="daily" placeholder="daily / weekly / monthly">
+                <label class="i18n" data-en="Update Frequency (changefreq)" data-zh="更新频率 (changefreq)" data-es="Frecuencia de actualización" data-ja="更新頻度 (changefreq)">Update Frequency</label>
+                <select id="freqInput">
+                    <option value="always">always</option>
+                    <option value="hourly">hourly</option>
+                    <option value="daily" selected>daily</option>
+                    <option value="weekly">weekly</option>
+                    <option value="monthly">monthly</option>
+                    <option value="yearly">yearly</option>
+                    <option value="never">never</option>
+                </select>
             </div>
             <div class="input-group">
-                <label class="i18n" data-en="Default Priority" data-zh="默认权重 (priority)" data-es="Prioridad" data-ja="優先度">Default Priority</label>
-                <input type="text" id="priorityInput" value="0.8" placeholder="0.0 - 1.0">
+                <label class="i18n" data-en="Default Priority (0.0 - 1.0)" data-zh="默认权重 (priority)" data-es="Prioridad predeterminada" data-ja="デフォルト優先度 (0.0 - 1.0)">Default Priority</label>
+                <select id="priorityInput">
+                    <option value="1.0">1.0 (Highest)</option>
+                    <option value="0.9">0.9</option>
+                    <option value="0.8" selected>0.8 (Default)</option>
+                    <option value="0.7">0.7</option>
+                    <option value="0.6">0.6</option>
+                    <option value="0.5">0.5 (Neutral)</option>
+                    <option value="0.4">0.4</option>
+                    <option value="0.3">0.3</option>
+                    <option value="0.2">0.2</option>
+                    <option value="0.1">0.1</option>
+                </select>
             </div>
         </div>
 
@@ -187,15 +244,12 @@
         </button>
     </div>
 
-    <!-- AdSense 广告占位区 -->
     <div class="ad-wrapper">
         <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-1624261597740761" data-ad-slot="7441222926" data-ad-format="auto" data-full-width-responsive="true"></ins>
         <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
     </div>
 
-    <!-- 结果渲染区 -->
     <div class="result-zone" id="resultDiv">
-        <!-- sitemap.xml -->
         <div class="output-card">
             <div class="output-header">
                 <h3><i class="fas fa-code" style="color: #10b981;"></i> sitemap.xml <span class="badge-count" id="badge-sm-count">0 URLs</span></h3>
@@ -207,7 +261,6 @@
             <pre id="sitemapOutput"></pre>
         </div>
 
-        <!-- robots.txt -->
         <div class="output-card">
             <div class="output-header">
                 <h3><i class="fas fa-robot" style="color: #3b82f6;"></i> robots.txt</h3>
@@ -236,23 +289,18 @@
     function switchLang(lang) {
         currentLang = lang;
         
-        // 动态更改主页面的 title 标签属性
-        const t = SM_LANGS[lang] || SM_LANGS['en'];
         const titleMap = { en: "Sitemap & Robots Optimizer", zh: "Sitemap & Robots 深度优化器", es: "Optimizador de Sitemap y Robots", ja: "Sitemap & Robots 統合最適化ツール" };
         document.title = (titleMap[lang] || titleMap['en']) + " – Ultimate Online Toolbox";
         
-        // 遍历更新所有带 i18n 标识的 DOM 翻译
         document.querySelectorAll('.i18n').forEach(el => {
             const translation = el.getAttribute(`data-${lang}`);
             if (translation) el.innerHTML = translation;
         });
 
-        // 高亮选中状态按钮
         document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
         const activeBtn = document.getElementById(`lang-${lang}`);
         if(activeBtn) activeBtn.classList.add('active');
 
-        // 缓存偏好至本地
         localStorage.setItem('user_lang_preference', lang);
         document.documentElement.lang = lang;
     }
@@ -276,14 +324,11 @@
         setTimeout(() => toast.classList.remove('show'), 2500);
     }
 
-    // ===================================================
-    // ⚙️ 核心逻辑：本地高精准 HTML/文本超链接提取
-    // ===================================================
     document.getElementById('generateBtn').addEventListener('click', () => {
         let domain = document.getElementById('domainInput').value.trim();
         const htmlContent = document.getElementById('htmlInput').value;
-        const freq = document.getElementById('freqInput').value.trim() || 'daily';
-        const priority = document.getElementById('priorityInput').value.trim() || '0.8';
+        const freq = document.getElementById('freqInput').value;
+        const priority = document.getElementById('priorityInput').value;
 
         if (!htmlContent.trim()) {
             showToast(SM_LANGS[currentLang].err);
