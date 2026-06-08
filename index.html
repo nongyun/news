@@ -28,12 +28,19 @@
 
     <style>
         /* ==========================================
-           1. 全局设计核心变量与主题系统优化
+           1. 全局设计核心变量与主体滚动修复
            ========================================== */
         * { margin: 0; padding: 0; box-sizing: border-box; -webkit-font-smoothing: antialiased; }
         
+        /* 将背景绑定至 html 根节点，彻底解决黑夜模式长页面滚动露白边的问题 */
+        html {
+            background: var(--bg-gradient);
+            min-height: 100%;
+            transition: background 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
         :root {
-            /* 🌞 明亮模式优化：温润奶白微光视觉 */
+            /* 🌞 明亮模式优化 */
             --bg-gradient: radial-gradient(circle at 50% 0%, #f8fafc 0%, #f1f5f9 50%, #e2e8f0 100%);
             --text-main: #0f172a;
             --text-muted: #475569;
@@ -51,9 +58,17 @@
             --badge-bg: rgba(37, 99, 235, 0.06);
             --badge-border: rgba(37, 99, 235, 0.15);
             --badge-text: #1d4ed8;
+            
+            /* 新增卡片动态色彩变量 */
+            --icon-sitemap-bg: rgba(16, 185, 129, 0.06);
+            --icon-sitemap-border: rgba(16, 185, 129, 0.12);
+            --icon-sitemap-color: #10b981;
+            --icon-ip-bg: rgba(99, 102, 241, 0.06);
+            --icon-ip-border: rgba(99, 102, 241, 0.12);
+            --icon-ip-color: #6366f1;
         }
 
-        /* 🌙 暗黑模式优化：大厂极客最爱深空灰 */
+        /* 🌙 暗黑模式完美适配 */
         [data-theme="dark"] {
             --bg-gradient: radial-gradient(circle at 50% -10%, #0f172a 0%, #070a13 60%, #020408 100%);
             --text-main: #f8fafc;
@@ -70,18 +85,26 @@
             --badge-bg: rgba(59, 130, 246, 0.1);
             --badge-border: rgba(59, 130, 246, 0.2);
             --badge-text: #60a5fa;
+
+            /* 暗黑模式下特殊卡片色彩柔化 */
+            --icon-sitemap-bg: rgba(52, 211, 153, 0.1);
+            --icon-sitemap-border: rgba(52, 211, 153, 0.2);
+            --icon-sitemap-color: #34d399;
+            --icon-ip-bg: rgba(129, 140, 248, 0.1);
+            --icon-ip-border: rgba(129, 140, 248, 0.2);
+            --icon-ip-color: #818cf8;
         }
 
         body {
             font-family: 'Plus Jakarta Sans', sans-serif;
-            background: var(--bg-gradient);
+            background: transparent; /* 背景移至html，此处设为透明 */
             color: var(--text-main);
             min-height: 100vh;
             padding: 40px 24px;
             display: flex;
             flex-direction: column;
             align-items: center;
-            transition: background 0.4s cubic-bezier(0.4, 0, 0.2, 1), color 0.4s ease;
+            transition: color 0.4s ease;
         }
 
         .container {
@@ -90,7 +113,7 @@
         }
 
         /* ==========================================
-           2. 导航控制组件美化
+           2. 导航控制组件
            ========================================== */
         .top-navbar {
             width: 100%;
@@ -152,7 +175,7 @@
         }
 
         /* ==========================================
-           3. 头部文案艺术排版
+           3. 头部文案排版（全面修复显示不全Bug）
            ========================================== */
         header { text-align: center; margin-bottom: 48px; }
         header .badge {
@@ -173,11 +196,12 @@
             font-size: 3.2rem;
             font-weight: 800;
             letter-spacing: -1.5px;
-            background: linear-gradient(135deg, #ffffff 20%, #cbd5e100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
             margin-bottom: 16px;
             line-height: 1.15;
+            /* 完美修复代码拼写断层，建立平滑高质感白银渐变色 */
+            background: linear-gradient(135deg, #ffffff 30%, #cbd5e1 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
         [data-theme="light"] header h1 {
             background: linear-gradient(135deg, #0f172a 0%, #334155 100%);
@@ -218,7 +242,7 @@
         }
 
         /* ==========================================
-           5. 响应式多维工具网格卡片
+           5. 响应式工具网格卡片
            ========================================== */
         .grid {
             display: grid;
@@ -244,13 +268,13 @@
             position: relative;
         }
         
-        /* 悬浮微调：流光感外廓与升力 */
         .tool-card:hover {
             transform: translateY(-6px);
             border-color: var(--card-hover-border);
             box-shadow: var(--shadow-lg), 0 0 0 1px rgba(59, 130, 246, 0.1);
         }
 
+        /* 统一标准基础 Icon 容器样式 */
         .icon-wrapper {
             width: 52px;
             height: 52px;
@@ -263,15 +287,23 @@
             border: 1px solid rgba(59, 130, 246, 0.12);
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
+        .icon-wrapper i { font-size: 1.4rem; color: var(--accent); transition: all 0.3s ease; }
+        [data-theme="dark"] .icon-wrapper i { color: #60a5fa; }
+
+        /* 悬浮微特效触发：图标容器全部升级为渐变高亮 */
         .tool-card:hover .icon-wrapper { 
-            background: var(--accent-gradient); 
-            border-color: transparent;
+            background: var(--accent-gradient) !important; 
+            border-color: transparent !important;
             box-shadow: 0 8px 20px rgba(59, 130, 246, 0.3);
             transform: scale(1.05) rotate(3deg);
         }
-        .icon-wrapper i { font-size: 1.4rem; color: var(--accent); transition: all 0.3s ease; }
-        [data-theme="dark"] .icon-wrapper i { color: #60a5fa; }
-        .tool-card:hover .icon-wrapper i { color: #ffffff; }
+        .tool-card:hover .icon-wrapper i { color: #ffffff !important; }
+
+        /* 特殊自定义卡片 Icon 色彩变量注入绑定 */
+        .icon-sitemap { background: var(--icon-sitemap-bg); border-color: var(--icon-sitemap-border); }
+        .icon-sitemap i { color: var(--icon-sitemap-color); }
+        .icon-ip { background: var(--icon-ip-bg); border-color: var(--icon-ip-border); }
+        .icon-ip i { color: var(--icon-ip-color); }
 
         .tool-card h2 { font-size: 1.25rem; font-weight: 700; margin-bottom: 12px; letter-spacing: -0.3px; color: var(--text-main); }
         .tool-card p { font-size: 0.92rem; color: var(--text-muted); line-height: 1.6; flex-grow: 1; margin-bottom: 20px; }
@@ -290,7 +322,7 @@
         [data-theme="dark"] .tool-card .arrow-link { color: #60a5fa; }
         .tool-card:hover .arrow-link { opacity: 1; transform: translateX(4px); }
         
-        /* 原生流式广告卡片深度融合与伪装设计 */
+        /* 广告信息流卡片原生级伪装融合设计 */
         .tool-card.ad-feed-card {
             background: linear-gradient(145deg, rgba(59, 130, 246, 0.02) 0%, rgba(139, 92, 246, 0.02) 100%) !important;
             border: 1px dashed rgba(139, 92, 246, 0.3) !important;
@@ -333,13 +365,13 @@
         footer a:hover { text-decoration: underline; }
 
         /* ==========================================
-           7. 移动端断点弹性适配优化
+           7. 移动端断点适配
            ========================================== */
         @media (max-width: 768px) {
             body { padding: 32px 16px; }
             header h1 { font-size: 2.4rem; letter-spacing: -0.8px; }
             header p { font-size: 1rem; }
-            .grid { gap: 16px; grid-template-columns: 1fr; } /* 移动端采用全长卡片流 */
+            .grid { gap: 16px; grid-template-columns: 1fr; } 
             .tool-card { padding: 24px 20px; }
             .ad-wrapper { padding: 12px; }
             .top-navbar { justify-content: center; gap: 14px; margin-bottom: 32px; }
@@ -425,7 +457,7 @@
         </article>
 
         <a href="sitemap.html" class="tool-card">
-            <div class="icon-wrapper" style="background: rgba(16, 185, 129, 0.06); border-color: rgba(16, 185, 129, 0.12);"><i class="fas fa-sitemap" style="color: #10b981;"></i></div>
+            <div class="icon-wrapper icon-sitemap"><i class="fas fa-sitemap"></i></div>
             <h2 class="i18n" data-en="Sitemap & Robots" data-zh="站点地图生成" data-es="Sitemap y Robots" data-ja="サイトマップ生成">Sitemap & Robots</h2>
             <p class="i18n" 
                data-en="Build standardized search engine structure index maps and crawl instruction policies dynamically inside your browser." 
@@ -436,7 +468,7 @@
         </a>
 
         <a href="ip.html" class="tool-card">
-            <div class="icon-wrapper" style="background: rgba(99, 102, 241, 0.06); border-color: rgba(99, 102, 241, 0.12);"><i class="fas fa-globe" style="color: #6366f1;"></i></div>
+            <div class="icon-wrapper icon-ip"><i class="fas fa-globe"></i></div>
             <h2 class="i18n" data-en="IP & Network Intelligence" data-zh="IP 与网络信息查询" data-es="Inteligencia de IP y Red" data-ja="IP・ネットワーク診断">IP & Network Intelligence</h2>
             <p class="i18n" 
                data-en="Instantly audit public internet protocols mapping, geographic grid coordinates, and service ISP nodes routing data." 
@@ -539,7 +571,7 @@
             <h2 class="i18n" data-en="Loan Mortgage" data-zh="贷款计算" data-es="Calculadora Hipotecaria" data-ja="ローン計算機">Loan Mortgage</h2>
             <p class="i18n" 
                data-en="Breakdown amortization payments to track principal schedules between equal principal or interest terms." 
-               data-zh="精确测算对比等额本息、等额本金等不同摊还金融方案的本金利息还款明细。" 
+               data-zh="精确测算对比等额本息、等额本金等不同摊还金融方案 of 本金利息还款明细。" 
                data-es="Desglose los pagos de amortización para realizar un seguimiento de los intereses principales." 
                data-ja="元利均等返済・元金均等返済など、異なる償還プランの元金・利息の返済明細を正確にシミュレーション。">Breakdown amortization payments to track principal schedules between equal principal or interest terms.</p>
             <div class="arrow-link i18n" data-en="Launch <i class='fas fa-arrow-right'></i>" data-zh="立即开启 <i class='fas fa-arrow-right'></i>" data-es="Iniciar <i class='fas fa-arrow-right'></i>" data-ja="起動する <i class='fas fa-arrow-right'></i>">Launch <i class='fas fa-arrow-right'></i></div>
