@@ -15,7 +15,7 @@
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1624261597740761" crossorigin="anonymous"></script>
@@ -27,45 +27,53 @@
     </script>
 
     <style>
-        /* === 全局高级视觉系统（支持明暗双向切换，默认黑夜） === */
+        /* ==========================================
+           1. 全局设计核心变量与主题系统优化
+           ========================================== */
         * { margin: 0; padding: 0; box-sizing: border-box; -webkit-font-smoothing: antialiased; }
         
         :root {
-            /* 浅色微光主题变量 */
-            --bg-gradient: radial-gradient(circle at 10% 30%, #eef2f9, #e0e8f2);
-            --text-main: #0b2b3b;
-            --text-muted: #5c7285;
-            --text-sub: #8fa0b0;
-            --accent: #3b82f6;
+            /* 🌞 明亮模式优化：温润奶白微光视觉 */
+            --bg-gradient: radial-gradient(circle at 50% 0%, #f8fafc 0%, #f1f5f9 50%, #e2e8f0 100%);
+            --text-main: #0f172a;
+            --text-muted: #475569;
+            --text-sub: #94a3b8;
+            --accent: #2563eb;
             --accent-gradient: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
-            --card-bg: #ffffff;
-            --card-border: #bfd6ea;
-            --card-hover-border: #3b82f6;
-            --shadow-sm: 0 4px 10px rgba(0,0,0,0.05);
-            --shadow-md: 0 25px 45px -12px rgba(0,0,0,0.1);
-            --shadow-lg: 0 10px 25px rgba(0,0,0,0.2);
+            --card-bg: rgba(255, 255, 255, 0.85);
+            --card-border: rgba(226, 232, 240, 0.8);
+            --card-hover-border: rgba(37, 99, 235, 0.5);
+            --shadow-sm: 0 2px 8px rgba(15, 23, 42, 0.04);
+            --shadow-md: 0 16px 32px -10px rgba(15, 23, 42, 0.06);
+            --shadow-lg: 0 24px 48px -12px rgba(37, 99, 235, 0.12);
             --radius-lg: 24px;
-            --radius-md: 16px;
+            --radius-md: 18px;
+            --badge-bg: rgba(37, 99, 235, 0.06);
+            --badge-border: rgba(37, 99, 235, 0.15);
+            --badge-text: #1d4ed8;
         }
 
-        /* 暗黑极客颜色主题配置 (默认载入激活) */
+        /* 🌙 暗黑模式优化：大厂极客最爱深空灰 */
         [data-theme="dark"] {
-            --bg-gradient: radial-gradient(circle at 50% 0%, #111827 0%, #030712 100%);
-            --text-main: #f3f4f6;
-            --text-muted: #9ca3af;
-            --text-sub: #6b7280;
+            --bg-gradient: radial-gradient(circle at 50% -10%, #0f172a 0%, #070a13 60%, #020408 100%);
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --text-sub: #64748b;
             --accent: #3b82f6;
-            --accent-gradient: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
-            --card-bg: rgba(17, 24, 39, 0.7);
-            --card-border: rgba(37, 99, 235, 0.15);
-            --card-hover-border: rgba(59, 130, 246, 0.6);
-            --shadow-sm: 0 4px 12px rgba(0, 0, 0, 0.3);
-            --shadow-md: 0 12px 40px -12px rgba(0, 0, 0, 0.5);
-            --shadow-lg: 0 22px 50px -15px rgba(37, 99, 235, 0.2);
+            --accent-gradient: linear-gradient(135deg, #3b82f6 0%, #6366f1 100%);
+            --card-bg: rgba(15, 23, 42, 0.45);
+            --card-border: rgba(255, 255, 255, 0.05);
+            --card-hover-border: rgba(59, 130, 246, 0.4);
+            --shadow-sm: 0 4px 12px rgba(0, 0, 0, 0.4);
+            --shadow-md: 0 16px 40px -12px rgba(0, 0, 0, 0.6);
+            --shadow-lg: 0 24px 60px -12px rgba(59, 130, 246, 0.16);
+            --badge-bg: rgba(59, 130, 246, 0.1);
+            --badge-border: rgba(59, 130, 246, 0.2);
+            --badge-text: #60a5fa;
         }
 
         body {
-            font-family: 'Inter', sans-serif;
+            font-family: 'Plus Jakarta Sans', sans-serif;
             background: var(--bg-gradient);
             color: var(--text-main);
             min-height: 100vh;
@@ -73,22 +81,24 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            transition: background 0.3s ease, color 0.3s ease;
+            transition: background 0.4s cubic-bezier(0.4, 0, 0.2, 1), color 0.4s ease;
         }
 
         .container {
             width: 100%;
-            max-width: 1240px;
+            max-width: 1280px;
         }
 
-        /* === 顶部全局控制工具条 === */
+        /* ==========================================
+           2. 导航控制组件美化
+           ========================================== */
         .top-navbar {
             width: 100%;
             display: flex;
             justify-content: flex-end;
             align-items: center;
-            gap: 12px;
-            margin-bottom: 32px;
+            gap: 16px;
+            margin-bottom: 40px;
             flex-wrap: wrap;
         }
 
@@ -99,75 +109,88 @@
             background: var(--card-bg);
             border: 1px solid var(--card-border);
             color: var(--text-main);
-            padding: 8px 18px;
-            border-radius: 100px;
+            padding: 9px 20px;
+            border-radius: 99px;
             font-size: 0.85rem;
-            font-weight: 500;
+            font-weight: 600;
             cursor: pointer;
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
             box-shadow: var(--shadow-sm);
-            transition: all 0.2s ease;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
         .theme-btn:hover {
-            background: rgba(255, 255, 255, 0.05);
-            border-color: var(--accent);
-            transform: translateY(-1px);
+            border-color: var(--card-hover-border);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+        .theme-btn i {
+            color: #eab308;
         }
 
-        .lang-selector-container { display: flex; gap: 8px; }
+        .lang-selector-container { display: flex; gap: 6px; background: rgba(0,0,0,0.05); padding: 4px; border-radius: 99px; border: 1px solid var(--card-border); }
+        [data-theme="dark"] .lang-selector-container { background: rgba(255,255,255,0.02); }
+        
         .lang-btn {
-            background: var(--card-bg);
-            border: 1px solid var(--card-border);
+            background: transparent;
+            border: none;
             color: var(--text-muted);
-            padding: 6px 14px;
-            border-radius: 100px;
+            padding: 6px 16px;
+            border-radius: 99px;
             font-size: 0.85rem;
-            font-weight: 500;
+            font-weight: 600;
             cursor: pointer;
-            box-shadow: var(--shadow-sm);
-            transition: all 0.2s ease;
+            transition: all 0.25s ease;
         }
-        .lang-btn:hover, .lang-btn.active {
-            background: var(--accent);
+        .lang-btn:hover {
+            color: var(--text-main);
+        }
+        .lang-btn.active {
+            background: var(--accent-gradient);
             color: #ffffff;
-            border-color: var(--accent);
-            box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+            box-shadow: 0 4px 12px rgba(59, 130, 246, 0.25);
         }
 
-        /* === 头部创意排版 === */
+        /* ==========================================
+           3. 头部文案艺术排版
+           ========================================== */
         header { text-align: center; margin-bottom: 48px; }
         header .badge {
             display: inline-flex;
             align-items: center;
-            gap: 6px;
-            padding: 6px 14px;
-            background: rgba(59, 130, 246, 0.15);
-            color: #60a5fa;
-            border-radius: 100px;
+            gap: 8px;
+            padding: 7px 18px;
+            background: var(--badge-bg);
+            color: var(--badge-text);
+            border-radius: 99px;
             font-size: 0.85rem;
-            font-weight: 600;
-            margin-bottom: 20px;
-            border: 1px solid rgba(59, 130, 246, 0.2);
-            letter-spacing: 0.5px;
+            font-weight: 700;
+            margin-bottom: 24px;
+            border: 1px solid var(--badge-border);
+            letter-spacing: 0.3px;
         }
         header h1 {
-            font-size: 3rem;
+            font-size: 3.2rem;
             font-weight: 800;
-            letter-spacing: -1px;
-            background: linear-gradient(135deg, #ffffff 0%, #9ca3af 100%);
+            letter-spacing: -1.5px;
+            background: linear-gradient(135deg, #ffffff 20%, #cbd5e100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            margin-bottom: 14px;
+            margin-bottom: 16px;
+            line-height: 1.15;
         }
         [data-theme="light"] header h1 {
-            background: linear-gradient(135deg, #0b2b3b 0%, #1e3a8a 100%);
+            background: linear-gradient(135deg, #0f172a 0%, #334155 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
-        header p { color: var(--text-muted); font-size: 1.15rem; max-width: 650px; margin: 0 auto; line-height: 1.6; }
+        header p { color: var(--text-muted); font-size: 1.15rem; max-width: 720px; margin: 0 auto; line-height: 1.65; font-weight: 400; }
 
-        /* === 广告位外框精细化美化 === */
+        /* ==========================================
+           4. 广告位融合美化设计
+           ========================================== */
         .ad-wrapper {
-            margin: 0 auto 36px auto;
+            margin: 0 auto 40px auto;
             width: 100%;
             background: var(--card-bg);
             border: 1px solid var(--card-border);
@@ -175,29 +198,31 @@
             padding: 16px;
             box-shadow: var(--shadow-sm);
             text-align: center;
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            transition: background 0.3s ease, border-color 0.3s ease;
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            transition: all 0.3s ease;
         }
-        .ad-wrapper.top-banner { max-width: 970px; }
-        .ad-wrapper.bottom-banner { max-width: 728px; margin-top: 56px; }
+        .ad-wrapper.top-banner { max-width: 970px; border: 1px dashed rgba(59, 130, 246, 0.15); background: rgba(59, 130, 246, 0.01); }
+        .ad-wrapper.bottom-banner { max-width: 728px; margin-top: 64px; }
         .ad-hint {
             font-size: 0.68rem;
             color: var(--text-sub);
             text-transform: uppercase;
-            letter-spacing: 1.5px;
-            margin-bottom: 8px;
-            font-weight: 600;
+            letter-spacing: 2px;
+            margin-bottom: 10px;
+            font-weight: 700;
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 4px;
+            gap: 6px;
         }
 
-        /* === 响应式多维工具网格卡片 === */
+        /* ==========================================
+           5. 响应式多维工具网格卡片
+           ========================================== */
         .grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
             gap: 24px;
         }
         
@@ -205,93 +230,119 @@
             background: var(--card-bg);
             border: 1px solid var(--card-border);
             border-radius: var(--radius-lg);
-            padding: 32px 24px 54px 24px;
+            padding: 30px 24px;
             text-decoration: none;
             color: var(--text-main);
             display: flex;
             flex-direction: column;
             align-items: flex-start;
             text-align: left;
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
             box-shadow: var(--shadow-md);
             position: relative;
-            overflow: hidden;
         }
+        
+        /* 悬浮微调：流光感外廓与升力 */
         .tool-card:hover {
             transform: translateY(-6px);
             border-color: var(--card-hover-border);
-            box-shadow: var(--shadow-lg);
+            box-shadow: var(--shadow-lg), 0 0 0 1px rgba(59, 130, 246, 0.1);
         }
 
         .icon-wrapper {
-            width: 56px;
-            height: 56px;
-            background: linear-gradient(135deg, rgba(59, 130, 246, 0.1) 0%, rgba(37, 99, 235, 0.2) 100%);
+            width: 52px;
+            height: 52px;
+            background: rgba(59, 130, 246, 0.06);
             border-radius: 16px;
             display: flex;
             align-items: center;
             justify-content: center;
             margin-bottom: 24px;
-            border: 1px solid rgba(59, 130, 246, 0.15);
-            transition: all 0.3s ease;
+            border: 1px solid rgba(59, 130, 246, 0.12);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
         .tool-card:hover .icon-wrapper { 
             background: var(--accent-gradient); 
             border-color: transparent;
-            box-shadow: 0 0 15px rgba(59, 130, 246, 0.3);
+            box-shadow: 0 8px 20px rgba(59, 130, 246, 0.3);
+            transform: scale(1.05) rotate(3deg);
         }
-        .icon-wrapper i { font-size: 1.5rem; color: #60a5fa; transition: all 0.3s ease; }
-        .tool-card:hover .icon-wrapper i { color: #ffffff; transform: scale(1.1); }
+        .icon-wrapper i { font-size: 1.4rem; color: var(--accent); transition: all 0.3s ease; }
+        [data-theme="dark"] .icon-wrapper i { color: #60a5fa; }
+        .tool-card:hover .icon-wrapper i { color: #ffffff; }
 
-        .tool-card h2 { font-size: 1.3rem; font-weight: 700; margin-bottom: 10px; letter-spacing: -0.3px; color: var(--text-main); }
-        .tool-card p { font-size: 0.92rem; color: var(--text-muted); line-height: 1.6; }
+        .tool-card h2 { font-size: 1.25rem; font-weight: 700; margin-bottom: 12px; letter-spacing: -0.3px; color: var(--text-main); }
+        .tool-card p { font-size: 0.92rem; color: var(--text-muted); line-height: 1.6; flex-grow: 1; margin-bottom: 20px; }
 
         .tool-card .arrow-link {
-            position: absolute;
-            bottom: 24px;
-            right: 24px;
-            opacity: 0;
-            transform: translateX(-5px);
-            color: #60a5fa;
-            transition: all 0.3s ease;
-            font-size: 0.88rem;
-            font-weight: 500;
-        }
-        .tool-card:hover .arrow-link { opacity: 1; transform: translateX(0); }
-        
-        /* 赞助商原生卡片广告样式 */
-        .tool-card.ad-feed-card {
-            background: linear-gradient(145deg, rgba(17, 24, 39, 0.8) 0%, rgba(11, 17, 30, 0.9) 100%);
-            border: 1px dashed rgba(59, 130, 246, 0.3);
-            padding: 20px;
-            justify-content: center;
+            display: inline-flex;
             align-items: center;
+            gap: 6px;
+            font-size: 0.88rem;
+            font-weight: 600;
+            color: var(--accent);
+            opacity: 0.8;
+            transform: translateX(0);
+            transition: all 0.3s ease;
+        }
+        [data-theme="dark"] .tool-card .arrow-link { color: #60a5fa; }
+        .tool-card:hover .arrow-link { opacity: 1; transform: translateX(4px); }
+        
+        /* 原生流式广告卡片深度融合与伪装设计 */
+        .tool-card.ad-feed-card {
+            background: linear-gradient(145deg, rgba(59, 130, 246, 0.02) 0%, rgba(139, 92, 246, 0.02) 100%) !important;
+            border: 1px dashed rgba(139, 92, 246, 0.3) !important;
+            padding: 24px 20px;
+            justify-content: flex-start;
+            align-items: stretch;
+            box-shadow: none !important;
+        }
+        .tool-card.ad-feed-card:hover {
+            border-color: rgba(139, 92, 246, 0.5) !important;
+            transform: translateY(-4px);
         }
 
-        /* === 页脚系统 === */
+        /* ==========================================
+           6. 页脚与合规免责布局
+           ========================================== */
         footer {
             text-align: center;
-            margin-top: 88px;
-            padding: 32px 0;
+            margin-top: 96px;
+            padding: 40px 0;
             border-top: 1px solid var(--card-border);
             width: 100%;
             color: var(--text-sub);
             font-size: 0.88rem;
         }
         footer p { line-height: 1.8; }
-        footer .privacy-tag { color: var(--text-muted); font-weight: 500; margin-top: 8px; display: inline-block; }
-        footer a { color: var(--accent); text-decoration: none; }
+        footer .privacy-tag { 
+            color: var(--text-muted); 
+            font-weight: 500; 
+            margin-top: 12px; 
+            display: inline-flex; 
+            align-items: center;
+            gap: 6px;
+            background: rgba(0,0,0,0.02);
+            padding: 6px 16px;
+            border-radius: 8px;
+        }
+        [data-theme="dark"] footer .privacy-tag { background: rgba(255,255,255,0.01); }
+        footer a { color: var(--accent); text-decoration: none; font-weight: 600; }
         footer a:hover { text-decoration: underline; }
 
+        /* ==========================================
+           7. 移动端断点弹性适配优化
+           ========================================== */
         @media (max-width: 768px) {
-            body { padding: 24px 16px; }
-            header h1 { font-size: 2.3rem; }
-            .grid { gap: 16px; }
-            .tool-card { padding: 24px 20px 50px 20px; }
+            body { padding: 32px 16px; }
+            header h1 { font-size: 2.4rem; letter-spacing: -0.8px; }
+            header p { font-size: 1rem; }
+            .grid { gap: 16px; grid-template-columns: 1fr; } /* 移动端采用全长卡片流 */
+            .tool-card { padding: 24px 20px; }
             .ad-wrapper { padding: 12px; }
-            .top-navbar { justify-content: space-between; }
+            .top-navbar { justify-content: center; gap: 14px; margin-bottom: 32px; }
         }
     </style>
 </head>
@@ -361,15 +412,39 @@
         </a>
 
         <article class="tool-card ad-feed-card">
-            <div class="ad-hint" id="ad-hint-2" style="margin-bottom:12px;"><i class="fas fa-star"></i> Recommended For You</div>
-            <ins class="adsbygoogle"
-                 style="display:block"
-                 data-ad-format="fluid"
-                 data-ad-layout-key="-fb+5w+4e-db+86"
-                 data-ad-client="ca-pub-1624261597740761"
-                 data-ad-slot="7441222926"></ins>
-            <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+            <div class="ad-hint" id="ad-hint-2" style="margin-bottom:14px; justify-content: flex-start; color: #a855f7;"><i class="fas fa-star"></i> Recommended For You</div>
+            <div style="width: 100%; min-height: 200px;">
+                <ins class="adsbygoogle"
+                     style="display:block"
+                     data-ad-format="fluid"
+                     data-ad-layout-key="-fb+5w+4e-db+86"
+                     data-ad-client="ca-pub-1624261597740761"
+                     data-ad-slot="7441222926"></ins>
+                <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+            </div>
         </article>
+
+        <a href="sitemap.html" class="tool-card">
+            <div class="icon-wrapper" style="background: rgba(16, 185, 129, 0.06); border-color: rgba(16, 185, 129, 0.12);"><i class="fas fa-sitemap" style="color: #10b981;"></i></div>
+            <h2 class="i18n" data-en="Sitemap & Robots" data-zh="站点地图生成" data-es="Sitemap y Robots" data-ja="サイトマップ生成">Sitemap & Robots</h2>
+            <p class="i18n" 
+               data-en="Build standardized search engine structure index maps and crawl instruction policies dynamically inside your browser." 
+               data-zh="在浏览器本地快速一键构建符合搜索引擎规范的 XML 映射树结构与 robots.txt 爬虫指引策略。" 
+               data-es="Cree mapas de índice de estructura de motores de búsqueda y políticas de instrucciones de rastreo estructurados." 
+               data-ja="検索エンジン向けの標準的なサイトマップ(sitemap.xml)とクローラー制御方針(robots.txt)をローカル環境で作成。">Build standardized search engine structure index maps and crawl instruction policies dynamically inside your browser.</p>
+            <div class="arrow-link i18n" data-en="Launch <i class='fas fa-arrow-right'></i>" data-zh="立即开启 <i class='fas fa-arrow-right'></i>" data-es="Iniciar <i class='fas fa-arrow-right'></i>" data-ja="起動する <i class='fas fa-arrow-right'></i>">Launch <i class='fas fa-arrow-right'></i></div>
+        </a>
+
+        <a href="ip.html" class="tool-card">
+            <div class="icon-wrapper" style="background: rgba(99, 102, 241, 0.06); border-color: rgba(99, 102, 241, 0.12);"><i class="fas fa-globe" style="color: #6366f1;"></i></div>
+            <h2 class="i18n" data-en="IP & Network Intelligence" data-zh="IP 与网络信息查询" data-es="Inteligencia de IP y Red" data-ja="IP・ネットワーク診断">IP & Network Intelligence</h2>
+            <p class="i18n" 
+               data-en="Instantly audit public internet protocols mapping, geographic grid coordinates, and service ISP nodes routing data." 
+               data-zh="秒级本地探测解析公网网络协议地址、地理网格经纬度坐标以及网络服务商(ISP)分配节点数据。" 
+               data-es="Audite el mapeo de protocolos de internet, coordenadas geográficas y enrutamiento de nodos ISP de red." 
+               data-ja="現在のパブリックIPアドレス、詳細な位置情報の地理座標、インターネットプロバイダ(ISP)の情報を瞬時に診断。">Instantly audit public internet protocols mapping, geographic grid coordinates, and service ISP nodes routing data.</p>
+            <div class="arrow-link i18n" data-en="Launch <i class='fas fa-arrow-right'></i>" data-zh="立即开启 <i class='fas fa-arrow-right'></i>" data-es="Iniciar <i class='fas fa-arrow-right'></i>" data-ja="起動する <i class='fas fa-arrow-right'></i>">Launch <i class='fas fa-arrow-right'></i></div>
+        </a>
 
         <a href="html-encoder.html" class="tool-card">
             <div class="icon-wrapper"><i class="fas fa-code-compare"></i></div>
@@ -464,7 +539,7 @@
             <h2 class="i18n" data-en="Loan Mortgage" data-zh="贷款计算" data-es="Calculadora Hipotecaria" data-ja="ローン計算機">Loan Mortgage</h2>
             <p class="i18n" 
                data-en="Breakdown amortization payments to track principal schedules between equal principal or interest terms." 
-               data-zh="精确测算对比等额本息、等额本金等不同摊还金融方案 of 本金利息还款明细。" 
+               data-zh="精确测算对比等额本息、等额本金等不同摊还金融方案的本金利息还款明细。" 
                data-es="Desglose los pagos de amortización para realizar un seguimiento de los intereses principales." 
                data-ja="元利均等返済・元金均等返済など、異なる償還プランの元金・利息の返済明細を正確にシミュレーション。">Breakdown amortization payments to track principal schedules between equal principal or interest terms.</p>
             <div class="arrow-link i18n" data-en="Launch <i class='fas fa-arrow-right'></i>" data-zh="立即开启 <i class='fas fa-arrow-right'></i>" data-es="Iniciar <i class='fas fa-arrow-right'></i>" data-ja="起動する <i class='fas fa-arrow-right'></i>">Launch <i class='fas fa-arrow-right'></i></div>
@@ -512,7 +587,7 @@
 </div>
 
 <script>
-    // i18n 语言字典配置 - 已合规并加入了 3 个全新子工具的文本定义
+    // i18n 核心调度系统
     const LANG_CONFIG = {
         en: {
             badge: '<i class="fas fa-shield-halved"></i> 100% Privacy Safe · Runs Locally',
