@@ -128,7 +128,7 @@
             flex-wrap: wrap;
         }
 
-        .theme-btn {
+        .theme-btn, .nav-custom-link {
             display: inline-flex;
             align-items: center;
             gap: 8px;
@@ -143,15 +143,22 @@
             backdrop-filter: blur(8px);
             -webkit-backdrop-filter: blur(8px);
             box-shadow: var(--shadow-sm);
+            text-decoration: none;
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
-        .theme-btn:hover {
+        .theme-btn:hover, .nav-custom-link:hover {
             border-color: var(--card-hover-border);
             transform: translateY(-2px);
             box-shadow: var(--shadow-md);
         }
         .theme-btn i {
             color: #eab308;
+        }
+        .nav-custom-link i.fa-robot {
+            color: #10b981;
+        }
+        .nav-custom-link i.fa-blog {
+            color: #f97316;
         }
 
         .lang-selector-container { display: flex; gap: 6px; background: rgba(0,0,0,0.05); padding: 4px; border-radius: 99px; border: 1px solid var(--card-border); }
@@ -385,10 +392,8 @@
 <div class="container">
     
     <div class="top-navbar">
-        <div class="top-navbar">
-        <a href="https://9420166.xyz" class="nav-redirect-btn" id="nav-ai-btn"><i class="fa-solid fa-wand-magic-sparkles" style="color: #6366f1;"></i> <span class="i18n" data-en="Global AI Nav" data-zh="全球热门 AI" data-es="Navegación IA" data-ja="AI ナビ">Global AI Nav</span></a>
-        <a href="https://nongyun8.blogspot.com" target="_blank" class="nav-redirect-btn" id="nav-blog-btn"><i class="fa-solid fa-blog" style="color: #10b981;"></i> <span class="i18n" data-en="My Blog" data-zh="我的博客" data-es="Mi Blog" data-ja="ブログ">My Blog</span></a>
-        
+        <a href="https://9420166.xyz" target="_blank" class="nav-custom-link i18n" data-en="<i class='fas fa-robot'></i> Global Hot AI" data-zh="<i class='fas fa-robot'></i> 全球热门AI" data-es="<i class='fas fa-robot'></i> AI Populares" data-ja="<i class='fas fa-robot'></i> 世界のAI"><i class="fas fa-robot"></i> 全球热门AI</a>
+        <a href="https://nongyun8.blogspot.com" target="_blank" class="nav-custom-link i18n" data-en="<i class='fas fa-blog'></i> My Blog" data-zh="<i class='fas fa-blog'></i> 我的博客" data-es="<i class='fas fa-blog'></i> Mi Blog" data-ja="<i class='fas fa-blog'></i> ブログ"><i class="fas fa-blog"></i> 我的博客</a>
         <button class="theme-btn" id="themeToggleBtn" onclick="toggleTheme()"><i class="fas fa-lightbulb"></i> Theme</button>
         <div class="lang-selector-container">
             <button class="lang-btn active" onclick="switchLang('en')">English</button>
@@ -435,7 +440,7 @@
                data-en="Visually stamp full-screen repeated or single text layers on your photos with adjustable size and opacity settings." 
                data-zh="可视化添加全屏倾斜或单点文字防盗印章，自由调整大小、透明度与安全图层。" 
                data-es="Agregue sellos visuales de texto a sus fotos con configuraciones ajustables de tamaño y opacidad." 
-               data-ja="写真にフルスクリーンまたは単一のテキストウォーターマークを視覚的に追加。サイズや不透明度を自由調整。">Visually stamp full-screen repeated or single text layers on your photos with adjustable size and opacity settings.</p>
+               data-ja="写真にフルスクリーン或者単一のテキストウォーターマークを視覚的に追加。サイズや不透明度を自由調整。">Visually stamp full-screen repeated or single text layers on your photos with adjustable size and opacity settings.</p>
             <div class="arrow-link i18n" data-en="Launch <i class='fas fa-arrow-right'></i>" data-zh="立即开启 <i class='fas fa-arrow-right'></i>" data-es="Iniciar <i class='fas fa-arrow-right'></i>" data-ja="起動する <i class='fas fa-arrow-right'></i>">Launch <i class='fas fa-arrow-right'></i></div>
         </a>
 
@@ -602,7 +607,7 @@
                data-en="Cover extensive international systems for metrics encompassing dimensions, weight matrices, and thermal indexes." 
                data-zh="覆盖长度、重量、温度、面积等多维度国际标准度量衡单位的高精度网格转换器。" 
                data-es="Conversor de alta precisión que cubre longitud, peso, temperatura y múltiples dimensiones métricas." 
-               data-ja="長さ、重量、温度、面積など、多次元にわたる国際標準度量衡（メトリックシステム）を高精度に一括換算。">Cover extensive international systems for metrics encompassing dimensions, weight matrices, and thermal indexes.</p>
+               data-ja="長さ、重量、温度、面積など、多次元にわたる国際標準度量衡（メトリックシステム）を高精度一括换算。">Cover extensive international systems for metrics encompassing dimensions, weight matrices, and thermal indexes.</p>
             <div class="arrow-link i18n" data-en="Launch <i class='fas fa-arrow-right'></i>" data-zh="立即开启 <i class='fas fa-arrow-right'></i>" data-es="Iniciar <i class='fas fa-arrow-right'></i>" data-ja="起動する <i class='fas fa-arrow-right'></i>">Launch <i class='fas fa-arrow-right'></i></div>
         </a>
 
@@ -639,8 +644,7 @@
             desc: 'A premium collection of zero-upload utilities. All operations are processed completely offline inside your browser sandbox to guarantee absolute privacy.',
             adHint: '<i class="fas fa-rectangle-ad"></i> Sponsored Advertisement',
             feedHint: '<i class="fas fa-star"></i> Recommended For You',
-            footerCr: '© Ultimate Online Toolbox | Client-Side Sandbox Workshop',
-            footerPr: '<i class="fas fa-user-shield"></i> Privacy Policy Notice: All tools compute independently via pure client-side sandbox environments. Absolutely zero records are cached or stored onto server pipelines.'
+            footerCr: '© Ultimate Online Toolbox | Client-Side Sandbox Workshop'
         },
         zh: {
             badge: '<i class="fas fa-shield-halved"></i> 100% 隐私安全 · 纯本地运行',
@@ -648,8 +652,7 @@
             desc: '无需上传文件的极简生产力工具集。所有操作均在您的浏览器内通过沙箱环境离线完成，绝对保障隐私。',
             adHint: '<i class="fas fa-rectangle-ad"></i> 赞助商广告',
             feedHint: '<i class="fas fa-star"></i> 赞助商功能推荐',
-            footerCr: '© 万能在线工具箱 | 纯前端零追踪工坊',
-            footerPr: '<i class="fas fa-user-shield"></i> 隐私政策声明：所有工具均基于客户端沙箱运行，数据 100% 留存在您的本地浏览器中，绝无任何服务器端数据持久化。'
+            footerCr: '© 万能在线工具箱 | 纯前端零追踪工坊'
         },
         es: {
             badge: '<i class="fas fa-shield-halved"></i> 100% Privado · Ejecución Local',
@@ -657,17 +660,15 @@
             desc: 'Colección premium de utilidades sin carga de archivos. Todas las operaciones se procesan sin conexión dentro del navegador para garantizar la privacidad.',
             adHint: '<i class="fas fa-rectangle-ad"></i> Publicidad Patrocinada',
             feedHint: '<i class="fas fa-star"></i> Recomendado Para Ti',
-            footerCr: '© Ultimate Online Toolbox | Taller en el lado del cliente',
-            footerPr: '<i class="fas fa-user-shield"></i> Aviso de privacidad: Todas las herramientas se calculan localmente en su navegador, nunca se envían datos al servidor.'
+            footerCr: '© Ultimate Online Toolbox | Taller en el lado del cliente'
         },
         ja: {
             badge: '<i class="fas fa-shield-halved"></i> 100% 秘密厳守 · 完全ローカル実行',
             title: '万能オンラインツールボックス',
-            desc: 'ファイルのアップロードが不要な極速生産性ツールコレクション。すべての処理はブラウザのサンドボックス内でオフラインで完結。',
+            desc: 'ファイルのアップロードが不要な極速生产性ツールコレクション。すべての処理はブラウザのサンドボックス内でオフラインで完結。',
             adHint: '<i class="fas fa-rectangle-ad"></i> スポンサー広告',
             feedHint: '<i class="fas fa-star"></i> あなたへのおすすめ',
-            footerCr: '© 万能オンラインツールボックス | クライアントサイド工房',
-            footerPr: '<i class="fas fa-user-shield"></i> プライバシーポリシー声明：すべてのツールはクライアントサイドで独立して動作し、サーバーへのデータ送信は一切行われません。'
+            footerCr: '© 万能オンラインツールボックス | クライアントサイド工房'
         }
     };
 
@@ -681,7 +682,6 @@
         document.getElementById('ad-hint-2').innerHTML = data.feedHint;
         document.getElementById('ad-hint-3').innerHTML = data.adHint;
         document.getElementById('footer-cr').innerText = data.footerCr;
-        document.getElementById('footer-privacy').innerHTML = data.footerPr;
 
         document.querySelectorAll('.i18n').forEach(el => {
             const translatedVal = el.getAttribute(`data-${lang}`) || el.getAttribute('data-en');
