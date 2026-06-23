@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <title>关于我们 | 万能在线工具箱 DevTools Box</title>
-    <meta name="description" content="万能在线工具箱 - 旨在为开发者、设计师及日常办公人员提供快速、安全、免安装的高效工具。">
+    <title id="pageTitle">关于我们 | 万能在线工具箱 DevTools Box</title>
+    <meta id="metaDesc" name="description" content="万能在线工具箱 - 旨在为开发者、设计师及日常办公人员提供快速、安全、免安装的高效工具。">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -12,8 +12,8 @@
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://w3.org' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🧰</text></svg>">
     
     <style>
+        /* 样式完全同前，为完整起见再次写入 */
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        
         :root {
             --bg-base: #090d16;
             --sidebar-bg: rgba(20, 27, 45, 0.5);
@@ -25,7 +25,6 @@
             --accent-gradient: linear-gradient(135deg, #10b981, #06b6d4);
             --accent-glow: rgba(16, 185, 129, 0.25);
         }
-
         body {
             font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
             background: linear-gradient(135deg, #090d16, #0f172a, #0b132b, #090d16);
@@ -34,7 +33,6 @@
             min-height: 100vh;
             -webkit-font-smoothing: antialiased;
         }
-
         .top-glow-bar {
             height: 4px;
             background: linear-gradient(90deg, #10b981, #06b6d4, #3b82f6, #10b981);
@@ -42,12 +40,10 @@
             animation: flowLight 4s linear infinite;
             width: 100%;
         }
-
         @keyframes flowLight {
             0% { background-position: 0% 50%; }
             100% { background-position: 200% 50%; }
         }
-
         .lang-bar {
             background: rgba(9, 13, 22, 0.7);
             backdrop-filter: blur(24px);
@@ -56,23 +52,33 @@
             padding: 0.8rem 2rem;
             display: flex;
             justify-content: flex-end;
+            gap: 0.8rem;
             position: sticky;
             top: 0;
             z-index: 110;
+            flex-wrap: wrap;
         }
-
         .lang-btn {
-            background: var(--accent-gradient);
-            color: #fff;
+            background: transparent;
+            color: var(--text-muted);
             padding: 0.4rem 1.2rem;
             font-size: 0.85rem;
             font-weight: 600;
             cursor: pointer;
             border-radius: 99px;
-            box-shadow: 0 4px 12px var(--accent-glow);
-            border: none;
+            border: 1px solid transparent;
+            transition: all 0.3s;
         }
-
+        .lang-btn.active {
+            background: var(--accent-gradient);
+            color: #fff;
+            box-shadow: 0 4px 12px var(--accent-glow);
+            border-color: transparent;
+        }
+        .lang-btn:hover:not(.active) {
+            border-color: var(--accent);
+            color: var(--text-main);
+        }
         .layout-wrapper {
             display: flex;
             max-width: 1400px;
@@ -81,7 +87,6 @@
             padding: 0 2rem;
             gap: 2.5rem;
         }
-
         aside {
             width: 260px;
             position: sticky;
@@ -98,7 +103,6 @@
             gap: 0.3rem;
             flex-shrink: 0;
         }
-
         aside h2 {
             font-size: 0.75rem;
             text-transform: uppercase;
@@ -108,7 +112,6 @@
             padding-left: 1rem;
             font-weight: 700;
         }
-
         .nav-link {
             display: flex;
             align-items: center;
@@ -121,35 +124,29 @@
             font-weight: 500;
             transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
         }
-
         .nav-link i {
             width: 20px;
             font-size: 1.1rem;
             text-align: center;
             opacity: 0.8;
         }
-
         .nav-link:hover, .nav-link.active {
             background: rgba(255, 255, 255, 0.05);
             color: var(--text-main);
         }
-
         .nav-link.active {
             background: rgba(16, 185, 129, 0.1);
             color: #34d399;
             font-weight: 600;
             border-left: 3px solid var(--accent);
         }
-
         main {
             flex: 1;
             min-width: 0;
         }
-
         header {
             margin-bottom: 2.5rem;
         }
-
         header h1 {
             font-size: 2.6rem;
             font-weight: 800;
@@ -160,13 +157,11 @@
             -webkit-text-fill-color: transparent;
             line-height: 1.2;
         }
-
         header p {
             color: var(--text-muted);
             font-size: 1.1rem;
             margin-top: 0.5rem;
         }
-
         .content-card {
             background: var(--card-bg);
             border: 1px solid var(--border);
@@ -176,7 +171,6 @@
             -webkit-backdrop-filter: blur(12px);
             line-height: 1.8;
         }
-
         .content-card h2 {
             font-size: 1.4rem;
             font-weight: 700;
@@ -186,7 +180,6 @@
             align-items: center;
             gap: 0.6rem;
         }
-
         .content-card h2::before {
             content: '';
             width: 4px;
@@ -194,23 +187,19 @@
             background: var(--accent-gradient);
             border-radius: 2px;
         }
-
         .content-card p {
             color: #d1d5db;
             font-size: 1rem;
             margin-bottom: 1.2rem;
         }
-
         .content-card ul {
             margin-left: 1.5rem;
             margin-bottom: 1.5rem;
             color: #d1d5db;
         }
-
         .content-card li {
             margin-bottom: 0.5rem;
         }
-
         footer {
             border-top: 1px solid var(--border);
             text-align: center;
@@ -221,68 +210,204 @@
             color: var(--text-muted);
             font-size: 0.9rem;
         }
-
         footer p { margin-bottom: 0.8rem; }
-        footer a { color: var(--text-muted); text-decoration: none; transition: color 0.2s; margin: 0 0.5rem; }
+        footer a {
+            color: var(--text-muted);
+            text-decoration: none;
+            transition: color 0.2s;
+            margin: 0 0.5rem;
+        }
         footer a:hover { color: #34d399; }
-
         @media (max-width: 1024px) {
-            .layout-wrapper { flex-direction: column; padding: 0 1.2rem; gap: 1.5rem; }
-            aside { width: calc(100% + 2.4rem); margin-left: -1.2rem; height: auto; position: sticky; top: 57px; flex-direction: row; overflow-x: auto; padding: 0.6rem 1.2rem; border-radius: 0; background: rgba(9, 13, 22, 0.9); z-index: 100; }
+            .layout-wrapper {
+                flex-direction: column;
+                padding: 0 1.2rem;
+                gap: 1.5rem;
+            }
+            aside {
+                width: calc(100% + 2.4rem);
+                margin-left: -1.2rem;
+                height: auto;
+                position: sticky;
+                top: 57px;
+                flex-direction: row;
+                overflow-x: auto;
+                padding: 0.6rem 1.2rem;
+                border-radius: 0;
+                background: rgba(9, 13, 22, 0.9);
+                z-index: 100;
+            }
             aside h2 { display: none; }
-            .nav-link { display: inline-flex; padding: 0.5rem 1rem; white-space: nowrap; }
+            .nav-link {
+                display: inline-flex;
+                padding: 0.5rem 1rem;
+                white-space: nowrap;
+            }
         }
     </style>
 </head>
 <body>
 <div class="top-glow-bar"></div>
 <div class="lang-bar">
-    <button class="lang-btn">简体中文</button>
+    <button class="lang-btn active" data-lang="zh">简体中文</button>
+    <button class="lang-btn" data-lang="en">English</button>
 </div>
 <div class="layout-wrapper">
     <aside>
-        <h2>📁 工具分类</h2>
-        <a href="index.html" class="nav-link"><i class="fa-solid fa-toolbox"></i><span>常用工具首页</span></a>
-        <a href="crypto.html" class="nav-link"><i class="fa-solid fa-key"></i><span>加密解密工具</span></a>
-        <a href="format.html" class="nav-link"><i class="fa-solid fa-code"></i><span>代码格式化</span></a>
-        <a href="image.html" class="nav-link"><i class="fa-regular fa-image"></i><span>图片处理转换</span></a>
-        <a href="network.html" class="nav-link"><i class="fa-solid fa-network-wired"></i><span>网络测试工具</span></a>
+        <h2 id="asideTitle">📁 工具分类</h2>
+        <a href="index.html" class="nav-link"><i class="fa-solid fa-toolbox"></i><span id="navHome">常用工具首页</span></a>
+        <a href="crypto.html" class="nav-link"><i class="fa-solid fa-key"></i><span id="navCrypto">加密解密工具</span></a>
+        <a href="format.html" class="nav-link"><i class="fa-solid fa-code"></i><span id="navFormat">代码格式化</span></a>
+        <a href="image.html" class="nav-link"><i class="fa-regular fa-image"></i><span id="navImage">图片处理转换</span></a>
+        <a href="network.html" class="nav-link"><i class="fa-solid fa-network-wired"></i><span id="navNetwork">网络测试工具</span></a>
     </aside>
     <main>
         <header>
-            <h1>关于我们</h1>
-            <p>做最懂你的高效生产力云端工具箱。</p>
+            <h1 id="pageH1">关于我们</h1>
+            <p id="pageSub">做最懂你的高效生产力云端工具箱。</p>
         </header>
         <div class="content-card">
-            <h2>我们的使命</h2>
-            <p><strong>万能在线工具箱 (DevTools Box)</strong> 是一个专注于高效、纯净、即开即用的全功能在线技术工具平台。我们深知在日常开发、设计和数据处理中，寻找无广告污染、不强制注册且响应迅速的工具是多么不易。因此，我们建立了这个平台，将各类常用小工具进行深度整合，省去您安装各种客户端的繁琐流程。</p>
+            <h2 id="s1Title">我们的使命</h2>
+            <p id="s1Text"><strong>万能在线工具箱 (DevTools Box)</strong> 是一个专注于高效、纯净、即开即用的全功能在线技术工具平台。我们深知在日常开发、设计和数据处理中，寻找无广告污染、不强制注册且响应迅速的工具是多么不易。因此，我们建立了这个平台，将各类常用小工具进行深度整合，省去您安装各种客户端的繁琐流程。</p>
             
-            <h2>平台核心特色</h2>
-            <ul>
-                <li><strong>完全免费与免安装：</strong> 所有工具均在云端或纯浏览器本地（Frontend-only）运行，无需下载任何插件或应用程序。</li>
-                <li><strong>隐私与安全第一：</strong> 绝大部分涉及敏感数据的工具（如文本加密、格式化、图片转换）均直接在您的浏览器本地完成处理，数据绝不上传服务器，保障数据资产安全。</li>
-                <li><strong>极致响应速度：</strong> 紧跟前沿 Web 技术，页面轻量化设计，无冗余脚本，在各种网络环境下也能实现秒级加载。</li>
-                <li><strong>多端完美适配：</strong> 无论您使用的是台式电脑、平板还是智能手机，都能获得丝滑一致的操作体验。</li>
+            <h2 id="s2Title">平台核心特色</h2>
+            <ul id="s2List">
+                <li id="li1"><strong>完全免费与免安装：</strong> 所有工具均在云端或纯浏览器本地（Frontend-only）运行，无需下载任何插件或应用程序。</li>
+                <li id="li2"><strong>隐私与安全第一：</strong> 绝大部分涉及敏感数据的工具（如文本加密、格式化、图片转换）均直接在您的浏览器本地完成处理，数据绝不上传服务器，保障数据资产安全。</li>
+                <li id="li3"><strong>极致响应速度：</strong> 紧跟前沿 Web 技术，页面轻量化设计，无冗余脚本，在各种网络环境下也能实现秒级加载。</li>
+                <li id="li4"><strong>多端完美适配：</strong> 无论您使用的是台式电脑、平板还是智能手机，都能获得丝滑一致的操作体验。</li>
             </ul>
 
-            <h2>覆盖工具品类</h2>
-            <p>我们持续保持高频更新，目前平台已涵盖以下核心板块：</p>
-            <ul>
-                <li><strong>开发辅助：</strong> JSON 格式化/压缩、Base64 编解码、MD5/SHA 哈希计算、URL 编解码。</li>
-                <li><strong>文本与代码：</strong> 正则表达式测试、Diff 文本对比、Markdown 编辑预览、字数统计。</li>
-                <li><strong>图形图像：</strong> 图片格式批量转换、SVG 优化预览、颜色提取器、二维码生成与识别。</li>
-                <li><strong>网络与系统：</strong> IP 地址查询、Ping 测试、随机密码生成器、Cron 表达式生成。</li>
+            <h2 id="s3Title">覆盖工具品类</h2>
+            <p id="s3Desc">我们持续保持高频更新，目前平台已涵盖以下核心板块：</p>
+            <ul id="s3List">
+                <li id="cat1"><strong>开发辅助：</strong> JSON 格式化/压缩、Base64 编解码、MD5/SHA 哈希计算、URL 编解码。</li>
+                <li id="cat2"><strong>文本与代码：</strong> 正则表达式测试、Diff 文本对比、Markdown 编辑预览、字数统计。</li>
+                <li id="cat3"><strong>图形图像：</strong> 图片格式批量转换、SVG 优化预览、颜色提取器、二维码生成与识别。</li>
+                <li id="cat4"><strong>网络与系统：</strong> IP 地址查询、Ping 测试、随机密码生成器、Cron 表达式生成。</li>
             </ul>
         </div>
     </main>
 </div>
 <footer>
-    <p>© 2026 万能在线工具箱 DevTools Box. 保留所有权利。</p>
+    <p id="footerCopy">© 2026 万能在线工具箱 DevTools Box. 保留所有权利。</p>
     <p>
-        <a href="about.html">关于我们</a> | 
-        <a href="Privacy.html">隐私政策</a> | 
-        <a href="Contact Us.html">联系我们</a>
+        <a href="about.html" id="footerAbout">关于我们</a> | 
+        <a href="Privacy.html" id="footerPrivacy">隐私政策</a> | 
+        <a href="Contact Us.html" id="footerContact">联系我们</a>
     </p>
 </footer>
+
+<script>
+    const translations = {
+        zh: {
+            title: '关于我们 | 万能在线工具箱 DevTools Box',
+            desc: '万能在线工具箱 - 旨在为开发者、设计师及日常办公人员提供快速、安全、免安装的高效工具。',
+            asideTitle: '📁 工具分类',
+            navHome: '常用工具首页',
+            navCrypto: '加密解密工具',
+            navFormat: '代码格式化',
+            navImage: '图片处理转换',
+            navNetwork: '网络测试工具',
+            h1: '关于我们',
+            sub: '做最懂你的高效生产力云端工具箱。',
+            s1Title: '我们的使命',
+            s1Text: '<strong>万能在线工具箱 (DevTools Box)</strong> 是一个专注于高效、纯净、即开即用的全功能在线技术工具平台。我们深知在日常开发、设计和数据处理中，寻找无广告污染、不强制注册且响应迅速的工具是多么不易。因此，我们建立了这个平台，将各类常用小工具进行深度整合，省去您安装各种客户端的繁琐流程。',
+            s2Title: '平台核心特色',
+            li1: '<strong>完全免费与免安装：</strong> 所有工具均在云端或纯浏览器本地（Frontend-only）运行，无需下载任何插件或应用程序。',
+            li2: '<strong>隐私与安全第一：</strong> 绝大部分涉及敏感数据的工具（如文本加密、格式化、图片转换）均直接在您的浏览器本地完成处理，数据绝不上传服务器，保障数据资产安全。',
+            li3: '<strong>极致响应速度：</strong> 紧跟前沿 Web 技术，页面轻量化设计，无冗余脚本，在各种网络环境下也能实现秒级加载。',
+            li4: '<strong>多端完美适配：</strong> 无论您使用的是台式电脑、平板还是智能手机，都能获得丝滑一致的操作体验。',
+            s3Title: '覆盖工具品类',
+            s3Desc: '我们持续保持高频更新，目前平台已涵盖以下核心板块：',
+            cat1: '<strong>开发辅助：</strong> JSON 格式化/压缩、Base64 编解码、MD5/SHA 哈希计算、URL 编解码。',
+            cat2: '<strong>文本与代码：</strong> 正则表达式测试、Diff 文本对比、Markdown 编辑预览、字数统计。',
+            cat3: '<strong>图形图像：</strong> 图片格式批量转换、SVG 优化预览、颜色提取器、二维码生成与识别。',
+            cat4: '<strong>网络与系统：</strong> IP 地址查询、Ping 测试、随机密码生成器、Cron 表达式生成。',
+            footerCopy: '© 2026 万能在线工具箱 DevTools Box. 保留所有权利。',
+            footerAbout: '关于我们',
+            footerPrivacy: '隐私政策',
+            footerContact: '联系我们'
+        },
+        en: {
+            title: 'About Us | DevTools Box',
+            desc: 'DevTools Box - providing fast, secure, and install‑free tools for developers, designers, and office workers.',
+            asideTitle: '📁 Tool Categories',
+            navHome: 'Home',
+            navCrypto: 'Encryption & Decryption',
+            navFormat: 'Code Formatter',
+            navImage: 'Image Processing',
+            navNetwork: 'Network Tools',
+            h1: 'About Us',
+            sub: 'Your go‑to cloud toolbox for productivity.',
+            s1Title: 'Our Mission',
+            s1Text: '<strong>DevTools Box</strong> is a full‑featured online tech tool platform focused on efficiency, cleanliness, and instant usability. We understand how difficult it is to find ad‑free, registration‑free, and fast‑responding tools in daily development, design, and data processing. That\'s why we built this platform to deeply integrate a variety of common gadgets, saving you the hassle of installing numerous desktop clients.',
+            s2Title: 'Core Features',
+            li1: '<strong>Completely Free & Install‑Free:</strong> All tools run either on the cloud or purely in your browser (frontend‑only) – no plugins or apps to download.',
+            li2: '<strong>Privacy & Security First:</strong> Most tools handling sensitive data (e.g., text encryption, formatting, image conversion) operate entirely in your browser, with no data ever uploaded to our servers, ensuring your assets remain safe.',
+            li3: '<strong>Blazing Speed:</strong> Built with cutting‑edge web technologies, lightweight pages, and zero bloat – achieving sub‑second load times even under various network conditions.',
+            li4: '<strong>Perfect Multi‑Device Experience:</strong> Enjoy a smooth and consistent experience whether you\'re on a desktop, tablet, or smartphone.',
+            s3Title: 'Tool Categories Covered',
+            s3Desc: 'We continuously update the platform, which currently includes the following core areas:',
+            cat1: '<strong>Development Aids:</strong> JSON formatting/minification, Base64 encoding/decoding, MD5/SHA hashing, URL encoding/decoding.',
+            cat2: '<strong>Text & Code:</strong> Regular expression tester, Diff text comparison, Markdown editor/preview, word count.',
+            cat3: '<strong>Graphics & Images:</strong> Batch image format conversion, SVG optimization/preview, color picker, QR code generator/decoder.',
+            cat4: '<strong>Network & System:</strong> IP address lookup, Ping test, random password generator, Cron expression generator.',
+            footerCopy: '© 2026 DevTools Box. All rights reserved.',
+            footerAbout: 'About',
+            footerPrivacy: 'Privacy',
+            footerContact: 'Contact'
+        }
+    };
+
+    let currentLang = 'zh';
+
+    function applyLanguage(lang) {
+        const t = translations[lang];
+        if (!t) return;
+        document.getElementById('pageTitle').innerText = t.title;
+        document.getElementById('metaDesc').setAttribute('content', t.desc);
+        document.getElementById('asideTitle').innerText = t.asideTitle;
+        document.getElementById('navHome').innerText = t.navHome;
+        document.getElementById('navCrypto').innerText = t.navCrypto;
+        document.getElementById('navFormat').innerText = t.navFormat;
+        document.getElementById('navImage').innerText = t.navImage;
+        document.getElementById('navNetwork').innerText = t.navNetwork;
+        document.getElementById('pageH1').innerText = t.h1;
+        document.getElementById('pageSub').innerText = t.sub;
+        document.getElementById('s1Title').innerText = t.s1Title;
+        document.getElementById('s1Text').innerHTML = t.s1Text;
+        document.getElementById('s2Title').innerText = t.s2Title;
+        document.getElementById('li1').innerHTML = t.li1;
+        document.getElementById('li2').innerHTML = t.li2;
+        document.getElementById('li3').innerHTML = t.li3;
+        document.getElementById('li4').innerHTML = t.li4;
+        document.getElementById('s3Title').innerText = t.s3Title;
+        document.getElementById('s3Desc').innerHTML = t.s3Desc;
+        document.getElementById('cat1').innerHTML = t.cat1;
+        document.getElementById('cat2').innerHTML = t.cat2;
+        document.getElementById('cat3').innerHTML = t.cat3;
+        document.getElementById('cat4').innerHTML = t.cat4;
+        document.getElementById('footerCopy').innerText = t.footerCopy;
+        document.getElementById('footerAbout').innerText = t.footerAbout;
+        document.getElementById('footerPrivacy').innerText = t.footerPrivacy;
+        document.getElementById('footerContact').innerText = t.footerContact;
+        document.querySelectorAll('.lang-btn').forEach(btn => {
+            btn.classList.toggle('active', btn.getAttribute('data-lang') === lang);
+        });
+        document.documentElement.lang = lang === 'zh' ? 'zh-CN' : 'en';
+        currentLang = lang;
+        localStorage.setItem('preferredLang', lang);
+    }
+
+    document.querySelectorAll('.lang-btn').forEach(btn => {
+        btn.addEventListener('click', function() {
+            applyLanguage(this.getAttribute('data-lang'));
+        });
+    });
+
+    const savedLang = localStorage.getItem('preferredLang') || 'zh';
+    applyLanguage(savedLang);
+</script>
 </body>
 </html>
