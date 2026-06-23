@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <title>联系我们 | 万能在线工具箱 DevTools Box</title>
-    <meta name="description" content="通过反馈表单或电子邮件联系万能在线工具箱官方团队。">
+    <title id="pageTitle">隐私政策 | 万能在线工具箱 DevTools Box</title>
+    <meta id="metaDesc" name="description" content="万能在线工具箱隐私政策 - 详细说明我们如何保障您的数据与本地浏览安全。">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -13,7 +13,6 @@
     
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        
         :root {
             --bg-base: #090d16;
             --sidebar-bg: rgba(20, 27, 45, 0.5);
@@ -25,7 +24,6 @@
             --accent-gradient: linear-gradient(135deg, #10b981, #06b6d4);
             --accent-glow: rgba(16, 185, 129, 0.25);
         }
-
         body {
             font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
             background: linear-gradient(135deg, #090d16, #0f172a, #0b132b, #090d16);
@@ -34,7 +32,6 @@
             min-height: 100vh;
             -webkit-font-smoothing: antialiased;
         }
-
         .top-glow-bar {
             height: 4px;
             background: linear-gradient(90deg, #10b981, #06b6d4, #3b82f6, #10b981);
@@ -42,12 +39,10 @@
             animation: flowLight 4s linear infinite;
             width: 100%;
         }
-
         @keyframes flowLight {
             0% { background-position: 0% 50%; }
             100% { background-position: 200% 50%; }
         }
-
         .lang-bar {
             background: rgba(9, 13, 22, 0.7);
             backdrop-filter: blur(24px);
@@ -56,23 +51,33 @@
             padding: 0.8rem 2rem;
             display: flex;
             justify-content: flex-end;
+            gap: 0.8rem;
             position: sticky;
             top: 0;
             z-index: 110;
+            flex-wrap: wrap;
         }
-
         .lang-btn {
-            background: var(--accent-gradient);
-            color: #fff;
+            background: transparent;
+            color: var(--text-muted);
             padding: 0.4rem 1.2rem;
             font-size: 0.85rem;
             font-weight: 600;
             cursor: pointer;
             border-radius: 99px;
-            box-shadow: 0 4px 12px var(--accent-glow);
-            border: none;
+            border: 1px solid transparent;
+            transition: all 0.3s;
         }
-
+        .lang-btn.active {
+            background: var(--accent-gradient);
+            color: #fff;
+            box-shadow: 0 4px 12px var(--accent-glow);
+            border-color: transparent;
+        }
+        .lang-btn:hover:not(.active) {
+            border-color: var(--accent);
+            color: var(--text-main);
+        }
         .layout-wrapper {
             display: flex;
             max-width: 1400px;
@@ -81,7 +86,6 @@
             padding: 0 2rem;
             gap: 2.5rem;
         }
-
         aside {
             width: 260px;
             position: sticky;
@@ -98,7 +102,6 @@
             gap: 0.3rem;
             flex-shrink: 0;
         }
-
         aside h2 {
             font-size: 0.75rem;
             text-transform: uppercase;
@@ -108,7 +111,6 @@
             padding-left: 1rem;
             font-weight: 700;
         }
-
         .nav-link {
             display: flex;
             align-items: center;
@@ -121,35 +123,29 @@
             font-weight: 500;
             transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
         }
-
         .nav-link i {
             width: 20px;
             font-size: 1.1rem;
             text-align: center;
             opacity: 0.8;
         }
-
         .nav-link:hover, .nav-link.active {
             background: rgba(255, 255, 255, 0.05);
             color: var(--text-main);
         }
-
         .nav-link.active {
             background: rgba(16, 185, 129, 0.1);
             color: #34d399;
             font-weight: 600;
             border-left: 3px solid var(--accent);
         }
-
         main {
             flex: 1;
             min-width: 0;
         }
-
         header {
             margin-bottom: 2.5rem;
         }
-
         header h1 {
             font-size: 2.6rem;
             font-weight: 800;
@@ -160,13 +156,11 @@
             -webkit-text-fill-color: transparent;
             line-height: 1.2;
         }
-
         header p {
             color: var(--text-muted);
             font-size: 1.1rem;
             margin-top: 0.5rem;
         }
-
         .content-card {
             background: var(--card-bg);
             border: 1px solid var(--border);
@@ -176,7 +170,6 @@
             -webkit-backdrop-filter: blur(12px);
             line-height: 1.8;
         }
-
         .content-card h2 {
             font-size: 1.4rem;
             font-weight: 700;
@@ -186,7 +179,6 @@
             align-items: center;
             gap: 0.6rem;
         }
-
         .content-card h2::before {
             content: '';
             width: 4px;
@@ -194,70 +186,11 @@
             background: var(--accent-gradient);
             border-radius: 2px;
         }
-
         .content-card p {
             color: #d1d5db;
             font-size: 1rem;
             margin-bottom: 1.2rem;
         }
-
-        .form-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 1.5rem;
-            margin-bottom: 1.5rem;
-        }
-        @media (max-width: 640px) {
-            .form-grid { grid-template-columns: 1fr; }
-        }
-
-        .form-group {
-            display: flex;
-            flex-direction: column;
-            gap: 0.5rem;
-        }
-
-        .form-label {
-            font-size: 0.9rem;
-            font-weight: 600;
-            color: var(--text-main);
-        }
-
-        .form-input {
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid var(--border);
-            border-radius: 12px;
-            padding: 0.75rem 1rem;
-            color: #fff;
-            font-family: inherit;
-            font-size: 0.95rem;
-            transition: all 0.3s;
-        }
-
-        .form-input:focus {
-            outline: none;
-            border-color: var(--accent);
-            background: rgba(255, 255, 255, 0.06);
-        }
-
-        .btn-submit {
-            background: var(--accent-gradient);
-            color: #fff;
-            border: none;
-            padding: 0.8rem 2rem;
-            font-weight: 600;
-            border-radius: 12px;
-            cursor: pointer;
-            font-family: inherit;
-            transition: all 0.3s;
-            box-shadow: 0 4px 12px var(--accent-glow);
-        }
-
-        .btn-submit:hover {
-            opacity: 0.9;
-            transform: translateY(-1px);
-        }
-
         footer {
             border-top: 1px solid var(--border);
             text-align: center;
@@ -268,73 +201,190 @@
             color: var(--text-muted);
             font-size: 0.9rem;
         }
-
         footer p { margin-bottom: 0.8rem; }
-        footer a { color: var(--text-muted); text-decoration: none; transition: color 0.2s; margin: 0 0.5rem; }
+        footer a {
+            color: var(--text-muted);
+            text-decoration: none;
+            transition: color 0.2s;
+            margin: 0 0.5rem;
+        }
         footer a:hover { color: #34d399; }
-
         @media (max-width: 1024px) {
-            .layout-wrapper { flex-direction: column; padding: 0 1.2rem; gap: 1.5rem; }
-            aside { width: calc(100% + 2.4rem); margin-left: -1.2rem; height: auto; position: sticky; top: 57px; flex-direction: row; overflow-x: auto; padding: 0.6rem 1.2rem; border-radius: 0; background: rgba(9, 13, 22, 0.9); z-index: 100; }
+            .layout-wrapper {
+                flex-direction: column;
+                padding: 0 1.2rem;
+                gap: 1.5rem;
+            }
+            aside {
+                width: calc(100% + 2.4rem);
+                margin-left: -1.2rem;
+                height: auto;
+                position: sticky;
+                top: 57px;
+                flex-direction: row;
+                overflow-x: auto;
+                padding: 0.6rem 1.2rem;
+                border-radius: 0;
+                background: rgba(9, 13, 22, 0.9);
+                z-index: 100;
+            }
             aside h2 { display: none; }
-            .nav-link { display: inline-flex; padding: 0.5rem 1rem; white-space: nowrap; }
+            .nav-link {
+                display: inline-flex;
+                padding: 0.5rem 1rem;
+                white-space: nowrap;
+            }
         }
     </style>
 </head>
 <body>
 <div class="top-glow-bar"></div>
 <div class="lang-bar">
-    <button class="lang-btn">简体中文</button>
+    <button class="lang-btn active" data-lang="zh">简体中文</button>
+    <button class="lang-btn" data-lang="en">English</button>
 </div>
 <div class="layout-wrapper">
     <aside>
-        <h2>📁 工具分类</h2>
-        <a href="index.html" class="nav-link"><i class="fa-solid fa-toolbox"></i><span>常用工具首页</span></a>
-        <a href="crypto.html" class="nav-link"><i class="fa-solid fa-key"></i><span>加密解密工具</span></a>
-        <a href="format.html" class="nav-link"><i class="fa-solid fa-code"></i><span>代码格式化</span></a>
-        <a href="image.html" class="nav-link"><i class="fa-regular fa-image"></i><span>图片处理转换</span></a>
-        <a href="network.html" class="nav-link"><i class="fa-solid fa-network-wired"></i><span>网络测试工具</span></a>
+        <h2 id="asideTitle">📁 工具分类</h2>
+        <a href="index.html" class="nav-link"><i class="fa-solid fa-toolbox"></i><span id="navHome">常用工具首页</span></a>
+        <a href="crypto.html" class="nav-link"><i class="fa-solid fa-key"></i><span id="navCrypto">加密解密工具</span></a>
+        <a href="format.html" class="nav-link"><i class="fa-solid fa-code"></i><span id="navFormat">代码格式化</span></a>
+        <a href="image.html" class="nav-link"><i class="fa-regular fa-image"></i><span id="navImage">图片处理转换</span></a>
+        <a href="network.html" class="nav-link"><i class="fa-solid fa-network-wired"></i><span id="navNetwork">网络测试工具</span></a>
     </aside>
     <main>
         <header>
-            <h1>联系我们</h1>
-            <p>提出您的宝贵建议，或向我们提交新工具的定制需求。</p>
+            <h1 id="pageH1">隐私政策</h1>
+            <p id="pageSub">您的数据安全与隐私对我们而言至关重要。</p>
         </header>
         <div class="content-card">
-            <h2>意见反馈与商务合作</h2>
-            <p>如果您在使用工具的过程中发现了任何故障、代码漏洞、计算错误，或者您有绝佳的创意想法希望我们帮您排期开发，欢迎随时通过以下官方渠道与团队取得联系：</p>
-            <p style="font-size: 1.2rem; font-weight: 700; color: #10b981; margin-bottom: 2rem;">
-                <i class="fa-regular fa-envelope"></i> <a href="mailto:nongyun8@gmail.com" style="color: inherit; text-decoration: none;">nongyun8@gmail.com</a>
-            </p>
+            <h2 id="s1Title">1. 本地化处理原则（Client-Side Rendering）</h2>
+            <p id="s1Text">本平台的核心宗旨是“安全第一”。本网站提供的绝大部分数据转换及处理工具（包括但不限于加密解密、文本对比、JSON 格式化、图像裁剪等）均完全在您的<strong>浏览器本地（客户端）</strong>完成。您的原始输入数据、文本或上传的文件绝不会传输至我们的后端服务器，我们不具备、也无法收集您的这些隐私业务数据。</p>
+            
+            <h2 id="s2Title">2. 基础日志与分析说明</h2>
+            <p id="s2Text">为了维护服务器的稳定运行、防御网络恶意攻击（如 DDoS）并优化页面加载性能，我们的标准 Web 服务器会自动记录普遍的非个人身份标识日志。这些信息包括：IP 地址、浏览器类型、引用页面、访问时间及点击的页面分布。这些数据仅用于统计和平台性能优化。</p>
+            
+            <h2 id="s3Title">3. 广告及第三方联盟（Google AdSense）</h2>
+            <p id="s3Text">本平台通过展示第三方广告（如 Google AdSense）来维持服务器和带宽成本。Google 作为第三方广告供应商，会利用 Cookie 根据用户在万能在线工具箱及互联网上其他网站的访问记录来投放个性化广告。您可以随时访问 Google 的广告和内容网络隐私政策，或在本地浏览器中清除、禁用 Cookie 以拒绝个性化广告投放。</p>
+            
+            <h2 id="s4Title">4. 外部链接免责条款</h2>
+            <p id="s4Text">本平台包含一些指向外部独立网站或开源社区的链接。请注意，一旦您点击这些链接离开本站，我们对第三方网站的隐私保护措施、数据收集行为和内容不承担任何法律责任。建议您在提交任何个人信息前先阅读该网站的隐私政策。</p>
 
-            <h2>在线留言板</h2>
-            <form onsubmit="event.preventDefault(); alert('感谢您的反馈！我们已收到您的留言，会尽快进行评估。');">
-                <div class="form-grid">
-                    <div class="form-group">
-                        <label class="form-label">您的称呼</label>
-                        <input type="text" class="form-input" placeholder="例如：张先生 / 开发者" required>
-                    </div>
-                    <div class="form-group">
-                        <label class="form-label">电子邮箱</label>
-                        <input type="email" class="form-input" placeholder="example@mail.com" required>
-                    </div>
-                </div>
-                <div class="form-group" style="margin-bottom: 1.5rem;">
-                    <label class="form-label">反馈或需求内容</label>
-                    <textarea class="form-input" rows="5" placeholder="请详细描述您遇到的问题、改进意见或新工具开发提议..." required></textarea>
-                </div>
-                <button type="submit" class="btn-submit">提交反馈</button>
-            </form>
+            <h2 id="s5Title">5. 隐私政策修订</h2>
+            <p id="s5Text">随着互联网法律法规的更新及平台功能的更迭，我们可能会不定期对本隐私声明进行小幅修订。建议您定期查阅本页面以了解最新条款。继续使用本站即代表您同意本隐私政策的全部内容。</p>
         </div>
     </main>
 </div>
 <footer>
-    <p>© 2026 万能在线工具箱 DevTools Box. 保留所有权利。</p>
+    <p id="footerCopy">© 2026 万能在线工具箱 DevTools Box. 保留所有权利。</p>
     <p>
-        <a href="about.html">关于我们</a> | 
-        <a href="Privacy.html">隐私政策</a> | 
-        <a href="Contact Us.html">联系我们</a>
+        <a href="about.html" id="footerAbout">关于我们</a> | 
+        <a href="Privacy.html" id="footerPrivacy">隐私政策</a> | 
+        <a href="Contact Us.html" id="footerContact">联系我们</a>
     </p>
 </footer>
+
+<script>
+    const translations = {
+        zh: {
+            title: '隐私政策 | 万能在线工具箱 DevTools Box',
+            desc: '万能在线工具箱隐私政策 - 详细说明我们如何保障您的数据与本地浏览安全。',
+            asideTitle: '📁 工具分类',
+            navHome: '常用工具首页',
+            navCrypto: '加密解密工具',
+            navFormat: '代码格式化',
+            navImage: '图片处理转换',
+            navNetwork: '网络测试工具',
+            h1: '隐私政策',
+            sub: '您的数据安全与隐私对我们而言至关重要。',
+            s1Title: '1. 本地化处理原则（Client-Side Rendering）',
+            s1Text: '本平台的核心宗旨是“安全第一”。本网站提供的绝大部分数据转换及处理工具（包括但不限于加密解密、文本对比、JSON 格式化、图像裁剪等）均完全在您的<strong>浏览器本地（客户端）</strong>完成。您的原始输入数据、文本或上传的文件绝不会传输至我们的后端服务器，我们不具备、也无法收集您的这些隐私业务数据。',
+            s2Title: '2. 基础日志与分析说明',
+            s2Text: '为了维护服务器的稳定运行、防御网络恶意攻击（如 DDoS）并优化页面加载性能，我们的标准 Web 服务器会自动记录普遍的非个人身份标识日志。这些信息包括：IP 地址、浏览器类型、引用页面、访问时间及点击的页面分布。这些数据仅用于统计和平台性能优化。',
+            s3Title: '3. 广告及第三方联盟（Google AdSense）',
+            s3Text: '本平台通过展示第三方广告（如 Google AdSense）来维持服务器和带宽成本。Google 作为第三方广告供应商，会利用 Cookie 根据用户在万能在线工具箱及互联网上其他网站的访问记录来投放个性化广告。您可以随时访问 Google 的广告和内容网络隐私政策，或在本地浏览器中清除、禁用 Cookie 以拒绝个性化广告投放。',
+            s4Title: '4. 外部链接免责条款',
+            s4Text: '本平台包含一些指向外部独立网站或开源社区的链接。请注意，一旦您点击这些链接离开本站，我们对第三方网站的隐私保护措施、数据收集行为和内容不承担任何法律责任。建议您在提交任何个人信息前先阅读该网站的隐私政策。',
+            s5Title: '5. 隐私政策修订',
+            s5Text: '随着互联网法律法规的更新及平台功能的更迭，我们可能会不定期对本隐私声明进行小幅修订。建议您定期查阅本页面以了解最新条款。继续使用本站即代表您同意本隐私政策的全部内容。',
+            footerCopy: '© 2026 万能在线工具箱 DevTools Box. 保留所有权利。',
+            footerAbout: '关于我们',
+            footerPrivacy: '隐私政策',
+            footerContact: '联系我们'
+        },
+        en: {
+            title: 'Privacy Policy | DevTools Box',
+            desc: 'Privacy policy of DevTools Box - detailed explanation of how we protect your data and local browsing security.',
+            asideTitle: '📁 Tool Categories',
+            navHome: 'Home',
+            navCrypto: 'Encryption & Decryption',
+            navFormat: 'Code Formatter',
+            navImage: 'Image Processing',
+            navNetwork: 'Network Tools',
+            h1: 'Privacy Policy',
+            sub: 'Your data security and privacy are of utmost importance to us.',
+            s1Title: '1. Client-Side Rendering Principle',
+            s1Text: 'Our core philosophy is "Security First". The vast majority of data conversion and processing tools on this site (including encryption/decryption, text comparison, JSON formatting, image cropping, etc.) are executed entirely in your <strong>browser locally (client-side)</strong>. Your raw input, text, or uploaded files are never transmitted to our backend servers, and we do not have the ability to collect your private business data.',
+            s2Title: '2. Basic Logging and Analytics',
+            s2Text: 'To maintain server stability, defend against malicious attacks (e.g., DDoS), and optimize page load performance, our standard web servers automatically record general non-personally identifiable information. This includes IP address, browser type, referrer page, access time, and page click distribution. These data are used solely for statistical analysis and platform performance optimization.',
+            s3Title: '3. Advertising and Third-Party Partners (Google AdSense)',
+            s3Text: 'We display third-party advertisements (e.g., Google AdSense) to cover server and bandwidth costs. As a third-party ad vendor, Google uses cookies to serve personalized ads based on users\' visits to DevTools Box and other websites on the Internet. You may visit Google\'s Ad and Content Network Privacy Policy at any time, or clear/disable cookies in your browser to opt out of personalized ad targeting.',
+            s4Title: '4. External Links Disclaimer',
+            s4Text: 'This site contains links to external independent websites or open-source communities. Please be aware that once you click these links and leave our site, we assume no legal responsibility for the privacy practices, data collection, or content of third-party sites. We recommend reading the privacy policy of any external site before submitting personal information.',
+            s5Title: '5. Policy Updates',
+            s5Text: 'As Internet laws and regulations evolve and platform features are updated, we may occasionally revise this privacy notice. Please check this page periodically to stay informed of the latest terms. Continued use of this site constitutes your acceptance of this privacy policy in its entirety.',
+            footerCopy: '© 2026 DevTools Box. All rights reserved.',
+            footerAbout: 'About',
+            footerPrivacy: 'Privacy',
+            footerContact: 'Contact'
+        }
+    };
+
+    let currentLang = 'zh';
+
+    function applyLanguage(lang) {
+        const t = translations[lang];
+        if (!t) return;
+        document.getElementById('pageTitle').innerText = t.title;
+        document.getElementById('metaDesc').setAttribute('content', t.desc);
+        document.getElementById('asideTitle').innerText = t.asideTitle;
+        document.getElementById('navHome').innerText = t.navHome;
+        document.getElementById('navCrypto').innerText = t.navCrypto;
+        document.getElementById('navFormat').innerText = t.navFormat;
+        document.getElementById('navImage').innerText = t.navImage;
+        document.getElementById('navNetwork').innerText = t.navNetwork;
+        document.getElementById('pageH1').innerText = t.h1;
+        document.getElementById('pageSub').innerText = t.sub;
+        document.getElementById('s1Title').innerText = t.s1Title;
+        document.getElementById('s1Text').innerHTML = t.s1Text;
+        document.getElementById('s2Title').innerText = t.s2Title;
+        document.getElementById('s2Text').innerHTML = t.s2Text;
+        document.getElementById('s3Title').innerText = t.s3Title;
+        document.getElementById('s3Text').innerHTML = t.s3Text;
+        document.getElementById('s4Title').innerText = t.s4Title;
+        document.getElementById('s4Text').innerHTML = t.s4Text;
+        document.getElementById('s5Title').innerText = t.s5Title;
+        document.getElementById('s5Text').innerHTML = t.s5Text;
+        document.getElementById('footerCopy').innerText = t.footerCopy;
+        document.getElementById('footerAbout').innerText = t.footerAbout;
+        document.getElementById('footerPrivacy').innerText = t.footerPrivacy;
+        document.getElementById('footerContact').innerText = t.footerContact;
+        document.querySelectorAll('.lang-btn').forEach(btn => {
+            btn.classList.toggle('active', btn.getAttribute('data-lang') === lang);
+        });
+        document.documentElement.lang = lang === 'zh' ? 'zh-CN' : 'en';
+        currentLang = lang;
+        localStorage.setItem('preferredLang', lang);
+    }
+
+    document.querySelectorAll('.lang-btn').forEach(btn => {
+        btn.addEventListener('click', function() {
+            applyLanguage(this.getAttribute('data-lang'));
+        });
+    });
+
+    const savedLang = localStorage.getItem('preferredLang') || 'zh';
+    applyLanguage(savedLang);
+</script>
 </body>
 </html>
