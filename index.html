@@ -7,8 +7,8 @@
 
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🧰</text></svg>">
     
-    <title>Ultimate Online Toolbox - Free, Local & Privacy-Safe Web Tools</title>
-    <meta name="description" content="A premium collection of essential productivity tools including smart image compression, text watermark, image format converter, bulk UUID generator, offline Office converter, Wi-Fi QR code generator, and financial calculators. 100% local, safe and private.">
+    <title id="seo-title">Ultimate Online Toolbox - Free, Local & Privacy-Safe Web Tools</title>
+    <meta id="seo-desc" name="description" content="A premium collection of essential productivity tools including smart image compression, text watermark, image format converter, bulk UUID generator, offline Office converter, Wi-Fi QR code generator, and financial calculators. 100% local, safe and private.">
     <meta name="keywords" content="online toolbox, image compress, watermark, format convert, UUID generator, Office converter, QR code, loan calculator, currency exchange, unit converter">
     <meta name="msvalidate.01" content="A77A155333B8287C20EA2B7FFEACEB1E" />
     
@@ -35,7 +35,6 @@
            ========================================== */
         * { margin: 0; padding: 0; box-sizing: border-box; -webkit-font-smoothing: antialiased; }
         
-        /* 将背景绑定至 html 根节点，彻底解决黑夜模式长页面滚动露白边的问题 */
         html {
             background: var(--bg-gradient);
             min-height: 100%;
@@ -62,7 +61,6 @@
             --badge-border: rgba(37, 99, 235, 0.15);
             --badge-text: #1d4ed8;
             
-            /* 新增卡片动态色彩变量 */
             --icon-sitemap-bg: rgba(16, 185, 129, 0.06);
             --icon-sitemap-border: rgba(16, 185, 129, 0.12);
             --icon-sitemap-color: #10b981;
@@ -89,7 +87,6 @@
             --badge-border: rgba(59, 130, 246, 0.2);
             --badge-text: #60a5fa;
 
-            /* 暗黑模式下特殊卡片色彩柔化 */
             --icon-sitemap-bg: rgba(52, 211, 153, 0.1);
             --icon-sitemap-border: rgba(52, 211, 153, 0.2);
             --icon-sitemap-color: #34d399;
@@ -100,7 +97,7 @@
 
         body {
             font-family: 'Plus Jakarta Sans', sans-serif;
-            background: transparent; /* 背景移至html，此处设为透明 */
+            background: transparent;
             color: var(--text-main);
             min-height: 100vh;
             padding: 40px 24px;
@@ -151,15 +148,9 @@
             transform: translateY(-2px);
             box-shadow: var(--shadow-md);
         }
-        .theme-btn i {
-            color: #eab308;
-        }
-        .nav-custom-link i.fa-robot {
-            color: #10b981;
-        }
-        .nav-custom-link i.fa-blog {
-            color: #f97316;
-        }
+        .theme-btn i { color: #eab308; }
+        .nav-custom-link i.fa-robot { color: #10b981; }
+        .nav-custom-link i.fa-blog { color: #f97316; }
 
         .lang-selector-container { display: flex; gap: 6px; background: rgba(0,0,0,0.05); padding: 4px; border-radius: 99px; border: 1px solid var(--card-border); }
         [data-theme="dark"] .lang-selector-container { background: rgba(255,255,255,0.02); }
@@ -175,9 +166,7 @@
             cursor: pointer;
             transition: all 0.25s ease;
         }
-        .lang-btn:hover {
-            color: var(--text-main);
-        }
+        .lang-btn:hover { color: var(--text-main); }
         .lang-btn.active {
             background: var(--accent-gradient);
             color: #ffffff;
@@ -185,7 +174,7 @@
         }
 
         /* ==========================================
-           3. 头部文案排版（全面修复显示不全Bug）
+           3. 头部文案排版
            ========================================== */
         header { text-align: center; margin-bottom: 48px; }
         header .badge {
@@ -208,7 +197,6 @@
             letter-spacing: -1.5px;
             margin-bottom: 16px;
             line-height: 1.15;
-            /* 完美修复代码拼写断层，建立平滑高质感白银渐变色 */
             background: linear-gradient(135deg, #ffffff 30%, #cbd5e1 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
@@ -284,7 +272,6 @@
             box-shadow: var(--shadow-lg), 0 0 0 1px rgba(59, 130, 246, 0.1);
         }
 
-        /* 统一标准基础 Icon 容器样式 */
         .icon-wrapper {
             width: 52px;
             height: 52px;
@@ -300,7 +287,6 @@
         .icon-wrapper i { font-size: 1.4rem; color: var(--accent); transition: all 0.3s ease; }
         [data-theme="dark"] .icon-wrapper i { color: #60a5fa; }
 
-        /* 悬浮微特效触发：图标容器全部升级为渐变高亮 */
         .tool-card:hover .icon-wrapper { 
             background: var(--accent-gradient) !important; 
             border-color: transparent !important;
@@ -309,7 +295,6 @@
         }
         .tool-card:hover .icon-wrapper i { color: #ffffff !important; }
 
-        /* 特殊自定义卡片 Icon 色彩变量注入绑定 */
         .icon-sitemap { background: var(--icon-sitemap-bg); border-color: var(--icon-sitemap-border); }
         .icon-sitemap i { color: var(--icon-sitemap-color); }
         .icon-ip { background: var(--icon-ip-bg); border-color: var(--icon-ip-border); }
@@ -332,22 +317,45 @@
         [data-theme="dark"] .tool-card .arrow-link { color: #60a5fa; }
         .tool-card:hover .arrow-link { opacity: 1; transform: translateX(4px); }
         
-        /* 广告信息流卡片原生级伪装融合设计 */
+        /* 🛡️ AdSense 政策合规：严禁将广告原生微调至和普通内容无法区分。禁止悬浮浮动提升放大暗示行为。*/
         .tool-card.ad-feed-card {
-            background: linear-gradient(145deg, rgba(59, 130, 246, 0.02) 0%, rgba(139, 92, 246, 0.02) 100%) !important;
-            border: 1px dashed rgba(139, 92, 246, 0.3) !important;
+            background: linear-gradient(145deg, rgba(0, 0, 0, 0.02) 0%, rgba(0, 0, 0, 0.04) 100%) !important;
+            border: 1px dashed var(--text-sub) !important;
             padding: 24px 20px;
             justify-content: flex-start;
             align-items: stretch;
             box-shadow: none !important;
+            cursor: default;
+        }
+        [data-theme="dark"] .tool-card.ad-feed-card {
+            background: linear-gradient(145deg, rgba(255, 255, 255, 0.01) 0%, rgba(255, 255, 255, 0.03) 100%) !important;
         }
         .tool-card.ad-feed-card:hover {
-            border-color: rgba(139, 92, 246, 0.5) !important;
-            transform: translateY(-4px);
+            transform: none !important;
+            border-color: var(--text-sub) !important;
+            box-shadow: none !important;
         }
 
         /* ==========================================
-           6. 页脚与合规免责布局
+           6. 📈 新增 SEO / AdSense 文本质感加强区域 (FAQ / About)
+           ========================================== */
+        .editorial-section {
+            margin-top: 64px;
+            padding: 40px 32px;
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: var(--radius-lg);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            box-shadow: var(--shadow-md);
+        }
+        .editorial-section h2 { font-size: 1.75rem; font-weight: 800; margin-bottom: 24px; letter-spacing: -0.5px; }
+        .faq-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; }
+        .faq-item h3 { font-size: 1.1rem; font-weight: 700; margin-bottom: 10px; color: var(--text-main); }
+        .faq-item p { font-size: 0.95rem; color: var(--text-muted); line-height: 1.6; }
+
+        /* ==========================================
+           7. 页脚与合规免责布局
            ========================================== */
         footer {
             text-align: center;
@@ -371,11 +379,11 @@
             border-radius: 8px;
         }
         [data-theme="dark"] footer .privacy-tag { background: rgba(255,255,255,0.01); }
-        footer a { color: var(--accent); text-decoration: none; font-weight: 600; }
+        footer a { color: var(--accent); text-decoration: none; font-weight: 600; margin: 0 8px; }
         footer a:hover { text-decoration: underline; }
 
         /* ==========================================
-           7. 移动端断点适配
+           8. 移动端断点适配
            ========================================== */
         @media (max-width: 768px) {
             body { padding: 32px 16px; }
@@ -385,6 +393,8 @@
             .tool-card { padding: 24px 20px; }
             .ad-wrapper { padding: 12px; }
             .top-navbar { justify-content: center; gap: 14px; margin-bottom: 32px; }
+            .faq-grid { grid-template-columns: 1fr; gap: 24px; }
+            .editorial-section { padding: 24px 20px; }
         }
     </style>
 </head>
@@ -455,9 +465,10 @@
             <div class="arrow-link i18n" data-en="Launch <i class='fas fa-arrow-right'></i>" data-zh="立即开启 <i class='fas fa-arrow-right'></i>" data-es="Iniciar <i class='fas fa-arrow-right'></i>" data-ja="起動する <i class='fas fa-arrow-right'></i>">Launch <i class='fas fa-arrow-right'></i></div>
         </a>
 
+        <!-- 🛡️ AdSense 合规化修正：彻底摘除带有情感误导与点击诱导的标签，将卡片视觉剥离，严格规避政策风险 -->
         <article class="tool-card ad-feed-card">
-            <div class="ad-hint" id="ad-hint-2" style="margin-bottom:14px; justify-content: flex-start; color: #a855f7;"><i class="fas fa-star"></i> Recommended For You</div>
-            <div style="width: 100%; min-height: 200px;">
+            <div class="ad-hint" id="ad-hint-2" style="margin-bottom:14px; justify-content: flex-start; color: var(--text-sub);"><i class="fas fa-rectangle-ad"></i> Sponsored Advertisement</div>
+            <div style="width: 100%; min-height: 250px;">
                 <ins class="adsbygoogle"
                      style="display:block"
                      data-ad-format="fluid"
@@ -474,7 +485,7 @@
             <p class="i18n" 
                data-en="Build standardized search engine structure index maps and crawl instruction policies dynamically inside your browser." 
                data-zh="在浏览器本地快速一键构建符合搜索引擎规范的 XML 映射树结构与 robots.txt 爬虫指引策略。" 
-               data-es="Cree mapas de índice de estructura de motores de búsqueda y políticas de instrucciones de rastreo estructurados." 
+               data-es="Cree mapas de índice de estructura de motores de búsqueda y políticas de instrucciones de rastreo structured." 
                data-ja="検索エンジン向けの標準的なサイトマップ(sitemap.xml)とクローラー制御方針(robots.txt)をローカル環境で作成。">Build standardized search engine structure index maps and crawl instruction policies dynamically inside your browser.</p>
             <div class="arrow-link i18n" data-en="Launch <i class='fas fa-arrow-right'></i>" data-zh="立即开启 <i class='fas fa-arrow-right'></i>" data-es="Iniciar <i class='fas fa-arrow-right'></i>" data-ja="起動する <i class='fas fa-arrow-right'></i>">Launch <i class='fas fa-arrow-right'></i></div>
         </a>
@@ -583,7 +594,7 @@
             <h2 class="i18n" data-en="Loan Mortgage" data-zh="贷款计算" data-es="Calculadora Hipotecaria" data-ja="ローン計算機">Loan Mortgage</h2>
             <p class="i18n" 
                data-en="Breakdown amortization payments to track principal schedules between equal principal or interest terms." 
-               data-zh="精确测算对比等额本息、等额本金等不同摊还金融方案 of 本金利息还款明细。" 
+               data-zh="精确测算对比等额本息、等额本金等不同摊还金融方案的本金利息还款明细。" 
                data-es="Desglose los pagos de amortización para realizar un seguimiento de los intereses principales." 
                data-ja="元利均等返済・元金均等返済など、異なる償還プランの元金・利息の返済明細を正確にシミュレーション。">Breakdown amortization payments to track principal schedules between equal principal or interest terms.</p>
             <div class="arrow-link i18n" data-en="Launch <i class='fas fa-arrow-right'></i>" data-zh="立即开启 <i class='fas fa-arrow-right'></i>" data-es="Iniciar <i class='fas fa-arrow-right'></i>" data-ja="起動する <i class='fas fa-arrow-right'></i>">Launch <i class='fas fa-arrow-right'></i></div>
@@ -607,11 +618,34 @@
                data-en="Cover extensive international systems for metrics encompassing dimensions, weight matrices, and thermal indexes." 
                data-zh="覆盖长度、重量、温度、面积等多维度国际标准度量衡单位的高精度网格转换器。" 
                data-es="Conversor de alta precisión que cubre longitud, peso, temperatura y múltiples dimensiones métricas." 
-               data-ja="長さ、重量、温度、面積など、多次元にわたる国際標準度量衡（メトリックシステム）を高精度一括换算。">Cover extensive international systems for metrics encompassing dimensions, weight matrices, and thermal indexes.</p>
+               data-ja="長さ、重量、温度、面積など、多次元にわたる国際標準度量衡（メトリックシステム）を高精度一括換算。">Cover extensive international systems for metrics encompassing dimensions, weight matrices, and thermal indexes.</p>
             <div class="arrow-link i18n" data-en="Launch <i class='fas fa-arrow-right'></i>" data-zh="立即开启 <i class='fas fa-arrow-right'></i>" data-es="Iniciar <i class='fas fa-arrow-right'></i>" data-ja="起動する <i class='fas fa-arrow-right'></i>">Launch <i class='fas fa-arrow-right'></i></div>
         </a>
 
     </main>
+
+    <!-- 📈 新增：高质感 SEO 文本深度内容区，彻底粉碎 AdSense 爬虫对工具类站点“低价值内容”的拒审理由 -->
+    <section class="editorial-section">
+        <h2 class="i18n" data-en="Why Choose Ultimate Online Toolbox?" data-zh="为什么选择万能在线工具箱？" data-es="¿Por qué elegir nuestra caja de herramientas?" data-ja="当ツールボックスが選ばれる理由">Why Choose Ultimate Online Toolbox?</h2>
+        <div class="faq-grid">
+            <div class="faq-item">
+                <h3 class="i18n" data-en="100% Secure & Client-Side Processing" data-zh="100% 隐私安全与纯前端本地处理" data-es="Procesamiento 100% local y seguro" data-ja="100% 安全なクライアントサイド処理">100% Secure & Client-Side Processing</h3>
+                <p class="i18n" 
+                   data-en="Unlike traditional web servers, our platform operates entirely within your browser sandboxing environment. Your sensitive images, documents, and corporate records are never transmitted over the internet." 
+                   data-zh="与传统的云端服务器工具不同，我们的平台完全运行在您浏览器的沙箱环境中。您的敏感图片、文档、网络隐私及各类资产明细数据绝不会上传至任何网络节点，真正做到零追踪、零留存。"
+                   data-es="A diferencia de los servidores tradicionales, nuestra plataforma opera totalmente en su navegador. Sus imágenes y documentos nunca se transmiten por Internet."
+                   data-ja="従来のサーバー送信型ツールとは異なり、当サイトはすべての処理をブラウザのサンドボックス内で完結。画像や機密情報が外部に送信されることはありません。">Unlike traditional web servers, our platform operates entirely within your browser sandboxing environment. Your sensitive images, documents, and corporate records are never transmitted over the internet.</p>
+            </div>
+            <div class="faq-item">
+                <h3 class="i18n" data-en="Blazing Fast Performance Offline" data-zh="免下载、免安装的极速离线响应" data-es="Velocidad optimizada sin conexión" data-ja="インストール不要のオフライン爆速起動">Blazing Fast Performance Offline</h3>
+                <p class="i18n" 
+                   data-en="By leveraging modern WebAssembly and local JavaScript processing pipelines, we eliminate upload bottlenecks. Enjoy immediate utility execution anytime, even when your connection drops." 
+                   data-zh="通过尖端的本地多线程 JavaScript 引擎调度，消除了繁琐的文件上传下载等待。无论是在写字楼低网络覆盖区，还是处于离线脱网环境下，所有工具组件均能秒级响应加载。"
+                   data-es="Aprovechando JavaScript moderno, eliminamos los cuellos de botella de carga. Disfrute de una ejecución inmediata en cualquier momento."
+                   data-ja="高度なJavaScriptローカル実行パイプラインにより、ファイルアップロードのボトルネックを排除。ネットワーク切断時でも、瞬時にツールを起動・処理。">By leveraging modern WebAssembly and local JavaScript processing pipelines, we eliminate upload bottlenecks. Enjoy immediate utility execution anytime, even when your connection drops.</p>
+            </div>
+        </div>
+    </section>
 
     <section class="ad-wrapper bottom-banner">
         <div class="ad-hint" id="ad-hint-3"><i class="fas fa-rectangle-ad"></i> Sponsored Advertisement</div>
@@ -626,48 +660,52 @@
 
     <footer>
         <p id="footer-cr">© Ultimate Online Toolbox | Client-Side Sandbox Workshop</p>
-        <p>
-        <a href="privacy.html" id="footerPrivacy">Privacy Policy</a>
-        <a href="contact.html" id="footerContact">Contact Us</a> | 
-        <a href="about.html" id="footerAbout">About</a>
-    </p>
-</footer>
+        <p style="margin-top: 10px;">
+            <a href="privacy.html" class="i18n" data-en="Privacy Policy" data-zh="隐私政策" data-es="Política de Privacidad" data-ja="プライバシーポリシー">Privacy Policy</a> | 
+            <a href="contact.html" class="i18n" data-en="Contact Us" data-zh="联系我们" data-es="Contacto" data-ja="お問い合わせ">Contact Us</a> | 
+            <a href="about.html" class="i18n" data-en="About Us" data-zh="关于我们" data-es="Sobre Nosotros" data-ja="当サイトについて">About Us</a>
+        </p>
+    </footer>
 
 </div>
 
 <script>
-    // i18n 核心调度系统
+    // i18n 核心调度系统（全面丰富化，注入核心 SEO 元数据同步流与页脚翻译流）
     const LANG_CONFIG = {
         en: {
+            seoTitle: 'Ultimate Online Toolbox - Free, Local & Privacy-Safe Web Tools',
+            seoDesc: 'A premium collection of essential productivity tools including smart image compression, text watermark, image format converter, bulk UUID generator, offline Office converter, Wi-Fi QR code generator, and financial calculators. 100% local, safe and private.',
             badge: '<i class="fas fa-shield-halved"></i> 100% Privacy Safe · Runs Locally',
             title: 'Ultimate Online Toolbox',
             desc: 'A premium collection of zero-upload utilities. All operations are processed completely offline inside your browser sandbox to guarantee absolute privacy.',
             adHint: '<i class="fas fa-rectangle-ad"></i> Sponsored Advertisement',
-            feedHint: '<i class="fas fa-star"></i> Recommended For You',
             footerCr: '© Ultimate Online Toolbox | Client-Side Sandbox Workshop'
         },
         zh: {
+            seoTitle: '万能在线工具箱 - 极简安全不上传的纯前端本地生产力工具集',
+            seoDesc: '无需上传文件的极简前端生产力工具箱。包含智能图片压缩、防盗文字水印、批量UUID密钥生成、本地Office转换、一扫即连Wi-Fi二维码、高精度金融贷款计算等实用工具，100%离线沙箱运行，极致保障隐私。',
             badge: '<i class="fas fa-shield-halved"></i> 100% 隐私安全 · 纯本地运行',
             title: '万能在线工具箱',
             desc: '无需上传文件的极简生产力工具集。所有操作均在您的浏览器内通过沙箱环境离线完成，绝对保障隐私。',
             adHint: '<i class="fas fa-rectangle-ad"></i> 赞助商广告',
-            feedHint: '<i class="fas fa-star"></i> 赞助商功能推荐',
             footerCr: '© 万能在线工具箱 | 纯前端零追踪工坊'
         },
         es: {
+            seoTitle: 'Caja de Herramientas Online - Herramientas Web Gratuitas y Seguras',
+            seoDesc: 'Colección premium de utilidades sin carga de archivos. Compresión de imágenes, marcas de agua y conversores financieros, 100% local y seguro.',
             badge: '<i class="fas fa-shield-halved"></i> 100% Privado · Ejecución Local',
             title: 'Caja de Herramientas Online',
             desc: 'Colección premium de utilidades sin carga de archivos. Todas las operaciones se procesan sin conexión dentro del navegador para garantizar la privacidad.',
             adHint: '<i class="fas fa-rectangle-ad"></i> Publicidad Patrocinada',
-            feedHint: '<i class="fas fa-star"></i> Recomendado Para Ti',
             footerCr: '© Ultimate Online Toolbox | Taller en el lado del cliente'
         },
         ja: {
+            seoTitle: '万能オンラインツールボックス - 安全なローカル実行ツール集',
+            seoDesc: 'ファイルのアップロードが不要な極速生産性ツールコレクション。画像圧縮、ウォーターマーク追加、UUID生成など、すべての処理は完全にオフラインで完結。',
             badge: '<i class="fas fa-shield-halved"></i> 100% 秘密厳守 · 完全ローカル実行',
             title: '万能オンラインツールボックス',
             desc: 'ファイルのアップロードが不要な極速生产性ツールコレクション。すべての処理はブラウザのサンドボックス内でオフラインで完結。',
             adHint: '<i class="fas fa-rectangle-ad"></i> スポンサー広告',
-            feedHint: '<i class="fas fa-star"></i> あなたへのおすすめ',
             footerCr: '© 万能オンラインツールボックス | クライアントサイド工房'
         }
     };
@@ -675,11 +713,15 @@
     function switchLang(lang) {
         const data = LANG_CONFIG[lang] || LANG_CONFIG['en'];
         
+        // 🚀 SEO 同步流优化
+        document.title = data.seoTitle;
+        document.getElementById('seo-desc').setAttribute('content', data.seoDesc);
+
+        // UI 核心文案同步
         document.getElementById('badge-text').innerHTML = data.badge;
         document.getElementById('main-title').innerText = data.title;
         document.getElementById('main-desc').innerText = data.desc;
         document.getElementById('ad-hint-1').innerHTML = data.adHint;
-        document.getElementById('ad-hint-2').innerHTML = data.feedHint;
         document.getElementById('ad-hint-3').innerHTML = data.adHint;
         document.getElementById('footer-cr').innerText = data.footerCr;
 
@@ -699,7 +741,6 @@
         document.documentElement.lang = lang;
     }
 
-    // 网页明暗皮肤调度中心
     function toggleTheme() {
         const currentTheme = document.documentElement.getAttribute('data-theme');
         const targetTheme = currentTheme === 'dark' ? 'light' : 'dark';
@@ -708,7 +749,6 @@
     }
 
     function initTheme() {
-        // 默认强制高级黑夜主题
         const savedTheme = localStorage.getItem('user_theme_preference') || 'dark';
         document.documentElement.setAttribute('data-theme', savedTheme);
     }
